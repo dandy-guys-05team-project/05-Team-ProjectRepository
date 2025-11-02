@@ -1,17 +1,17 @@
 /* TrendKor Color Palette */
 
 :root {
-  /* Primary Colors - Vibrant Orange/Coral */
-  --primary-50: #fff5f2;
-  --primary-100: #ffe8e0;
-  --primary-200: #ffcfc2;
-  --primary-300: #ffab94;
-  --primary-400: #ff7a54;
-  --primary-500: #e4334f;  /* Main Primary */
-  --primary-600: #e63e1a;
-  --primary-700: #c22f14;
-  --primary-800: #9f2814;
-  --primary-900: #832617;
+  /* Primary Colors - Taegeuk Red */
+  --primary-50: #ffe5e9;
+  --primary-100: #ffb3be;
+  --primary-200: #ff8093;
+  --primary-300: #ff4d68;
+  --primary-400: #e93954;
+  --primary-500: #c60c30;  /* Main Primary - Taegeuk Red */
+  --primary-600: #a00a26;
+  --primary-700: #7a081d;
+  --primary-800: #540514;
+  --primary-900: #2e030b;
 
   /* Secondary Colors - Deep Blue/Purple */
   --secondary-50: #e6f0ff;
@@ -48,18 +48,18 @@
   --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
 
   /* Colored shadows for emphasis */
-  --shadow-primary: 0 10px 30px rgba(255, 92, 53, 0.3);
+  --shadow-primary: 0 10px 30px rgba(198, 12, 48, 0.3);
   --shadow-secondary: 0 10px 30px rgba(62, 76, 176, 0.3);
-  --shadow-primary-lg: 0 20px 40px rgba(255, 92, 53, 0.4);
+  --shadow-primary-lg: 0 20px 40px rgba(198, 12, 48, 0.4);
   --shadow-secondary-lg: 0 20px 40px rgba(62, 76, 176, 0.4);
 
   /* Glow effects for interactive elements */
-  --glow-primary: 0 0 20px rgba(255, 92, 53, 0.4);
+  --glow-primary: 0 0 20px rgba(198, 12, 48, 0.4);
   --glow-secondary: 0 0 20px rgba(62, 76, 176, 0.4);
   --glow-white: 0 0 15px rgba(255, 255, 255, 0.15);
 
   /* Gradient backgrounds */
-  --gradient-primary: linear-gradient(135deg, #FF5C35 0%, #e63e1a 100%);
+  --gradient-primary: linear-gradient(135deg, #c60c30 0%, #a00a26 100%);
   --gradient-secondary: linear-gradient(135deg, #3E4CB0 0%, #2e3787 100%);
   --gradient-dark: linear-gradient(180deg, #000000 0%, #171717 100%);
   --gradient-radial: radial-gradient(circle, #262626 0%, #000000 70%);
@@ -68,7 +68,7 @@
   --overlay-light: rgba(0, 0, 0, 0.3);
   --overlay-medium: rgba(0, 0, 0, 0.5);
   --overlay-dark: rgba(0, 0, 0, 0.8);
-  --overlay-primary: rgba(255, 92, 53, 0.1);
+  --overlay-primary: rgba(198, 12, 48, 0.1);
   --overlay-secondary: rgba(62, 76, 176, 0.1);
 }
 
