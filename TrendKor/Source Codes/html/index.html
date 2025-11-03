@@ -20,6 +20,12 @@
     <meta content="summary_large_image" name="twitter:card" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="hnt4fWI8XtyR1S6tKBNcKMoxdF-sBBB-YNj1byeTYU0" name="google-site-verification" />
+    <!-- TrendKor 배경색 캐싱 방지 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <!-- TrendKor Design System Colors -->
+    <link href="../../Design System/colors.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.prod.website-files.com/67ae080a89e64a58e21d4e2d/css/jf-staging.shared.b5ba267c2.min.css"
         rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -405,6 +411,237 @@
                     left: 0;
                     width: 100%;
                 }
+
+                /* Hero subtitle styling */
+                .hero-subtitle {
+                    font-family: var(--typography--body);
+                    font-size: 2rem;
+                    font-weight: 300;
+                    line-height: 1.4em;
+                    color: var(--text--secondary);
+                    margin-top: 1rem;
+                    letter-spacing: -0.01em;
+                    text-transform: none;
+                }
+
+                /* Hero text mask background styling - TrendKor primary-700 배경 - 완전 강화된 스타일 */
+                .home-hero_text-mask.sliding-version {
+                    background: var(--primary-700, #7a081d) !important; /* TrendKor primary-700 색상 */
+                    background-color: var(--primary-700, #7a081d) !important;
+                    background-image: none !important; /* 그라데이션 완전 제거 */
+                    background-repeat: no-repeat !important;
+                    background-size: cover !important;
+                    background-attachment: fixed !important; /* 배경 고정 */
+                    opacity: 1 !important;
+                    mix-blend-mode: normal !important;
+                    position: relative !important;
+                    z-index: 15 !important;
+                    width: 100vw !important; /* 좌우 꽉 차게 */
+                    height: 100% !important;
+                    margin-left: calc(-50vw + 50%) !important; /* 중앙 정렬을 위한 조정 */
+                    margin-right: calc(-50vw + 50%) !important;
+                    /* 강제 색상 유지를 위한 추가 속성 */
+                    --bg-color: #7a081d !important;
+                    filter: none !important;
+                    backdrop-filter: none !important;
+                    /* 새로고침 시 색상 유지를 위한 CSS 변수 */
+                    --trendkor-red: var(--primary-700, #7a081d);
+                    /* 브라우저 캐싱 문제 해결을 위한 추가 속성 */
+                    -webkit-background-clip: border-box !important;
+                    background-clip: border-box !important;
+                    -webkit-transform: translateZ(0) !important;
+                    transform: translateZ(0) !important;
+                    will-change: auto !important;
+                }
+                
+                /* 블렌드 모드 완전 제거 */
+                .home-hero_text-mask {
+                    mix-blend-mode: normal !important;
+                }
+                
+                /* 모든 관련 섹션에서 블렌드 모드 제거 */
+                .section_hero-sliding-video {
+                    mix-blend-mode: normal !important;
+                }
+                
+                /* 새로고침 시에도 배경색 유지를 위한 강화된 스타일 */
+                .home-hero_text-mask.sliding-version::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: var(--primary-700, #7a081d) !important;
+                    background-color: var(--primary-700, #7a081d) !important;
+                    background-image: none !important;
+                    z-index: -1 !important;
+                    opacity: 1 !important;
+                    -webkit-transform: translateZ(0) !important;
+                    transform: translateZ(0) !important;
+                    will-change: auto !important;
+                }
+                
+                /* 추가 보강: body 로드 후에도 색상 유지 */
+                .home-hero_text-mask.sliding-version::after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: var(--primary-700, #7a081d) !important;
+                    z-index: -2 !important;
+                    opacity: 1 !important;
+                }
+                
+                /* 텍스트 스타일 - 강화된 흰색 텍스트 */
+                .hero-heading {
+                    color: white !important;
+                    -webkit-text-fill-color: white !important;
+                    text-shadow: none !important;
+                    position: relative !important;
+                    z-index: 11 !important;
+                    mix-blend-mode: normal !important;
+                    /* 텍스트 색상 강제 유지 */
+                    filter: none !important;
+                }
+                
+                .hero-subtitle {
+                    color: white !important;
+                    -webkit-text-fill-color: white !important;
+                    text-shadow: none !important;
+                    position: relative !important;
+                    z-index: 11 !important;
+                    mix-blend-mode: normal !important;
+                    /* 텍스트 색상 강제 유지 */
+                    filter: none !important;
+                }
+                
+                /* 비디오를 텍스트 마스크 뒤로 배치 */
+                .slide-hero-video.sliding-version {
+                    position: absolute !important;
+                    top: 0 !important;
+                    left: 0 !important;
+                    width: 100% !important;
+                    height: 100% !important;
+                    z-index: 1 !important;
+                }
+                
+                .section_sliding-video.sliding-version {
+                    position: absolute !important;
+                    top: 0 !important;
+                    left: 0 !important;
+                    width: 100% !important;
+                    height: 100% !important;
+                    z-index: 0 !important;
+                }
+                
+                .section_sliding-video.sliding-version .padding-global,
+                .section_sliding-video.sliding-version .container-xlarge {
+                    width: 100% !important;
+                    height: 100% !important;
+                    padding: 0 !important;
+                    max-width: none !important;
+                }
+                
+                /* 비디오 요소 자체도 전체 화면으로 */
+                .slide-hero-video.sliding-version video {
+                    width: 100% !important;
+                    height: 100% !important;
+                    object-fit: cover !important;
+                }
+                
+                /* 텍스트 마스크 레이어 - 투명하게 만들고 자식 요소로 구성 */
+                .home-hero_text-mask.sliding-version {
+                    position: relative !important;
+                    z-index: 10 !important;
+                    overflow: visible !important;
+                    background: transparent !important;
+                    background-image: none !important;
+                }
+                
+                /* 텍스트 컨테이너 - 맨 위에 위치 */
+                .trendkor-text-container {
+                    position: relative !important;
+                    z-index: 2 !important;
+                }
+                
+                /* 빨간 배경 오버레이 - 텍스트 아래, 비디오 위 */
+                .red-overlay {
+                    position: absolute !important;
+                    top: 0 !important;
+                    left: 0 !important;
+                    right: 0 !important;
+                    bottom: 0 !important;
+                    background: var(--primary-700, #7a081d) !important;
+                    z-index: 1 !important;
+                    /* 텍스트 모양으로 마스크 적용 */
+                    mask-image: linear-gradient(black, black) !important;
+                    -webkit-mask-image: linear-gradient(black, black) !important;
+                }
+                
+                /* TrendKor 텍스트 스타일 - 흰색으로 표시 + mix-blend-mode로 구멍 효과 */
+                .trendkor-title {
+                    font-size: 8rem !important;
+                    font-weight: 700 !important;
+                    line-height: 1.1 !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    color: #000 !important;
+                    -webkit-text-fill-color: #000 !important;
+                    /* 빨간 배경을 뚫는 blend 모드 */
+                    mix-blend-mode: destination-out !important;
+                    position: relative !important;
+                    z-index: 3 !important;
+                }
+                
+                .trendkor-subtitle {
+                    font-size: 2rem !important;
+                    font-weight: 400 !important;
+                    line-height: 1.4 !important;
+                    margin-top: 1rem !important;
+                    margin-bottom: 0 !important;
+                    padding: 0 !important;
+                    color: #000 !important;
+                    -webkit-text-fill-color: #000 !important;
+                    mix-blend-mode: destination-out !important;
+                    position: relative !important;
+                    z-index: 3 !important;
+                }
+                
+                /* 반응형 텍스트 크기 조정 */
+                @media screen and (max-width: 991px) {
+                    .trendkor-title {
+                        font-size: 5rem !important;
+                    }
+                    .trendkor-subtitle {
+                        font-size: 1.5rem !important;
+                    }
+                }
+
+                @media screen and (max-width: 767px) {
+                    .trendkor-title {
+                        font-size: 3.5rem !important;
+                    }
+                    .trendkor-subtitle {
+                        font-size: 1.2rem !important;
+                    }
+                }
+
+                @media screen and (max-width: 991px) {
+                    .hero-subtitle {
+                        font-size: 1.5rem;
+                        margin-top: 0.75rem;
+                    }
+                }
+
+                @media screen and (max-width: 767px) {
+                    .hero-subtitle {
+                        font-size: 1.2rem;
+                        margin-top: 0.5rem;
+                    }
+                }
             </style>
         </div>
         <div class="page-styles w-embed">
@@ -506,12 +743,76 @@
             </div>
         </nav>
         <main class="main-wrapper">
-            <header class="sliding-hero-video_wrapper">
-                <div class="section_hero-sliding-video">
+            <header class="sliding-hero-video_wrapper" style="background: var(--primary-700) !important;">
+                <div class="section_hero-sliding-video" style="background: var(--primary-700) !important;">
                     <div class="container-xlarge">
                         <div class="home-hero_text-mask sliding-version">
-                            <h1 fade-in="" class="hero-heading custom-full-width">Take<br />Control.</h1>
+                            <!-- 비디오가 보이는 텍스트 레이어 -->
+                            <div class="trendkor-text-container">
+                                <h1 fade-in="" class="hero-heading custom-full-width trendkor-title">TRENDKOR</h1>
+                                <h3 class="hero-subtitle trendkor-subtitle">Trend Explained, Culture Unveiled</h3>
+                            </div>
+                            <!-- 빨간 배경 오버레이 (텍스트 뒤) -->
+                            <div class="red-overlay"></div>
                         </div>
+                    </div>
+                </div>
+                <div class="take-control-wrapper sliding-video hide">
+                    <div class="padding-global">
+                        <div class="container-xlarge">
+                            <h2 class="take-control-text hero-heading">Take Control.</h2>
+                        </div>
+                    </div>
+                </div>
+                <header class="section_sliding-video sliding-version" style="background: var(--primary-700) !important;">
+                    <div class="padding-global home-video">
+                        <div class="container-xlarge">
+                            <div data-poster-url="../src/Resources/LandingPageVideo.mp4" data-video-urls="../src/Resources/LandingPageVideo.mp4" data-autoplay="true" data-loop="true" data-wf-ignore="true" class="slide-hero-video sliding-version w-background-video w-background-video-atom">
+                                <video id="a7401e2a-6f96-c40c-c0e6-574c985abce1-video" autoplay="" loop="" style="background-image:url(&quot;../src/Resources/LandingPageVideo.mp4&quot;)" muted="" playsinline="" data-wf-ignore="true" data-object-fit="cover">
+                                    <source src="../src/Resources/LandingPageVideo.mp4" data-wf-ignore="true"/>
+                                    <source src="../src/Resources/LandingPageVideo.mp4" data-wf-ignore="true"/>
+                                </video>
+                                <noscript>
+                                    <style>
+                                        [data-wf-bgvideo-fallback-img] {
+                                            display: none;
+                                        }
+                                        @media (prefers-reduced-motion: reduce) {
+                                            [data-wf-bgvideo-fallback-img] {
+                                                position: absolute;
+                                                z-index: -100;
+                                                display: inline-block;
+                                                height: 100%;
+                                                width: 100%;
+                                                object-fit: cover;
+                                            }
+                                        }
+                                    </style>
+                                    <img data-wf-bgvideo-fallback-img="true" src="../src/Resources/LandingPageVideo.mp4" alt=""/>
+                                </noscript>
+                                <div aria-live="polite">
+                                    <button type="button" data-w-bg-video-control="true" aria-controls="a7401e2a-6f96-c40c-c0e6-574c985abce1-video" class="w-backgroundvideo-backgroundvideoplaypausebutton play-pause-button w-background-video--control">
+                                        <span><img src="https://cdn.prod.website-files.com/67ae080a89e64a58e21d4e2d/67d1f07a8524b8045e011e69_Pause.svg" loading="lazy" alt="Pause video" class="play-pause-img"/></span>
+                                        <span hidden=""><img loading="lazy" alt="Play video" src="https://cdn.prod.website-files.com/67ae080a89e64a58e21d4e2d/67d1f076da407d0d89ad98de_Play.svg" class="play-pause-img"/></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <div class="take-control-text-scroll_wrapper">
+                    <div class="container-xlarge">
+                        <div class="take-control-wrapper sliding-video new">
+                            <h2 take-control-animaton="" class="take-control-text hero-heading">Take Control.</h2>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <header class="sliding-hero-video_wrapper" style="display: none;">
+                <div class="section_hero-sliding-video">
+                    <div class="container-xlarge">
+                        <!-- home-hero_text-mask 레이어 삭제됨 -->
                     </div>
                 </div>
                 <div class="take-control-wrapper sliding-video hide">
@@ -574,32 +875,6 @@
                     </div>
                 </div>
             </header>
-            <header class="section_home-hero hide">
-                <div class="padding-global">
-                    <div class="container-xlarge">
-                        <div class="padding-section-large section-home-hero">
-                            <div class="home-hero_component">
-                                <div class="home-hero_text-mask">
-                                    <h1 fade-in="" class="hero-heading">Producing results when it matters most</h1>
-                                </div>
-                                <div data-poster-url="../src/Resources/LandingPageVideo.mp4"
-                                    data-video-urls="../src/Resources/LandingPageVideo.mp4"
-                                    data-autoplay="true" data-loop="true" data-wf-ignore="true"
-                                    class="home-hero_video w-background-video w-background-video-atom"><video
-                                        id="52629c2f-4dc8-bb5c-6e2d-d36df5eed1a2-video" autoplay="" loop=""
-                                        muted="" playsinline="" data-wf-ignore="true" data-object-fit="cover">
-                                        <source
-                                            src="../src/Resources/LandingPageVideo.mp4"
-                                            data-wf-ignore="true" />
-                                        <source
-                                            src="../src/Resources/LandingPageVideo.mp4"
-                                            data-wf-ignore="true" />
-                                    </video></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
             <header data-theme="dark" class="section_sliding-video hide">
                 <div class="padding-global home-video">
                     <div class="container-xlarge">
@@ -642,7 +917,7 @@
                                             src="https://cdn.prod.website-files.com/67ae080a89e64a58e21d4e2d/67d1f076da407d0d89ad98de_Play.svg"
                                             class="play-pause-img" /></span></button></div>
                             <div class="take-control-wrapper">
-                                <h2 fade-in="" class="take-control-text heading-style-h1">Take  Control.</h2>
+                                <h2  class="take-control-text heading-style-h1">Take  Control.</h2>
                             </div>
                         </div>
                     </div>
@@ -1150,31 +1425,7 @@
         // Ensure GSAP and ScrollTrigger are loaded
         gsap.registerPlugin(ScrollTrigger);
 
-        // Function to initialize fade-in animations
-        function initFadeInAnimations() {
-            // Select all elements with the `fade-in` attribute
-            document.querySelectorAll('[fade-in]').forEach((el) => {
-                // Create a ScrollTrigger animation for each element
-                gsap.fromTo(
-                    el,
-                    { opacity: 0, y: 40 }, // Start state: transparent and shifted down
-                    {
-                        opacity: 1,
-                        y: 0,
-                        duration: 1,
-                        ease: "power2.out",
-                        scrollTrigger: {
-                            trigger: el, // Use the element as the trigger
-                            start: "top 90%", // Start animation when the element enters the viewport
-                            toggleActions: "play none none none" // Play animation once
-                        }
-                    }
-                );
-            });
-        }
 
-        // Initialize fade-in animations on page load
-        document.addEventListener('DOMContentLoaded', initFadeInAnimations);
     </script>
 
     <script>
@@ -2275,6 +2526,283 @@
             }, 500); // Adjust delay as needed
         });
     </script>
+    
+    <!-- TrendKor fade-in 애니메이션 복구 -->
+    <script>
+        // GSAP fade-in 애니메이션 초기화
+        function initFadeInAnimations() {
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+                
+                // fade-in 속성을 가진 모든 요소를 찾아서 애니메이션 적용
+                document.querySelectorAll('[fade-in]').forEach(element => {
+                    // 초기 상태 설정
+                    gsap.set(element, { 
+                        opacity: 0, 
+                        y: 40 
+                    });
+                    
+                    // 스크롤 트리거 애니메이션
+                    gsap.to(element, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: element,
+                            start: "top 85%",
+                            toggleActions: "play none none reverse"
+                        }
+                    });
+                });
+            }
+        }
+        
+        // DOM 로드 시 애니메이션 초기화
+        document.addEventListener('DOMContentLoaded', initFadeInAnimations);
+    </script>
+
+    <!-- TrendKor 배경색 강제 유지 스크립트 -->
+    <script>
+        // 페이지 로드 즉시 배경색 설정
+        (function() {
+            const TRENDKOR_RED = 'var(--primary-700, #7a081d)';
+            
+            function enforceBackgroundColor() {
+                // 모든 관련 요소들에 배경색 적용
+                const elements = [
+                    '.home-hero_text-mask.sliding-version',
+                    '.section_sliding-video.sliding-version',
+                    '.sliding-hero-video_wrapper',
+                    '.section_hero-sliding-video'
+                ];
+                
+                elements.forEach(selector => {
+                    const element = document.querySelector(selector);
+                    if (element) {
+                        // 다양한 방법으로 배경색 강제 설정
+                        element.style.setProperty('background', TRENDKOR_RED, 'important');
+                        element.style.setProperty('background-color', TRENDKOR_RED, 'important');
+                        element.style.setProperty('background-image', 'none', 'important');
+                        element.style.setProperty('opacity', '1', 'important');
+                        element.style.setProperty('min-height', '100vh', 'important');
+                        
+                        // 블렌드 모드 완전 제거
+                        element.style.setProperty('mix-blend-mode', 'normal', 'important');
+                        
+                        // CSS 변수도 설정
+                        element.style.setProperty('--bg-color', 'var(--primary-700, #7a081d)');
+                        element.style.setProperty('--trendkor-red', 'var(--primary-700, #7a081d)');
+                        
+                        // 의사 요소들도 강제 설정을 위한 클래스 추가
+                        element.classList.add('trendkor-bg-enforced');
+                    }
+                });
+                
+                // 내부 컨테이너들은 투명하게 설정하여 부모 배경이 보이도록
+                const transparentElements = [
+                    '.sliding-hero-video_wrapper .section_hero-sliding-video',
+                    '.sliding-hero-video_wrapper .container-xlarge',
+                    '.section_sliding-video .padding-global',
+                    '.section_sliding-video .container-xlarge'
+                ];
+                
+                transparentElements.forEach(selector => {
+                    const elements = document.querySelectorAll(selector);
+                    elements.forEach(element => {
+                        element.style.setProperty('background', 'transparent', 'important');
+                        element.style.setProperty('background-color', 'transparent', 'important');
+                    });
+                });
+            }
+            
+            // 즉시 실행
+            enforceBackgroundColor();
+            
+            // DOM 로드 후 다시 실행
+            document.addEventListener('DOMContentLoaded', enforceBackgroundColor);
+            
+            // 페이지 완전 로드 후에도 실행
+            window.addEventListener('load', enforceBackgroundColor);
+            
+            // 새로고침이나 뒤로가기 시에도 실행
+            window.addEventListener('pageshow', enforceBackgroundColor);
+            
+            // 주기적으로 체크하여 색상 유지 (처음 1초간만)
+            let checkCount = 0;
+            const intervalId = setInterval(() => {
+                enforceBackgroundColor();
+                checkCount++;
+                if (checkCount >= 10) { // 1초간 100ms마다 체크
+                    clearInterval(intervalId);
+                }
+            }, 100);
+        })();
+    </script>
+    
+    <!-- 추가 CSS로 ::before, ::after 강화 -->
+    <style>
+        .trendkor-bg-enforced::before,
+        .trendkor-bg-enforced::after {
+            background: var(--primary-700, #7a081d) !important;
+            background-color: var(--primary-700, #7a081d) !important;
+            background-image: none !important;
+        }        /* 완전 강제 스타일 */
+        .home-hero_text-mask.sliding-version.trendkor-bg-enforced,
+        .section_hero-sliding-video.trendkor-bg-enforced,
+        .sliding-hero-video_wrapper.trendkor-bg-enforced,
+        .section_sliding-video.sliding-version.trendkor-bg-enforced {
+            background: var(--primary-700, #7a081d) !important;
+            background-color: var(--primary-700, #7a081d) !important;
+            background-image: none !important;
+            min-height: 100vh !important;
+        }
+        
+        /* 삭제된 home-hero_text-mask 레이어 관련 CSS 제거 */
+        /* 비디오 컨테이너 섹션 스타일 조정 */
+        .section_hero-sliding-video {
+            position: relative !important;
+            min-height: 100vh !important;
+            max-height: 100vh !important;
+            overflow: hidden !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+        
+        /* 색상 통일을 위한 추가 스타일 */
+        body .sliding-hero-video_wrapper,
+        body .section_hero-sliding-video,
+        body .section_sliding-video.sliding-version {
+            background: var(--primary-700, #7a081d) !important;
+            background-color: var(--primary-700, #7a081d) !important;
+        }
+                 /* 비디오를 첫 번째 패널 영역에만 제한 */
+                .slide-hero-video.sliding-version {
+                    display: block !important;
+                    position: absolute !important;
+                    top: 0 !important;
+                    left: 0 !important;
+                    width: 100% !important;
+                    height: 100% !important;
+                    z-index: -1 !important; /* 텍스트 패널 뒤에 위치 */
+                    object-fit: cover !important;
+                    /* 패널 경계를 넘지 않도록 제한 */
+                    max-width: 100% !important;
+                    max-height: 100vh !important;
+                    overflow: hidden !important;
+                }
+                
+                /* 비디오 내부 video 태그 스타일링 */
+                .slide-hero-video.sliding-version video {
+                    width: 100% !important;
+                    height: 100% !important;
+                    object-fit: cover !important;
+                    opacity: 1 !important;
+                    /* 동영상을 더 밝게 하여 텍스트 구멍 효과를 선명하게 */
+                    filter: brightness(1.2) contrast(1.1) !important;
+                }
+                
+                /* 전체 비디오 섹션에도 TrendKor 배경색 적용 */
+                .section_sliding-video.sliding-version {
+                    background: var(--primary-700, #7a081d) !important;
+                    background-color: var(--primary-700, #7a081d) !important;
+                    background-image: none !important;
+                    min-height: 100vh !important;
+                }
+                
+                /* 슬라이딩 히어로 래퍼 - 첫 번째 패널에만 제한 */
+                .sliding-hero-video_wrapper {
+                    position: relative !important;
+                    min-height: 100vh !important;
+                    max-height: 100vh !important;
+                    overflow: hidden !important;
+                    background: var(--primary-700, #7a081d) !important;
+                    background-color: var(--primary-700, #7a081d) !important;
+                    background-image: none !important;
+                }
+                
+                /* 히어로 섹션 전체에도 배경색 적용 */
+                .section_hero-sliding-video {
+                    background: transparent !important; /* 비디오가 보이도록 투명하게 */
+                    min-height: 100vh !important;
+                    z-index: 20 !important; /* 텍스트가 비디오 위에 오도록 */
+                    position: relative !important;
+                }
+                
+                /* 컨테이너와 패딩 요소들도 배경색 통일 */
+                .sliding-hero-video_wrapper .section_hero-sliding-video,
+                .sliding-hero-video_wrapper .container-xlarge,
+                .section_sliding-video .padding-global,
+                .section_sliding-video .container-xlarge {
+                    background: transparent !important;
+                    background-color: transparent !important;
+                }
+                
+                /* 전체 래퍼에 확실한 배경 보장 */
+                .sliding-hero-video_wrapper::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: var(--primary-700, #7a081d) !important;
+                    background-color: var(--primary-700, #7a081d) !important;
+                    z-index: -10 !important;
+                }
+    </style>
+    
+    <!-- TrendKor 스크롤 마스크 벗기기 애니메이션 -->
+    <script>
+        // GSAP를 사용한 스크롤 애니메이션
+        document.addEventListener('DOMContentLoaded', function() {
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // 마스크 레이어 선택
+            const maskLayer = document.querySelector('.home-hero_text-mask.sliding-version');
+            const videoSection = document.querySelector('.section_sliding-video.sliding-version');
+            
+            if (maskLayer && videoSection) {
+                // 초기 상태: 마스크가 화면 전체를 덮음
+                gsap.set(maskLayer, {
+                    clipPath: 'inset(0% 0% 0% 0%)',
+                    zIndex: 20
+                });
+                
+                // 비디오가 마스크 뒤에 위치
+                gsap.set(videoSection, {
+                    zIndex: 1
+                });
+                
+                // 스크롤 애니메이션: 위에서 아래로 마스크가 벗겨짐
+                ScrollTrigger.create({
+                    trigger: maskLayer,
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: 1,
+                    pin: true,
+                    onUpdate: (self) => {
+                        // 스크롤 진행도에 따라 마스크를 위에서 아래로 벗겨냄
+                        const progress = self.progress;
+                        const clipValue = progress * 100;
+                        
+                        gsap.to(maskLayer, {
+                            clipPath: `inset(${clipValue}% 0% 0% 0%)`,
+                            duration: 0.1,
+                            ease: "none"
+                        });
+                    }
+                });
+                
+                console.log('TrendKor 스크롤 마스크 애니메이션 초기화 완료');
+            } else {
+                console.warn('마스크 레이어 또는 비디오 섹션을 찾을 수 없습니다');
+            }
+        });
+    </script>
+
+    <!-- Google Tag Manager (noscript) -->
 </body>
 
 </html>
