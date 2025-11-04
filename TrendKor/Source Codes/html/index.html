@@ -424,117 +424,82 @@
                     text-transform: none;
                 }
 
-                /* Hero text mask background styling - TrendKor primary-700 배경 - 완전 강화된 스타일 */
-                .home-hero_text-mask.sliding-version {
-                    background: var(--primary-700, #7a081d) !important; /* TrendKor primary-700 색상 */
-                    background-color: var(--primary-700, #7a081d) !important;
-                    background-image: none !important; /* 그라데이션 완전 제거 */
-                    background-repeat: no-repeat !important;
-                    background-size: cover !important;
-                    background-attachment: fixed !important; /* 배경 고정 */
-                    opacity: 1 !important;
-                    mix-blend-mode: normal !important;
+                /* === TrendKor 스크롤 애니메이션 스타일 시작 === */
+                
+                /* 슬라이딩 히어로 래퍼 - 비디오 컨테이너 */
+                .sliding-hero-video_wrapper {
                     position: relative !important;
-                    z-index: 15 !important;
-                    width: 100vw !important; /* 좌우 꽉 차게 */
-                    height: 100% !important;
-                    margin-left: calc(-50vw + 50%) !important; /* 중앙 정렬을 위한 조정 */
-                    margin-right: calc(-50vw + 50%) !important;
-                    /* 강제 색상 유지를 위한 추가 속성 */
-                    --bg-color: #7a081d !important;
-                    filter: none !important;
-                    backdrop-filter: none !important;
-                    /* 새로고침 시 색상 유지를 위한 CSS 변수 */
-                    --trendkor-red: var(--primary-700, #7a081d);
-                    /* 브라우저 캐싱 문제 해결을 위한 추가 속성 */
-                    -webkit-background-clip: border-box !important;
-                    background-clip: border-box !important;
-                    -webkit-transform: translateZ(0) !important;
-                    transform: translateZ(0) !important;
-                    will-change: auto !important;
+                    min-height: 100vh !important;
+                    overflow: hidden !important;
+                    background: var(--primary-700, #7a081d) !important;
                 }
                 
-                /* 블렌드 모드 완전 제거 */
-                .home-hero_text-mask {
-                    mix-blend-mode: normal !important;
-                }
-                
-                /* 모든 관련 섹션에서 블렌드 모드 제거 */
+                /* 히어로 섹션 - 텍스트 마스크 포함 */
                 .section_hero-sliding-video {
-                    mix-blend-mode: normal !important;
+                    position: relative !important;
+                    z-index: 10 !important; /* 텍스트 마스크가 비디오 위에 */
+                    min-height: 100vh !important;
+                    background: transparent !important;
                 }
                 
-                /* 새로고침 시에도 배경색 유지를 위한 강화된 스타일 */
-                .home-hero_text-mask.sliding-version::before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
+                /* 텍스트 마스크 레이어 - 빨간 배경 + 흰 텍스트 */
+                .home-hero_text-mask.sliding-version {
+                    position: relative !important;
+                    z-index: 10 !important;
+                    width: 100vw !important;
+                    min-height: 100vh !important;
+                    margin-left: calc(-50vw + 50%) !important;
+                    margin-right: calc(-50vw + 50%) !important;
                     background: var(--primary-700, #7a081d) !important;
                     background-color: var(--primary-700, #7a081d) !important;
                     background-image: none !important;
-                    z-index: -1 !important;
-                    opacity: 1 !important;
-                    -webkit-transform: translateZ(0) !important;
-                    transform: translateZ(0) !important;
-                    will-change: auto !important;
+                    display: flex !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    /* 스크롤 애니메이션을 위한 설정 */
+                    will-change: transform !important;
+                    transition: none !important; /* GSAP가 제어하므로 CSS transition 제거 */
                 }
                 
-                /* 추가 보강: body 로드 후에도 색상 유지 */
-                .home-hero_text-mask.sliding-version::after {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background: var(--primary-700, #7a081d) !important;
-                    z-index: -2 !important;
-                    opacity: 1 !important;
+                /* 텍스트 컨테이너 */
+                .trendkor-text-container {
+                    position: relative !important;
+                    z-index: 2 !important;
+                    text-align: center !important;
+                    padding: 2rem !important;
                 }
                 
-                /* 텍스트 스타일 - 강화된 흰색 텍스트 */
-                .hero-heading {
+                /* TrendKor 텍스트 스타일 - 흰색 */
+                .trendkor-title {
+                    font-size: 8rem !important;
+                    font-weight: 700 !important;
+                    line-height: 1.1 !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
                     color: white !important;
                     -webkit-text-fill-color: white !important;
-                    text-shadow: none !important;
-                    position: relative !important;
-                    z-index: 11 !important;
-                    mix-blend-mode: normal !important;
-                    /* 텍스트 색상 강제 유지 */
-                    filter: none !important;
                 }
                 
-                .hero-subtitle {
+                .trendkor-subtitle {
+                    font-size: 2rem !important;
+                    font-weight: 400 !important;
+                    line-height: 1.4 !important;
+                    margin-top: 1rem !important;
+                    margin-bottom: 0 !important;
+                    padding: 0 !important;
                     color: white !important;
                     -webkit-text-fill-color: white !important;
-                    text-shadow: none !important;
-                    position: relative !important;
-                    z-index: 11 !important;
-                    mix-blend-mode: normal !important;
-                    /* 텍스트 색상 강제 유지 */
-                    filter: none !important;
                 }
                 
-                /* 비디오를 텍스트 마스크 뒤로 배치 */
-                .slide-hero-video.sliding-version {
-                    position: absolute !important;
-                    top: 0 !important;
-                    left: 0 !important;
-                    width: 100% !important;
-                    height: 100% !important;
-                    z-index: 1 !important;
-                }
-                
+                /* 비디오 섹션 - 마스크 뒤에 고정 */
                 .section_sliding-video.sliding-version {
                     position: absolute !important;
                     top: 0 !important;
                     left: 0 !important;
                     width: 100% !important;
-                    height: 100% !important;
-                    z-index: 0 !important;
+                    height: 100vh !important;
+                    z-index: 1 !important; /* 텍스트 마스크 뒤 */
+                    background: var(--primary-700, #7a081d) !important;
                 }
                 
                 .section_sliding-video.sliding-version .padding-global,
@@ -545,69 +510,20 @@
                     max-width: none !important;
                 }
                 
-                /* 비디오 요소 자체도 전체 화면으로 */
+                /* 비디오 배경 컴포넌트 */
+                .slide-hero-video.sliding-version {
+                    position: absolute !important;
+                    top: 0 !important;
+                    left: 0 !important;
+                    width: 100% !important;
+                    height: 100% !important;
+                    z-index: 1 !important;
+                }
+                
                 .slide-hero-video.sliding-version video {
                     width: 100% !important;
                     height: 100% !important;
                     object-fit: cover !important;
-                }
-                
-                /* 텍스트 마스크 레이어 - 투명하게 만들고 자식 요소로 구성 */
-                .home-hero_text-mask.sliding-version {
-                    position: relative !important;
-                    z-index: 10 !important;
-                    overflow: visible !important;
-                    background: transparent !important;
-                    background-image: none !important;
-                }
-                
-                /* 텍스트 컨테이너 - 맨 위에 위치 */
-                .trendkor-text-container {
-                    position: relative !important;
-                    z-index: 2 !important;
-                }
-                
-                /* 빨간 배경 오버레이 - 텍스트 아래, 비디오 위 */
-                .red-overlay {
-                    position: absolute !important;
-                    top: 0 !important;
-                    left: 0 !important;
-                    right: 0 !important;
-                    bottom: 0 !important;
-                    background: var(--primary-700, #7a081d) !important;
-                    z-index: 1 !important;
-                    /* 텍스트 모양으로 마스크 적용 */
-                    mask-image: linear-gradient(black, black) !important;
-                    -webkit-mask-image: linear-gradient(black, black) !important;
-                }
-                
-                /* TrendKor 텍스트 스타일 - 흰색으로 표시 + mix-blend-mode로 구멍 효과 */
-                .trendkor-title {
-                    font-size: 8rem !important;
-                    font-weight: 700 !important;
-                    line-height: 1.1 !important;
-                    margin: 0 !important;
-                    padding: 0 !important;
-                    color: #000 !important;
-                    -webkit-text-fill-color: #000 !important;
-                    /* 빨간 배경을 뚫는 blend 모드 */
-                    mix-blend-mode: destination-out !important;
-                    position: relative !important;
-                    z-index: 3 !important;
-                }
-                
-                .trendkor-subtitle {
-                    font-size: 2rem !important;
-                    font-weight: 400 !important;
-                    line-height: 1.4 !important;
-                    margin-top: 1rem !important;
-                    margin-bottom: 0 !important;
-                    padding: 0 !important;
-                    color: #000 !important;
-                    -webkit-text-fill-color: #000 !important;
-                    mix-blend-mode: destination-out !important;
-                    position: relative !important;
-                    z-index: 3 !important;
                 }
                 
                 /* 반응형 텍스트 크기 조정 */
@@ -628,20 +544,8 @@
                         font-size: 1.2rem !important;
                     }
                 }
-
-                @media screen and (max-width: 991px) {
-                    .hero-subtitle {
-                        font-size: 1.5rem;
-                        margin-top: 0.75rem;
-                    }
-                }
-
-                @media screen and (max-width: 767px) {
-                    .hero-subtitle {
-                        font-size: 1.2rem;
-                        margin-top: 0.5rem;
-                    }
-                }
+                
+                /* === TrendKor 스크롤 애니메이션 스타일 끝 === */
             </style>
         </div>
         <div class="page-styles w-embed">
@@ -752,8 +656,6 @@
                                 <h1 fade-in="" class="hero-heading custom-full-width trendkor-title">TRENDKOR</h1>
                                 <h3 class="hero-subtitle trendkor-subtitle">Trend Explained, Culture Unveiled</h3>
                             </div>
-                            <!-- 빨간 배경 오버레이 (텍스트 뒤) -->
-                            <div class="red-overlay"></div>
                         </div>
                     </div>
                 </div>
@@ -2640,165 +2542,70 @@
         })();
     </script>
     
-    <!-- 추가 CSS로 ::before, ::after 강화 -->
+    <!-- 추가 CSS로 배경색 강화 -->
     <style>
-        .trendkor-bg-enforced::before,
-        .trendkor-bg-enforced::after {
-            background: var(--primary-700, #7a081d) !important;
-            background-color: var(--primary-700, #7a081d) !important;
-            background-image: none !important;
-        }        /* 완전 강제 스타일 */
+        /* 완전 강제 스타일 */
         .home-hero_text-mask.sliding-version.trendkor-bg-enforced,
         .section_hero-sliding-video.trendkor-bg-enforced,
-        .sliding-hero-video_wrapper.trendkor-bg-enforced,
-        .section_sliding-video.sliding-version.trendkor-bg-enforced {
+        .sliding-hero-video_wrapper.trendkor-bg-enforced {
             background: var(--primary-700, #7a081d) !important;
             background-color: var(--primary-700, #7a081d) !important;
             background-image: none !important;
-            min-height: 100vh !important;
         }
-        
-        /* 삭제된 home-hero_text-mask 레이어 관련 CSS 제거 */
-        /* 비디오 컨테이너 섹션 스타일 조정 */
-        .section_hero-sliding-video {
-            position: relative !important;
-            min-height: 100vh !important;
-            max-height: 100vh !important;
-            overflow: hidden !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-        }
-        
-        /* 색상 통일을 위한 추가 스타일 */
-        body .sliding-hero-video_wrapper,
-        body .section_hero-sliding-video,
-        body .section_sliding-video.sliding-version {
-            background: var(--primary-700, #7a081d) !important;
-            background-color: var(--primary-700, #7a081d) !important;
-        }
-                 /* 비디오를 첫 번째 패널 영역에만 제한 */
-                .slide-hero-video.sliding-version {
-                    display: block !important;
-                    position: absolute !important;
-                    top: 0 !important;
-                    left: 0 !important;
-                    width: 100% !important;
-                    height: 100% !important;
-                    z-index: -1 !important; /* 텍스트 패널 뒤에 위치 */
-                    object-fit: cover !important;
-                    /* 패널 경계를 넘지 않도록 제한 */
-                    max-width: 100% !important;
-                    max-height: 100vh !important;
-                    overflow: hidden !important;
-                }
-                
-                /* 비디오 내부 video 태그 스타일링 */
-                .slide-hero-video.sliding-version video {
-                    width: 100% !important;
-                    height: 100% !important;
-                    object-fit: cover !important;
-                    opacity: 1 !important;
-                    /* 동영상을 더 밝게 하여 텍스트 구멍 효과를 선명하게 */
-                    filter: brightness(1.2) contrast(1.1) !important;
-                }
-                
-                /* 전체 비디오 섹션에도 TrendKor 배경색 적용 */
-                .section_sliding-video.sliding-version {
-                    background: var(--primary-700, #7a081d) !important;
-                    background-color: var(--primary-700, #7a081d) !important;
-                    background-image: none !important;
-                    min-height: 100vh !important;
-                }
-                
-                /* 슬라이딩 히어로 래퍼 - 첫 번째 패널에만 제한 */
-                .sliding-hero-video_wrapper {
-                    position: relative !important;
-                    min-height: 100vh !important;
-                    max-height: 100vh !important;
-                    overflow: hidden !important;
-                    background: var(--primary-700, #7a081d) !important;
-                    background-color: var(--primary-700, #7a081d) !important;
-                    background-image: none !important;
-                }
-                
-                /* 히어로 섹션 전체에도 배경색 적용 */
-                .section_hero-sliding-video {
-                    background: transparent !important; /* 비디오가 보이도록 투명하게 */
-                    min-height: 100vh !important;
-                    z-index: 20 !important; /* 텍스트가 비디오 위에 오도록 */
-                    position: relative !important;
-                }
-                
-                /* 컨테이너와 패딩 요소들도 배경색 통일 */
-                .sliding-hero-video_wrapper .section_hero-sliding-video,
-                .sliding-hero-video_wrapper .container-xlarge,
-                .section_sliding-video .padding-global,
-                .section_sliding-video .container-xlarge {
-                    background: transparent !important;
-                    background-color: transparent !important;
-                }
-                
-                /* 전체 래퍼에 확실한 배경 보장 */
-                .sliding-hero-video_wrapper::before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background: var(--primary-700, #7a081d) !important;
-                    background-color: var(--primary-700, #7a081d) !important;
-                    z-index: -10 !important;
-                }
     </style>
     
     <!-- TrendKor 스크롤 마스크 벗기기 애니메이션 -->
     <script>
         // GSAP를 사용한 스크롤 애니메이션
         document.addEventListener('DOMContentLoaded', function() {
+            // GSAP와 ScrollTrigger가 로드되었는지 확인
+            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+                console.error('GSAP 또는 ScrollTrigger가 로드되지 않았습니다');
+                return;
+            }
+            
             gsap.registerPlugin(ScrollTrigger);
             
-            // 마스크 레이어 선택
+            // 전체 hero 래퍼 선택
+            const heroWrapper = document.querySelector('.sliding-hero-video_wrapper');
             const maskLayer = document.querySelector('.home-hero_text-mask.sliding-version');
-            const videoSection = document.querySelector('.section_sliding-video.sliding-version');
             
-            if (maskLayer && videoSection) {
-                // 초기 상태: 마스크가 화면 전체를 덮음
-                gsap.set(maskLayer, {
-                    clipPath: 'inset(0% 0% 0% 0%)',
-                    zIndex: 20
-                });
-                
-                // 비디오가 마스크 뒤에 위치
-                gsap.set(videoSection, {
-                    zIndex: 1
-                });
-                
-                // 스크롤 애니메이션: 위에서 아래로 마스크가 벗겨짐
-                ScrollTrigger.create({
-                    trigger: maskLayer,
-                    start: "top top",
-                    end: "bottom top",
-                    scrub: 1,
-                    pin: true,
-                    onUpdate: (self) => {
-                        // 스크롤 진행도에 따라 마스크를 위에서 아래로 벗겨냄
-                        const progress = self.progress;
-                        const clipValue = progress * 100;
-                        
-                        gsap.to(maskLayer, {
-                            clipPath: `inset(${clipValue}% 0% 0% 0%)`,
-                            duration: 0.1,
-                            ease: "none"
-                        });
-                    }
-                });
-                
-                console.log('TrendKor 스크롤 마스크 애니메이션 초기화 완료');
-            } else {
-                console.warn('마스크 레이어 또는 비디오 섹션을 찾을 수 없습니다');
+            if (!heroWrapper || !maskLayer) {
+                console.warn('Hero 래퍼 또는 마스크 레이어를 찾을 수 없습니다');
+                return;
             }
+            
+            console.log('TrendKor 스크롤 애니메이션 초기화 시작...');
+            
+            // ScrollTrigger 생성: 스크롤에 따라 빨간 마스크가 위로 올라가며 벗겨짐
+            ScrollTrigger.create({
+                trigger: heroWrapper,
+                start: "top top",
+                end: "bottom center",
+                scrub: 1, // 부드러운 스크롤 효과
+                onUpdate: (self) => {
+                    // 스크롤 진행도 (0 = 시작, 1 = 끝)
+                    const progress = self.progress;
+                    
+                    // 마스크를 위로 이동시켜 아래부터 비디오가 드러나도록
+                    // translateY: 0% (시작) -> -100% (끝, 완전히 위로 사라짐)
+                    const translateValue = -(progress * 100);
+                    
+                    // 마스크 레이어를 위로 이동
+                    gsap.to(maskLayer, {
+                        y: `${translateValue}%`,
+                        duration: 0.1,
+                        ease: "none"
+                    });
+                    
+                    // 디버깅용 로그 (처음 몇 번만 출력)
+                    if (progress < 0.05 || progress > 0.95) {
+                        console.log(`스크롤 진행도: ${(progress * 100).toFixed(1)}%, translateY: ${translateValue.toFixed(1)}%`);
+                    }
+                }
+            });
+            
+            console.log('TrendKor 스크롤 마스크 애니메이션 초기화 완료');
         });
     </script>
 
