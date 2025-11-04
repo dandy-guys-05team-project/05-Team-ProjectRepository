@@ -124,6 +124,11 @@
                     -webkit-font-smoothing: antialiased;
                     -moz-osx-font-smoothing: grayscale;
                     text-rendering: optimizeLegibility;
+                    overflow-x: hidden !important;
+                }
+                
+                html {
+                    overflow-x: hidden !important;
                 }
 
                 /* Focus state style for keyboard navigation for the focusable elements */
@@ -426,62 +431,95 @@
 
                 /* === TrendKor 스크롤 애니메이션 스타일 시작 === */
                 
-                /* 슬라이딩 히어로 래퍼 - 비디오 컨테이너 */
+                /* 슬라이딩 히어로 래퍼 - 전체 컨테이너 */
                 .sliding-hero-video_wrapper {
                     position: relative !important;
-                    min-height: 100vh !important;
-                    overflow: hidden !important;
-                    background: var(--primary-700, #7a081d) !important;
+                    width: 100% !important;
+                    min-height: 200vh !important; /* 스크롤 공간 확보 */
+                    max-width: 100vw !important;
+                    overflow-x: hidden !important;
+                    overflow-y: visible !important;
+                    background: transparent !important; /* 배경 투명 */
+                    margin: 0 !important;
+                    padding: 0 !important;
                 }
                 
-                /* 히어로 섹션 - 텍스트 마스크 포함 */
+                /* 비디오 섹션 - 고정 배경 (맨 뒤) */
+                .section_sliding-video.sliding-version {
+                    position: fixed !important; /* fixed로 화면에 고정 */
+                    top: 0 !important;
+                    left: 0 !important;
+                    right: 0 !important;
+                    width: 100% !important;
+                    max-width: 100vw !important;
+                    height: 100vh !important;
+                    z-index: 1 !important; /* 가장 뒤 */
+                    background: var(--primary-700, #7a081d) !important;
+                    overflow: hidden !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                }
+                
+                /* 히어로 섹션 - 텍스트 마스크 포함 (비디오 위) */
                 .section_hero-sliding-video {
                     position: relative !important;
-                    z-index: 10 !important; /* 텍스트 마스크가 비디오 위에 */
+                    z-index: 10 !important; /* 비디오 위 */
+                    width: 100% !important;
                     min-height: 100vh !important;
+                    max-width: 100% !important;
                     background: transparent !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
                 }
                 
-                /* 텍스트 마스크 레이어 - 빨간 배경 + 흰 텍스트 */
+                /* container-xlarge에 position relative 추가 */
+                .section_hero-sliding-video .container-xlarge {
+                    position: relative !important;
+                }
+                
+                /* 텍스트 마스크 레이어 - 빨간 배경 + 흰 텍스트 (비디오 앞) */
                 .home-hero_text-mask.sliding-version {
                     position: relative !important;
-                    z-index: 10 !important;
+                    z-index: 10 !important; /* 비디오보다 앞 */
                     width: 100vw !important;
                     min-height: 100vh !important;
                     margin-left: calc(-50vw + 50%) !important;
                     margin-right: calc(-50vw + 50%) !important;
-                    background: var(--primary-700, #7a081d) !important;
+                    background: var(--primary-700, #7a081d) !important; /* 빨간 배경으로 비디오 가림 */
                     background-color: var(--primary-700, #7a081d) !important;
                     background-image: none !important;
                     display: flex !important;
                     align-items: center !important;
                     justify-content: center !important;
-                    /* 스크롤 애니메이션을 위한 설정 */
                     will-change: transform !important;
-                    transition: none !important; /* GSAP가 제어하므로 CSS transition 제거 */
+                    transition: none !important;
                 }
                 
-                /* 텍스트 컨테이너 */
+                /* 텍스트 컨테이너 - 반응형 패딩 */
                 .trendkor-text-container {
                     position: relative !important;
                     z-index: 2 !important;
                     text-align: center !important;
                     padding: 2rem !important;
+                    width: 100% !important;
+                    max-width: 1400px !important;
+                    margin: 0 auto !important;
                 }
                 
-                /* TrendKor 텍스트 스타일 - 흰색 */
+                /* TrendKor 텍스트 스타일 - 반응형 크기 */
                 .trendkor-title {
-                    font-size: 8rem !important;
+                    font-size: clamp(3rem, 8vw, 8rem) !important;
                     font-weight: 700 !important;
                     line-height: 1.1 !important;
                     margin: 0 !important;
                     padding: 0 !important;
                     color: white !important;
                     -webkit-text-fill-color: white !important;
+                    word-wrap: break-word !important;
                 }
                 
                 .trendkor-subtitle {
-                    font-size: 2rem !important;
+                    font-size: clamp(1rem, 2vw, 2rem) !important;
                     font-weight: 400 !important;
                     line-height: 1.4 !important;
                     margin-top: 1rem !important;
@@ -489,59 +527,225 @@
                     padding: 0 !important;
                     color: white !important;
                     -webkit-text-fill-color: white !important;
+                    word-wrap: break-word !important;
                 }
                 
-                /* 비디오 섹션 - 마스크 뒤에 고정 */
-                .section_sliding-video.sliding-version {
+                /* 비디오 오버레이 래퍼 - container-xlarge 위에 배치 */
+                .video-overlay-wrapper {
                     position: absolute !important;
                     top: 0 !important;
                     left: 0 !important;
                     width: 100% !important;
-                    height: 100vh !important;
-                    z-index: 1 !important; /* 텍스트 마스크 뒤 */
-                    background: var(--primary-700, #7a081d) !important;
+                    height: 100% !important;
+                    z-index: 5 !important;
+                    pointer-events: none !important;
+                    overflow: hidden !important;
                 }
                 
-                .section_sliding-video.sliding-version .padding-global,
+                /* TrendKor 비디오 스타일 */
+                .trendkor-video {
+                    position: absolute !important;
+                    top: 50% !important;
+                    left: 50% !important;
+                    transform: translate(-50%, -50%) !important;
+                    width: 100% !important;
+                    height: 100% !important;
+                    max-width: 100vw !important;
+                    max-height: 100vh !important;
+                    object-fit: cover !important;
+                    opacity: 1 !important;
+                }
+                
+                /* 비디오 섹션 내부 컨테이너 - 반응형 + overflow 제어 */
+                .section_sliding-video.sliding-version .padding-global {
+                    width: 100% !important;
+                    height: 100% !important;
+                    padding: 0 !important;
+                    margin: 0 !important;
+                    max-width: 100% !important;
+                    box-sizing: border-box !important;
+                    overflow: hidden !important;
+                }
+                
                 .section_sliding-video.sliding-version .container-xlarge {
                     width: 100% !important;
                     height: 100% !important;
                     padding: 0 !important;
-                    max-width: none !important;
+                    margin: 0 !important;
+                    max-width: 100% !important;
+                    box-sizing: border-box !important;
+                    overflow: hidden !important;
                 }
                 
-                /* 비디오 배경 컴포넌트 */
+                /* home-video 클래스도 full width + overflow 제어 */
+                .section_sliding-video.sliding-version .home-video {
+                    width: 100% !important;
+                    height: 100% !important;
+                    padding: 0 !important;
+                    margin: 0 !important;
+                    max-width: 100% !important;
+                    overflow: hidden !important;
+                }
+                
+                /* 비디오 배경 컴포넌트 - 반응형 설정 */
                 .slide-hero-video.sliding-version {
                     position: absolute !important;
                     top: 0 !important;
                     left: 0 !important;
                     width: 100% !important;
                     height: 100% !important;
+                    max-width: 100% !important;
+                    max-height: 100% !important;
                     z-index: 1 !important;
+                    overflow: hidden !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    box-sizing: border-box !important;
                 }
                 
+                /* 비디오 태그 - 반응형 object-fit (프레임 내 고정) */
                 .slide-hero-video.sliding-version video {
+                    position: absolute !important;
+                    top: 50% !important;
+                    left: 50% !important;
                     width: 100% !important;
                     height: 100% !important;
-                    object-fit: cover !important;
+                    max-width: 100vw !important; /* 뷰포트 너비 제한 */
+                    max-height: 100vh !important; /* 뷰포트 높이 제한 */
+                    transform: translate(-50%, -50%) !important;
+                    object-fit: cover !important; /* 비율 유지하며 채우기 */
+                    -o-object-fit: cover !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    box-sizing: border-box !important;
                 }
                 
-                /* 반응형 텍스트 크기 조정 */
-                @media screen and (max-width: 991px) {
-                    .trendkor-title {
-                        font-size: 5rem !important;
+                /* 태블릿 (768px ~ 991px) */
+                @media screen and (min-width: 768px) and (max-width: 991px) {
+                    .sliding-hero-video_wrapper {
+                        min-height: 180vh !important;
+                        max-width: 100vw !important;
                     }
+                    
+                    .section_sliding-video.sliding-version {
+                        max-width: 100vw !important;
+                    }
+                    
+                    .trendkor-text-container {
+                        padding: 1.5rem !important;
+                        max-width: 90% !important;
+                    }
+                    
+                    .trendkor-title {
+                        font-size: clamp(3.5rem, 7vw, 6rem) !important;
+                    }
+                    
                     .trendkor-subtitle {
-                        font-size: 1.5rem !important;
+                        font-size: clamp(1.2rem, 2.5vw, 1.8rem) !important;
                     }
                 }
-
-                @media screen and (max-width: 767px) {
-                    .trendkor-title {
-                        font-size: 3.5rem !important;
+                
+                /* 모바일 가로 모드 (480px ~ 767px) */
+                @media screen and (min-width: 480px) and (max-width: 767px) {
+                    .sliding-hero-video_wrapper {
+                        min-height: 160vh !important;
+                        max-width: 100vw !important;
                     }
+                    
+                    .section_sliding-video.sliding-version {
+                        max-width: 100vw !important;
+                    }
+                    
+                    .trendkor-text-container {
+                        padding: 1.25rem !important;
+                        max-width: 95% !important;
+                    }
+                    
+                    .trendkor-title {
+                        font-size: clamp(2.5rem, 6vw, 4rem) !important;
+                    }
+                    
                     .trendkor-subtitle {
-                        font-size: 1.2rem !important;
+                        font-size: clamp(1rem, 2vw, 1.5rem) !important;
+                        margin-top: 0.75rem !important;
+                    }
+                }
+                
+                /* 모바일 세로 모드 (~ 479px) */
+                @media screen and (max-width: 479px) {
+                    .sliding-hero-video_wrapper {
+                        min-height: 150vh !important;
+                        max-width: 100vw !important;
+                    }
+                    
+                    .section_sliding-video.sliding-version {
+                        max-width: 100vw !important;
+                    }
+                    
+                    .trendkor-text-container {
+                        padding: 1rem !important;
+                        max-width: 100% !important;
+                    }
+                    
+                    .trendkor-title {
+                        font-size: clamp(2rem, 8vw, 3rem) !important;
+                        line-height: 1.2 !important;
+                    }
+                    
+                    .trendkor-subtitle {
+                        font-size: clamp(0.875rem, 3vw, 1.2rem) !important;
+                        margin-top: 0.5rem !important;
+                    }
+                    
+                    /* 모바일에서 비디오 최적화 - 프레임 내 고정 */
+                    .slide-hero-video.sliding-version video {
+                        width: 100% !important;
+                        height: 100% !important;
+                        max-width: 100vw !important;
+                        max-height: 100vh !important;
+                        object-fit: cover !important;
+                    }
+                }
+                
+                /* 초소형 모바일 (~ 360px) */
+                @media screen and (max-width: 360px) {
+                    .trendkor-title {
+                        font-size: 1.75rem !important;
+                    }
+                    
+                    .trendkor-subtitle {
+                        font-size: 0.8rem !important;
+                    }
+                }
+                
+                /* 대형 화면 (1920px ~) */
+                @media screen and (min-width: 1920px) {
+                    .trendkor-text-container {
+                        max-width: 1600px !important;
+                    }
+                    
+                    .trendkor-title {
+                        font-size: 9rem !important;
+                    }
+                    
+                    .trendkor-subtitle {
+                        font-size: 2.5rem !important;
+                    }
+                }
+                
+                /* 가로 모드 대응 */
+                @media screen and (max-height: 600px) and (orientation: landscape) {
+                    .trendkor-text-container {
+                        padding: 1rem !important;
+                    }
+                    
+                    .trendkor-title {
+                        font-size: clamp(2rem, 6vh, 4rem) !important;
+                    }
+                    
+                    .trendkor-subtitle {
+                        font-size: clamp(0.875rem, 2vh, 1.5rem) !important;
+                        margin-top: 0.5rem !important;
                     }
                 }
                 
@@ -647,15 +851,20 @@
             </div>
         </nav>
         <main class="main-wrapper">
-            <header class="sliding-hero-video_wrapper" style="background: var(--primary-700) !important;">
-                <div class="section_hero-sliding-video" style="background: var(--primary-700) !important;">
+            <header class="sliding-hero-video_wrapper">
+                <div class="section_hero-sliding-video">
                     <div class="container-xlarge">
                         <div class="home-hero_text-mask sliding-version">
-                            <!-- 비디오가 보이는 텍스트 레이어 -->
                             <div class="trendkor-text-container">
                                 <h1 fade-in="" class="hero-heading custom-full-width trendkor-title">TRENDKOR</h1>
                                 <h3 class="hero-subtitle trendkor-subtitle">Trend Explained, Culture Unveiled</h3>
                             </div>
+                        </div>
+                        <!-- 비디오를 container-xlarge 안에 배치 -->
+                        <div class="video-overlay-wrapper">
+                            <video class="trendkor-video" autoplay loop muted playsinline>
+                                <source src="../src/Resources/LandingPageVideo.mp4" type="video/mp4"/>
+                            </video>
                         </div>
                     </div>
                 </div>
@@ -666,7 +875,7 @@
                         </div>
                     </div>
                 </div>
-                <header class="section_sliding-video sliding-version" style="background: var(--primary-700) !important;">
+                <header class="section_sliding-video sliding-version" style="display: none;">
                     <div class="padding-global home-video">
                         <div class="container-xlarge">
                             <div data-poster-url="../src/Resources/LandingPageVideo.mp4" data-video-urls="../src/Resources/LandingPageVideo.mp4" data-autoplay="true" data-loop="true" data-wf-ignore="true" class="slide-hero-video sliding-version w-background-video w-background-video-atom">
@@ -2556,7 +2765,6 @@
     
     <!-- TrendKor 스크롤 마스크 벗기기 애니메이션 -->
     <script>
-        // GSAP를 사용한 스크롤 애니메이션
         document.addEventListener('DOMContentLoaded', function() {
             // GSAP와 ScrollTrigger가 로드되었는지 확인
             if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
@@ -2566,46 +2774,95 @@
             
             gsap.registerPlugin(ScrollTrigger);
             
-            // 전체 hero 래퍼 선택
+            // 요소 선택
             const heroWrapper = document.querySelector('.sliding-hero-video_wrapper');
             const maskLayer = document.querySelector('.home-hero_text-mask.sliding-version');
+            const videoSection = document.querySelector('.section_sliding-video.sliding-version');
+            const videoElement = document.querySelector('.slide-hero-video.sliding-version video');
             
-            if (!heroWrapper || !maskLayer) {
-                console.warn('Hero 래퍼 또는 마스크 레이어를 찾을 수 없습니다');
+            if (!heroWrapper || !maskLayer || !videoSection) {
+                console.warn('필요한 요소를 찾을 수 없습니다');
                 return;
             }
             
-            console.log('TrendKor 스크롤 애니메이션 초기화 시작...');
+            console.log('🎬 TrendKor 스크롤 애니메이션 초기화 시작...');
+            console.log('구조: 비디오(fixed, 뒤) → 마스크(앞, 스크롤 시 위로 이동)');
             
-            // ScrollTrigger 생성: 스크롤에 따라 빨간 마스크가 위로 올라가며 벗겨짐
-            ScrollTrigger.create({
-                trigger: heroWrapper,
-                start: "top top",
-                end: "bottom center",
-                scrub: 1, // 부드러운 스크롤 효과
-                onUpdate: (self) => {
-                    // 스크롤 진행도 (0 = 시작, 1 = 끝)
-                    const progress = self.progress;
-                    
-                    // 마스크를 위로 이동시켜 아래부터 비디오가 드러나도록
-                    // translateY: 0% (시작) -> -100% (끝, 완전히 위로 사라짐)
-                    const translateValue = -(progress * 100);
-                    
-                    // 마스크 레이어를 위로 이동
-                    gsap.to(maskLayer, {
-                        y: `${translateValue}%`,
-                        duration: 0.1,
-                        ease: "none"
-                    });
-                    
-                    // 디버깅용 로그 (처음 몇 번만 출력)
-                    if (progress < 0.05 || progress > 0.95) {
-                        console.log(`스크롤 진행도: ${(progress * 100).toFixed(1)}%, translateY: ${translateValue.toFixed(1)}%`);
+            // 비디오 로드 및 재생 확인
+            if (videoElement) {
+                console.log('📹 비디오 요소 발견:', videoElement.src);
+                
+                // 비디오 자동 재생 시도
+                videoElement.play().then(() => {
+                    console.log('✅ 비디오 재생 성공');
+                }).catch(error => {
+                    console.warn('⚠️ 비디오 자동재생 실패:', error.message);
+                    // 사용자 인터랙션 후 재생 시도
+                    document.addEventListener('click', function playOnce() {
+                        videoElement.play();
+                        document.removeEventListener('click', playOnce);
+                    }, { once: true });
+                });
+                
+                // 비디오 로드 상태 모니터링
+                videoElement.addEventListener('loadeddata', function() {
+                    console.log('✅ 비디오 데이터 로드 완료');
+                });
+                
+                videoElement.addEventListener('error', function(e) {
+                    console.error('❌ 비디오 로드 오류:', e);
+                });
+            }
+            
+            // 빨간 마스크가 위로 올라가는 애니메이션 (비디오는 뒤에 고정)
+            gsap.to(maskLayer, {
+                y: '-100%', // 완전히 위로 올라감
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: heroWrapper,
+                    start: 'top top', // 래퍼가 화면 최상단에 닿을 때 시작
+                    end: 'bottom top', // 래퍼 하단이 화면 최상단에 닿을 때 끝
+                    scrub: 1, // 부드러운 스크롤 동기화
+                    markers: false, // 디버깅 시 true로 변경
+                    onUpdate: (self) => {
+                        const progress = self.progress;
+                        
+                        // 디버깅용 로그
+                        if (progress < 0.05) {
+                            console.log('🔴 초기 상태: 빨간 마스크가 비디오를 완전히 가림');
+                        } else if (progress > 0.95) {
+                            console.log('🎥 완료 상태: 비디오가 완전히 드러남');
+                        } else if (Math.abs(progress - 0.5) < 0.05) {
+                            console.log('⏳ 50% 진행: 비디오가 반쯤 드러남');
+                        }
                     }
                 }
             });
             
-            console.log('TrendKor 스크롤 마스크 애니메이션 초기화 완료');
+            // 반응형 디바이스 정보 로그
+            const deviceInfo = {
+                width: window.innerWidth,
+                height: window.innerHeight,
+                devicePixelRatio: window.devicePixelRatio,
+                orientation: window.innerWidth > window.innerHeight ? 'landscape' : 'portrait'
+            };
+            console.log('📱 디바이스 정보:', deviceInfo);
+            
+            // 윈도우 리사이즈 시 ScrollTrigger 갱신
+            let resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function() {
+                    console.log('🔄 화면 크기 변경됨:', {
+                        width: window.innerWidth,
+                        height: window.innerHeight
+                    });
+                    ScrollTrigger.refresh();
+                }, 250);
+            });
+            
+            console.log('✅ TrendKor 스크롤 마스크 애니메이션 초기화 완료');
+            console.log('📜 스크롤 다운 → 빨간 마스크 위로 이동 → 비디오 드러남');
         });
     </script>
 
