@@ -1,0 +1,29 @@
+.section_why-us {
+  background-color: #f8f9fa;
+  width: 100%;
+}
+
+.why-us-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.why-us-content h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.why-us-content p {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.6;
+  color: #666;
+}
+
+@media screen and (max-width: 991px) {
+  .why-us-content h2 {
+    margin-bottom: 1rem;
+  }
+}

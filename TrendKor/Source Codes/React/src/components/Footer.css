@@ -1,0 +1,140 @@
+.footer {
+  background-color: #1a1a1a;
+  color: white;
+  width: 100%;
+}
+
+.footer_component {
+  padding: 3rem 0 2rem;
+}
+
+.footer_content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  margin-bottom: 3rem;
+}
+
+.footer_logo-section {
+  display: flex;
+  align-items: flex-start;
+}
+
+.footer_logo {
+  width: 120px;
+  height: auto;
+}
+
+.footer_links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.footer_links-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer_links-column h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: white;
+}
+
+.footer_links-column a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.footer_links-column a:hover {
+  color: white;
+}
+
+.footer_bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer_logo-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.footer_copyright {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+.footer_copyright p {
+  margin: 0;
+}
+
+.footer_social {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.footer_social a {
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer_social a:hover {
+  color: white;
+}
+
+.footer_social svg {
+  width: 24px;
+  height: 24px;
+}
+
+@media screen and (max-width: 991px) {
+  .footer_content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer_links {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer_bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .footer_links {
+    grid-template-columns: 1fr;
+  }
+
+  .footer_component {
+    padding: 2rem 0 1.5rem;
+  }
+
+  .footer_logo {
+    width: 100px;
+  }
+
+  .footer_social {
+    justify-content: center;
+  }
+}

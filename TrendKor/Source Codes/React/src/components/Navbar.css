@@ -1,0 +1,174 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: transform 0.75s ease, background-color 0.3s ease;
+}
+
+.navbar.scrolled {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+.navbar_component {
+  padding: 1.5rem 2rem;
+  transition: background-color 0.3s ease;
+}
+
+.nav-max-width {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar_logo-wrapper {
+  display: inline-block;
+  width: 120px;
+  text-decoration: none;
+}
+
+.navbar_logo {
+  width: 100%;
+  height: auto;
+}
+
+.navbar_logo path {
+  transition: fill 0.3s ease;
+}
+
+.navbar.inverted .logo-frank {
+  fill: white;
+}
+
+.navbar_menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-links_wrapper {
+  display: flex;
+  gap: 2rem;
+}
+
+.navbar_link {
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+  position: relative;
+}
+
+.navbar_link:hover {
+  opacity: 0.7;
+}
+
+.navbar.inverted .navbar_link {
+  color: white;
+}
+
+.navbar_hamburguer-icon {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  width: 30px;
+  height: 24px;
+  justify-content: center;
+}
+
+.hamburguer_first-line,
+.hamburguer_second-line {
+  width: 100%;
+  height: 2px;
+  background-color: currentColor;
+  transition: all 0.3s ease;
+}
+
+.navbar.inverted .hamburguer_first-line,
+.navbar.inverted .hamburguer_second-line {
+  background-color: white;
+}
+
+.navbar_side-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 400px;
+  height: 100vh;
+  background-color: white;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  z-index: 1001;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.side-menu_x-icon {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 2rem;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.navbar_side-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.side-menu_link {
+  color: #333;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
+
+.side-menu_link:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 991px) {
+  .nav-links_wrapper {
+    display: none;
+  }
+
+  .navbar_hamburguer-icon {
+    display: flex;
+  }
+
+  .navbar_component {
+    padding: 1rem 1.5rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .navbar_component {
+    padding: 1rem;
+  }
+
+  .navbar_logo-wrapper {
+    width: 100px;
+  }
+
+  .navbar_side-panel {
+    max-width: 100%;
+  }
+}
