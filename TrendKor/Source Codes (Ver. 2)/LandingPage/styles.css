@@ -1,0 +1,316 @@
+/* Global Styles */
+html {
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 1920px) {
+  html {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  html {
+    font-size: calc(0.1964285714285715rem + 0.8928571428571428vw);
+  }
+}
+
+@media screen and (max-width: 991px) {
+  html {
+    font-size: 1rem;
+  }
+}
+
+/* Make text look crisper and more legible in all browsers */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Focus state style for keyboard navigation for the focusable elements */
+*[tabindex]:focus-visible,
+input[type="file"]:focus-visible {
+  outline: 0.125rem solid #4d65ff;
+  outline-offset: 0.125rem;
+}
+
+/* Set color style to inherit */
+.inherit-color * {
+  color: inherit;
+}
+
+/* Get rid of top margin on first element in any rich text element */
+.w-richtext > :not(div):first-child,
+.w-richtext > div:first-child > :first-child {
+  margin-top: 0 !important;
+}
+
+/* Get rid of bottom margin on last element in any rich text element */
+.w-richtext > :last-child,
+.w-richtext ol li:last-child,
+.w-richtext ul li:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Make sure containers never lose their center alignment */
+.container-medium,
+.container-small,
+.container-large {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+/* Apply "..." after 3 lines of text */
+.text-style-3lines {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* Apply "..." after 2 lines of text */
+.text-style-2lines {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* These classes are never overwritten */
+.hide {
+  display: none !important;
+}
+
+@media screen and (max-width: 991px) {
+  .hide,
+  .hide-tablet {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .hide-mobile-landscape {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+.margin-0 {
+  margin: 0rem !important;
+}
+
+.padding-0 {
+  padding: 0rem !important;
+}
+
+.spacing-clean {
+  padding: 0rem !important;
+  margin: 0rem !important;
+}
+
+.margin-top {
+  margin-right: 0rem !important;
+  margin-bottom: 0rem !important;
+  margin-left: 0rem !important;
+}
+
+.padding-top {
+  padding-right: 0rem !important;
+  padding-bottom: 0rem !important;
+  padding-left: 0rem !important;
+}
+
+.margin-right {
+  margin-top: 0rem !important;
+  margin-bottom: 0rem !important;
+  margin-left: 0rem !important;
+}
+
+.padding-right {
+  padding-top: 0rem !important;
+  padding-bottom: 0rem !important;
+  padding-left: 0rem !important;
+}
+
+.margin-bottom {
+  margin-top: 0rem !important;
+  margin-right: 0rem !important;
+  margin-left: 0rem !important;
+}
+
+.padding-bottom {
+  padding-top: 0rem !important;
+  padding-right: 0rem !important;
+  padding-left: 0rem !important;
+}
+
+.margin-left {
+  margin-top: 0rem !important;
+  margin-right: 0rem !important;
+  margin-bottom: 0rem !important;
+}
+
+.padding-left {
+  padding-top: 0rem !important;
+  padding-right: 0rem !important;
+  padding-bottom: 0rem !important;
+}
+
+.margin-horizontal {
+  margin-top: 0rem !important;
+  margin-bottom: 0rem !important;
+}
+
+.padding-horizontal {
+  padding-top: 0rem !important;
+  padding-bottom: 0rem !important;
+}
+
+.margin-vertical {
+  margin-right: 0rem !important;
+  margin-left: 0rem !important;
+}
+
+.padding-vertical {
+  padding-right: 0rem !important;
+  padding-left: 0rem !important;
+}
+
+[data-theme="dark"] .page-hero_content h1 {
+  color: white;
+}
+
+[data-theme="dark"] .page-hero_content svg {
+  color: white;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+[hide-scrollbar]::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+[hide-scrollbar] {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+[data-theme="dark"] .section-header_component h2 {
+  color: var(--text--invert);
+}
+
+[data-theme="dark"] .section-header_component .section_subheading {
+  color: var(--text--invert);
+}
+
+[data-theme="dark"] .section-header_component {
+  border-color: var(--text--invert);
+}
+
+@media (min-width: 2560px) {
+  .home-news_content {
+    justify-content: center;
+    min-height: 70vh;
+  }
+}
+
+.button.is-icon:hover .icon-1x1-small {
+  margin-left: 0.25rem;
+}
+
+.form_input.is-text-area {
+  resize: vertical;
+  /* Allows resizing only in height */
+  max-width: 100%;
+  /* Ensures the width doesn't exceed its container */
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .navbar_hamburguer-icon {
+    display: flex !important;
+    opacity: 1 !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+  .side-menu_x-icon {
+    margin-bottom: 2rem;
+    margin-left: auto;
+    margin-top: 2rem;
+  }
+}
+
+@media only screen and (max-width: 991px) and (orientation: landscape) {
+  .navbar_side-menu {
+    height: 100dvh;
+    overflow: auto;
+  }
+
+  .side-menu_x-icon {
+    margin-left: auto;
+  }
+
+  .page-hero_component,
+  .home-hero_text-mask {
+    padding-bottom: 2rem;
+  }
+
+  .hero-arrow_icon {
+    width: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 991px) and (orientation: landscape) {
+  .section_main-hero {
+    font-size: clamp(4rem, 10vw, 12.5rem);
+  }
+}
+
+.jetboost-filter-active:checked + .filter_button-label {
+  font-weight: 700;
+}
+
+[data-looping-words-list] > * {
+  display: block;
+  width: 100%;
+}
+
+[data-looping-content-list] > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* Homepage Specific Styles */
+@media (min-width: 991px) and (max-width: 1440px) {
+  .home-stats_text {
+    font-size: 2.5rem;
+  }
+
+  .take-control_text {
+    font-size: 8rem;
+  }
+}
+
+/* CSS Keyframe Animation */
+@keyframes translateX {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+[data-css-marquee-list] {
+  animation: translateX 30s linear;
+  animation-iteration-count: infinite;
+  animation-play-state: paused;
+}
