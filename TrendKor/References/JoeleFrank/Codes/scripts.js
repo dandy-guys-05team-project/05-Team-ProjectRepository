@@ -545,7 +545,7 @@ function initHighlightText(){
           return false;
         }
 
-        window.location.href = "/news";
+        window.location.href = "./news.html";
         
       } catch (error) {
         console.error('Error handling news item click:', error);
