@@ -44,8 +44,24 @@ $("[data-lenis-toggle]").on("click", function (e) {
 // GSAP ScrollTrigger and Fade-in Animations
 gsap.registerPlugin(ScrollTrigger);
 
+// Track animated elements to prevent duplicate animations
+let animatedElements = new Set();
+
 function initFadeInAnimations() {
-  document.querySelectorAll('[fade-in]').forEach((el) => {
+  const fadeElements = document.querySelectorAll('[fade-in]');
+  console.log(`Initializing fade-in animations for ${fadeElements.length} elements`);
+  
+  fadeElements.forEach((el, index) => {
+    // Skip if element is already animated
+    if (animatedElements.has(el)) {
+      console.log(`Element ${index} already animated, skipping`);
+      return;
+    }
+    
+    console.log(`Animating element ${index}:`, el);
+    animatedElements.add(el);
+    el.classList.add('gsap-animated');
+    
     gsap.fromTo(
       el,
       { opacity: 0, y: 40 },
@@ -57,7 +73,8 @@ function initFadeInAnimations() {
         scrollTrigger: {
           trigger: el,
           start: "top 90%",
-          toggleActions: "play none none none"
+          toggleActions: "play none none none",
+          onEnter: () => console.log(`Fade-in animation triggered for element ${index}`)
         }
       }
     );
@@ -68,31 +85,51 @@ function initFadeInAnimations() {
 document.addEventListener('DOMContentLoaded', initFadeInAnimations);
 
 // CSS Marquee Function
+let marqueeObserver = null;
+let initializedMarquees = new Set();
+
 function initCSSMarquee() {
   const pixelsPerSecond = 75;
-  const marquees = document.querySelectorAll('[data-css-marquee]');
+  const marquees = document.querySelectorAll('[data-css-marquee]:not(.marquee-initialized)');
   
   marquees.forEach(marquee => {
+    // Skip if already initialized
+    if (initializedMarquees.has(marquee)) {
+      return;
+    }
+    
+    initializedMarquees.add(marquee);
+    marquee.classList.add('marquee-initialized');
+    
     marquee.querySelectorAll('[data-css-marquee-list]').forEach(list => {
-      const duplicate = list.cloneNode(true);
-      marquee.appendChild(duplicate);
+      // Check if duplicate already exists
+      if (!list.nextElementSibling || !list.nextElementSibling.hasAttribute('data-marquee-duplicate')) {
+        const duplicate = list.cloneNode(true);
+        duplicate.setAttribute('data-marquee-duplicate', 'true');
+        marquee.appendChild(duplicate);
+      }
     });
   });
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      entry.target.querySelectorAll('[data-css-marquee-list]').forEach(list => 
-        list.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused'
-      );
-    });
-  }, { threshold: 0 });
+  // Initialize observer only once
+  if (!marqueeObserver) {
+    marqueeObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        entry.target.querySelectorAll('[data-css-marquee-list]').forEach(list => 
+          list.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused'
+        );
+      });
+    }, { threshold: 0 });
+  }
   
-  marquees.forEach(marquee => {
+  document.querySelectorAll('[data-css-marquee]').forEach(marquee => {
     marquee.querySelectorAll('[data-css-marquee-list]').forEach(list => {
-      list.style.animationDuration = (list.offsetWidth / pixelsPerSecond) + 's';
-      list.style.animationPlayState = 'paused';
+      if (list.offsetWidth > 0) {
+        list.style.animationDuration = (list.offsetWidth / pixelsPerSecond) + 's';
+        list.style.animationPlayState = 'paused';
+      }
     });
-    observer.observe(marquee);
+    marqueeObserver.observe(marquee);
   });
 }
 
@@ -583,3 +620,21 @@ document.addEventListener("DOMContentLoaded", () => {
   initDynamicCurrentYear();
   initHighlightText();
 });
+
+// Global function to reinitialize all custom animations
+window.initCustomAnimations = function() {
+  // Reinitialize CSS Marquee
+  initCSSMarquee();
+  
+  // Reinitialize other custom functions
+  if (typeof initDynamicCurrentYear === 'function') {
+    initDynamicCurrentYear();
+  }
+  
+  if (typeof initHighlightText === 'function') {
+    initHighlightText();
+  }
+  
+  // Any other custom animation initializations can be added here
+  console.log('Custom animations reinitialized');
+};

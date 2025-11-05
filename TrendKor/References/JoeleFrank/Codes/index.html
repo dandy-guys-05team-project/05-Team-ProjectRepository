@@ -133,29 +133,93 @@
     
     <!-- Load HTML Components -->
     <script>
-        // Load HTML components
+        // Load HTML components with proper animation initialization
+        let componentsLoaded = 0;
+        const totalComponents = 4;
+        
+        function initializeAnimationsAfterLoad() {
+            componentsLoaded++;
+            console.log(`Component loaded: ${componentsLoaded}/${totalComponents}`);
+            
+            if (componentsLoaded === totalComponents) {
+                console.log('All components loaded, initializing animations...');
+                
+                // Reinitialize all animations after all components are loaded
+                setTimeout(() => {
+                    // Check for fade-in elements
+                    const fadeInElements = document.querySelectorAll('[fade-in]');
+                    console.log(`Found ${fadeInElements.length} fade-in elements`);
+                    
+                    // Reinitialize fade-in animations
+                    if (typeof initFadeInAnimations === 'function') {
+                        initFadeInAnimations();
+                        console.log('Fade-in animations reinitialized');
+                    }
+                    
+                    // Reinitialize CSS marquee
+                    if (typeof initCSSMarquee === 'function') {
+                        initCSSMarquee();
+                        console.log('CSS marquee reinitialized');
+                    }
+                    
+                    // Refresh ScrollTrigger
+                    if (typeof ScrollTrigger !== 'undefined') {
+                        ScrollTrigger.refresh();
+                        console.log('ScrollTrigger refreshed');
+                    }
+                    
+                    // Reinitialize any other custom animations
+                    if (typeof window.initCustomAnimations === 'function') {
+                        window.initCustomAnimations();
+                    }
+                    
+                    console.log('All animations initialized successfully');
+                }, 100);
+            }
+        }
+        
         fetch('header.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('header-container').innerHTML = data;
+                initializeAnimationsAfterLoad();
+            })
+            .catch(error => {
+                console.error('Error loading header:', error);
+                initializeAnimationsAfterLoad();
             });
             
         fetch('hero.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('hero-container').innerHTML = data;
+                initializeAnimationsAfterLoad();
+            })
+            .catch(error => {
+                console.error('Error loading hero:', error);
+                initializeAnimationsAfterLoad();
             });
             
         fetch('sections.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('sections-container').innerHTML = data;
+                initializeAnimationsAfterLoad();
+            })
+            .catch(error => {
+                console.error('Error loading sections:', error);
+                initializeAnimationsAfterLoad();
             });
             
         fetch('footer.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('footer-container').innerHTML = data;
+                initializeAnimationsAfterLoad();
+            })
+            .catch(error => {
+                console.error('Error loading footer:', error);
+                initializeAnimationsAfterLoad();
             });
     </script>
 </body>
