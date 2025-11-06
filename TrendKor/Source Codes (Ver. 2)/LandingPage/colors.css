@@ -39,6 +39,27 @@
   --neutral-900: #171717;
   --neutral-black: #000000;
 
+  /* Navigation Design System Variables */
+  --background--primary: var(--neutral-white);
+  --background--secondary: var(--neutral-100);
+  --text--primary: var(--neutral-900);
+  --text--secondary: var(--neutral-700);
+  --text--brand: var(--primary-500);
+  --stroke--secondary: var(--neutral-400);
+  --stroke--tertiary: var(--neutral-200);
+  
+  /* Typography Variables */
+  --typography--title: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+  --typography--body: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Size Variables */
+  --sizes--0: 0.25rem;
+  --sizes--1: 0.5rem;
+  --sizes--2: 1rem;
+  --sizes--3: 1.5rem;
+  --sizes--4: 2rem;
+  --sizes--5: 2.5rem;
+
   /* Shadows - Layered depth with subtle colors */
   --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
   --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 2px -1px rgba(0, 0, 0, 0.2);

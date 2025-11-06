@@ -20,43 +20,46 @@
             </a>
             
             <div hide-scrollbar="" class="navbar_menu">
-                <div class="nav-links_wrapper">
-                    <a href="./the-jf-difference.html" class="navbar_link">The JF Difference</a>
-                    <a href="./what-we-do.html" class="navbar_link">What We Do</a>
-                    <a href="./our-people.html" class="navbar_link">Our People</a>
-                    <a href="./news.html" class="navbar_link">News & Insights</a>
-                    <a href="./contact-us.html" class="navbar_link">Contact Us</a>
-                    
-                    <form action="./search.html" class="navbar_search w-form">
-                        <input class="navbar_search-input w-input" maxlength="256" name="query" placeholder="Search site..." type="search" id="search" required=""/>
-                        <input type="submit" class="navbar_search-button w-button" value=""/>
-                    </form>
-                    
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 20 20" fill="none" class="navbar_search-icon">
-                        <path d="M17.5 17.5L13.875 13.875M15.8333 9.16667C15.8333 12.8486 12.8486 15.8333 9.16667 15.8333C5.48477 15.8333 2.5 12.8486 2.5 9.16667C2.5 5.48477 5.48477 2.5 9.16667 2.5C12.8486 2.5 15.8333 5.48477 15.8333 9.16667Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path>
-                    </svg>
-                </div>
-                
-                <div data-lenis-stop="" class="navbar_hamburguer-icon">
+                <button 
+                    data-lenis-stop="" 
+                    class="navbar_hamburguer-icon" 
+                    aria-label="Toggle navigation menu"
+                    aria-expanded="false"
+                    aria-controls="side-navigation-panel"
+                >
                     <div class="hamburguer_first-line"></div>
                     <div class="hamburguer_second-line"></div>
                     <div data-lenis-stop="" class="navbar_link menu-button">Menu</div>
-                </div>
+                </button>
             </div>
             
-            <div data-lenis-prevent="" class="navbar_side-panel">
+            <div 
+                data-lenis-prevent="" 
+                class="navbar_side-panel" 
+                id="side-navigation-panel"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="side-menu-title"
+            >
                 <form action="./search.html" class="side-panel_search w-form">
                     <input maxlength="256" name="query" placeholder="Search site…" required="" type="search" class="side-panel_search-input w-input"/>
                     <input type="submit" class="side-panel_search-button w-button" value=""/>
                 </form>
                 
-                <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 32 32" fill="none" data-lenis-start="" class="side-menu_x-icon">
-                    <path d="M24 8L8 24M8 8L24 24" stroke="currentColor" STYLE="stroke:white;stroke-opacity:1;" stroke-width="2.5" stroke-linecap="square" data-lenis-start=""></path>
-                </svg>
+                <button 
+                    data-lenis-start="" 
+                    class="side-menu_x-icon" 
+                    aria-label="Close navigation menu"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 32 32" fill="none">
+                        <path d="M24 8L8 24M8 8L24 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"></path>
+                    </svg>
+                </button>
                 
                 <div class="navbar_side-panel-divider"></div>
                 
-                <div class="navbar_side-menu">
+                <nav class="navbar_side-menu" role="navigation" aria-label="Main navigation">
+                    <h2 id="side-menu-title" class="sr-only">Navigation Menu</h2>
                     <div class="side-panel_search-wrapper">
                         <form action="./search.html" class="site-panel_mobile-search w-form">
                             <input class="side-panel_mobile-search-input w-input" maxlength="256" name="query" placeholder="Search site…" type="search" id="search-2" required=""/>

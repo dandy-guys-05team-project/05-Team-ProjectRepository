@@ -331,24 +331,48 @@ $(document).ready(function() {
       });
     }
 
-    // Side Panel Timeline
+    // Side Panel Timeline with hamburger animation
     let sidePanelTimeline = gsap.timeline({ paused: true, reversed: true });
     if ($sidePanel.length && $hamburgerIcon.length && $sideMenuItems.length) {
       sidePanelTimeline
         .fromTo(
           $sidePanel,
           { x: '100%', display: 'none' },
-          { x: '0%', display: 'block', duration: 0.5, ease: 'power2.out' }
+          { x: '0%', display: 'flex', duration: 0.5, ease: 'power2.out' }
         )
         .from(
           $sideMenuItems,
           { opacity: 0, y: 20, duration: 0.3, stagger: 0.1 },
           '-=0.3'
-        );
+        )
+        .add(() => {
+          $hamburgerIcon.addClass('active');
+          updateAriaAttributes(true);
+          if (typeof lenis !== 'undefined') lenis.stop();
+        }, 0)
+        .eventCallback("onReverseComplete", function() {
+          $hamburgerIcon.removeClass('active');
+          updateAriaAttributes(false);
+          if (typeof lenis !== 'undefined') lenis.start();
+        });
 
+      // Handle both hamburger icon and menu button clicks
       $hamburgerIcon.on('click.desktopMenu', function(e) {
         e.stopPropagation();
-        sidePanelTimeline.play();
+        if (sidePanelTimeline.reversed()) {
+          sidePanelTimeline.play();
+        } else {
+          sidePanelTimeline.reverse();
+        }
+      });
+      
+      $('.navbar_link.menu-button').on('click.desktopMenu', function(e) {
+        e.stopPropagation();
+        if (sidePanelTimeline.reversed()) {
+          sidePanelTimeline.play();
+        } else {
+          sidePanelTimeline.reverse();
+        }
       });
 
       if ($sideMenuCloseIcon.length) {
@@ -357,13 +381,26 @@ $(document).ready(function() {
           sidePanelTimeline.reverse();
         });
       }
+      
+      // Close panel when clicking outside
+      $(document).on('click.sidePanel', function(e) {
+        var isInsidePanel = $sidePanel.is(e.target) || $sidePanel.has(e.target).length > 0;
+        var isHamburger = $hamburgerIcon.is(e.target) || $hamburgerIcon.has(e.target).length > 0;
+        var isMenuButton = $('.navbar_link.menu-button').is(e.target) || $('.navbar_link.menu-button').has(e.target).length > 0;
+        
+        if (!isInsidePanel && !isHamburger && !isMenuButton && !sidePanelTimeline.reversed()) {
+          sidePanelTimeline.reverse();
+        }
+      });
     }
 
     return () => {
       $searchIcon.off('.searchDesktop');
       $(document).off('.searchDesktop');
       $hamburgerIcon.off('.desktopMenu');
+      $('.navbar_link.menu-button').off('.desktopMenu');
       $sideMenuCloseIcon.off('.desktopMenu');
+      $(document).off('.sidePanel');
     };
   });
 
@@ -378,8 +415,8 @@ $(document).ready(function() {
       sidePanelMobileTimeline
         .fromTo(
           $sidePanel,
-          { y: '-100%', display: 'none' },
-          { y: '0%', display: 'flex', duration: 0.3, ease: 'power2.out' }
+          { x: '100%', display: 'none' },
+          { x: '0%', display: 'flex', duration: 0.4, ease: 'power2.out' }
         )
         .from(
           $sideMenuItems,
@@ -388,14 +425,34 @@ $(document).ready(function() {
         )
         .add(() => {
           $('.navbar-mobile_logo').addClass('inverted');
+          $hamburgerIcon.addClass('active');
+          updateAriaAttributes(true);
+          if (typeof lenis !== 'undefined') lenis.stop();
         }, 0)
         .eventCallback("onReverseComplete", function() {
           $('.navbar-mobile_logo').removeClass('inverted');
+          $hamburgerIcon.removeClass('active');
+          updateAriaAttributes(false);
+          if (typeof lenis !== 'undefined') lenis.start();
         });
 
+      // Handle both hamburger icon and menu button clicks
       $hamburgerIcon.on('click.mobileMenu', function(e) {
         e.stopPropagation();
-        sidePanelMobileTimeline.play();
+        if (sidePanelMobileTimeline.reversed()) {
+          sidePanelMobileTimeline.play();
+        } else {
+          sidePanelMobileTimeline.reverse();
+        }
+      });
+      
+      $('.navbar_link.menu-button').on('click.mobileMenu', function(e) {
+        e.stopPropagation();
+        if (sidePanelMobileTimeline.reversed()) {
+          sidePanelMobileTimeline.play();
+        } else {
+          sidePanelMobileTimeline.reverse();
+        }
       });
 
       if ($sideMenuCloseIcon.length) {
@@ -404,11 +461,24 @@ $(document).ready(function() {
           sidePanelMobileTimeline.reverse();
         });
       }
+      
+      // Close panel when clicking outside (mobile)
+      $(document).on('click.sidePanelMobile', function(e) {
+        var isInsidePanel = $sidePanel.is(e.target) || $sidePanel.has(e.target).length > 0;
+        var isHamburger = $hamburgerIcon.is(e.target) || $hamburgerIcon.has(e.target).length > 0;
+        var isMenuButton = $('.navbar_link.menu-button').is(e.target) || $('.navbar_link.menu-button').has(e.target).length > 0;
+        
+        if (!isInsidePanel && !isHamburger && !isMenuButton && !sidePanelMobileTimeline.reversed()) {
+          sidePanelMobileTimeline.reverse();
+        }
+      });
     }
 
     return () => {
       $hamburgerIcon.off('.mobileMenu');
+      $('.navbar_link.menu-button').off('.mobileMenu');
       $sideMenuCloseIcon.off('.mobileMenu');
+      $(document).off('.sidePanelMobile');
     };
   });
 });
@@ -711,3 +781,294 @@ window.initCustomAnimations = function() {
   // Initialize TrendKor overlay animations
   setTimeout(initTrendKorOverlayAnimations, 100);
 };
+
+// Accessibility and Keyboard Navigation Functions
+function updateAriaAttributes(isOpen) {
+  const hamburger = document.querySelector('.navbar_hamburguer-icon');
+  const sidePanel = document.querySelector('.navbar_side-panel');
+  
+  if (hamburger) {
+    hamburger.setAttribute('aria-expanded', isOpen.toString());
+  }
+  
+  if (sidePanel) {
+    if (isOpen) {
+      sidePanel.classList.add('active');
+      // Focus the close button when menu opens
+      const closeButton = sidePanel.querySelector('.side-menu_x-icon');
+      if (closeButton) {
+        setTimeout(() => closeButton.focus(), 100);
+      }
+    } else {
+      sidePanel.classList.remove('active');
+      // Return focus to hamburger when menu closes
+      if (hamburger) {
+        hamburger.focus();
+      }
+    }
+  }
+}
+
+function trapFocus(element) {
+  const focusableElements = element.querySelectorAll(
+    'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
+  );
+  const firstFocusableElement = focusableElements[0];
+  const lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+  element.addEventListener('keydown', function(e) {
+    const isTabPressed = e.key === 'Tab' || e.keyCode === 9;
+
+    if (!isTabPressed) {
+      return;
+    }
+
+    if (e.shiftKey) {
+      if (document.activeElement === firstFocusableElement) {
+        lastFocusableElement.focus();
+        e.preventDefault();
+      }
+    } else {
+      if (document.activeElement === lastFocusableElement) {
+        firstFocusableElement.focus();
+        e.preventDefault();
+      }
+    }
+  });
+}
+
+// Initialize focus trap when side panel is active
+document.addEventListener('DOMContentLoaded', function() {
+  const sidePanel = document.querySelector('.navbar_side-panel');
+  if (sidePanel) {
+    trapFocus(sidePanel);
+  }
+  
+  // ESC key to close menu
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' || e.keyCode === 27) {
+      const sidePanel = document.querySelector('.navbar_side-panel');
+      if (sidePanel && sidePanel.classList.contains('active')) {
+        // Trigger close animation
+        const closeButton = sidePanel.querySelector('.side-menu_x-icon');
+        if (closeButton) {
+          closeButton.click();
+        }
+      }
+    }
+  });
+});
+
+// Menu Toggle Functionality - Enhanced and robust initialization
+function initializeMenuFunctionality() {
+    // Prevent double initialization
+    if (window.menuInitialized) {
+        console.log('Menu already initialized, skipping...');
+        return;
+    }
+    
+    console.log('Initializing menu functionality...');
+    
+    // Wait for DOM to be fully loaded
+    if (document.readyState !== 'complete') {
+        setTimeout(initializeMenuFunctionality, 500);
+        return;
+    }
+    
+    // Use more flexible selectors and wait for all elements
+    const hamburgerIcon = document.querySelector('.navbar_hamburguer-icon');
+    const sidePanel = document.querySelector('.navbar_side-panel');
+    const closeIcon = document.querySelector('.side-menu_x-icon');
+    const menuButton = document.querySelector('.navbar_link.menu-button');
+    
+    console.log('Menu elements found:');
+    console.log('- Hamburger:', !!hamburgerIcon, hamburgerIcon?.className);
+    console.log('- Side panel:', !!sidePanel, sidePanel?.className);
+    console.log('- Close icon:', !!closeIcon, closeIcon?.className);
+    console.log('- Menu button:', !!menuButton, menuButton?.className);
+    
+    // If essential elements are missing, retry with longer delay
+    if (!hamburgerIcon || !sidePanel) {
+        console.log('Essential menu elements not found, retrying in 1 second...');
+        setTimeout(initializeMenuFunctionality, 1000);
+        return;
+    }
+    
+    // Toggle side panel function with enhanced animations
+    function toggleSidePanel(forceClose = false) {
+        console.log('Toggling side panel...');
+        const isActive = sidePanel.classList.contains('active');
+        
+        if (isActive || forceClose) {
+            // Close menu
+            sidePanel.classList.remove('active');
+            hamburgerIcon.classList.remove('active');
+            document.body.style.overflow = '';
+            document.body.classList.remove('menu-open');
+            
+            // Re-enable smooth scroll
+            if (typeof lenis !== 'undefined') {
+                lenis.start();
+            }
+            
+            console.log('Side panel closed');
+        } else {
+            // Open menu
+            sidePanel.classList.add('active');
+            hamburgerIcon.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            document.body.classList.add('menu-open');
+            
+            // Disable smooth scroll when menu is open
+            if (typeof lenis !== 'undefined') {
+                lenis.stop();
+            }
+            
+            console.log('Side panel opened');
+        }
+        
+        // Update ARIA attributes
+        hamburgerIcon.setAttribute('aria-expanded', !isActive && !forceClose);
+        sidePanel.setAttribute('aria-hidden', isActive || forceClose);
+    }
+    
+    // Add event listeners
+    hamburgerIcon.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Hamburger clicked');
+        toggleSidePanel();
+    });
+    
+    if (menuButton) {
+        menuButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Menu button clicked');
+            toggleSidePanel();
+        });
+    }
+    
+    if (closeIcon) {
+        closeIcon.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Close icon clicked');
+            if (sidePanel.classList.contains('active')) {
+                toggleSidePanel();
+            }
+        });
+    }
+    
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+        if (sidePanel.classList.contains('active')) {
+            const isInsidePanel = sidePanel.contains(e.target);
+            const isHamburger = hamburgerIcon.contains(e.target);
+            const isMenuButton = menuButton && menuButton.contains(e.target);
+            
+            if (!isInsidePanel && !isHamburger && !isMenuButton) {
+                console.log('Outside click, closing menu');
+                toggleSidePanel(true);
+            }
+        }
+    });
+    
+    // Keyboard support - ESC to close menu
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && sidePanel.classList.contains('active')) {
+            console.log('ESC key pressed, closing menu');
+            toggleSidePanel(true);
+            
+            // Return focus to hamburger button
+            hamburgerIcon.focus();
+        }
+        
+        // Trap focus within menu when open
+        if (sidePanel.classList.contains('active')) {
+            const focusableElements = sidePanel.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+            
+            if (e.key === 'Tab') {
+                if (e.shiftKey) {
+                    if (document.activeElement === firstElement) {
+                        e.preventDefault();
+                        lastElement.focus();
+                    }
+                } else {
+                    if (document.activeElement === lastElement) {
+                        e.preventDefault();
+                        firstElement.focus();
+                    }
+                }
+            }
+        }
+    });
+    
+    // Close on ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && sidePanel.classList.contains('active')) {
+            console.log('ESC pressed, closing menu');
+            toggleSidePanel();
+        }
+    });
+    
+    // Mark as initialized and make toggle function globally available
+    window.menuInitialized = true;
+    window.toggleSidePanel = toggleSidePanel;
+    sidePanel.classList.add('menu-initialized');
+    
+    console.log('Menu functionality initialized successfully!');
+}
+
+// Use MutationObserver to watch for header loading
+function watchForHeaderLoad() {
+    console.log('Setting up header load watcher...');
+    
+    const headerContainer = document.getElementById('header-container');
+    if (!headerContainer) {
+        console.log('Header container not found, retrying...');
+        setTimeout(watchForHeaderLoad, 500);
+        return;
+    }
+    
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                // Check if navbar was added
+                const navbar = document.querySelector('.navbar');
+                if (navbar) {
+                    console.log('Navbar detected via MutationObserver, initializing menu...');
+                    observer.disconnect(); // Stop observing
+                    
+                    // Wait a bit more for full DOM processing
+                    setTimeout(function() {
+                        initializeMenuFunctionality();
+                    }, 200);
+                }
+            }
+        });
+    });
+    
+    observer.observe(headerContainer, {
+        childList: true,
+        subtree: true
+    });
+}
+
+// Start watching immediately
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, starting header watch...');
+    watchForHeaderLoad();
+});
+
+// Also try direct initialization after a delay as fallback
+setTimeout(function() {
+    if (document.querySelector('.navbar') && !document.querySelector('.navbar_side-panel.menu-initialized')) {
+        console.log('Fallback initialization attempt...');
+        initializeMenuFunctionality();
+    }
+}, 3000);

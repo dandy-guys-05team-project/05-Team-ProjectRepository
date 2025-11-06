@@ -188,6 +188,29 @@
             .then(response => response.text())
             .then(data => {
                 document.getElementById('header-container').innerHTML = data;
+                
+                // Initialize menu functionality immediately after header loads
+                console.log('Header loaded, initializing menu...');
+                
+                // Wait a moment for DOM to fully process the new HTML
+                setTimeout(function() {
+                    // Hide navigation links and always show hamburger menu
+                    const navLinksWrapper = document.querySelector('.nav-links_wrapper');
+                    const hamburgerIcon = document.querySelector('.navbar_hamburguer-icon');
+                    
+                    if (navLinksWrapper && hamburgerIcon) {
+                        // Always hide nav links and show hamburger menu
+                        navLinksWrapper.style.display = 'none';
+                        hamburgerIcon.style.display = 'flex';
+                        console.log('Menu visibility updated - hamburger menu only');
+                    }
+                    
+                    // Initialize menu toggle functionality
+                    if (typeof initializeMenuFunctionality === 'function') {
+                        initializeMenuFunctionality();
+                    }
+                }, 100);
+                
                 initializeAnimationsAfterLoad();
             })
             .catch(error => {
