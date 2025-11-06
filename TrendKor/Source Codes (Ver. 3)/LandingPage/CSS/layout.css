@@ -1,0 +1,215 @@
+/* 
+ * Layout System
+ * Extracted from Take Control landing page design
+ */
+
+:root {
+  /* Responsive Numbers */
+  --_responsive-numbers---margin-main: 2rem;
+  --_responsive-numbers---section-gap: 10rem;
+  --_responsive-numbers---max-width-main: 125rem;
+  --_responsive-numbers---gap-main: 1rem;
+  --_responsive-numbers---padding-main: 1rem;
+  --_responsive-numbers---small-section-gap: 6rem;
+  --_responsive-numbers---padding-l: 1.5rem;
+
+  /* Sizes */
+  --sizes--0: 0.25rem;
+  --sizes--1: 0.5rem;
+  --sizes--2: 1rem;
+  --sizes--3: 1.5rem;
+  --sizes--4: 2rem;
+  --sizes--5: 2.5rem;
+  --sizes--6: 3rem;
+  --sizes--7: 3.5rem;
+  --sizes--8: 4rem;
+  --sizes--9: 4.5rem;
+  --sizes--10: 5rem;
+  --sizes--11: 5.5rem;
+  --sizes--12: 6rem;
+  --sizes--13: 6.5rem;
+  --sizes--14: 7rem;
+  --sizes--15: 7.5rem;
+  --sizes--16: 8rem;
+  --sizes--17: 8.5rem;
+  --sizes--18: 9rem;
+  --sizes--19: 9.5rem;
+  --sizes--20: 10rem;
+
+  /* Border Radius */
+  --radius--global-radius: 0px;
+
+  /* Video Margins */
+  --margin--video-border: 1.25rem;
+}
+
+/* Container System */
+.container-xlarge {
+  max-width: var(--_responsive-numbers---max-width-main);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+/* Flexbox Utilities */
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.items-end {
+  align-items: flex-end;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-baseline {
+  align-items: baseline;
+}
+
+.items-stretch {
+  align-items: stretch;
+}
+
+/* Grid Utilities */
+.grid {
+  display: grid;
+}
+
+.grid-cols-1 {
+  grid-template-columns: 1fr;
+}
+
+.grid-auto-cols-fr {
+  grid-auto-columns: 1fr;
+}
+
+.gap-4 {
+  gap: 16px;
+}
+
+.column-gap-4 {
+  column-gap: 16px;
+}
+
+.row-gap-4 {
+  row-gap: 16px;
+}
+
+/* Position Utilities */
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.static {
+  position: static;
+}
+
+/* Z-Index */
+.z-3 {
+  z-index: 3;
+}
+
+.z-100 {
+  z-index: 100;
+}
+
+/* Dimensions */
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.min-h-75vh {
+  min-height: 75vh;
+}
+
+.h-175vh {
+  height: 175vh;
+}
+
+/* Spacing Utilities */
+.m-0 {
+  margin: 0;
+}
+
+.p-0 {
+  padding: 0;
+}
+
+.pt-6 {
+  padding-top: 6rem;
+}
+
+.pb-1-5 {
+  padding-bottom: 1.5rem;
+}
+
+.pr-main {
+  padding-right: var(--_responsive-numbers---padding-main);
+}
+
+.pl-main {
+  padding-left: var(--_responsive-numbers---padding-main);
+}
+
+/* Positioning */
+.inset-0 {
+  top: 0%;
+  right: 0%;
+  bottom: auto;
+  left: 0%;
+}
