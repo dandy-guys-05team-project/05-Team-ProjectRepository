@@ -1,0 +1,122 @@
+/* 
+ * Typography System
+ * Extracted from Take Control landing page design
+ */
+
+:root {
+  /* Typography Variables */
+  --typography--body: neue-haas-grotesk-text, sans-serif;
+  --typography--title: neue-haas-grotesk-display, sans-serif;
+}
+
+/* Base Typography Reset */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 1rem;
+  font-size: calc(0.196429rem + 0.892857vw);
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background--primary);
+  font-family: var(--typography--body);
+  color: var(--text--primary);
+  font-size: 1rem;
+  line-height: 1.3em;
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+h1 {
+  font-family: var(--typography--title);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 11.875rem;
+  font-weight: 400;
+  line-height: 0.92em;
+}
+
+/* Hero Heading Styles */
+.hero-heading {
+  font-family: var(--typography--title);
+  letter-spacing: -4px;
+  text-transform: uppercase;
+  text-wrap: balance;
+  font-size: 11rem;
+  font-weight: 500;
+  line-height: 0.92em;
+}
+
+.hero-heading.custom-full-width {
+  text-align: left;
+  letter-spacing: -0.02em;
+  font-size: clamp(2.5rem, -0.26rem + 13.81vw, 17rem);
+}
+
+/* Text Utilities */
+.text-primary {
+  color: var(--text--primary);
+}
+
+.text-secondary {
+  color: var(--text--secondary);
+}
+
+.text-tertiary {
+  color: var(--text--tertiary);
+}
+
+.text-invert {
+  color: var(--text--invert);
+}
+
+.text-brand {
+  color: var(--text--brand);
+}
+
+/* Font Weight Utilities */
+.font-regular {
+  font-weight: 400;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+/* Text Transform Utilities */
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
