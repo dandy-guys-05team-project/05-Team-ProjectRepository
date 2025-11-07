@@ -54,7 +54,7 @@
   --take-control-design-system---base-color-system--warning-yellow-dark: #5e5515;
   --take-control-design-system---base-color-system--error-red: #f8e4e4;
   --take-control-design-system---base-color-system--error-red-dark: #3b0b0b;
-  --take-control-design-system---base-color-system--focus-state: #2d62ff;
+  --take-control-design-system---base-color-system--focus-state: var(--primitives-01--frank-green);
 
   /* Brand Colors Extended */
   --take-control-design-system---base-color-brand--blue: #2a71ff;
@@ -79,4 +79,8 @@
   --stroke--invert-secondary: var(--primitives-01--jf-50);
   --stroke-weight--primary: 1px;
   --stroke-weight--secondary: 1.5px;
+
+  /* Additional Colors for Logo and Navigation */
+  --text--accent: var(--primitives-01--frank-green);
+  --logo--hover-transform: scale(1.05);
 }
