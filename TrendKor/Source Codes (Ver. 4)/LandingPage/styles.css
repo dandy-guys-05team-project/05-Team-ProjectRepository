@@ -1,0 +1,447 @@
+/* 
+   브라우저 크기에 완전히 비례하는 스케일링 시스템
+   Original Design: 1920px x 4000px
+*/
+
+:root {
+    /* 기준 디자인 크기 */
+    --design-width: 1920;
+    --design-height: 4000;
+    
+    /* 가로 폭을 기준으로 한 스케일 계산 (화면 꽉 차게) */
+    --scale-factor: calc(100vw / var(--design-width));
+    
+    /* 최소/최대 스케일 제한 */
+    --min-scale: 0.1;
+    --max-scale: 3.0;
+    
+    /* 최종 스케일 적용 - 가로 폭 기준으로 꽉 채움 */
+    --final-scale: clamp(var(--min-scale), var(--scale-factor), var(--max-scale));
+    
+    /* 색상 변수 */
+    --color-red: #C60C30;
+    --color-blue: #003780;
+    --color-dark-blue: #004BAD;
+    --color-light-blue: #B5E8FF;
+    --color-black: #000000;
+    --color-white: #ffffff;
+    
+    /* 폰트 */
+    --font-family: 'Haas Grot Text Trial', Arial, sans-serif;
+}
+
+/* 기본 리셋 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: var(--font-family);
+    background: var(--color-white);
+    margin: 0;
+    padding: 0;
+}
+
+/* 메인 컨테이너 - 전체 페이지를 스케일링 */
+.main-page {
+    width: calc(var(--design-width) * 1px);
+    height: calc(var(--design-height) * 1px);
+    position: relative;
+    background: var(--color-white);
+    overflow: hidden;
+    
+    /* 브라우저 크기에 따라 전체 페이지 스케일링 */
+    transform: scale(var(--final-scale));
+    transform-origin: top left;
+    
+    /* 스케일된 페이지가 화면을 꽉 채우도록 조정 */
+    margin: 0;
+    padding: 0;
+}
+
+/* 로고 */
+.logo {
+    width: 103.57px;
+    height: 103.57px;
+    position: absolute;
+    left: 99px;
+    top: -1.79px;
+}
+
+/* 메뉴 버튼들 */
+.login-button {
+    width: 106.68px;
+    height: 39.36px;
+    position: absolute;
+    left: 1550px;
+    top: 30.32px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-black);
+    font-size: 32px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.menu-text {
+    width: 100.46px;
+    height: 39.36px;
+    position: absolute;
+    left: 1721px;
+    top: 30.32px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-black);
+    font-size: 32px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* 비디오 배경 */
+.video {
+    width: 1920px;
+    height: 959px;
+    position: absolute;
+    left: 0px;
+    top: 100px;
+    object-fit: cover;
+}
+
+/* 벡터 그래픽들 */
+.vector-1 {
+    position: absolute;
+    left: 102px;
+    top: 100px;
+    width: 1717px;
+    height: 616px;
+}
+
+.vector-1 svg {
+    width: 100%;
+    height: 100%;
+}
+
+.vector-2 {
+    position: absolute;
+    left: 102px;
+    top: 428px;
+    width: 1716px;
+    height: 629px;
+}
+
+.vector-2 svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* 메인 타이틀 */
+.title {
+    width: 916px;
+    position: absolute;
+    left: 102px;
+    top: 488px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+    font-size: 100px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+/* 서브타이틀 */
+.subtitle {
+    width: 800px;
+    position: absolute;
+    left: 1018px;
+    top: 572px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+    font-size: 60px;
+    font-weight: 500;
+    line-height: 1.2;
+    mix-blend-mode: screen;
+}
+
+/* 푸터 배경 */
+.footer-background {
+    width: 1920px;
+    height: 1400px;
+    position: absolute;
+    left: 0px;
+    top: 1123px;
+    background: var(--color-black);
+}
+
+/* 라인들 */
+.line-1 {
+    width: 1654px;
+    height: 3px;
+    position: absolute;
+    left: 133px;
+    top: 1183px;
+    background: var(--color-white);
+    outline: 3px solid var(--color-white);
+}
+
+.line-2 {
+    width: 1654px;
+    height: 3px;
+    position: absolute;
+    left: 133px;
+    top: 1479px;
+    background: var(--color-white);
+    outline: 3px solid var(--color-white);
+}
+
+/* 섹션 타이틀 */
+.section-title {
+    width: 362px;
+    position: absolute;
+    left: 133px;
+    top: 1215px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+    font-size: 40px;
+    font-weight: 700;
+}
+
+/* 섹션 설명들 */
+.section-description-korean {
+    width: 1601px;
+    height: 160px;
+    position: absolute;
+    left: 133px;
+    top: 1287px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 40px;
+    text-align: center;
+}
+
+.section-description {
+    width: 1793px;
+    position: absolute;
+    left: 127px;
+    top: 1511px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 40px;
+    text-align: center;
+}
+
+/* 카드 공통 스타일 */
+.card {
+    width: 640px;
+    height: 600px;
+    position: absolute;
+    top: 1823px;
+    border-radius: 24px;
+    border: 1px solid var(--color-white);
+    box-shadow: 3px 4px 4px 2px rgba(255, 249.51, 172.71, 0.30);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+}
+
+/* 카드별 위치 및 색상 */
+.card-1 {
+    left: 288px;
+    background: var(--color-blue);
+}
+
+.card-2 {
+    left: 1696px;
+    background: var(--color-blue);
+}
+
+.card-3 {
+    left: 992px;
+    background: var(--color-red);
+}
+
+.card-4 {
+    left: 2400px;
+    background: var(--color-red);
+}
+
+.card-5 {
+    left: -416px;
+    background: var(--color-red);
+}
+
+.card-6 {
+    left: -1120px;
+    background: var(--color-blue);
+}
+
+/* 카드 내부 요소들 */
+.card-title {
+    position: relative;
+    top: 40px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 40px;
+    margin-bottom: 20px;
+}
+
+.card-line {
+    width: 480px;
+    height: 3px;
+    background: var(--color-white);
+    outline: 3px solid var(--color-white);
+    margin: 20px 0;
+}
+
+.card-text {
+    width: 394px;
+    height: 440px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.4;
+    flex: 1;
+}
+
+/* 밈 섹션 */
+.meme-background {
+    width: 1920px;
+    height: 1000px;
+    position: absolute;
+    left: 0px;
+    top: 2587px;
+    background: var(--color-white);
+    border: 1px solid var(--color-black);
+}
+
+.meme-line {
+    width: 1654px;
+    height: 3px;
+    position: absolute;
+    left: 133px;
+    top: 2647px;
+    background: var(--color-black);
+    outline: 3px solid var(--color-black);
+}
+
+.meme-section-title {
+    width: 544px;
+    position: absolute;
+    left: 127px;
+    top: 2679px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-black);
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.rectangle-3 {
+    width: 1400px;
+    height: 400px;
+    position: absolute;
+    left: 271px;
+    top: 2787px;
+    background: var(--color-light-blue);
+}
+
+.meme-title {
+    width: 1012px;
+    position: absolute;
+    left: 454px;
+    top: 3327px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-black);
+    font-size: 100px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+/* 호버 효과 */
+.login-button:hover,
+.menu-text:hover {
+    color: var(--color-red);
+    transition: color 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 5px 8px 8px 4px rgba(255, 249.51, 172.71, 0.50);
+    transition: all 0.3s ease;
+}
+
+/* 반응형 조정 - 모든 화면 크기에서 가로 폭 기준 유지 */
+@media screen and (max-width: 480px) {
+    :root {
+        --min-scale: 0.08;
+        /* 가로 폭 기준 스케일링 유지 */
+        --scale-factor: calc(100vw / var(--design-width));
+    }
+}
+
+@media screen and (min-width: 2560px) {
+    :root {
+        --max-scale: 2.0;
+        /* 가로 폭 기준 스케일링 유지 */
+        --scale-factor: calc(100vw / var(--design-width));
+    }
+}
+
+/* 세로/가로 방향 상관없이 가로 폭 기준으로 스케일링 */
+@media screen and (orientation: portrait) {
+    :root {
+        /* 가로 폭 기준으로만 스케일링 */
+        --scale-factor: calc(100vw / var(--design-width));
+    }
+}
+
+@media screen and (orientation: landscape) {
+    :root {
+        /* 가로 폭 기준으로만 스케일링 */
+        --scale-factor: calc(100vw / var(--design-width));
+    }
+}
+
+/* 스무스 스크롤링 */
+html {
+    scroll-behavior: smooth;
+}

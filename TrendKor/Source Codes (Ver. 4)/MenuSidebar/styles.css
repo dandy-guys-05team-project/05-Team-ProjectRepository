@@ -1,0 +1,478 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Haas Grot Text Trial', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
+    background: #f5f5f5;
+}
+
+/* Menu Sidebar Styles */
+.menu-sidebar {
+    position: fixed;
+    top: 0;
+    right: -600px; /* Initially hidden */
+    width: 600px;
+    height: 100vh;
+    z-index: 9999;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu-sidebar.active {
+    right: 0;
+}
+
+.sidebar-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 1;
+}
+
+/* Close Button */
+.close-button {
+    position: absolute;
+    top: 48px;
+    right: 48px;
+    width: 48px;
+    height: 48px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.close-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(90deg);
+}
+
+.close-button:active {
+    transform: rotate(90deg) scale(0.9);
+}
+
+.close-icon {
+    width: 32px;
+    height: 32px;
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+    position: relative;
+    z-index: 5;
+    padding: 100px 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navigation Items */
+.nav-item {
+    text-decoration: none;
+    color: white;
+    display: block;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-item:hover {
+    opacity: 1 !important;
+    transform: translateX(-10px);
+}
+
+.nav-item:active {
+    transform: translateX(-10px) scale(0.98);
+}
+
+/* Home Link */
+.home-link {
+    position: absolute;
+    left: 240px;
+    top: 224px;
+    width: 312px;
+    opacity: 0.4;
+}
+
+.home-link .nav-text {
+    font-size: 100px;
+    font-weight: 400;
+    text-align: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+}
+
+/* Section Title */
+.nav-section {
+    position: relative;
+}
+
+.section-title {
+    position: absolute;
+    left: 240px;
+    top: 384px;
+    width: 312px;
+    color: white;
+    font-size: 40px;
+    font-weight: 400;
+    text-align: right;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.section-title:hover {
+    opacity: 1;
+    transform: translateX(-10px);
+}
+
+/* Year Links */
+.year-links {
+    position: relative;
+}
+
+.year-link {
+    position: absolute;
+    color: white;
+    font-size: 100px;
+    font-weight: 400;
+    text-align: right;
+    opacity: 0.4;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.year-link:hover {
+    opacity: 1;
+    transform: translateX(-15px) scale(1.05);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.year-link:active {
+    transform: translateX(-15px) scale(0.98);
+}
+
+/* Individual Year Positions (matching original) */
+.year-link[data-year="2025"] {
+    left: 307px;
+    top: 520px;
+    width: 245px;
+}
+
+.year-link[data-year="2024"] {
+    left: 306px;
+    top: 680px;
+}
+
+.year-link[data-year="2023"] {
+    left: 304px;
+    top: 840px;
+}
+
+.year-link[data-year="2022"] {
+    left: 306px;
+    top: 1000px;
+}
+
+.year-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+}
+
+/* Overlay for mobile/background clicking */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+.menu-sidebar.active .sidebar-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Demo Button (for testing purposes) */
+.demo-open-button {
+    position: fixed;
+    top: 50%;
+    left: 50px;
+    transform: translateY(-50%);
+    background: #C60C30;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.demo-open-button:hover {
+    background: #A0051A;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.demo-open-button:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.slide-out-right {
+    animation: slideOutRight 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+/* Stagger Animation for Menu Items */
+.nav-item.animate-in {
+    animation: slideInFromRight 0.6s ease forwards;
+}
+
+.year-link.animate-in {
+    animation: slideInFromRight 0.6s ease forwards;
+}
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 0.4;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .menu-sidebar {
+        width: 100vw;
+        right: -100vw;
+    }
+    
+    .close-button {
+        top: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .close-icon {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .home-link {
+        left: 50px;
+        top: 120px;
+        width: calc(100vw - 100px);
+    }
+    
+    .home-link .nav-text {
+        font-size: 60px;
+        text-align: center;
+    }
+    
+    .section-title {
+        left: 50px;
+        top: 240px;
+        width: calc(100vw - 100px);
+        font-size: 30px;
+        text-align: center;
+    }
+    
+    .year-link {
+        font-size: 60px;
+        left: 50px;
+        width: calc(100vw - 100px);
+        text-align: center;
+    }
+    
+    .year-link[data-year="2025"] {
+        top: 340px;
+    }
+    
+    .year-link[data-year="2024"] {
+        top: 440px;
+    }
+    
+    .year-link[data-year="2023"] {
+        top: 540px;
+    }
+    
+    .year-link[data-year="2022"] {
+        top: 640px;
+    }
+    
+    .demo-open-button {
+        left: 20px;
+        top: 20px;
+        transform: none;
+        position: fixed;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-link .nav-text {
+        font-size: 48px;
+    }
+    
+    .section-title {
+        font-size: 24px;
+    }
+    
+    .year-link {
+        font-size: 48px;
+    }
+    
+    .year-link[data-year="2025"] {
+        top: 300px;
+    }
+    
+    .year-link[data-year="2024"] {
+        top: 380px;
+    }
+    
+    .year-link[data-year="2023"] {
+        top: 460px;
+    }
+    
+    .year-link[data-year="2022"] {
+        top: 540px;
+    }
+}
+
+/* Tablet Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .menu-sidebar {
+        width: 500px;
+        right: -500px;
+    }
+    
+    .home-link {
+        left: 140px;
+        width: 300px;
+    }
+    
+    .home-link .nav-text {
+        font-size: 80px;
+    }
+    
+    .section-title {
+        left: 140px;
+        width: 300px;
+        font-size: 35px;
+    }
+    
+    .year-link {
+        font-size: 80px;
+    }
+    
+    .year-link[data-year="2025"] {
+        left: 200px;
+    }
+    
+    .year-link[data-year="2024"] {
+        left: 199px;
+    }
+    
+    .year-link[data-year="2023"] {
+        left: 197px;
+    }
+    
+    .year-link[data-year="2022"] {
+        left: 199px;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus styles for accessibility */
+.close-button:focus,
+.nav-item:focus,
+.year-link:focus,
+.section-title:focus {
+    outline: 2px solid white;
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .sidebar-background {
+        background: #000000;
+        border: 2px solid white;
+    }
+    
+    .nav-item,
+    .year-link,
+    .section-title {
+        opacity: 1 !important;
+    }
+}
