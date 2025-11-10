@@ -56,17 +56,20 @@
     /* 기준 디자인 크기 */
     --design-width: 1920;
     --design-height: 4000;
-    
-    /* 가로 폭을 기준으로 한 스케일 계산 (화면 꽉 차게) */
-    --scale-factor: calc(100vw / var(--design-width));
-    
+
+    /* 스크롤바 너비 고려 (일반적으로 15-17px) */
+    --scrollbar-width: 17px;
+
+    /* 가로 폭을 기준으로 한 스케일 계산 (스크롤바 제외) */
+    --scale-factor: calc((100vw - var(--scrollbar-width)) / var(--design-width));
+
     /* 최소/최대 스케일 제한 */
     --min-scale: 0.1;
     --max-scale: 3.0;
-    
+
     /* 최종 스케일 적용 - 가로 폭 기준으로 꽉 채움 */
     --final-scale: clamp(var(--min-scale), var(--scale-factor), var(--max-scale));
-    
+
     /* 색상 변수 */
     --color-red: #C60C30;
     --color-blue: #003780;
@@ -74,7 +77,7 @@
     --color-light-blue: #B5E8FF;
     --color-black: #000000;
     --color-white: #ffffff;
-    
+
     /* 폰트 */
     --font-family: 'Neue Haas Grotesk Text', 'Helvetica Neue', Arial, sans-serif;
 }
@@ -104,11 +107,11 @@ html, body {
     position: relative;
     background: var(--color-white);
     overflow: hidden;
-    
+
     /* 브라우저 크기에 따라 전체 페이지 스케일링 */
     transform: scale(var(--final-scale));
     transform-origin: top left;
-    
+
     /* 스케일된 페이지가 화면을 꽉 채우도록 조정 */
     margin: 0;
     padding: 0;
@@ -197,11 +200,31 @@ html, body {
     object-fit: cover;
 }
 
+/* 타이틀 + 그래픽 그룹 (빨간색) */
+.title-graphic-group {
+    position: absolute;
+    left: 102px;
+    right: 102px;
+    top: 100px;
+    height: 616px;
+    margin: 0 auto;
+}
+
+/* 서브타이틀 + 그래픽 그룹 (파란색) */
+.subtitle-graphic-group {
+    position: absolute;
+    left: 102px;
+    right: 102px;
+    top: 428px;
+    height: 629px;
+    margin: 0 auto;
+}
+
 /* 벡터 그래픽들 */
 .vector-1 {
     position: absolute;
-    left: 102px;
-    top: 100px;
+    left: 0;
+    top: 0;
     width: 1717px;
     height: 616px;
 }
@@ -213,8 +236,8 @@ html, body {
 
 .vector-2 {
     position: absolute;
-    left: 102px;
-    top: 428px;
+    left: 0;
+    top: 0;
     width: 1716px;
     height: 629px;
 }
@@ -228,8 +251,8 @@ html, body {
 .title {
     width: 916px;
     position: absolute;
-    left: 102px;
-    top: 488px;
+    left: 0;
+    top: 388px;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -244,8 +267,9 @@ html, body {
 .subtitle {
     width: 800px;
     position: absolute;
-    left: 1018px;
-    top: 572px;
+    left: auto;
+    right: 0;
+    top: 144px;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -493,31 +517,29 @@ html, body {
 @media screen and (max-width: 480px) {
     :root {
         --min-scale: 0.08;
-        /* 가로 폭 기준 스케일링 유지 */
-        --scale-factor: calc(100vw / var(--design-width));
+        --scrollbar-width: 0px; /* 모바일에서는 스크롤바가 화면을 차지하지 않음 */
+        --scale-factor: calc((100vw - var(--scrollbar-width)) / var(--design-width));
     }
 }
 
 @media screen and (min-width: 2560px) {
     :root {
         --max-scale: 2.0;
-        /* 가로 폭 기준 스케일링 유지 */
-        --scale-factor: calc(100vw / var(--design-width));
+        --scale-factor: calc((100vw - var(--scrollbar-width)) / var(--design-width));
     }
 }
 
 /* 세로/가로 방향 상관없이 가로 폭 기준으로 스케일링 */
 @media screen and (orientation: portrait) {
     :root {
-        /* 가로 폭 기준으로만 스케일링 */
-        --scale-factor: calc(100vw / var(--design-width));
+        --scrollbar-width: 0px; /* 모바일 portrait에서는 스크롤바가 화면을 차지하지 않음 */
+        --scale-factor: calc((100vw - var(--scrollbar-width)) / var(--design-width));
     }
 }
 
 @media screen and (orientation: landscape) {
     :root {
-        /* 가로 폭 기준으로만 스케일링 */
-        --scale-factor: calc(100vw / var(--design-width));
+        --scale-factor: calc((100vw - var(--scrollbar-width)) / var(--design-width));
     }
 }
 
