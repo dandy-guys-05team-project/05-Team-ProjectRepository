@@ -188,5 +188,31 @@ document.addEventListener('DOMContentLoaded', function() {
     // window.onload에서 한 번 더 호출하여 모든 이미지, SVG, 폰트 등이 로드된 후 정확한 위치로 clip-path를 재적용
     window.addEventListener('load', updateVideoClipToSubtitleBottom);
 
+    function updateVideoMask() {
+        const video = document.querySelector('.video');
+        const redGroup = document.querySelector('.title-graphic-group');
+        const blueGroup = document.querySelector('.subtitle-graphic-group');
+        if (!video || !redGroup || !blueGroup) return;
+        // 두 그룹의 하단 위치 계산
+        const mainPage = document.querySelector('.main-page');
+        const redRect = redGroup.getBoundingClientRect();
+        const blueRect = blueGroup.getBoundingClientRect();
+        const mainRect = mainPage.getBoundingClientRect();
+        // 마스킹 영역: 빨간 그룹의 하단 ~ 파란 그룹의 상단 사이만 보이게
+        const maskTop = redRect.bottom - mainRect.top;
+        const maskBottom = blueRect.top - mainRect.top;
+        // 영상 전체 높이 기준으로 clip-path 적용
+        // 영상의 top은 100px, height는 1245px
+        // 실제 보여야 할 영역: maskTop ~ maskBottom
+        // clip-path: inset(maskTop px 0px (1245 - maskBottom) px 0px)
+        let clipTop = Math.max(0, maskTop);
+        let clipBottom = Math.max(0, 1245 - maskBottom);
+        video.style.clipPath = `inset(${clipTop}px 0px ${clipBottom}px 0px)`;
+    }
+    window.addEventListener('resize', updateVideoMask);
+    window.addEventListener('scroll', updateVideoMask);
+    document.addEventListener('DOMContentLoaded', updateVideoMask);
+    window.addEventListener('load', updateVideoMask);
+
     console.log('TrendKor Landing Page loaded successfully!');
 });
