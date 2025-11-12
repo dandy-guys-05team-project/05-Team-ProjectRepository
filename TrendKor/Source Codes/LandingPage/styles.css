@@ -1,6 +1,6 @@
-/* 
-   브라우저 크기에 완전히 비례하는 스케일링 시스템
-   Original Design: 1920px x 4000px
+/*
+브라우저 크기에 완전히 비례하는 스케일링 시스템
+Original Design: 1920px x 4000px
 */
 
 /* Neue Haas Grotesk Text 폰트 정의 */
@@ -60,7 +60,7 @@
     --color-light-blue: #B5E8FF;
     --color-black: #000000;
     --color-white: #ffffff;
-
+    
     /* 폰트 */
     --font-family: 'Neue Haas Grotesk Text', 'Helvetica Neue', Arial, sans-serif;
 }
@@ -90,16 +90,21 @@ body {
     background: var(--color-white);
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* 메인 컨테이너 */
 .main-page {
-    width: 100vw;
+    width: 100%;
     height: 190.156vw;
     position: relative;
     background: var(--color-white);
     margin: 0;
     padding: 0;
+    max-width: 1920px;
+    overflow-x: hidden;
 }
 
 /* 타이틀 마스크 컨테이너 */
@@ -294,7 +299,7 @@ body {
 
 /* 검은 배경 섹션 */
 .background-black {
-    width: 100vw;
+    width: 100%;
     height: 72.917vw;
     position: absolute;
     left: 0;
@@ -307,8 +312,9 @@ body {
     width: 86.146vw;
     height: 0.156vw;
     position: absolute;
-    left: 6.927vw;
+    left: 50%;
     top: 61.615vw;
+    transform: translateX(-50%);
     background: var(--color-white);
     outline: 0.156vw solid var(--color-white);
 }
@@ -317,8 +323,9 @@ body {
     width: 86.146vw;
     height: 0.156vw;
     position: absolute;
-    left: 6.927vw;
+    left: 50%;
     top: 77.031vw;
+    transform: translateX(-50%);
     background: var(--color-white);
     outline: 0.156vw solid var(--color-white);
 }
@@ -327,8 +334,9 @@ body {
 .section-title {
     width: 18.854vw;
     position: absolute;
-    left: 6.927vw;
+    left: 50%;
     top: 63.281vw;
+    transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -342,8 +350,9 @@ body {
     width: 83.385vw;
     height: 8.333vw;
     position: absolute;
-    left: 6.927vw;
+    left: 50%;
     top: 67.031vw;
+    transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -357,8 +366,9 @@ body {
 .section-description {
     width: 93.385vw;
     position: absolute;
-    left: 6.615vw;
+    left: 50%;
     top: 78.698vw;
+    transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -451,7 +461,7 @@ body {
 
 /* 밈 섹션 */
 .meme-background {
-    width: 100vw;
+    width: 100%;
     height: 52.083vw;
     position: absolute;
     left: 0;
@@ -464,8 +474,9 @@ body {
     width: 86.146vw;
     height: 0.156vw;
     position: absolute;
-    left: 6.927vw;
+    left: 50%;
     top: 137.865vw;
+    transform: translateX(-50%);
     background: var(--color-black);
     outline: 0.156vw solid var(--color-black);
 }
@@ -473,8 +484,9 @@ body {
 .meme-section-title {
     width: 28.333vw;
     position: absolute;
-    left: 6.615vw;
+    left: 50%;
     top: 139.531vw;
+    transform: translateX(-50%);
     text-align: center;
     display: flex;
     justify-content: center;
@@ -488,16 +500,18 @@ body {
     width: 72.917vw;
     height: 20.833vw;
     position: absolute;
-    left: 14.115vw;
+    left: 50%;
     top: 145.156vw;
+    transform: translateX(-50%);
     background: var(--color-light-blue);
 }
 
 .meme-title {
     width: 52.708vw;
     position: absolute;
-    left: 23.646vw;
+    left: 50%;
     top: 173.281vw;
+    transform: translateX(-50%);
     text-align: center;
     display: flex;
     justify-content: center;
@@ -527,27 +541,29 @@ html {
 }
 
 .Footer {
-    width: 100vw;
+    width: 100%;
     min-height: 10.417vw;
-    padding: 2.083vw 0;
+    padding: 2.083vw 5.156vw;
     background: black;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 6.250vw;
     position: absolute;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     top: 190.156vw;
+    max-width: 1920px;
 }
 
 .Footer .Logo1 {
-    margin-left: 2.083vw;
+    margin-left: 0;
     width: 5.208vw;
     height: auto;
 }
 
 .Footer .Copyright {
-    margin-right: 2.083vw;
+    margin-right: 0;
     text-align: right;
     color: white;
     font-size: clamp(12px, 1.250vw, 24px);
@@ -564,41 +580,41 @@ html {
         padding: 1.5vw 4vw;
         min-height: 70px;
     }
-
+    
     .logo {
         width: 12vw;
         height: 12vw;
         min-width: 40px;
         min-height: 40px;
     }
-
+    
     .nav-menu {
         gap: 4vw;
     }
-
+    
     .login-button,
     .menu-text {
         font-size: clamp(14px, 3vw, 20px);
         padding: 1vw 2vw;
     }
-
+    
     .Footer {
         flex-direction: column;
         gap: 3.125vw;
         padding: 4.167vw 0;
         justify-content: center;
     }
-
+    
     .Footer .Logo1 {
         margin: 0;
         width: 10.417vw;
     }
-
+    
     .Footer .Copyright {
         margin: 0;
         text-align: center;
     }
-
+    
     .section-description-korean,
     .section-description {
         width: 90vw;
@@ -608,8 +624,8 @@ html {
 
 @media (min-width: 1920px) {
     /* 큰 화면에서 최대 크기 제한 */
-    .main-page {
-        max-width: 1920px;
-        margin: 0 auto;
+    .main-page,
+    .Footer {
+        width: 100%;
     }
 }

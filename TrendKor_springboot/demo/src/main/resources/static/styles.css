@@ -1,6 +1,6 @@
-/* 
-   브라우저 크기에 완전히 비례하는 스케일링 시스템
-   Original Design: 1920px x 4000px
+/*
+브라우저 크기에 완전히 비례하는 스케일링 시스템
+Original Design: 1920px x 4000px
 */
 
 /* Neue Haas Grotesk Text 폰트 정의 */
@@ -60,7 +60,7 @@
     --color-light-blue: #B5E8FF;
     --color-black: #000000;
     --color-white: #ffffff;
-
+    
     /* 폰트 */
     --font-family: 'Neue Haas Grotesk Text', 'Helvetica Neue', Arial, sans-serif;
 }
@@ -564,41 +564,41 @@ html {
         padding: 1.5vw 4vw;
         min-height: 70px;
     }
-
+    
     .logo {
         width: 12vw;
         height: 12vw;
         min-width: 40px;
         min-height: 40px;
     }
-
+    
     .nav-menu {
         gap: 4vw;
     }
-
+    
     .login-button,
     .menu-text {
         font-size: clamp(14px, 3vw, 20px);
         padding: 1vw 2vw;
     }
-
+    
     .Footer {
         flex-direction: column;
         gap: 3.125vw;
         padding: 4.167vw 0;
         justify-content: center;
     }
-
+    
     .Footer .Logo1 {
         margin: 0;
         width: 10.417vw;
     }
-
+    
     .Footer .Copyright {
         margin: 0;
         text-align: center;
     }
-
+    
     .section-description-korean,
     .section-description {
         width: 90vw;
