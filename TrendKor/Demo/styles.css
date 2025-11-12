@@ -1,0 +1,615 @@
+/* 
+   브라우저 크기에 완전히 비례하는 스케일링 시스템
+   Original Design: 1920px x 4000px
+*/
+
+/* Neue Haas Grotesk Text 폰트 정의 */
+@font-face {
+    font-family: 'Neue Haas Grotesk Text';
+    src: url('./fonts/NeueHaasGrotText-55Roman-Trial.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neue Haas Grotesk Text';
+    src: url('./fonts/NeueHaasGrotText-56Italic-Trial.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neue Haas Grotesk Text';
+    src: url('./fonts/NeueHaasGrotText-65Medium-Trial.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neue Haas Grotesk Text';
+    src: url('./fonts/NeueHaasGrotText-66MediumItalic-Trial.otf') format('opentype');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neue Haas Grotesk Text';
+    src: url('./fonts/NeueHaasGrotText-75Bold-Trial.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neue Haas Grotesk Text';
+    src: url('./fonts/NeueHaasGrotText-76BoldItalic-Trial.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+:root {
+    /* 색상 변수 */
+    --color-red: #C60C30;
+    --color-blue: #003780;
+    --color-dark-blue: #004BAD;
+    --color-light-blue: #B5E8FF;
+    --color-black: #000000;
+    --color-white: #ffffff;
+
+    /* 폰트 */
+    --font-family: 'Neue Haas Grotesk Text', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* 기본 리셋 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-height: 100vh;
+    font-family: var(--font-family);
+    background: var(--color-white);
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    font-family: var(--font-family);
+    background: var(--color-white);
+    margin: 0;
+    padding: 0;
+}
+
+/* 메인 컨테이너 */
+.main-page {
+    width: 100vw;
+    height: 190.156vw;
+    position: relative;
+    background: var(--color-white);
+    margin: 0;
+    padding: 0;
+}
+
+/* 타이틀 마스크 컨테이너 */
+.title-mask-container {
+    position: absolute;
+    left: 50%;
+    top: 5.208vw;
+    transform: translateX(-50%);
+    width: 89.427vw;
+    height: 49.844vw;
+    overflow: hidden;
+    clip-path: inset(0); /* 동영상 크기에 맞춘 정확한 클리핑 */
+    -webkit-clip-path: inset(0); /* Safari 지원 */
+    z-index: 20;
+}
+
+/* 타이틀 그래픽 그룹 */
+.title-graphic-group,
+.subtitle-graphic-group {
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0 auto;
+    /* GSAP가 애니메이션 제어 - transition 제거 */
+}
+
+.title-graphic-group {
+    width: 89.427vw;
+    height: 32.083vw;
+    top: 0;
+    z-index: 2;
+}
+
+.subtitle-graphic-group {
+    width: 89.375vw;
+    height: 32.760vw;
+    top: 17.084vw;
+    z-index: 2;
+}
+
+.subtitle-path-text-group {
+    position: relative;
+    width: 89.375vw;
+    height: 32.760vw;
+}
+
+.vector-2 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 89.375vw;
+    height: 32.760vw;
+    z-index: 1;
+}
+
+/* Sticky 네비게이션 바 */
+.navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 5.394vw;
+    min-height: 60px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5.156vw;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 0.104vw 0.521vw rgba(0, 0, 0, 0.1);
+}
+
+/* 로고 */
+.logo {
+    width: 5.394vw;
+    height: 5.394vw;
+    min-width: 50px;
+    min-height: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+/* 메뉴 컨테이너 */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 2.604vw;
+}
+
+/* 메뉴 버튼들 */
+.login-button {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-black);
+    font-size: clamp(16px, 1.667vw, 32px);
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.521vw 1.042vw;
+    border-radius: 0.417vw;
+    transition: all 0.3s ease;
+}
+
+.menu-text {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-black);
+    font-size: clamp(16px, 1.667vw, 32px);
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.521vw 1.042vw;
+    border-radius: 0.417vw;
+    transition: all 0.3s ease;
+}
+
+/* 비디오 배경 */
+.video {
+    width: 89.427vw;
+    height: 49.844vw;
+    position: absolute;
+    left: 50%;
+    top: 5.208vw;
+    transform: translateX(-50%);
+    object-fit: cover;
+    object-position: center top;
+}
+
+/* 벡터 그래픽들 */
+.vector-1 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 89.427vw;
+    height: 32.083vw;
+}
+
+.vector-1 svg {
+    width: 100%;
+    height: 100%;
+}
+
+.vector-2 svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* 메인 타이틀 */
+.title {
+    width: 47.708vw;
+    position: absolute;
+    left: 0;
+    top: 20.208vw;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+    font-size: clamp(32px, 5.208vw, 100px);
+    font-weight: 500;
+    line-height: 1;
+}
+
+/* 서브타이틀 */
+.subtitle {
+    position: absolute;
+    left: auto;
+    right: 0;
+    top: 7.500vw;
+    width: 41.667vw;
+    text-align: center;
+    color: var(--color-white);
+    font-size: clamp(20px, 3.125vw, 60px);
+    font-weight: 500;
+    line-height: 1.2;
+    z-index: 2;
+    text-shadow: 0 0.104vw 0.833vw rgba(0,0,0,0.25);
+    mix-blend-mode: screen;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 검은 배경 섹션 */
+.background-black {
+    width: 100vw;
+    height: 72.917vw;
+    position: absolute;
+    left: 0;
+    top: 58.490vw;
+    background: var(--color-black);
+}
+
+/* 라인들 */
+.line-1 {
+    width: 86.146vw;
+    height: 0.156vw;
+    position: absolute;
+    left: 6.927vw;
+    top: 61.615vw;
+    background: var(--color-white);
+    outline: 0.156vw solid var(--color-white);
+}
+
+.line-2 {
+    width: 86.146vw;
+    height: 0.156vw;
+    position: absolute;
+    left: 6.927vw;
+    top: 77.031vw;
+    background: var(--color-white);
+    outline: 0.156vw solid var(--color-white);
+}
+
+/* 섹션 타이틀 */
+.section-title {
+    width: 18.854vw;
+    position: absolute;
+    left: 6.927vw;
+    top: 63.281vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+    font-size: clamp(20px, 2.083vw, 40px);
+    font-weight: 700;
+}
+
+/* 섹션 설명들 */
+.section-description-korean {
+    width: 83.385vw;
+    height: 8.333vw;
+    position: absolute;
+    left: 6.927vw;
+    top: 67.031vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+    font-size: clamp(14px, 1.563vw, 30px);
+    font-weight: 400;
+    line-height: 2.083vw;
+    text-align: center;
+}
+
+.section-description {
+    width: 93.385vw;
+    position: absolute;
+    left: 6.615vw;
+    top: 78.698vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+    font-size: clamp(14px, 1.563vw, 30px);
+    font-weight: 400;
+    line-height: 2.083vw;
+    text-align: center;
+}
+
+/* 카드 공통 스타일 */
+.card {
+    width: 33.333vw;
+    height: 31.250vw;
+    position: absolute;
+    top: 94.948vw;
+    border-radius: 1.250vw;
+    border: 0.052vw solid var(--color-white);
+    box-shadow: 0.156vw 0.208vw 0.208vw 0.104vw rgba(255, 249, 173, 0.30);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.667vw;
+    justify-content: flex-start;
+}
+
+/* 카드별 위치 및 색상 */
+.card-1 {
+    left: 15.000vw;
+    background: var(--color-blue);
+}
+
+.card-2 {
+    left: 88.333vw;
+    background: var(--color-blue);
+}
+
+.card-3 {
+    left: 51.667vw;
+    background: var(--color-red);
+}
+
+.card-4 {
+    left: 125.000vw;
+    background: var(--color-red);
+}
+
+.card-5 {
+    left: -21.667vw;
+    background: var(--color-red);
+}
+
+.card-6 {
+    left: -58.333vw;
+    background: var(--color-blue);
+}
+
+/* 카드 내부 요소들 */
+.card-title {
+    position: static;
+    text-align: center;
+    display: block;
+    color: var(--color-white);
+    font-size: clamp(16px, 1.563vw, 30px);
+    font-weight: 700;
+    line-height: 2.083vw;
+    margin-bottom: 0.833vw;
+    margin-top: 0;
+}
+
+.card-line {
+    width: 80%;
+    height: 0.156vw;
+    background: var(--color-white);
+    outline: 0.156vw solid var(--color-white);
+    margin: 0 auto 1.042vw auto;
+}
+
+.card-text {
+    width: 100%;
+    min-height: 16.667vw;
+    text-align: center;
+    display: block;
+    color: var(--color-white);
+    font-size: clamp(12px, 1.250vw, 24px);
+    font-weight: 400;
+    line-height: 1.5;
+    margin-top: 0;
+}
+
+/* 밈 섹션 */
+.meme-background {
+    width: 100vw;
+    height: 52.083vw;
+    position: absolute;
+    left: 0;
+    top: 134.740vw;
+    background: var(--color-white);
+    border: 0.052vw solid var(--color-black);
+}
+
+.meme-line {
+    width: 86.146vw;
+    height: 0.156vw;
+    position: absolute;
+    left: 6.927vw;
+    top: 137.865vw;
+    background: var(--color-black);
+    outline: 0.156vw solid var(--color-black);
+}
+
+.meme-section-title {
+    width: 28.333vw;
+    position: absolute;
+    left: 6.615vw;
+    top: 139.531vw;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-black);
+    font-size: clamp(20px, 2.083vw, 40px);
+    font-weight: 700;
+}
+
+.rectangle-3 {
+    width: 72.917vw;
+    height: 20.833vw;
+    position: absolute;
+    left: 14.115vw;
+    top: 145.156vw;
+    background: var(--color-light-blue);
+}
+
+.meme-title {
+    width: 52.708vw;
+    position: absolute;
+    left: 23.646vw;
+    top: 173.281vw;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-black);
+    font-size: clamp(32px, 5.208vw, 100px);
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+/* 호버 효과 */
+.login-button:hover,
+.menu-text:hover {
+    color: var(--color-red);
+    background: rgba(198, 12, 48, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-0.521vw);
+    box-shadow: 0.260vw 0.417vw 0.417vw 0.208vw rgba(255, 249, 172, 0.50);
+    transition: all 0.3s ease;
+}
+
+/* 스무스 스크롤링 */
+html {
+    scroll-behavior: smooth;
+}
+
+.Footer {
+    width: 100vw;
+    min-height: 10.417vw;
+    padding: 2.083vw 0;
+    background: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6.250vw;
+    position: absolute;
+    left: 0;
+    top: 190.156vw;
+}
+
+.Footer .Logo1 {
+    margin-left: 2.083vw;
+    width: 5.208vw;
+    height: auto;
+}
+
+.Footer .Copyright {
+    margin-right: 2.083vw;
+    text-align: right;
+    color: white;
+    font-size: clamp(12px, 1.250vw, 24px);
+    font-family: 'Haas Grot Text Trial', 'Neue Haas Grotesk Text', 'Neue Haas Grotesk Display', Arial, sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* 반응형 미디어 쿼리 */
+@media (max-width: 768px) {
+    /* 모바일 최적화 */
+    .navbar {
+        height: auto;
+        padding: 1.5vw 4vw;
+        min-height: 70px;
+    }
+
+    .logo {
+        width: 12vw;
+        height: 12vw;
+        min-width: 40px;
+        min-height: 40px;
+    }
+
+    .nav-menu {
+        gap: 4vw;
+    }
+
+    .login-button,
+    .menu-text {
+        font-size: clamp(14px, 3vw, 20px);
+        padding: 1vw 2vw;
+    }
+
+    .Footer {
+        flex-direction: column;
+        gap: 3.125vw;
+        padding: 4.167vw 0;
+        justify-content: center;
+    }
+
+    .Footer .Logo1 {
+        margin: 0;
+        width: 10.417vw;
+    }
+
+    .Footer .Copyright {
+        margin: 0;
+        text-align: center;
+    }
+
+    .section-description-korean,
+    .section-description {
+        width: 90vw;
+        left: 5vw;
+    }
+}
+
+@media (min-width: 1920px) {
+    /* 큰 화면에서 최대 크기 제한 */
+    .main-page {
+        max-width: 1920px;
+        margin: 0 auto;
+    }
+}
