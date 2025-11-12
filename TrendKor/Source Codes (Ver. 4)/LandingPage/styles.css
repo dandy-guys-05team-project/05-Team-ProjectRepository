@@ -53,23 +53,6 @@
 }
 
 :root {
-    /* 기준 디자인 크기 */
-    --design-width: 1920;
-    --design-height: 4000;
-
-    /* 스크롤바 너비 고려 (일반적으로 15-17px) */
-    --scrollbar-width: 17px;
-
-    /* 가로 폭을 기준으로 한 스케일 계산 (스크롤바 제외) */
-    --scale-factor: calc((100vw - var(--scrollbar-width)) / var(--design-width));
-
-    /* 최소/최대 스케일 제한 */
-    --min-scale: 0.1;
-    --max-scale: 3.0;
-
-    /* 최종 스케일 적용 - 가로 폭 기준으로 꽉 채움 */
-    --final-scale: clamp(var(--min-scale), var(--scale-factor), var(--max-scale));
-
     /* 색상 변수 */
     --color-red: #C60C30;
     --color-blue: #003780;
@@ -90,8 +73,8 @@
 }
 
 html, body {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
     font-family: var(--font-family);
@@ -100,20 +83,19 @@ html, body {
     padding: 0;
 }
 
-/* 메인 컨테이너 - 전체 페이지를 스케일링 */
+/* 메인 컨테이너 */
 .main-page {
-    width: calc(var(--design-width) * 1px);
-    height: calc(var(--design-height) * 1px);
+    width: 100vw;
+    min-height: 204.688vw;
     position: relative;
     background: var(--color-white);
-    overflow: hidden;
-    transform: scale(var(--final-scale));
-    transform-origin: top left;
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
+    padding-bottom: 14.583vw;
 }
 
-/* 타이틀 그래픽 그룹: absolute, top은 JS에서만 제어, 반응형 유지 */
+/* 타이틀 그래픽 그룹 */
 .title-graphic-group,
 .subtitle-graphic-group {
     display: block;
@@ -121,101 +103,91 @@ html, body {
     left: 50%;
     transform: translateX(-50%);
     margin: 0 auto;
-    transition: top 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.5s cubic-bezier(0.4,0,0.2,1);
     z-index: 20;
 }
 
 .title-graphic-group {
-    width: 1717px;
-    height: 616px;
+    width: 89.427vw;
+    height: 32.083vw;
+    top: 5.208vw;
     z-index: 2;
 }
 
 .subtitle-graphic-group {
-    width: 1716px;
-    height: 629px;
+    width: 89.375vw;
+    height: 32.760vw;
+    top: 22.292vw;
     z-index: 2;
 }
 
 .subtitle-path-text-group {
     position: relative;
-    width: 1716px;
-    height: 629px;
-    /* flex 등 내부 배치 유지 */
+    width: 89.375vw;
+    height: 32.760vw;
 }
 
 .vector-2 {
     position: absolute;
     left: 0;
     top: 0;
-    width: 1716px;
-    height: 629px;
+    width: 89.375vw;
+    height: 32.760vw;
     z-index: 1;
 }
 
 /* 로고 */
 .logo {
-    width: 103.57px;
-    height: 103.57px;
+    width: 5.394vw;
+    height: 5.394vw;
     position: absolute;
-    left: 99px;
-    top: -1.79px;
+    left: 5.156vw;
+    top: 0;
 }
 
 /* 메뉴 버튼들 */
 .login-button {
-    width: 106.68px;
-    height: 39.36px;
+    width: 5.556vw;
+    height: 2.050vw;
     position: absolute;
-    left: 1550px;
-    top: 30.32px;
+    left: 80.729vw;
+    top: 1.579vw;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     color: var(--color-black);
-    font-size: 32px;
+    font-size: clamp(16px, 1.667vw, 32px);
     font-weight: 500;
     cursor: pointer;
 }
 
 .menu-text {
-    width: 100.46px;
-    height: 39.36px;
+    width: 5.232vw;
+    height: 2.050vw;
     position: absolute;
-    left: 1721px;
-    top: 30.32px;
+    left: 89.635vw;
+    top: 1.579vw;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     color: var(--color-black);
-    font-size: 32px;
+    font-size: clamp(16px, 1.667vw, 32px);
     font-weight: 500;
     cursor: pointer;
 }
 
 /* 비디오 배경 */
 .video {
-    width: 1717px;
-    height: 1245px; /* 기존 전체 영역 유지 */
+    width: 89.427vw;
+    height: 64.844vw;
     position: absolute;
     left: 50%;
-    top: 100px;
+    top: 5.208vw;
     transform: translateX(-50%);
     object-fit: cover;
     object-position: center top;
-    clip-path: inset(0px 0px 188px 0px); /* 파란색 그룹 아래로 영상이 표시되지 않도록 하단을 잘라냄 */
-}
-
-/* 타이틀 + 그래픽 그룹 (빨간색) */
-.title-graphic-group {
-    height: 616px;
-}
-
-/* 서브타이틀 + 그래픽 그룹 (파란색) */
-.subtitle-graphic-group {
-    height: 629px;
+    clip-path: inset(0 0 9.792vw 0);
 }
 
 /* 벡터 그래픽들 */
@@ -223,8 +195,8 @@ html, body {
     position: absolute;
     left: 0;
     top: 0;
-    width: 1717px;
-    height: 616px;
+    width: 89.427vw;
+    height: 32.083vw;
 }
 
 .vector-1 svg {
@@ -239,16 +211,16 @@ html, body {
 
 /* 메인 타이틀 */
 .title {
-    width: 916px;
+    width: 47.708vw;
     position: absolute;
     left: 0;
-    top: 388px;
+    top: 20.208vw;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     color: var(--color-white);
-    font-size: 100px;
+    font-size: clamp(32px, 5.208vw, 100px);
     font-weight: 500;
     line-height: 1;
 }
@@ -258,142 +230,142 @@ html, body {
     position: absolute;
     left: auto;
     right: 0;
-    top: 144px;
-    width: 800px;
+    top: 7.500vw;
+    width: 41.667vw;
     text-align: center;
     color: var(--color-white);
-    font-size: 60px;
+    font-size: clamp(20px, 3.125vw, 60px);
     font-weight: 500;
     line-height: 1.2;
     z-index: 2;
-    text-shadow: 0 2px 16px rgba(0,0,0,0.25);
+    text-shadow: 0 0.104vw 0.833vw rgba(0,0,0,0.25);
     mix-blend-mode: screen;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* 푸터 배경 */
-.footer-background {
-    width: 1920px;
-    height: 1400px;
+/* 검은 배경 섹션 */
+.background-black {
+    width: 100vw;
+    height: 72.917vw;
     position: absolute;
-    left: 0px;
-    top: 1123px;
+    left: 0;
+    top: 58.490vw;
     background: var(--color-black);
 }
 
 /* 라인들 */
 .line-1 {
-    width: 1654px;
-    height: 3px;
+    width: 86.146vw;
+    height: 0.156vw;
     position: absolute;
-    left: 133px;
-    top: 1183px;
+    left: 6.927vw;
+    top: 61.615vw;
     background: var(--color-white);
-    outline: 3px solid var(--color-white);
+    outline: 0.156vw solid var(--color-white);
 }
 
 .line-2 {
-    width: 1654px;
-    height: 3px;
+    width: 86.146vw;
+    height: 0.156vw;
     position: absolute;
-    left: 133px;
-    top: 1479px;
+    left: 6.927vw;
+    top: 77.031vw;
     background: var(--color-white);
-    outline: 3px solid var(--color-white);
+    outline: 0.156vw solid var(--color-white);
 }
 
 /* 섹션 타이틀 */
 .section-title {
-    width: 362px;
+    width: 18.854vw;
     position: absolute;
-    left: 133px;
-    top: 1215px;
+    left: 6.927vw;
+    top: 63.281vw;
     display: flex;
     justify-content: center;
     align-items: center;
     color: var(--color-white);
-    font-size: 40px;
+    font-size: clamp(20px, 2.083vw, 40px);
     font-weight: 700;
 }
 
 /* 섹션 설명들 */
 .section-description-korean {
-    width: 1601px;
-    height: 160px;
+    width: 83.385vw;
+    height: 8.333vw;
     position: absolute;
-    left: 133px;
-    top: 1287px;
+    left: 6.927vw;
+    top: 67.031vw;
     display: flex;
     justify-content: center;
     align-items: center;
     color: var(--color-white);
-    font-size: 30px;
+    font-size: clamp(14px, 1.563vw, 30px);
     font-weight: 400;
-    line-height: 40px;
+    line-height: 2.083vw;
     text-align: center;
 }
 
 .section-description {
-    width: 1793px;
+    width: 93.385vw;
     position: absolute;
-    left: 127px;
-    top: 1511px;
+    left: 6.615vw;
+    top: 78.698vw;
     display: flex;
     justify-content: center;
     align-items: center;
     color: var(--color-white);
-    font-size: 30px;
+    font-size: clamp(14px, 1.563vw, 30px);
     font-weight: 400;
-    line-height: 40px;
+    line-height: 2.083vw;
     text-align: center;
 }
 
 /* 카드 공통 스타일 */
 .card {
-    width: 640px;
-    height: 600px;
+    width: 33.333vw;
+    height: 31.250vw;
     position: absolute;
-    top: 1823px;
-    border-radius: 24px;
-    border: 1px solid var(--color-white);
-    box-shadow: 3px 4px 4px 2px rgba(255, 249, 173, 0.30);
+    top: 94.948vw;
+    border-radius: 1.250vw;
+    border: 0.052vw solid var(--color-white);
+    box-shadow: 0.156vw 0.208vw 0.208vw 0.104vw rgba(255, 249, 173, 0.30);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 32px 32px 32px 32px; /* 상하좌우 여백 통일 */
+    padding: 1.667vw;
     justify-content: flex-start;
 }
 
 /* 카드별 위치 및 색상 */
 .card-1 {
-    left: 288px;
+    left: 15.000vw;
     background: var(--color-blue);
 }
 
 .card-2 {
-    left: 1696px;
+    left: 88.333vw;
     background: var(--color-blue);
 }
 
 .card-3 {
-    left: 992px;
+    left: 51.667vw;
     background: var(--color-red);
 }
 
 .card-4 {
-    left: 2400px;
+    left: 125.000vw;
     background: var(--color-red);
 }
 
 .card-5 {
-    left: -416px;
+    left: -21.667vw;
     background: var(--color-red);
 }
 
 .card-6 {
-    left: -1120px;
+    left: -58.333vw;
     background: var(--color-blue);
 }
 
@@ -403,28 +375,28 @@ html, body {
     text-align: center;
     display: block;
     color: var(--color-white);
-    font-size: 30px;
+    font-size: clamp(16px, 1.563vw, 30px);
     font-weight: 700;
-    line-height: 40px;
-    margin-bottom: 16px;
+    line-height: 2.083vw;
+    margin-bottom: 0.833vw;
     margin-top: 0;
 }
 
 .card-line {
     width: 80%;
-    height: 3px;
+    height: 0.156vw;
     background: var(--color-white);
-    outline: 3px solid var(--color-white);
-    margin: 0 auto 20px auto;
+    outline: 0.156vw solid var(--color-white);
+    margin: 0 auto 1.042vw auto;
 }
 
 .card-text {
     width: 100%;
-    min-height: 320px;
+    min-height: 16.667vw;
     text-align: center;
     display: block;
     color: var(--color-white);
-    font-size: 24px;
+    font-size: clamp(12px, 1.250vw, 24px);
     font-weight: 400;
     line-height: 1.5;
     margin-top: 0;
@@ -432,59 +404,59 @@ html, body {
 
 /* 밈 섹션 */
 .meme-background {
-    width: 1920px;
-    height: 1000px;
+    width: 100vw;
+    height: 52.083vw;
     position: absolute;
-    left: 0px;
-    top: 2587px;
+    left: 0;
+    top: 134.740vw;
     background: var(--color-white);
-    border: 1px solid var(--color-black);
+    border: 0.052vw solid var(--color-black);
 }
 
 .meme-line {
-    width: 1654px;
-    height: 3px;
+    width: 86.146vw;
+    height: 0.156vw;
     position: absolute;
-    left: 133px;
-    top: 2647px;
+    left: 6.927vw;
+    top: 137.865vw;
     background: var(--color-black);
-    outline: 3px solid var(--color-black);
+    outline: 0.156vw solid var(--color-black);
 }
 
 .meme-section-title {
-    width: 544px;
+    width: 28.333vw;
     position: absolute;
-    left: 127px;
-    top: 2679px;
+    left: 6.615vw;
+    top: 139.531vw;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     color: var(--color-black);
-    font-size: 40px;
+    font-size: clamp(20px, 2.083vw, 40px);
     font-weight: 700;
 }
 
 .rectangle-3 {
-    width: 1400px;
-    height: 400px;
+    width: 72.917vw;
+    height: 20.833vw;
     position: absolute;
-    left: 271px;
-    top: 2787px;
+    left: 14.115vw;
+    top: 145.156vw;
     background: var(--color-light-blue);
 }
 
 .meme-title {
-    width: 1012px;
+    width: 52.708vw;
     position: absolute;
-    left: 454px;
-    top: 3327px;
+    left: 23.646vw;
+    top: 173.281vw;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     color: var(--color-black);
-    font-size: 100px;
+    font-size: clamp(32px, 5.208vw, 100px);
     font-weight: 400;
     line-height: 1.2;
 }
@@ -497,42 +469,77 @@ html, body {
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 5px 8px 8px 4px rgba(255, 249, 172, 0.50);
+    transform: translateY(-0.521vw);
+    box-shadow: 0.260vw 0.417vw 0.417vw 0.208vw rgba(255, 249, 172, 0.50);
     transition: all 0.3s ease;
-}
-
-/* 반응형 조정 - 모든 화면 크기에서 가로 폭 기준 유지 */
-@media screen and (max-width: 480px) {
-    :root {
-        --min-scale: 0.08;
-        --scrollbar-width: 0px; /* 모바일에서는 스크롤바가 화면을 차지하지 않음 */
-        --scale-factor: calc((100vw - var(--scrollbar-width)) / var(--design-width));
-    }
-}
-
-@media screen and (min-width: 2560px) {
-    :root {
-        --max-scale: 2.0;
-        --scale-factor: calc((100vw - var(--scrollbar-width)) / var(--design-width));
-    }
-}
-
-/* 세로/가로 방향 상관없이 가로 폭 기준으로 스케일링 */
-@media screen and (orientation: portrait) {
-    :root {
-        --scrollbar-width: 0px; /* 모바일 portrait에서는 스크롤바가 화면을 차지하지 않음 */
-        --scale-factor: calc((100vw - var(--scrollbar-width)) / var(--design-width));
-    }
-}
-
-@media screen and (orientation: landscape) {
-    :root {
-        --scale-factor: calc((100vw - var(--scrollbar-width)) / var(--design-width));
-    }
 }
 
 /* 스무스 스크롤링 */
 html {
     scroll-behavior: smooth;
+}
+
+.Footer {
+    width: 100vw;
+    min-height: 10.417vw;
+    padding: 2.083vw 0;
+    background: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6.250vw;
+    position: absolute;
+    left: 0;
+    top: 190.156vw;
+}
+
+.Footer .Logo1 {
+    margin-left: 2.083vw;
+    width: 5.208vw;
+    height: auto;
+}
+
+.Footer .Copyright {
+    margin-right: 2.083vw;
+    text-align: right;
+    color: white;
+    font-size: clamp(16px, 2.083vw, 40px);
+    font-family: 'Haas Grot Text Trial', 'Neue Haas Grotesk Text', 'Neue Haas Grotesk Display', Arial, sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* 반응형 미디어 쿼리 */
+@media (max-width: 768px) {
+    /* 모바일 최적화 */
+    .Footer {
+        flex-direction: column;
+        gap: 3.125vw;
+        padding: 4.167vw 0;
+        justify-content: center;
+    }
+
+    .Footer .Logo1 {
+        margin: 0;
+        width: 10.417vw;
+    }
+
+    .Footer .Copyright {
+        margin: 0;
+        text-align: center;
+    }
+
+    .section-description-korean,
+    .section-description {
+        width: 90vw;
+        left: 5vw;
+    }
+}
+
+@media (min-width: 1920px) {
+    /* 큰 화면에서 최대 크기 제한 */
+    .main-page {
+        max-width: 1920px;
+        margin: 0 auto;
+    }
 }
