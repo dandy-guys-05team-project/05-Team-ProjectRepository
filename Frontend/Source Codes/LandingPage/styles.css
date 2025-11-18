@@ -523,10 +523,14 @@ body {
 }
 
 /* 호버 효과 */
-.login-button:hover,
-.menu-text:hover {
+.login-button:hover {
     color: var(--color-red);
     background: rgba(198, 12, 48, 0.1);
+}
+
+.menu-text:hover {
+    color: var(--color-dark-blue);
+    background: rgba(0, 71, 173, 0.1);
 }
 
 .card:hover {
