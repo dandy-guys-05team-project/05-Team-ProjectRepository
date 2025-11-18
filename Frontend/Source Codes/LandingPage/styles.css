@@ -395,22 +395,9 @@ body {
     gap: 2.083vw;
     padding: 0 5.156vw;
     height: 100%;
-    animation: infiniteScroll 30s linear infinite;
     will-change: transform;
 }
 
-@keyframes infiniteScroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
-.cards-wrapper:hover {
-    animation-play-state: paused;
-}
 
 /* 카드 공통 스타일 */
 .card {
@@ -419,7 +406,6 @@ body {
     position: relative;
     border-radius: 1.250vw;
     border: 0.052vw solid var(--color-white);
-    box-shadow: 0.156vw 0.208vw 0.208vw 0.104vw rgba(128, 128, 128, 0.30);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -548,11 +534,6 @@ body {
     background: rgba(0, 71, 173, 0.1);
 }
 
-.card:hover {
-    transform: translateY(-0.521vw);
-    box-shadow: 0.260vw 0.417vw 0.417vw 0.208vw rgba(128, 128, 128, 0.50);
-    transition: all 0.3s ease;
-}
 
 /* 스무스 스크롤링 */
 html {

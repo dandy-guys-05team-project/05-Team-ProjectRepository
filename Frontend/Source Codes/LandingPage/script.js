@@ -316,40 +316,56 @@ function removeError(event) {
  */
 function initializeInfiniteScroll() {
     const cardsWrapper = document.querySelector('.cards-wrapper');
+    const cardsContainer = document.querySelector('.cards-container');
 
-    if (!cardsWrapper) {
+    if (!cardsWrapper || !cardsContainer) {
         return;
     }
 
-    // 카드를 복제하여 끝없는 스크롤 효과 생성
-    const cards = cardsWrapper.querySelectorAll('.card');
-    const totalCards = cards.length;
+    // 원본 카드들 저장
+    const originalCards = Array.from(cardsWrapper.querySelectorAll('.card'));
+    const totalCards = originalCards.length;
+    const cardWidth = originalCards[0].offsetWidth;
+    const cardGap = parseFloat(window.getComputedStyle(cardsWrapper).gap) || 0;
+    const containerWidth = cardsContainer.offsetWidth;
 
-    // 원본 카드들을 복제하여 추가 (smooth한 무한 루프를 위해)
-    cards.forEach(card => {
-        const clone = card.cloneNode(true);
-        cardsWrapper.appendChild(clone);
-    });
+    let currentScroll = 0;
+    let isAnimating = false;
+    let animationId = null;
+    let isPaused = false;
 
-    // 호버 시 애니메이션 일시 중지 기능 (CSS에서 처리됨)
-    cardsWrapper.addEventListener('mouseenter', function() {
-        this.style.animationPlayState = 'paused';
-    });
+    const scrollSpeed = 2; // px per frame
 
-    cardsWrapper.addEventListener('mouseleave', function() {
-        this.style.animationPlayState = 'running';
-    });
+    // 애니메이션 루프
+    function animate() {
+        if (!isPaused) {
+            currentScroll += scrollSpeed;
+            cardsWrapper.style.transform = `translateX(-${currentScroll}px)`;
 
-    // 터치 디바이스 지원
-    cardsWrapper.addEventListener('touchstart', function() {
-        this.style.animationPlayState = 'paused';
-    });
+            // 첫 번째 카드가 완전히 화면 밖으로 나갔는지 확인
+            if (currentScroll >= cardWidth + cardGap) {
+                // 첫 번째 카드를 맨 뒤로 이동
+                const firstCard = cardsWrapper.querySelector('.card');
+                if (firstCard) {
+                    cardsWrapper.appendChild(firstCard.cloneNode(true));
+                    firstCard.remove();
+                    currentScroll -= (cardWidth + cardGap);
+                    cardsWrapper.style.transform = `translateX(-${currentScroll}px)`;
+                }
+            }
+        }
+        animationId = requestAnimationFrame(animate);
+    }
 
-    cardsWrapper.addEventListener('touchend', function() {
-        this.style.animationPlayState = 'running';
-    });
 
-    console.log('Infinite scroll initialized for cards');
+    // CSS 애니메이션 제거
+    cardsWrapper.style.animation = 'none';
+    cardsWrapper.style.transform = 'translateX(0)';
+
+    // 애니메이션 시작
+    animate();
+
+    console.log('Infinite scroll initialized with smooth card repositioning');
 }
 
 /**
