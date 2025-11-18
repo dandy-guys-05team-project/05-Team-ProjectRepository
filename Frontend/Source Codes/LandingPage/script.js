@@ -6,12 +6,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginButton = document.querySelector('.login-button');
     const modalCloseBtn = document.querySelector('.modal-close-btn');
 
+    console.log('DOMContentLoaded - loginModal:', loginModal);
+    console.log('DOMContentLoaded - loginButton:', loginButton);
+    console.log('DOMContentLoaded - modalCloseBtn:', modalCloseBtn);
+
     // 로그인 모달 열기
     function openLoginModal() {
         if (loginModal) {
             loginModal.classList.add('active');
             document.body.style.overflow = 'hidden'; // 스크롤 방지
-            console.log('Login modal opened');
+            console.log('Login modal opened', loginModal.classList);
+        } else {
+            console.error('loginModal element not found');
         }
     }
 
@@ -30,9 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // 모달 닫기 버튼 클릭 이벤트
     modalCloseBtn?.addEventListener('click', closeLoginModal);
 
-    // 모달 배경 클릭 시 닫기 (모달 콘텐츠 제외)
+    // 배경 클릭 시 닫기
     loginModal?.addEventListener('click', function(e) {
-        if (e.target === loginModal) {
+        const modalContent = document.querySelector('.login-modal-content');
+        if (e.target === loginModal || (e.target !== modalContent && !modalContent.contains(e.target))) {
             closeLoginModal();
         }
     });
