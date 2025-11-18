@@ -51,11 +51,52 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // 메뉴 모달 관련 함수들
+    const menuModal = document.getElementById('menu-modal');
+    const menuButton = document.querySelector('.menu-text');
+    const menuCloseBtn = document.querySelector('.menu-close-btn');
+
+    // 메뉴 모달 열기
+    function openMenuModal() {
+        if (menuModal) {
+            menuModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 스크롤 방지
+            console.log('Menu modal opened');
+        }
+    }
+
+    // 메뉴 모달 닫기
+    function closeMenuModal() {
+        if (menuModal) {
+            menuModal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // 스크롤 복구
+            console.log('Menu modal closed');
+        }
+    }
+
     // 메뉴 버튼 클릭 이벤트
-    document.querySelector('.menu-text')?.addEventListener('click', () => {
-        // 메뉴 기능 추가 가능
-        console.log('Menu button clicked');
+    menuButton?.addEventListener('click', openMenuModal);
+
+    // 메뉴 모달 닫기 버튼 클릭 이벤트
+    menuCloseBtn?.addEventListener('click', closeMenuModal);
+
+    // 메뉴 배경 클릭 시 닫기
+    menuModal?.addEventListener('click', function(e) {
+        const menuContent = document.querySelector('.menu-modal-content');
+        if (e.target === menuModal || (e.target !== menuContent && !menuContent.contains(e.target))) {
+            closeMenuModal();
+        }
     });
+
+    // ESC 키로 메뉴 모달 닫기
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && menuModal?.classList.contains('active')) {
+            closeMenuModal();
+        }
+    });
+
+    // 메뉴 항목 클릭 이벤트
+    initializeMenuItems();
 
     // 로그인 모달 내 폼 기능
     initializeLoginForm();
@@ -69,6 +110,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     console.log('TrendKor Landing Page loaded successfully!');
 });
+
+/**
+ * 메뉴 항목 초기화
+ */
+function initializeMenuItems() {
+    const menuItems = {
+        '.menu-home': 'HOME',
+        '.menu-meme-year': 'MEME OF THE YEAR',
+        '.menu-year-2025': '2025',
+        '.menu-year-2024': '2024',
+        '.menu-year-2023': '2023',
+        '.menu-year-2022': '2022'
+    };
+
+    Object.keys(menuItems).forEach(selector => {
+        const element = document.querySelector(selector);
+        if (element) {
+            element.addEventListener('click', function() {
+                console.log(`${menuItems[selector]} clicked`);
+                // TODO: 각 메뉴 항목별 기능 구현
+            });
+        }
+    });
+}
 
 /**
  * 로그인 폼 초기화
