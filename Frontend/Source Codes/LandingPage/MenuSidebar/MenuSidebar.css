@@ -1,0 +1,118 @@
+/* Main Menu Sidebar Container */
+.MenuSidebar {
+    width: 600px;
+    height: 1023px;
+    position: relative;
+    background: black;
+}
+
+/* Close Button Vector */
+.Vector {
+    left: 520px;
+    top: 48px;
+    position: absolute;
+}
+
+/* HOME Title */
+.Home {
+    left: 327px;
+    top: 140px;
+    position: absolute;
+    opacity: 0.40;
+    text-align: right;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 72px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* MEME OF THE YEAR Title */
+.MemeOfTheYear {
+    width: 312px;
+    left: 229px;
+    top: 274px;
+    position: absolute;
+    opacity: 0.40;
+    text-align: right;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 40px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* 2025 Year */
+.Year2025 {
+    width: 245px;
+    left: 307px;
+    top: 418px;
+    position: absolute;
+    opacity: 0.40;
+    text-align: right;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 72px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* 2024 Year */
+.Year2024 {
+    left: 375px;
+    top: 552px;
+    position: absolute;
+    opacity: 0.40;
+    text-align: right;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 72px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* 2023 Year */
+.Year2023 {
+    left: 374px;
+    top: 686px;
+    position: absolute;
+    opacity: 0.40;
+    text-align: right;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 72px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* 2022 Year */
+.Year2022 {
+    left: 375px;
+    top: 820px;
+    position: absolute;
+    opacity: 0.40;
+    text-align: right;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 72px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}

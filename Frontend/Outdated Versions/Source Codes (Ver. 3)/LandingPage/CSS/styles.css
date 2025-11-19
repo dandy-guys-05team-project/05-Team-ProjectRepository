@@ -1,0 +1,54 @@
+/* 
+ * Main Styles Import
+ * Import all design system CSS files in the correct order
+ */
+
+/* 1. Design System Variables (Colors, tokens) */
+@import url('./design-system.css');
+
+/* 2. Typography System */
+@import url('./typography.css');
+
+/* 3. Layout System (Grid, Flexbox, Spacing) */
+@import url('./layout.css');
+
+/* 4. Component Styles */
+@import url('./components.css');
+
+/* 5. Additional Global Styles */
+html.lenis, 
+html.lenis body {
+  height: auto;
+}
+
+/* Unicode bidirectional isolation for text elements */
+address, blockquote, center, div, figure, figcaption, footer, form, header, hr, 
+legend, listing, main, p, plaintext, pre, summary, xmp, article, aside, 
+h1, h2, h3, h4, h5, h6, hgroup, nav, section, search, table, caption, 
+colgroup, col, thead, tbody, tfoot, tr, td, th, dir, dd, dl, dt, menu, 
+ol, ul, li, bdi, output, 
+[dir="ltr" i], [dir="rtl" i], [dir="auto" i] {
+  unicode-bidi: isolate;
+}
+
+/* Article, aside, and semantic elements display */
+article, aside, details, figcaption, figure, footer, header, hgroup, 
+main, menu, nav, section, summary {
+  display: block;
+}
+
+/* Focus and accessibility */
+:focus-visible {
+  outline: 2px solid var(--take-control-design-system---base-color-system--focus-state);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}

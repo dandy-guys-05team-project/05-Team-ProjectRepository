@@ -1,0 +1,86 @@
+/* 
+ * Design System CSS Variables
+ * Extracted from Take Control landing page design
+ */
+
+:root {
+  /* Primary Colors */
+  --background--primary: var(--primitives-01--jf-00);
+  --text--primary: var(--primitives-01--jf-100);
+  --text--secondary: var(--primitives-01--jf-90);
+  --text--tertiary: var(--primitives-01--jf-20);
+  --text--invert: var(--primitives-01--jf-00);
+  --text--invert-secondary: var(--primitives-01--jf-50);
+  --text--brand: var(--primitives-01--frank-green);
+
+  /* Background Colors */
+  --background--secondary: var(--primitives-01--jf-05);
+  --background--tertiary: var(--primitives-01--jf-90);
+  --background--invert: var(--primitives-01--jf-100);
+  --background--brand: var(--primitives-01--frank-green);
+
+  /* Brand Colors */
+  --primitives-01--frank-green: #7ac100;
+  --icon--brand: var(--primitives-01--frank-green);
+  --brand--jf-green: var(--primitives-01--frank-green);
+
+  /* Grayscale Primitives */
+  --primitives-01--jf-00: white;
+  --primitives-01--jf-05: #f3f3f3;
+  --primitives-01--jf-10: #e6e6e6;
+  --primitives-01--jf-20: #d1d1d1;
+  --primitives-01--jf-30: #b9b9b9;
+  --primitives-01--jf-50: #8b8b8b;
+  --primitives-01--jf-70: #5e5e5e;
+  --primitives-01--jf-90: #303030;
+  --primitives-01--jf-100: #181818;
+
+  /* Neutral Colors */
+  --neutral--white: white;
+  --neutral--grey-100: #fafafa;
+  --neutral--grey-200: whitesmoke;
+  --neutral--grey-300: #e5e5e5;
+  --neutral--grey-350: #c9c9c9;
+  --neutral--grey-400: #a8a8a8;
+  --neutral--grey-500: #757575;
+  --neutral--grey-600: #1e1e1e;
+  --neutral--grey-700: #161616;
+  --neutral--grey-800: #131313;
+
+  /* System Colors */
+  --take-control-design-system---base-color-system--success-green: #cef5ca;
+  --take-control-design-system---base-color-system--success-green-dark: #114e0b;
+  --take-control-design-system---base-color-system--warning-yellow: #fcf8d8;
+  --take-control-design-system---base-color-system--warning-yellow-dark: #5e5515;
+  --take-control-design-system---base-color-system--error-red: #f8e4e4;
+  --take-control-design-system---base-color-system--error-red-dark: #3b0b0b;
+  --take-control-design-system---base-color-system--focus-state: var(--primitives-01--frank-green);
+
+  /* Brand Colors Extended */
+  --take-control-design-system---base-color-brand--blue: #2a71ff;
+  --take-control-design-system---base-color-brand--blue-light: #d9e5ff;
+  --take-control-design-system---base-color-brand--blue-dark: #080331;
+  --take-control-design-system---base-color-brand--pink: #dd23bb;
+  --take-control-design-system---base-color-brand--pink-light: #ffaefe;
+  --take-control-design-system---base-color-brand--pink-dark: #3c043b;
+
+  /* Icons */
+  --icon--primary: var(--primitives-01--jf-100);
+  --icon--secondary: var(--primitives-01--jf-50);
+  --icon--tertiary: var(--primitives-01--jf-20);
+  --icon--invert: var(--primitives-01--jf-00);
+  --icon--invert-secondary: var(--primitives-01--jf-50);
+
+  /* Strokes */
+  --stroke--primary: var(--primitives-01--jf-100);
+  --stroke--secondary: var(--primitives-01--jf-50);
+  --stroke--tertiary: var(--primitives-01--jf-10);
+  --stroke--invert: var(--primitives-01--jf-00);
+  --stroke--invert-secondary: var(--primitives-01--jf-50);
+  --stroke-weight--primary: 1px;
+  --stroke-weight--secondary: 1.5px;
+
+  /* Additional Colors for Logo and Navigation */
+  --text--accent: var(--primitives-01--frank-green);
+  --logo--hover-transform: scale(1.05);
+}

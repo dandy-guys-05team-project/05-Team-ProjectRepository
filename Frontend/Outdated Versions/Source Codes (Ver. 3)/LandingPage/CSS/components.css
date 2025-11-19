@@ -1,0 +1,423 @@
+/* 
+ * Component Styles
+ * Extracted from Take Control landing page design
+ */
+
+/* Navigation Bar Styles */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.navbar_component {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  max-width: var(--_responsive-numbers---max-width-main);
+  margin: 0 auto;
+}
+
+.nav-max-width {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Logo Wrapper Styles */
+.navbar_logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  /* 로고 크기를 뷰포트 너비에 비례하도록 설정 - 1.5배 증가 */
+  width: clamp(4.5rem, 7.5vw, 9rem);
+  height: clamp(4.5rem, 7.5vw, 9rem);
+  min-width: 4.5rem;
+  min-height: 4.5rem;
+  /* 위치 고정 */
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Main Logo Styles - 정사각형 비율 유지 */
+.navbar_logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  aspect-ratio: 1 / 1; /* 정사각형 비율 강제 */
+  transition: transform 0.3s ease;
+}
+
+.navbar_logo:hover {
+  transform: scale(1.05);
+}
+
+/* Mobile Logo Wrapper */
+.navbar-monogram-logo-wrapper {
+  display: none;
+  align-items: center;
+  text-decoration: none;
+}
+
+.mobile-logo-embed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-logo-embed img {
+  width: clamp(2.5rem, 4vw, 3rem);
+  height: clamp(2.5rem, 4vw, 3rem);
+  object-fit: contain;
+  aspect-ratio: 1 / 1; /* 정사각형 비율 강제 */
+}
+
+/* Navbar Menu Styles */
+.navbar_menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-links_wrapper {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navbar_link {
+  color: var(--text--primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.navbar_link:hover {
+  color: var(--text--accent);
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+  .navbar_component {
+    padding: 1rem 1.5rem;
+  }
+  
+  .navbar_logo-wrapper {
+    width: clamp(3.75rem, 9vw, 6rem);
+    height: clamp(3.75rem, 9vw, 6rem);
+  }
+  
+  .navbar-monogram-logo-wrapper {
+    display: flex;
+  }
+  
+  .nav-links_wrapper {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar_component {
+    padding: 0.75rem 1rem;
+  }
+  
+  .navbar_logo-wrapper {
+    width: clamp(3rem, 10.5vw, 5.25rem);
+    height: clamp(3rem, 10.5vw, 5.25rem);
+  }
+  
+  .mobile-logo-embed img {
+    width: clamp(3rem, 7.5vw, 3.75rem);
+    height: clamp(3rem, 7.5vw, 3.75rem);
+  }
+}
+
+@media (max-width: 479px) {
+  .navbar_component {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .navbar_logo-wrapper {
+    width: clamp(2.625rem, 12vw, 4.5rem);
+    height: clamp(2.625rem, 12vw, 4.5rem);
+  }
+  
+  .mobile-logo-embed img {
+    width: clamp(2.625rem, 9vw, 3.375rem);
+    height: clamp(2.625rem, 9vw, 3.375rem);
+  }
+}
+
+/* Hero Components */
+.sliding-hero-video_wrapper {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  height: 175vh;
+  position: relative;
+  display: flex;
+}
+
+.section_hero-sliding-video {
+  z-index: 100;
+  padding-right: var(--_responsive-numbers---margin-main);
+  padding-left: var(--_responsive-numbers---margin-main);
+  column-gap: 16px;
+  row-gap: 16px;
+  mix-blend-mode: screen;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr;
+  grid-auto-columns: 1fr;
+  justify-content: flex-end;
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  bottom: auto;
+  left: 0%;
+  display: flex;
+}
+
+.home-hero_text-mask {
+  z-index: 3;
+  background-color: var(--background--primary);
+  mix-blend-mode: screen;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: flex-start;
+  display: flex;
+  position: relative;
+}
+
+.home-hero_text-mask.sliding-version {
+  background-color: var(--background--primary);
+  mix-blend-mode: normal;
+  min-height: 75vh;
+  padding-top: 6rem;
+  padding-bottom: 1.5rem;
+}
+
+/* Animation Effects */
+[fade-in] {
+  translate: none;
+  rotate: none;
+  scale: none;
+  transform: translate(0px, 0px);
+  opacity: 1;
+}
+
+/* Blend Mode Utilities */
+.mix-blend-screen {
+  mix-blend-mode: screen;
+}
+
+.mix-blend-normal {
+  mix-blend-mode: normal;
+}
+
+/* Text Wrapping */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Display Utilities */
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.inline {
+  display: inline;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Background Utilities */
+.bg-primary {
+  background-color: var(--background--primary);
+}
+
+.bg-secondary {
+  background-color: var(--background--secondary);
+}
+
+.bg-tertiary {
+  background-color: var(--background--tertiary);
+}
+
+.bg-invert {
+  background-color: var(--background--invert);
+}
+
+.bg-brand {
+  background-color: var(--background--brand);
+}
+
+/* Border Utilities */
+.border {
+  border: var(--stroke-weight--primary) solid var(--stroke--primary);
+}
+
+.border-secondary {
+  border: var(--stroke-weight--secondary) solid var(--stroke--secondary);
+}
+
+.border-tertiary {
+  border: var(--stroke-weight--primary) solid var(--stroke--tertiary);
+}
+
+/* Opacity Utilities */
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+/* Transform Utilities */
+.transform-none {
+  translate: none;
+  rotate: none;
+  scale: none;
+  transform: translate(0px, 0px);
+}
+
+/* Footer Logo Styles - 300x300px 컨테이너 */
+/* Webflow 기본 클래스 오버라이드 */
+.footer_logo-wrapper.w-inline-block {
+  display: inline-block !important;
+  width: 300px !important;
+  height: 300px !important;
+  max-width: none !important; /* 기존 max-width 제약 제거 */
+  max-height: none !important; /* 기존 max-height 제약 제거 */
+  min-width: 300px !important; /* 최소 크기 보장 */
+  min-height: 300px !important;
+  text-decoration: none;
+  overflow: visible !important; /* 컨테이너 밖으로 나가는 것 허용 */
+  flex-shrink: 0 !important; /* flex 컨테이너에서 축소 방지 */
+}
+
+/* 더 구체적인 선택자로 확실하게 적용 */
+a.footer_logo-wrapper {
+  width: 300px !important;
+  height: 300px !important;
+  max-width: none !important;
+  max-height: none !important;
+  min-width: 300px !important;
+  min-height: 300px !important;
+}
+
+.footer_logo {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  aspect-ratio: 1 / 1 !important; /* 정사각형 비율 강제 */
+  transition: transform 0.3s ease;
+  max-width: none !important; /* 이미지 자체 제약도 제거 */
+  max-height: none !important;
+}
+
+.footer_logo:hover {
+  transform: scale(1.05);
+}
+
+/* 부모 컨테이너들도 조정 */
+.footer_component {
+  overflow: visible !important;
+}
+
+/* 푸터 전체 영역 높이 조정 */
+.footer {
+  min-height: 600px !important; /* 푸터 전체 최소 높이 */
+}
+
+/* 가장 강력한 푸터 로고 오버라이드 - 모든 가능한 선택자 조합 */
+.footer_bottom .footer_logo-wrapper,
+.footer_bottom a.footer_logo-wrapper,
+.footer_bottom .footer_logo-wrapper.w-inline-block,
+div.footer_bottom .footer_logo-wrapper,
+div.footer_bottom a.footer_logo-wrapper {
+  width: 500px !important;
+  height: 500px !important;
+  max-width: 500px !important;
+  max-height: 500px !important;
+  min-width: 500px !important;
+  min-height: 500px !important;
+  display: inline-block !important;
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  overflow: visible !important;
+}
+
+/* 푸터 로고 이미지 자체도 강력하게 오버라이드 */
+.footer_bottom .footer_logo,
+.footer_bottom img.footer_logo,
+div.footer_bottom .footer_logo,
+div.footer_bottom img.footer_logo {
+  width: 500px !important;
+  height: 500px !important;
+  max-width: 500px !important;
+  max-height: 500px !important;
+  min-width: 500px !important;
+  min-height: 500px !important;
+  object-fit: contain !important;
+  aspect-ratio: 1 / 1 !important;
+}
+
+/* 푸터 bottom 영역의 레이아웃 조정 */
+.footer_bottom {
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+  min-height: 560px !important; /* 500px 로고 + 60px 패딩 여백 */
+  align-items: center !important;
+  justify-content: space-between !important;
+  display: flex !important;
+  gap: 3rem !important;
+  overflow: visible !important;
+}
+
+/* copyright 텍스트 영역도 조정 */
+.footer_bottom .copyright-catchphrase {
+  flex-shrink: 1 !important;
+  max-width: calc(100% - 520px) !important; /* 500px 로고 + 20px 여백 공간 확보 */
+}
+
+/* Responsive Design Helpers */
+@media (max-width: 768px) {
+  .hero-heading.custom-full-width {
+    font-size: clamp(2rem, 8vw, 4rem);
+  }
+  
+  .sliding-hero-video_wrapper {
+    height: 120vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-heading.custom-full-width {
+    font-size: clamp(1.5rem, 10vw, 3rem);
+    letter-spacing: -0.01em;
+  }
+}

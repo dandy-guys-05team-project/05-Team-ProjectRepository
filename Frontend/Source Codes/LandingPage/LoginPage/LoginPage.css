@@ -1,0 +1,141 @@
+/* Main Login Menu Container */
+.LoginMenu {
+    width: 600px;
+    height: 1400px;
+    position: relative;
+    background: black;
+    overflow: hidden;
+}
+
+/* Close Button Vector */
+.Vector {
+    left: 520px;
+    top: 48.05px;
+    position: absolute;
+}
+
+/* LOGIN Title */
+.Login {
+    left: 248px;
+    top: 45px;
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 32px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+/* ID Label */
+.Id {
+    left: 60px;
+    top: 200px;
+    position: absolute;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 60px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* PW Label */
+.Pw {
+    left: 60px;
+    top: 472px;
+    position: absolute;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 60px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* ID Input Background */
+.Rectangle1 {
+    width: 480px;
+    height: 80px;
+    left: 60px;
+    top: 292px;
+    position: absolute;
+    opacity: 0.60;
+    background: white;
+    border-radius: 12px;
+}
+
+/* PW Input Background */
+.Rectangle2 {
+    width: 480px;
+    height: 80px;
+    left: 60px;
+    top: 564px;
+    position: absolute;
+    opacity: 0.60;
+    background: white;
+    border-radius: 12px;
+}
+
+/* Sign In Button Background */
+.Rectangle3 {
+    width: 192px;
+    height: 80px;
+    left: 84px;
+    top: 744px;
+    position: absolute;
+    opacity: 0.60;
+    background: white;
+    border-radius: 12px;
+}
+
+/* Sign In Button Text */
+.SignIn {
+    left: 119px;
+    top: 765px;
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 32px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* Sign Up Button Background */
+.Rectangle4 {
+    width: 192px;
+    height: 80px;
+    left: 324px;
+    top: 744px;
+    position: absolute;
+    opacity: 0.60;
+    background: white;
+    border-radius: 12px;
+}
+
+/* Sign Up Button Text */
+.SignUp {
+    left: 354px;
+    top: 765px;
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 32px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
