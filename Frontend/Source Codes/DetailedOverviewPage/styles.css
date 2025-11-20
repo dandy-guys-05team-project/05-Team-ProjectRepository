@@ -1,0 +1,679 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Haas Grot Text Trial', sans-serif;
+}
+
+/* ============================================
+   Detail Page Overview Container
+   ============================================ */
+.DetailPageOverview {
+    width: 1440px;
+    height: 4440px;
+    position: relative;
+    background: white;
+    overflow: hidden;
+}
+
+/* ============================================
+   Header Section
+   ============================================ */
+
+/* Frame - Header Background with Image */
+.Frame {
+    width: 1440px;
+    height: 1120px;
+    left: 0px;
+    top: 100px;
+    position: absolute;
+    overflow: hidden;
+}
+
+.Vector {
+    left: 0px;
+    top: 0px;
+    position: absolute;
+}
+
+/* Rectangle 5 - Navigation Bar Background */
+.Rectangle5 {
+    width: 1440px;
+    height: 100px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: white;
+}
+
+/* Logo - Frame Small */
+.FrameLogo {
+    width: 87px;
+    height: 86px;
+    left: 98px;
+    top: 7px;
+    position: absolute;
+    overflow: hidden;
+}
+
+/* Menu Text */
+.MenuText {
+    left: 1243px;
+    top: 31px;
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-size: 32px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 500;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+/* Login Button */
+.LoginButton {
+    left: 1084px;
+    top: 32px;
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-size: 32px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 500;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+/* ============================================
+   Memes Title
+   ============================================ */
+.Memes {
+    left: 100px;
+    top: 1076px;
+    position: absolute;
+    color: white;
+    font-size: 120px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+/* ============================================
+   Year Buttons (2025, 2024, 2023, 2022)
+   ============================================ */
+
+/* Rectangle 8 - 2025 Button */
+.Rectangle8 {
+    width: 280px;
+    height: 100px;
+    left: 100px;
+    top: 1320px;
+    position: absolute;
+    background: #bb5151;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.YearText2025 {
+    left: 176px;
+    top: 1339px;
+    position: absolute;
+    color: white;
+    font-size: 52px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* Rectangle 9 - 2024 Button */
+.Rectangle9 {
+    width: 280px;
+    height: 100px;
+    left: 420px;
+    top: 1320px;
+    position: absolute;
+    background: #515dbb;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.YearText2024 {
+    left: 496px;
+    top: 1339px;
+    position: absolute;
+    color: white;
+    font-size: 52px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* Rectangle 10 - 2023 Button */
+.Rectangle10 {
+    width: 280px;
+    height: 100px;
+    left: 740px;
+    top: 1320px;
+    position: absolute;
+    background: #bb5151;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.YearText2023 {
+    left: 815px;
+    top: 1339px;
+    position: absolute;
+    color: white;
+    font-size: 52px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* Rectangle 11 - 2022 Button */
+.Rectangle11 {
+    width: 280px;
+    height: 100px;
+    left: 1060px;
+    top: 1320px;
+    position: absolute;
+    background: #515dbb;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.YearText2022 {
+    left: 1136px;
+    top: 1339px;
+    position: absolute;
+    color: white;
+    font-size: 52px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* ============================================
+   Card 1 (Top Left) - Year 2025
+   ============================================ */
+.Rectangle6.Card1 {
+    width: 600px;
+    height: 800px;
+    left: 100px;
+    top: 1520px;
+    position: absolute;
+    background: #f1f1f1;
+    border-radius: 32px;
+}
+
+.Rectangle7.Card1 {
+    width: 600px;
+    height: 266.67px;
+    left: 100px;
+    top: 2053.33px;
+    position: absolute;
+    background: #d9d9d9;
+    border-bottom-right-radius: 32px;
+    border-bottom-left-radius: 32px;
+}
+
+.ThisIsTheTitle.Card1 {
+    left: 183px;
+    top: 2232px;
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-size: 48px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.NViews.Card1 {
+    left: 493px;
+    top: 2123px;
+    position: absolute;
+    text-align: right;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-size: 40px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.FrameCardIcon.Card1 {
+    width: 80px;
+    height: 80px;
+    left: 140px;
+    top: 2107px;
+    position: absolute;
+    overflow: hidden;
+}
+
+.FrameCard.Card1Thumbnail {
+    width: 120px;
+    height: 120px;
+    left: 580px;
+    top: 1520px;
+    position: absolute;
+    overflow: hidden;
+}
+
+/* ============================================
+   Card 2 (Top Right) - Year 2025
+   ============================================ */
+.Rectangle6.Card2 {
+    width: 600px;
+    height: 800px;
+    left: 740px;
+    top: 1520px;
+    position: absolute;
+    background: #f1f1f1;
+    border-radius: 32px;
+}
+
+.Rectangle7.Card2 {
+    width: 600px;
+    height: 266.67px;
+    left: 740px;
+    top: 2053.33px;
+    position: absolute;
+    background: #d9d9d9;
+    border-bottom-right-radius: 32px;
+    border-bottom-left-radius: 32px;
+}
+
+.ThisIsTheTitle.Card2 {
+    left: 823px;
+    top: 2232px;
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-size: 48px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.NViews.Card2 {
+    left: 1133px;
+    top: 2123px;
+    position: absolute;
+    text-align: right;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-size: 40px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.FrameCardIcon.Card2 {
+    width: 80px;
+    height: 80px;
+    left: 780px;
+    top: 2107px;
+    position: absolute;
+    overflow: hidden;
+}
+
+.FrameCard.Card2Thumbnail {
+    width: 120px;
+    height: 120px;
+    left: 1220px;
+    top: 1520px;
+    position: absolute;
+    overflow: hidden;
+}
+
+/* ============================================
+   Card 3 (Middle Left) - Year 2024
+   ============================================ */
+.Rectangle6.Card3 {
+    width: 600px;
+    height: 800px;
+    left: 100px;
+    top: 2380px;
+    position: absolute;
+    background: #f1f1f1;
+    border-radius: 32px;
+}
+
+.Rectangle7.Card3 {
+    width: 600px;
+    height: 266.67px;
+    left: 100px;
+    top: 2913.33px;
+    position: absolute;
+    background: #d9d9d9;
+    border-bottom-right-radius: 32px;
+    border-bottom-left-radius: 32px;
+}
+
+.ThisIsTheTitle.Card3 {
+    left: 183px;
+    top: 3092px;
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-size: 48px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.NViews.Card3 {
+    left: 493px;
+    top: 2983px;
+    position: absolute;
+    text-align: right;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-size: 40px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.FrameCardIcon.Card3 {
+    width: 80px;
+    height: 80px;
+    left: 140px;
+    top: 2967px;
+    position: absolute;
+    overflow: hidden;
+}
+
+.FrameCard.Card3Thumbnail {
+    width: 120px;
+    height: 120px;
+    left: 580px;
+    top: 2380px;
+    position: absolute;
+    overflow: hidden;
+}
+
+/* ============================================
+   Card 4 (Middle Right) - Year 2024
+   ============================================ */
+.Rectangle6.Card4 {
+    width: 600px;
+    height: 800px;
+    left: 740px;
+    top: 2380px;
+    position: absolute;
+    background: #f1f1f1;
+    border-radius: 32px;
+}
+
+.Rectangle7.Card4 {
+    width: 600px;
+    height: 266.67px;
+    left: 740px;
+    top: 2913.33px;
+    position: absolute;
+    background: #d9d9d9;
+    border-bottom-right-radius: 32px;
+    border-bottom-left-radius: 32px;
+}
+
+.ThisIsTheTitle.Card4 {
+    left: 823px;
+    top: 3092px;
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-size: 48px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.NViews.Card4 {
+    left: 1133px;
+    top: 2983px;
+    position: absolute;
+    text-align: right;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-size: 40px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.FrameCardIcon.Card4 {
+    width: 80px;
+    height: 80px;
+    left: 780px;
+    top: 2967px;
+    position: absolute;
+    overflow: hidden;
+}
+
+.FrameCard.Card4Thumbnail {
+    width: 120px;
+    height: 120px;
+    left: 1220px;
+    top: 2380px;
+    position: absolute;
+    overflow: hidden;
+}
+
+/* ============================================
+   Card 5 (Bottom Left) - Year 2023
+   ============================================ */
+.Rectangle6.Card5 {
+    width: 600px;
+    height: 800px;
+    left: 100px;
+    top: 3240px;
+    position: absolute;
+    background: #f1f1f1;
+    border-radius: 32px;
+}
+
+.Rectangle7.Card5 {
+    width: 600px;
+    height: 266.67px;
+    left: 100px;
+    top: 3773.33px;
+    position: absolute;
+    background: #d9d9d9;
+    border-bottom-right-radius: 32px;
+    border-bottom-left-radius: 32px;
+}
+
+.ThisIsTheTitle.Card5 {
+    left: 183px;
+    top: 3952px;
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-size: 48px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.NViews.Card5 {
+    left: 493px;
+    top: 3843px;
+    position: absolute;
+    text-align: right;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-size: 40px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.FrameCardIcon.Card5 {
+    width: 80px;
+    height: 80px;
+    left: 140px;
+    top: 3827px;
+    position: absolute;
+    overflow: hidden;
+}
+
+.FrameCard.Card5Thumbnail {
+    width: 120px;
+    height: 120px;
+    left: 580px;
+    top: 3240px;
+    position: absolute;
+    overflow: hidden;
+}
+
+/* ============================================
+   Card 6 (Bottom Right) - Year 2023
+   ============================================ */
+.Rectangle6.Card6 {
+    width: 600px;
+    height: 800px;
+    left: 740px;
+    top: 3240px;
+    position: absolute;
+    background: #f1f1f1;
+    border-radius: 32px;
+}
+
+.Rectangle7.Card6 {
+    width: 600px;
+    height: 266.67px;
+    left: 740px;
+    top: 3773.33px;
+    position: absolute;
+    background: #d9d9d9;
+    border-bottom-right-radius: 32px;
+    border-bottom-left-radius: 32px;
+}
+
+.ThisIsTheTitle.Card6 {
+    left: 823px;
+    top: 3952px;
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-size: 48px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.NViews.Card6 {
+    left: 1133px;
+    top: 3843px;
+    position: absolute;
+    text-align: right;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-size: 40px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.FrameCardIcon.Card6 {
+    width: 80px;
+    height: 80px;
+    left: 780px;
+    top: 3827px;
+    position: absolute;
+    overflow: hidden;
+}
+
+.FrameCard.Card6Thumbnail {
+    width: 120px;
+    height: 120px;
+    left: 1220px;
+    top: 3240px;
+    position: absolute;
+    overflow: hidden;
+}
+
+/* ============================================
+   Footer Section
+   ============================================ */
+.Footer {
+    width: 1440px;
+    height: 200px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    left: 0px;
+    top: 4240px;
+    position: absolute;
+    background: black;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    gap: 480px;
+    display: inline-flex;
+}
+
+.FrameFooterLogo {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+}
+
+.Copyright {
+    text-align: center;
+    color: white;
+    font-size: 40px;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* ============================================
+   Data Layer Attributes
+   ============================================ */
+[data-layer] {
+    transition: all 0.3s ease-in-out;
+}
