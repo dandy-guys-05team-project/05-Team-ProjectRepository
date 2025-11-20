@@ -17,3 +17,7 @@ Thumbs.db
 # Build artifacts
 *.jar
 *.war
+
+# Hidden Folders
+.
+.serena
