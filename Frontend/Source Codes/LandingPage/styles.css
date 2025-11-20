@@ -215,6 +215,7 @@ body {
     padding: 0.521vw 1.042vw;
     border-radius: 0.417vw;
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .menu-text {
