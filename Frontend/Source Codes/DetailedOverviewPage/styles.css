@@ -78,9 +78,9 @@ body {
 }
 
 /* ============================================
-   Header Background
+   Header Background (with Memes overlay)
    ============================================ */
-.Frame:first-child {
+.Frame {
     width: 100%;
     aspect-ratio: 1440 / 1120;
     margin-top: 100px;
@@ -88,17 +88,25 @@ body {
     overflow: hidden;
 }
 
+.Frame svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
 /* ============================================
-   Memes Title
+   Memes Title (overlaid on image1)
    ============================================ */
 .Memes {
     position: absolute;
-    top: calc(100% + 20px);
-    left: 20px;
-    font-size: 5rem;
+    bottom: 40px;
+    left: 40px;
+    font-size: 7.5rem;
     font-weight: 500;
     color: white;
     z-index: 10;
+    text-shadow: 4px 4px 16px rgba(0, 0, 0, 0.6);
+    line-height: 1;
 }
 
 /* ============================================
@@ -215,7 +223,9 @@ body {
     }
     
     .Memes {
-        font-size: 4rem;
+        font-size: 5.5rem;
+        bottom: 30px;
+        left: 30px;
     }
 }
 
@@ -240,19 +250,20 @@ body {
         font-size: 18px;
     }
     
-    .Frame:first-child {
+    .Frame {
         aspect-ratio: 1440 / 900;
         margin-top: 80px;
     }
     
     .Memes {
-        font-size: 3rem;
-        top: calc(100% + 15px);
+        font-size: 3.5rem;
+        bottom: 25px;
+        left: 20px;
     }
     
     .content-wrapper {
         padding: 0 15px;
-        margin-top: 40px;
+        margin-top: 50px;
     }
     
     .cards-grid {
@@ -303,19 +314,20 @@ body {
         font-size: 14px;
     }
     
-    .Frame:first-child {
+    .Frame {
         aspect-ratio: 1440 / 800;
         margin-top: 70px;
     }
     
     .Memes {
-        font-size: 2rem;
+        font-size: 2.5rem;
+        bottom: 15px;
         left: 15px;
     }
     
     .content-wrapper {
         padding: 0 10px;
-        margin-top: 30px;
+        margin-top: 40px;
     }
     
     .card-title {

@@ -349,8 +349,9 @@ body {
 
 /* 섹션 설명들 */
 .section-description-korean {
-    width: 83.385vw;
-    height: 8.333vw;
+    width: calc(100% - 3.333vw);
+    max-width: 83.385vw;
+    height: auto;
     position: absolute;
     left: 50%;
     top: 67.031vw;
@@ -358,6 +359,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1.667vw;
     color: var(--color-white);
     font-size: clamp(14px, 1.563vw, 30px);
     font-weight: 400;
@@ -366,7 +368,8 @@ body {
 }
 
 .section-description {
-    width: 93.385vw;
+    width: calc(100% - 3.333vw);
+    max-width: 93.385vw;
     position: absolute;
     left: 50%;
     top: 78.698vw;
@@ -374,6 +377,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1.667vw;
     color: var(--color-white);
     font-size: clamp(14px, 1.563vw, 30px);
     font-weight: 400;
