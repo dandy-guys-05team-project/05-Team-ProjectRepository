@@ -184,8 +184,8 @@ body {
 .logo {
     width: 5.394vw;
     height: 5.394vw;
-    min-width: 50px;
-    min-height: 50px;
+    min-width: 2.604vw;
+    min-height: 2.604vw;
     cursor: pointer;
     transition: transform 0.3s ease;
 }
@@ -749,10 +749,10 @@ html {
 
 .login-modal .login-title {
     text-align: center;
-    font-size: clamp(24px, 5vw, 32px);
+    font-size: clamp(1.25vw, 5vw, 1.667vw);
     font-weight: 500;
     letter-spacing: 0.05em;
-    margin-bottom: clamp(1rem, 3%, 2rem);
+    margin-bottom: clamp(0.833vw, 3%, 1.667vw);
     line-height: 1.2;
     color: white;
 }
@@ -760,34 +760,34 @@ html {
 .login-modal .login-form {
     display: flex;
     flex-direction: column;
-    gap: clamp(1.5rem, 4%, 2.5rem);
+    gap: clamp(1.042vw, 4%, 1.563vw);
     width: 100%;
-    padding: 0 clamp(0.5rem, 2%, 1rem);
+    padding: 0 clamp(0.417vw, 2%, 0.833vw);
 }
 
 .login-modal .form-group {
     display: flex;
     flex-direction: column;
-    gap: clamp(0.5rem, 2%, 1rem);
+    gap: clamp(0.417vw, 2%, 0.833vw);
 }
 
 .login-modal .form-label {
-    font-size: clamp(18px, 3.5vw, 32px);
+    font-size: clamp(0.938vw, 3.5vw, 1.667vw);
     font-weight: 400;
     letter-spacing: 0.02em;
     line-height: 1.2;
     color: white;
-    margin-bottom: clamp(0.25rem, 1%, 0.5rem);
+    margin-bottom: clamp(0.208vw, 1%, 0.417vw);
 }
 
 .login-modal .form-input {
     width: 100%;
-    height: clamp(50px, 8%, 80px);
-    padding: clamp(0.75rem, 2%, 1.25rem);
+    height: clamp(2.604vw, 8%, 4.167vw);
+    padding: clamp(0.521vw, 2%, 0.833vw);
     background: rgba(255, 255, 255, 0.6);
     border: 2px solid transparent;
-    border-radius: clamp(8px, 2%, 12px);
-    font-size: clamp(14px, 2.5vw, 18px);
+    border-radius: clamp(0.417vw, 2%, 0.625vw);
+    font-size: clamp(0.729vw, 2.5vw, 0.938vw);
     color: #333;
     font-family: inherit;
     transition: all 0.3s ease;
@@ -849,18 +849,18 @@ html {
 .login-modal .button-group {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: clamp(1rem, 4%, 2rem);
-    margin-top: clamp(0.5rem, 3%, 1.5rem);
-    padding: 0 clamp(0.5rem, 2%, 1rem);
+    gap: clamp(0.833vw, 4%, 1.667vw);
+    margin-top: clamp(0.417vw, 3%, 1.042vw);
+    padding: 0 clamp(0.417vw, 2%, 0.833vw);
 }
 
 .login-modal .btn {
-    padding: clamp(0.75rem, 2%, 1.25rem);
-    height: clamp(50px, 8%, 80px);
+    padding: clamp(0.521vw, 2%, 0.833vw);
+    height: clamp(2.604vw, 8%, 4.167vw);
     background: rgba(255, 255, 255, 0.6);
     border: 2px solid transparent;
-    border-radius: clamp(8px, 2%, 12px);
-    font-size: clamp(14px, 2.2vw, 24px);
+    border-radius: clamp(0.417vw, 2%, 0.625vw);
+    font-size: clamp(0.729vw, 2.2vw, 1.25vw);
     font-weight: 400;
     color: white;
     cursor: pointer;
@@ -878,21 +878,21 @@ html {
 @media (max-width: 480px) {
     .login-modal .button-group {
         grid-template-columns: 1fr;
-        gap: clamp(0.75rem, 3%, 1rem);
+        gap: clamp(0.521vw, 3%, 0.833vw);
     }
 
     .login-modal .login-title {
-        font-size: clamp(20px, 5.5vw, 28px);
-        margin-bottom: clamp(1rem, 3%, 1.5rem);
+        font-size: clamp(1.042vw, 5.5vw, 1.458vw);
+        margin-bottom: clamp(0.833vw, 3%, 1.042vw);
     }
 
     .login-modal .form-label {
-        font-size: clamp(14px, 3.5vw, 16px);
+        font-size: clamp(0.729vw, 3.5vw, 0.833vw);
     }
 
     .login-modal .form-input,
     .login-modal .btn {
-        height: clamp(40px, 11vw, 50px);
+        height: clamp(2.083vw, 11vw, 2.604vw);
     }
 }
 
@@ -910,15 +910,15 @@ html {
 /* 랜드스케이프 모바일 (높이 제약) */
 @media (max-height: 600px) {
     .login-modal .login-form {
-        gap: clamp(0.75rem, 2%, 1.5rem);
+        gap: clamp(0.521vw, 2%, 1.042vw);
     }
 
     .login-modal .form-group {
-        gap: clamp(0.25rem, 1%, 0.5rem);
+        gap: clamp(0.208vw, 1%, 0.417vw);
     }
 
     .login-modal .button-group {
-        margin-top: clamp(0.5rem, 2%, 1rem);
+        margin-top: clamp(0.417vw, 2%, 0.833vw);
     }
 }
 
@@ -1077,7 +1077,7 @@ html {
     font-family: 'Haas Grot Text Trial', 'Neue Haas Grotesk Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-weight: 400;
     word-wrap: break-word;
-    padding: clamp(0.5rem, 2%, 1rem) clamp(0.8rem, 3%, 1.5rem);
+    padding: clamp(0.417vw, 2%, 0.833vw) clamp(0.667vw, 3%, 1.042vw);
     cursor: pointer;
     transition: all 0.3s ease;
     opacity: 0.4;
