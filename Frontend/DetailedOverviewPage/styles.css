@@ -17,8 +17,27 @@
     box-sizing: border-box;
 }
 
+html {
+    width: 100%;
+    min-height: 100vh;
+    font-family: var(--font-family);
+    background: var(--color-white);
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    font-family: "Haas Grot Text Trial", sans-serif;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    font-family: var(--font-family);
+    background: var(--color-white);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .DetailPageOverview {
@@ -28,6 +47,8 @@ body {
     background: white;
     overflow: visible;
     min-height: 235vw;
+    max-width: 1920px;
+    margin: 0 auto;
 }
 
 /* Header Wrapper */
@@ -35,6 +56,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100%;
 }
 
 /* Header */
@@ -51,6 +73,7 @@ body {
     transition: all 0.3s ease;
     box-shadow: 0 0.104vw 0.521vw rgba(0, 0, 0, 0.1);
     position: relative;
+    min-height: 60px;
 }
 
 /* Navigation Buttons Group */
@@ -138,8 +161,9 @@ body {
     top: 56vw;
     position: absolute;
     color: white;
-    font-size: 6.25vw;
+    font-size: clamp(32px, 6.25vw, 120px);
     font-weight: 500;
+    font-family: var(--font-family);
 }
 
 /* Year Buttons */
@@ -150,13 +174,14 @@ body {
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 2.7vw;
+    font-size: clamp(18px, 2.7vw, 52px);
     font-weight: 400;
     cursor: pointer;
     transition: transform 0.3s ease;
-    font-family: "Haas Grot Text Trial", sans-serif;
+    font-family: var(--font-family);
     position: absolute;
     height: 5.2vw;
+    min-height: 50px;
 }
 
 .year-button--red {
@@ -179,7 +204,7 @@ body {
     height: 41.67vw;
     position: absolute;
     background: #f1f1f1;
-    border-radius: 1.67vw;
+    border-radius: 1.25vw;
     overflow: hidden;
     z-index: 1;
 }
@@ -195,8 +220,8 @@ body {
     height: 13.9vw;
     position: absolute;
     background: #d9d9d9;
-    border-bottom-right-radius: 1.67vw;
-    border-bottom-left-radius: 1.67vw;
+    border-bottom-right-radius: 1.25vw;
+    border-bottom-left-radius: 1.25vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -212,7 +237,7 @@ body {
     display: flex;
     flex-direction: column;
     color: black;
-    font-size: 2.5vw;
+    font-size: clamp(18px, 2.5vw, 48px);
     font-weight: 500;
     word-wrap: break-word;
     width: 26.4%;
@@ -228,7 +253,7 @@ body {
     display: flex;
     flex-direction: column;
     color: black;
-    font-size: 2.08vw;
+    font-size: clamp(14px, 2.08vw, 32px);
     font-weight: 500;
     word-wrap: break-word;
     z-index: 3;
@@ -238,6 +263,8 @@ body {
 .card-profile {
     width: 4.17vw;
     height: 4.17vw;
+    min-width: 40px;
+    min-height: 40px;
     position: absolute;
     border-radius: 50%;
     overflow: hidden;
@@ -254,6 +281,8 @@ body {
     position: absolute;
     width: 6.25vw;
     height: 6.25vw;
+    min-width: 50px;
+    min-height: 50px;
     z-index: 3;
 }
 
@@ -265,14 +294,15 @@ body {
 /* Footer */
 .Footer {
     width: 100%;
-    height: 10.4vw;
-    position: relative;
+    min-height: 10.417vw;
+    padding: 2.083vw 5.156vw;
     background: black;
-    overflow: visible;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 0 1.25%;
+    align-items: center;
+    gap: 6.250vw;
+    position: relative;
+    max-width: 1920px;
 }
 
 .Footer .Vector {
@@ -282,13 +312,17 @@ body {
 .Footer .Vector svg {
     width: 10.4vw;
     height: 10.4vw;
+    min-width: 100px;
+    min-height: 100px;
 }
 
 .Footer .Copyright {
-    text-align: center;
+    text-align: right;
     color: white;
-    font-size: 2.08vw;
+    font-size: clamp(12px, 1.250vw, 24px);
+    font-family: var(--font-family);
     font-weight: 400;
+    word-wrap: break-word;
 }
 
 /* Utility Classes */
@@ -768,6 +802,163 @@ svg {
 .MenuText:hover {
     color: var(--color-dark-blue);
     background: rgba(0, 71, 173, 0.1);
+}
+
+/* ============================================
+   Responsive Media Queries - Mobile (max-width: 768px)
+   ============================================ */
+@media (max-width: 768px) {
+    /* 모바일 네비게이션 최적화 */
+    .Rectangle5 {
+        height: auto;
+        padding: 1.5vw 4vw;
+        min-height: 70px;
+    }
+
+    .Vector-logo {
+        width: 12vw;
+        height: 12vw;
+        min-width: 40px;
+        min-height: 40px;
+    }
+
+    .nav-buttons-group {
+        gap: 4vw;
+    }
+
+    .LoginButton,
+    .MenuText {
+        font-size: clamp(14px, 3vw, 20px);
+        padding: 1vw 2vw;
+    }
+
+    /* 카드 반응형 조정 */
+    .Rectangle6,
+    .Rectangle7 {
+        width: calc(100% - 4vw);
+    }
+
+    .ThisIsTheTitle {
+        width: 60%;
+    }
+
+    /* Footer 반응형 */
+    .Footer {
+        flex-direction: column;
+        gap: 3.125vw;
+        padding: 4.167vw 0;
+        justify-content: center;
+        min-height: auto;
+    }
+
+    .Footer .Vector svg {
+        width: 10.417vw;
+        min-width: 80px;
+    }
+
+    .Footer .Copyright {
+        text-align: center;
+        margin: 0;
+    }
+
+    /* Year 버튼 반응형 */
+    .year-button {
+        font-size: clamp(16px, 4vw, 28px);
+        height: auto;
+        min-height: 45px;
+        padding: 2vw;
+    }
+
+    /* Memes 제목 */
+    .Memes {
+        font-size: clamp(28px, 8vw, 60px);
+    }
+}
+
+/* ============================================
+   Responsive Media Queries - Small Mobile (max-width: 480px)
+   ============================================ */
+@media (max-width: 480px) {
+    .Rectangle5 {
+        padding: 1.5vw 3vw;
+    }
+
+    .Vector-logo {
+        width: 15vw;
+    }
+
+    .NavButtons-group {
+        gap: 3vw;
+    }
+
+    .LoginButton,
+    .MenuText {
+        font-size: clamp(12px, 2.5vw, 16px);
+        padding: 0.8vw 1.5vw;
+    }
+
+    .year-button {
+        font-size: clamp(14px, 3.5vw, 22px);
+        width: 40vw !important;
+    }
+
+    .year-button--red,
+    .year-button--blue {
+        width: 40vw !important;
+    }
+
+    .Memes {
+        font-size: clamp(24px, 7vw, 42px);
+    }
+
+    .ThisIsTheTitle {
+        font-size: clamp(14px, 2vw, 24px);
+        width: 70%;
+    }
+
+    .NViews {
+        font-size: clamp(12px, 1.5vw, 18px);
+    }
+}
+
+/* ============================================
+   Responsive Media Queries - Tablet (768px - 1024px)
+   ============================================ */
+@media (min-width: 768px) and (max-width: 1024px) {
+    /* 태블릿 최적화 */
+    .Rectangle5 {
+        padding: 0 3.5vw;
+    }
+
+    .Vector-logo {
+        width: 8vw;
+        min-width: 50px;
+    }
+
+    .LoginButton,
+    .MenuText {
+        font-size: clamp(14px, 2.5vw, 22px);
+    }
+}
+
+/* ============================================
+   Responsive Media Queries - Desktop (min-width: 1024px)
+   ============================================ */
+@media (min-width: 1024px) {
+    /* 데스크톱 최적화 */
+    .Rectangle5 {
+        padding: 0 5.156vw;
+    }
+
+    .Vector-logo {
+        width: 5.394vw;
+    }
+
+    .LoginButton,
+    .MenuText {
+        font-size: clamp(16px, 1.667vw, 32px);
+        padding: 0.521vw 1.042vw;
+    }
 }
 
 /* ============================================

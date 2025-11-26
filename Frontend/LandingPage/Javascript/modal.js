@@ -10,7 +10,7 @@
  */
 export function openModal(modalElement, isMobile = false) {
     if (modalElement) {
-        modalElement.classList.add('active');
+        modalElement.classList.add('show');
         document.body.style.overflow = 'hidden';
 
         if (isMobile) {
@@ -32,7 +32,7 @@ export function openModal(modalElement, isMobile = false) {
  */
 export function closeModal(modalElement) {
     if (modalElement) {
-        modalElement.classList.remove('active');
+        modalElement.classList.remove('show');
         document.body.style.overflow = 'auto';
         console.log('Modal closed:', modalElement.id);
         return true;
@@ -60,7 +60,7 @@ export function handleModalBackgroundClick(event, modalElement, closeCallback) {
  * @param {Function} closeCallback - 닫기 콜백 함수
  */
 export function handleModalEscapeKey(event, modalElement, closeCallback) {
-    if (event.key === 'Escape' && modalElement?.classList.contains('active')) {
+    if (event.key === 'Escape' && modalElement?.classList.contains('show')) {
         closeCallback();
     }
 }
