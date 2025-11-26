@@ -1,3 +1,52 @@
+/* Neue Haas Grotesk Text 폰트 정의 */
+@font-face {
+    font-family: 'Neue Haas Grotesk Text';
+    src: url('../LandingPage/fonts/NeueHaasGrotText-55Roman-Trial.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neue Haas Grotesk Text';
+    src: url('../LandingPage/fonts/NeueHaasGrotText-56Italic-Trial.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neue Haas Grotesk Text';
+    src: url('../LandingPage/fonts/NeueHaasGrotText-65Medium-Trial.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neue Haas Grotesk Text';
+    src: url('../LandingPage/fonts/NeueHaasGrotText-66MediumItalic-Trial.otf') format('opentype');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neue Haas Grotesk Text';
+    src: url('../LandingPage/fonts/NeueHaasGrotText-75Bold-Trial.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neue Haas Grotesk Text';
+    src: url('../LandingPage/fonts/NeueHaasGrotText-76BoldItalic-Trial.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
 :root {
     /* 색상 변수 */
     --color-red: #C60C30;
@@ -26,7 +75,6 @@
     z-index: 1000;
     transition: all 0.3s ease;
     box-shadow: 0 0.104vw 0.521vw rgba(0, 0, 0, 0.1);
-    margin: 0;
 }
 
 /* 로고 */
@@ -37,8 +85,6 @@
     min-height: 2.604vw;
     cursor: pointer;
     transition: transform 0.3s ease;
-    margin: 0;
-    padding: 0;
 }
 
 .logo:hover {
@@ -50,8 +96,6 @@
     display: flex;
     align-items: center;
     gap: 2.604vw;
-    margin: 0;
-    padding: 0;
 }
 
 /* 메뉴 버튼들 */
@@ -65,14 +109,11 @@
     font-weight: 500;
     cursor: pointer;
     padding: 0.521vw 1.042vw;
-    margin: 0;
     border-radius: 0.417vw;
     transition: all 0.3s ease;
     white-space: nowrap;
     pointer-events: auto;
     user-select: none;
-    border: none;
-    background: transparent;
 }
 
 .menu-text {
@@ -85,13 +126,10 @@
     font-weight: 500;
     cursor: pointer;
     padding: 0.521vw 1.042vw;
-    margin: 0;
     border-radius: 0.417vw;
     transition: all 0.3s ease;
     pointer-events: auto;
     user-select: none;
-    border: none;
-    background: transparent;
 }
 
 .login-button:hover {
