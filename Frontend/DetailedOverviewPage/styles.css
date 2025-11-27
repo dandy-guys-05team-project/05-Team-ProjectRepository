@@ -381,196 +381,237 @@ svg {
 }
 
 /* ============================================
-   Login Modal Styles
+   Global & Reset (Login Modal)
    ============================================ */
-.login-modal {
+#login-modal {
     position: fixed;
     top: 0;
-    right: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     z-index: 1000;
     pointer-events: none;
     opacity: 0;
-    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.3s ease;
 }
 
-.login-modal.show {
+#login-modal.show {
     pointer-events: auto;
     opacity: 1;
 }
 
 .login-modal-content {
     width: 100%;
-    max-width: clamp(15.625vw, 90vw, 31.25vw);
-    height: 100vh;
-    background: black;
-    border-radius: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     position: fixed;
     top: 0;
     right: 0;
-    padding: clamp(1.042vw, 4%, 1.667vw) clamp(1.042vw, 4%, 1.667vw) clamp(1.042vw, 4%, 1.667vw) clamp(1.042vw, 4%, 1.667vw);
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    justify-content: flex-start;
-    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-    -webkit-overflow-scrolling: touch;
-    transform: translateX(100%);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1001;
 }
 
-.login-modal.show .login-modal-content {
-    transform: translateX(0);
+/* ============================================
+   Login Container - Absolute Positioning Layout
+   ============================================ */
+.login-container {
+    width: 31.25vw;
+    height: 72.917vw;
+    background: black;
+    position: relative;
+    overflow: hidden;
 }
 
-.modal-close-btn {
-    position: fixed;
-    top: clamp(0.75rem, 3%, 1.5rem);
-    right: clamp(0.75rem, 3%, 1.5rem);
+/* ============================================
+   Close Button
+   ============================================ */
+.close-btn-wrapper {
+    position: absolute;
+    left: 27.083vw;
+    top: 2.503vw;
+    z-index: 10;
+}
+
+.close-btn {
     background: transparent;
     border: none;
     cursor: pointer;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: clamp(1.458vw, 7vw, 2.083vw);
-    height: clamp(1.458vw, 7vw, 2.083vw);
-    padding: 0;
-    transition: opacity 0.2s ease;
-    z-index: 1005;
+    width: 1.667vw;
+    height: 1.719vw;
+    transition: transform 0.6s ease;
+    outline: none;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    border-radius: 4px;
 }
 
-.modal-close-btn:hover {
-    animation: spinRotate 0.6s ease-in-out;
+.close-btn:hover {
+    animation: fullRotate 0.6s ease-in-out;
 }
 
-.modal-close-btn:active {
-    background: rgba(255, 255, 255, 0.2);
-    transform: rotate(90deg) scale(0.95);
-}
-
-.modal-close-btn:focus {
-    outline: 2px solid rgba(255, 255, 255, 0.3);
-    outline-offset: 2px;
-}
-
-.modal-close-btn svg {
+.close-btn svg {
     width: 100%;
     height: 100%;
-    transition: all 0.3s ease;
 }
 
-.login-modal .login-title {
-    text-align: center;
-    font-size: clamp(1.25vw, 5vw, 1.667vw);
+/* ============================================
+   Login Title
+   ============================================ */
+.login-title {
+    position: absolute;
+    left: 12.917vw;
+    top: 2.344vw;
+    font-size: 1.667vw;
     font-weight: 500;
-    letter-spacing: 0.05em;
-    margin-bottom: clamp(0.833vw, 3%, 1.667vw);
-    line-height: 1.2;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     color: white;
-    flex-shrink: 0;
-    z-index: 5;
+    word-wrap: break-word;
+    width: auto;
+    height: auto;
 }
 
-.login-modal .login-form {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(1.042vw, 3%, 1.563vw);
-    width: 100%;
-    padding: 0 clamp(0.417vw, 2%, 0.833vw);
-    flex: 1;
-    overflow-y: auto;
-}
-
-.login-modal .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(0.417vw, 2%, 0.833vw);
-}
-
-.login-modal .form-label {
-    font-size: clamp(0.938vw, 3.5vw, 1.667vw);
+/* ============================================
+   Form Label
+   ============================================ */
+.form-label {
+    position: absolute;
+    font-size: 3.125vw;
     font-weight: 400;
-    letter-spacing: 0.02em;
-    line-height: 1.2;
     color: white;
-    margin-bottom: clamp(0.208vw, 1%, 0.417vw);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.login-modal .form-input {
-    width: 100%;
-    height: clamp(2.604vw, 8%, 4.167vw);
-    padding: clamp(0.521vw, 2%, 0.833vw);
-    background: rgba(255, 255, 255, 0.6);
-    border: 2px solid transparent;
-    border-radius: clamp(0.417vw, 2%, 0.625vw);
-    font-size: clamp(0.729vw, 2.5vw, 0.938vw);
-    color: #333;
+.id-label {
+    left: 3.125vw;
+    top: 10.417vw;
+}
+
+.pw-label {
+    left: 3.125vw;
+    top: 24.583vw;
+}
+
+/* ============================================
+   Input Box Backgrounds (Decorative)
+   ============================================ */
+.id-input-box,
+.pw-input-box,
+.signin-btn-box,
+.signup-btn-box {
+    position: absolute;
+    opacity: 0.6;
+    background: white;
+    border-radius: 12px;
+}
+
+.id-input-box {
+    width: 25vw;
+    height: 3vw;
+    left: 3.125vw;
+    top: 15.208vw;
+}
+
+.pw-input-box {
+    width: 25vw;
+    height: 3vw;
+    left: 3.125vw;
+    top: 29.375vw;
+}
+
+.signin-btn-box {
+    width: 10vw;
+    height: 4.167vw;
+    left: 4.375vw;
+    top: 38.75vw;
+}
+
+.signup-btn-box {
+    width: 10vw;
+    height: 4.167vw;
+    left: 16.875vw;
+    top: 38.75vw;
+}
+
+/* ============================================
+   Form Input
+   ============================================ */
+.form-input {
+    position: absolute;
+    background: transparent;
+    border: none;
     font-family: inherit;
-    transition: all 0.3s ease;
+    color: #333;
     outline: none;
+    padding: 0;
+    font-size: 1vw;
 }
 
-.login-modal .form-input::placeholder {
+.id-input {
+    left: 3.125vw;
+    top: 15.208vw;
+    width: 25vw;
+    height: 3vw;
+    padding: 0.3vw 0.3vw 0.3vw 0.6vw;
+}
+
+.pw-input {
+    left: 3.125vw;
+    top: 29.375vw;
+    width: 25vw;
+    height: 3vw;
+    padding: 0.3vw 0.3vw 0.3vw 0.6vw;
+}
+
+.form-input::placeholder {
     color: rgba(51, 51, 51, 0.6);
 }
 
-.login-modal .form-input:focus {
-    background: rgba(255, 255, 255, 0.9);
-    border-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+.form-input:focus {
+    outline: none;
 }
 
-.login-modal .form-input:hover {
-    background: rgba(255, 255, 255, 0.75);
-}
-
-.login-modal .form-input.input-error {
+.form-input.input-error {
     background: rgba(255, 200, 200, 0.6);
-    border-color: #ff6b6b;
+    border: 1px solid #ff4444;
+    border-radius: 0.625vw;
 }
 
-.login-modal .form-input.input-error:focus {
-    background: rgba(255, 200, 200, 0.8);
-    border-color: #ff6b6b;
-}
-
-.login-modal .error-message {
-    font-size: clamp(11px, 2.5vw, 13px);
-    color: #ff6b6b;
-    margin-top: clamp(0.25rem, 0.5%, 0.5rem);
+/* Error Message */
+.error-message {
+    position: absolute;
+    font-size: 0.8vw;
+    color: #ff4444;
+    margin-top: 0.3vw;
+    word-wrap: break-word;
     animation: slideDown 0.3s ease;
-    line-height: 1.4;
 }
 
-.login-modal .button-group {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(0.833vw, 4%, 1.667vw);
-    margin-top: clamp(0.417vw, 3%, 1.042vw);
-    padding: 0 clamp(0.417vw, 2%, 0.833vw);
-}
-
-.login-modal .btn {
-    padding: clamp(0.521vw, 2%, 0.833vw);
-    height: clamp(2.604vw, 8%, 4.167vw);
-    background: rgba(255, 255, 255, 0.6);
-    border: 2px solid transparent;
-    border-radius: clamp(0.417vw, 2%, 0.625vw);
-    font-size: clamp(0.729vw, 2.2vw, 1.25vw);
-    font-weight: 400;
+/* ============================================
+   Button Styles
+   ============================================ */
+.btn {
+    position: absolute;
+    background: transparent;
+    border: none;
     color: white;
-    cursor: pointer;
     font-family: inherit;
-    transition: all 0.3s ease;
+    font-size: 1.667vw;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -579,70 +620,74 @@ svg {
     letter-spacing: 0.05em;
 }
 
-.login-modal .btn:hover {
-    background: rgba(255, 255, 255, 0.8);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+.btn-signin {
+    left: 4.375vw;
+    top: 38.75vw;
+    width: 10vw;
+    height: 4.167vw;
 }
 
-.login-modal .btn:focus {
-    border-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+.btn-signup {
+    left: 16.875vw;
+    top: 38.75vw;
+    width: 10vw;
+    height: 4.167vw;
 }
 
-.login-modal .btn:active {
-    transform: translateY(0);
+.btn:hover {
+    opacity: 0.8;
 }
 
-.login-modal .btn-signin {
-    background: rgba(255, 255, 255, 0.6);
-}
-
-.login-modal .btn-signup {
-    background: rgba(255, 255, 255, 0.6);
+.btn:active {
+    opacity: 1;
 }
 
 /* ============================================
    Menu Modal Styles
    ============================================ */
-.menu-modal {
+.menu-modal,
+.signup-modal {
     position: fixed;
     top: 0;
     right: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
     pointer-events: none;
     opacity: 0;
-    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity var(--transition-modal);
 }
 
-.menu-modal.show {
+.menu-modal {
+    z-index: var(--z-navbar);
+}
+
+.menu-modal.show,
+.signup-modal.show {
     pointer-events: auto;
     opacity: 1;
 }
 
+/* 메뉴 모달 콘텐츠 */
 .menu-modal-content {
     width: 100%;
-    max-width: clamp(250px, 80vw, 600px);
     height: 100vh;
+    max-height: 100vh;
     background: black;
-    border-radius: 0;
     position: fixed;
     top: 0;
     right: 0;
-    padding: clamp(1rem, 3%, 1.5rem);
     display: flex;
     flex-direction: column;
-    gap: 0;
     justify-content: flex-start;
     box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
+    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
     transform: translateX(100%);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1001;
+    transition: transform var(--transition-modal);
+    border-radius: 0;
+    gap: 0;
+    z-index: var(--z-modal);
 }
 
 .menu-modal.show .menu-modal-content {
@@ -1252,5 +1297,732 @@ svg {
     .login-modal,
     .menu-modal {
         display: none;
+    }
+}
+
+/* ============================================
+   Login Modal Styles from LandingPage
+   ============================================ */
+
+:root {
+    --transition-modal: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --radius-sm: 0.417vw;
+    --radius-md: 0.625vw;
+    --radius-lg: 1.250vw;
+    --z-modal: 1001;
+    --z-modal-offset: 1010;
+    --z-modal-close: 1005;
+}
+
+/* 공통 모달 배경 */
+.login-modal,
+.menu-modal,
+.signup-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--transition-modal);
+}
+
+.login-modal,
+.menu-modal {
+    z-index: 1000;
+}
+
+.signup-modal {
+    z-index: var(--z-modal-offset);
+}
+
+.login-modal.show,
+.menu-modal.show,
+.signup-modal.show {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+/* 공통 모달 콘텐츠 */
+.login-modal-content,
+.menu-modal-content,
+.signup-modal-content {
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    background: black;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    transform: translateX(100%);
+    transition: transform var(--transition-modal);
+}
+
+.login-modal-content,
+.menu-modal-content {
+    border-radius: 0;
+    gap: 0;
+    z-index: var(--z-modal);
+}
+
+.signup-modal-content {
+    z-index: calc(var(--z-modal) + 10);
+    align-items: flex-start;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+    padding: 0;
+}
+
+/* 로그인 모달 특화 */
+.login-modal-content {
+    max-width: 100%;
+    width: 31.25vw;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Sign Up Modal Styles - Width specification */
+.signup-modal-content {
+    width: 31.25vw;
+}
+
+.signup-modal.show .signup-modal-content {
+    transform: translateX(0);
+}
+
+.login-modal.show .login-modal-content,
+.menu-modal.show .MenuSidebar {
+    transform: translateX(0);
+}
+
+/* Sign Up Menu Container */
+.SignUpMenu {
+    width: 31.25vw;
+    height: 67.5vw;
+    position: relative;
+    background: black;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* Sign Up Close Button */
+.Vector {
+    left: 86.67%;
+    top: 3.7%;
+    position: absolute;
+    cursor: pointer;
+    width: 1.667vw;
+    height: 1.719vw;
+}
+
+.Vector:hover {
+    animation: spinRotate 0.6s ease-in-out;
+}
+
+.Vector svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Sign Up Title */
+.SignUp {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    word-wrap: break-word;
+    position: absolute;
+}
+
+.SignUp.Title {
+    left: 38.83%;
+    top: 3.472%;
+    font-size: 1.667vw;
+    font-weight: 500;
+    width: 22.34%;
+    height: 3.703%;
+}
+
+/* Sign Up Labels */
+.Nickname,
+.Id,
+.Pw {
+    left: 10%;
+    position: absolute;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-family: var(--font-family);
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.Nickname {
+    top: 16.52%;
+    font-size: 2.5vw;
+}
+
+.Id,
+.Pw {
+    font-size: 3.125vw;
+}
+
+.Id {
+    top: 36.46%;
+}
+
+.Pw {
+    top: 57.41%;
+}
+
+/* Sign Up Input Rectangles */
+.Rectangle1,
+.Rectangle2,
+.Rectangle3,
+.Rectangle4 {
+    position: absolute;
+    opacity: 0.6;
+    background: white;
+    border-radius: var(--radius-md);
+}
+
+.Rectangle1,
+.Rectangle2,
+.Rectangle3 {
+    width: 80%;
+    height: 6.173%;
+    left: 10%;
+}
+
+.Rectangle1 {
+    top: 22.53%;
+}
+
+.Rectangle2 {
+    top: 43.52%;
+}
+
+.Rectangle3 {
+    top: 64.51%;
+}
+
+/* Sign Up Submit Button */
+.Rectangle4 {
+    width: 32%;
+    height: 6.173%;
+    left: 34%;
+    top: 78.40%;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.Rectangle4:hover {
+    opacity: 0.8;
+}
+
+/* Sign Up Button Text */
+.SignUp.ButtonText {
+    left: 34%;
+    top: 78.40%;
+    position: absolute;
+    font-size: 1.667vw;
+    font-weight: 400;
+    width: 32%;
+    height: 6.173%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Back Arrow Frame */
+.Frame {
+    left: 8%;
+    top: 3.086%;
+    position: absolute;
+    cursor: pointer;
+    width: 2.5vw;
+    height: 2.701vw;
+}
+
+.Frame:hover {
+    opacity: 0.8;
+}
+
+/* ============================================
+   Close Button (Modal Version)
+   ============================================ */
+
+/* 공통 닫기 버튼 */
+.modal-close-btn,
+.menu-close-btn,
+.close-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.modal-close-btn,
+.menu-close-btn {
+    position: fixed;
+    top: clamp(0.75rem, 3%, 1.5rem);
+    right: clamp(0.75rem, 3%, 1.5rem);
+    transition: opacity 0.2s ease;
+    z-index: var(--z-modal-close);
+    border-radius: 4px;
+}
+
+/* 로그인 모달 닫기 버튼 크기 */
+.modal-close-btn {
+    width: 40px;
+    height: 40px;
+}
+
+/* 로그인 모달 Close Button Wrapper */
+.close-btn-wrapper {
+    position: absolute;
+    left: 27.083vw;
+    top: 1.5vw;
+    z-index: 10;
+}
+
+/* 메뉴 모달 닫기 버튼 크기 */
+.Vector {
+    position: absolute;
+    left: 27.08vw;
+    top: 2.5vw;
+    width: 1.67vw;
+    height: 1.67vw;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: none;
+}
+
+.Vector:hover {
+    animation: spinRotate 0.6s ease-in-out;
+}
+
+.Vector svg {
+    width: 100%;
+    height: 100%;
+}
+
+.close-btn {
+    width: 1.667vw;
+    height: 1.719vw;
+    transition: transform 0.6s ease;
+    outline: none;
+}
+
+.close-btn:hover {
+    animation: fullRotate 0.6s ease-in-out;
+}
+
+.close-btn svg {
+    width: 100%;
+    height: 100%;
+}
+
+.modal-close-btn:hover {
+    animation: spinRotate 0.6s ease-in-out;
+}
+
+.modal-close-btn:active {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg) scale(0.95);
+}
+
+.modal-close-btn:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.3);
+    outline-offset: 2px;
+}
+
+.modal-close-btn svg {
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+/* ============================================
+   Login Modal - Form Styles
+   ============================================ */
+
+/* Login Container - Absolute Positioning Layout */
+.login-container {
+    width: 31.25vw;
+    height: 72.917vw;
+    background: black;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Login Title */
+.login-title {
+    position: absolute;
+    left: 12.917vw;
+    top: 1.5vw;
+    font-size: 1.667vw;
+    font-weight: 500;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    word-wrap: break-word;
+    width: auto;
+    height: auto;
+}
+
+/* Form Label */
+.form-label {
+    position: absolute;
+    font-size: 2.083vw;
+    font-weight: 400;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.id-label {
+    left: 3.125vw;
+    top: 8.5vw;
+}
+
+.pw-label {
+    left: 3.125vw;
+    top: 21vw;
+}
+
+/* Input Box Backgrounds (Decorative) */
+.id-input-box,
+.pw-input-box,
+.signin-btn-box,
+.signup-btn-box {
+    position: absolute;
+    opacity: 0.6;
+    background: white;
+    border-radius: var(--radius-md);
+}
+
+.id-input-box,
+.pw-input-box {
+    width: 25vw;
+    height: 3vw;
+    left: 3.125vw;
+}
+
+.id-input-box {
+    top: 12.5vw;
+}
+
+.pw-input-box {
+    top: 25.5vw;
+}
+
+.signin-btn-box,
+.signup-btn-box {
+    width: 10vw;
+    height: 4.167vw;
+    top: 34vw;
+}
+
+.signin-btn-box {
+    left: 4.375vw;
+}
+
+.signup-btn-box {
+    left: 16.875vw;
+}
+
+/* Form Input */
+.form-input,
+.signup-form-input {
+    position: absolute;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    color: #333;
+    outline: none;
+}
+
+.form-input {
+    padding: 0;
+    font-size: 1vw;
+}
+
+.id-input,
+.pw-input {
+    left: 3.125vw;
+    width: 25vw;
+    height: 3vw;
+    padding: 0.3vw 0.3vw 0.3vw 0.6vw;
+}
+
+.id-input {
+    top: 12.5vw;
+}
+
+.pw-input {
+    top: 25.5vw;
+}
+
+.form-input::placeholder {
+    color: rgba(51, 51, 51, 0.6);
+}
+
+.form-input:focus {
+    outline: none;
+}
+
+.form-input.input-error {
+    background: rgba(255, 200, 200, 0.6);
+    border: 1px solid #ff4444;
+    border-radius: 0.625vw;
+}
+
+/* Sign Up Form Input Styles */
+.signup-form-input {
+    padding: 0.5vw;
+    font-size: 0.833vw;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+.nickname-input,
+.signup-form-input.id-input,
+.password-input {
+    left: 10%;
+    width: 80%;
+    height: 6.173%;
+}
+
+.nickname-input {
+    top: 22.53%;
+}
+
+.signup-form-input.id-input {
+    top: 43.52%;
+}
+
+.password-input {
+    top: 64.51%;
+}
+
+.signup-form-input::placeholder {
+    color: #333;
+}
+
+/* Error Message */
+.error-message {
+    position: absolute;
+    font-size: 0.8vw;
+    color: #ff4444;
+    margin-top: 0.3vw;
+    word-wrap: break-word;
+    animation: slideDown 0.3s ease;
+}
+
+/* Button Styles */
+.btn {
+    position: absolute;
+    background: transparent;
+    border: none;
+    color: white;
+    font-family: inherit;
+    font-size: 1.667vw;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.btn-signin {
+    left: 4.375vw;
+    top: 34vw;
+    width: 10vw;
+    height: 4.167vw;
+}
+
+.btn-signup {
+    left: 16.875vw;
+    top: 34vw;
+    width: 10vw;
+    height: 4.167vw;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.btn:active {
+    opacity: 1;
+}
+
+/* ============================================
+   Menu Modal/Sidebar Styles
+   ============================================ */
+
+/* 메뉴 모달 특화 */
+.MenuSidebar {
+    width: 31.25vw;
+    height: 100vh;
+    max-height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: black;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    scrollbar-gutter: stable;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+    transform: translateX(100%);
+    transition: transform var(--transition-modal);
+    z-index: var(--z-modal);
+}
+
+/* ===== Menu Item Base Styles ===== */
+.Home,
+.MemeOfTheYear,
+.Year2025,
+.Year2024,
+.Year2023,
+.Year2022 {
+    position: absolute;
+    text-align: right;
+    color: white;
+    font-family: var(--font-family);
+    font-weight: 400;
+    word-wrap: break-word;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    opacity: 0.40;
+}
+
+.Home:hover,
+.MemeOfTheYear:hover,
+.Year2025:hover,
+.Year2024:hover,
+.Year2023:hover,
+.Year2022:hover {
+    opacity: 0.9;
+}
+
+/* ===== HOME Title ===== */
+.Home {
+    left: 17.03vw;
+    top: 7.29vw;
+    font-size: 3.75vw;
+}
+
+/* ===== MEME OF THE YEAR Title ===== */
+.MemeOfTheYear {
+    left: 11.93vw;
+    top: 14.27vw;
+    width: 16.25vw;
+    font-size: 2.08vw;
+}
+
+/* ===== 2025 Year ===== */
+.Year2025 {
+    left: 15.99vw;
+    top: 21.77vw;
+    width: 12.76vw;
+    font-size: 3.75vw;
+}
+
+/* ===== 2024 Year ===== */
+.Year2024 {
+    left: 19.53vw;
+    top: 28.75vw;
+    font-size: 3.75vw;
+}
+
+/* ===== 2023 Year ===== */
+.Year2023 {
+    left: 19.48vw;
+    top: 35.73vw;
+    font-size: 3.75vw;
+}
+
+/* ===== 2022 Year ===== */
+.Year2022 {
+    left: 19.53vw;
+    top: 42.71vw;
+    font-size: 3.75vw;
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fullRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ============================================
+   Accessibility - Reduced Motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    .close-btn {
+        transition: none;
+    }
+
+    .close-btn:hover {
+        animation: none;
+    }
+
+    .error-message {
+        animation: none;
     }
 }
