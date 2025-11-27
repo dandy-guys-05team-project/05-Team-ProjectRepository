@@ -5,6 +5,7 @@
 
 import { initializeViewportListener } from './viewport.js';
 import { initializeLoginModal } from './loginModal.js';
+import { initializeSignupModal } from './signupModal.js';
 import { initializeMenuModal } from './menuModal.js';
 import { initializeLoginForm } from './loginForm.js';
 import { initializeMenuItems } from './menuItems.js';
@@ -32,6 +33,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // 4. 로그인 모달
     initializeLoginModal();
     console.log('✓ Login modal initialized');
+
+    // 4-1. 가입 모달
+    initializeSignupModal();
+    console.log('✓ Sign up modal initialized');
 
     // 5. 메뉴 모달
     initializeMenuModal();

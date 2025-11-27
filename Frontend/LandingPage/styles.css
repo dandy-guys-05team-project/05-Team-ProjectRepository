@@ -720,6 +720,188 @@ body {
     transform: translateX(0);
 }
 
+/* Sign Up Modal Styles */
+.signup-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: calc(var(--z-navbar) + 10);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--transition-modal);
+}
+
+.signup-modal.show {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.signup-modal-content {
+    width: 31.25vw;
+    height: 100vh;
+    max-height: 100vh;
+    background: black;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+    transform: translateX(100%);
+    transition: transform var(--transition-modal);
+    z-index: calc(var(--z-modal) + 10);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+    padding: 0;
+}
+
+.signup-modal.show .signup-modal-content {
+    transform: translateX(0);
+}
+
+/* Sign Up Menu Container */
+.SignUpMenu {
+    width: 31.25vw;
+    height: 67.5vw;
+    position: relative;
+    background: black;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* Sign Up Close Button */
+#closeButton {
+    position: absolute;
+    left: 27.083vw;
+    top: 2.5vw;
+    width: 1.667vw;
+    height: 1.719vw;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    z-index: 10;
+}
+
+#closeButton svg {
+    width: 100%;
+    height: 100%;
+}
+
+#closeButton svg path {
+    fill: white;
+}
+
+#closeButton:hover {
+    animation: spinRotate 0.6s ease-in-out;
+}
+
+/* Sign Up Title */
+.SignUp.Title {
+    position: absolute;
+    left: 12.5vw;
+    top: 2.34vw;
+    color: white;
+    font-size: 1.667vw;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Sign Up Labels */
+.Nickname.Label {
+    position: absolute;
+    left: 3.125vw;
+    top: 11.068vw;
+    color: white;
+    font-size: 2.5vw;
+    font-weight: 400;
+}
+
+.Id.Label {
+    position: absolute;
+    left: 3.125vw;
+    top: 24.583vw;
+    color: white;
+    font-size: 3.125vw;
+    font-weight: 400;
+}
+
+.Pw.Label {
+    position: absolute;
+    left: 3.125vw;
+    top: 38.75vw;
+    color: white;
+    font-size: 3.125vw;
+    font-weight: 400;
+}
+
+/* Sign Up Input Rectangles */
+.Rectangle {
+    position: absolute;
+    background: white;
+    border-radius: 12px;
+    opacity: 0.6;
+}
+
+.Rectangle1 {
+    width: 25vw;
+    height: 4.167vw;
+    left: 3.125vw;
+    top: 15.208vw;
+}
+
+.Rectangle2 {
+    width: 25vw;
+    height: 4.167vw;
+    left: 3.125vw;
+    top: 29.375vw;
+}
+
+.Rectangle3 {
+    width: 25vw;
+    height: 4.167vw;
+    left: 3.125vw;
+    top: 43.542vw;
+}
+
+/* Sign Up Submit Button */
+.Rectangle4 {
+    width: 10vw;
+    height: 4.167vw;
+    left: 10.625vw;
+    top: 52.917vw;
+    background: white;
+    border-radius: 12px;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.Rectangle4:hover {
+    opacity: 0.8;
+}
+
+/* Sign Up Button Text */
+.SignUp.ButtonText {
+    position: absolute;
+    left: 12.188vw;
+    top: 53.958vw;
+    color: white;
+    font-size: 1.667vw;
+    font-weight: 400;
+    text-align: center;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.SignUp.ButtonText:hover {
+    opacity: 0.8;
+}
+
 /* ============================================
    Close Button (Modal Version)
    ============================================ */
@@ -1065,7 +1247,7 @@ body {
 }
 
 .Home:hover {
-    opacity: 0.70;
+    opacity: 0.9;
 }
 
 /* ===== MEME OF THE YEAR Title ===== */
@@ -1086,7 +1268,7 @@ body {
 }
 
 .MemeOfTheYear:hover {
-    opacity: 0.70;
+    opacity: 0.9;
 }
 
 /* ===== 2025 Year ===== */
@@ -1107,7 +1289,7 @@ body {
 }
 
 .Year2025:hover {
-    opacity: 0.70;
+    opacity: 0.9;
 }
 
 /* ===== 2024 Year ===== */
@@ -1127,7 +1309,7 @@ body {
 }
 
 .Year2024:hover {
-    opacity: 0.70;
+    opacity: 0.9;
 }
 
 /* ===== 2023 Year ===== */
@@ -1147,7 +1329,7 @@ body {
 }
 
 .Year2023:hover {
-    opacity: 0.70;
+    opacity: 0.9;
 }
 
 /* ===== 2022 Year ===== */
@@ -1167,7 +1349,7 @@ body {
 }
 
 .Year2022:hover {
-    opacity: 0.70;
+    opacity: 0.9;
 }
 
 /* ============================================
