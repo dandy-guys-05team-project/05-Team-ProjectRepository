@@ -664,6 +664,7 @@ body {
 .menu-modal-content {
     width: 100%;
     height: 100vh;
+    max-height: 100vh;
     background: black;
     border-radius: 0;
     position: fixed;
@@ -674,8 +675,10 @@ body {
     gap: 0;
     justify-content: flex-start;
     box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
+    scrollbar-gutter: stable;
     transform: translateX(100%);
     transition: transform var(--transition-modal);
     z-index: var(--z-modal);
