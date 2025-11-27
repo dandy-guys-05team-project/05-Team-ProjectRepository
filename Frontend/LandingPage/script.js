@@ -734,7 +734,6 @@ function createInputElements() {
     if (nicknameInput && !nicknameInput.querySelector("input")) {
         const nicknameField = document.createElement("input");
         nicknameField.type = "text";
-        nicknameField.placeholder = "닉네임을 입력하세요";
         nicknameField.id = "nicknameField";
         nicknameField.style.cssText = `
             width: 100%;
@@ -755,7 +754,6 @@ function createInputElements() {
     if (idInput && !idInput.querySelector("input")) {
         const idField = document.createElement("input");
         idField.type = "text";
-        idField.placeholder = "아이디를 입력하세요";
         idField.id = "idField";
         idField.style.cssText = `
             width: 100%;
@@ -776,7 +774,6 @@ function createInputElements() {
     if (pwInput && !pwInput.querySelector("input")) {
         const pwField = document.createElement("input");
         pwField.type = "password";
-        pwField.placeholder = "비밀번호를 입력하세요";
         pwField.id = "pwField";
         pwField.style.cssText = `
             width: 100%;
