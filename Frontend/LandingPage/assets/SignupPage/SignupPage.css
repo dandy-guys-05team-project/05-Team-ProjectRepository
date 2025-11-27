@@ -51,7 +51,7 @@ body {
 }
 
 .Vector:hover {
-    opacity: 0.8;
+    animation: spinRotate 0.6s ease-in-out;
 }
 
 .SignUp {
@@ -296,4 +296,13 @@ body {
 
 .btn:hover {
     opacity: 0.8;
+}
+
+@keyframes spinRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
