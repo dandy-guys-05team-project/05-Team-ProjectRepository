@@ -251,6 +251,18 @@ body {
     transform: scale(1.05);
 }
 
+/* Active Year Button */
+.year-button.active {
+    opacity: 1;
+    filter: none;
+}
+
+/* Inactive Year Button */
+.year-button:not(.active) {
+    opacity: 0.7;
+    filter: saturate(0.6);
+}
+
 /* Card Elements - Rectangle 6 (Image Container) */
 .Rectangle6 {
     width: 43.75%;
