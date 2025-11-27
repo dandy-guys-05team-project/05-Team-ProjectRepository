@@ -1,0 +1,365 @@
+/* ============================================
+   Global & Reset
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: white;
+    font-family: 'Haas Grot Text Trial', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: white;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* ============================================
+   Login Container - Mobile First Approach
+   ============================================ */
+.login-container {
+    width: 100%;
+    max-width: 600px;
+    height: 100vh;
+    background: black;
+    border-radius: 0;
+    position: relative;
+    padding: clamp(1rem, 5%, 2rem);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.5rem, 4%, 2rem);
+    justify-content: center;
+}
+
+/* ============================================
+   Close Button
+   ============================================ */
+.close-btn {
+    position: absolute;
+    top: clamp(0.75rem, 3%, 1.5rem);
+    right: clamp(0.75rem, 3%, 1.5rem);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(32px, 8%, 40px);
+    height: clamp(32px, 8%, 40px);
+    padding: 0;
+    transition: opacity 0.2s ease;
+    z-index: 10;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.close-btn:hover {
+    animation: spinRotate 0.6s ease-in-out;
+    background: transparent;
+}
+
+.close-btn:active {
+    background: transparent;
+}
+
+.close-btn:focus {
+    outline: none;
+}
+
+.close-btn svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* ============================================
+   Login Title
+   ============================================ */
+.login-title {
+    text-align: center;
+    font-size: clamp(24px, 5vw, 32px);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-bottom: clamp(1rem, 3%, 2rem);
+    line-height: 1.2;
+}
+
+/* ============================================
+   Login Form
+   ============================================ */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.5rem, 4%, 2.5rem);
+    width: 100%;
+}
+
+/* ============================================
+   Form Group (Label + Input)
+   ============================================ */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.5rem, 2%, 1rem);
+}
+
+/* Form Label */
+.form-label {
+    font-size: clamp(18px, 3.5vw, 32px);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+}
+
+/* Form Input */
+.form-input {
+    width: 100%;
+    height: clamp(50px, 8%, 80px);
+    padding: clamp(0.75rem, 2%, 1.25rem);
+    background: rgba(255, 255, 255, 0.6);
+    border: 2px solid transparent;
+    border-radius: clamp(8px, 2%, 12px);
+    font-size: clamp(14px, 2.5vw, 18px);
+    color: #333;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.form-input::placeholder {
+    color: rgba(51, 51, 51, 0.6);
+}
+
+.form-input:focus {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.form-input:hover {
+    background: rgba(255, 255, 255, 0.75);
+}
+
+.form-input.input-error {
+    background: rgba(255, 200, 200, 0.6);
+    border-color: #ff6b6b;
+}
+
+.form-input.input-error:focus {
+    background: rgba(255, 200, 200, 0.8);
+    border-color: #ff6b6b;
+}
+
+/* Error Message */
+.error-message {
+    font-size: clamp(12px, 2vw, 14px);
+    color: #ff6b6b;
+    margin-top: clamp(0.25rem, 1%, 0.5rem);
+    animation: slideDown 0.3s ease;
+}
+
+/* ============================================
+   Button Group
+   ============================================ */
+.button-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1rem, 4%, 2rem);
+    margin-top: clamp(0.5rem, 3%, 1.5rem);
+}
+
+/* Button Styles */
+.btn {
+    padding: clamp(0.75rem, 2%, 1.25rem);
+    height: clamp(50px, 8%, 80px);
+    background: rgba(255, 255, 255, 0.6);
+    border: 2px solid transparent;
+    border-radius: clamp(8px, 2%, 12px);
+    font-size: clamp(14px, 2.2vw, 24px);
+    font-weight: 400;
+    color: white;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn:focus {
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-signin {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.btn-signup {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+/* ============================================
+   Tablet (768px - 1024px)
+   ============================================ */
+@media (min-width: 768px) {
+    body {
+        padding: 0;
+    }
+
+    .login-container {
+        max-width: 600px;
+        padding: clamp(2rem, 5%, 3rem);
+        gap: clamp(2rem, 5%, 3rem);
+    }
+
+    .login-title {
+        margin-bottom: clamp(1.5rem, 4%, 2.5rem);
+    }
+
+    .form-group {
+        gap: clamp(0.75rem, 2%, 1.25rem);
+    }
+}
+
+/* ============================================
+   Desktop (1024px and above)
+   ============================================ */
+@media (min-width: 1024px) {
+    .login-container {
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .close-btn {
+        transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+    }
+
+    .close-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .form-input:focus {
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+    }
+
+    .btn:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+}
+
+/* ============================================
+   Large Desktop (1440px and above)
+   ============================================ */
+@media (min-width: 1440px) {
+    .login-container {
+        max-width: 700px;
+    }
+}
+
+/* ============================================
+   Small Mobile (max-width: 480px)
+   ============================================ */
+@media (max-width: 480px) {
+    .login-container {
+        padding: clamp(1rem, 4%, 1.5rem);
+        gap: clamp(1rem, 4%, 1.5rem);
+    }
+
+    .login-title {
+        margin-bottom: clamp(1rem, 4%, 1.5rem);
+    }
+
+    .button-group {
+        gap: clamp(0.75rem, 3%, 1.5rem);
+    }
+
+    .form-input,
+    .btn {
+        height: clamp(44px, 10%, 60px);
+    }
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+@media print {
+    body {
+        background: white;
+    }
+
+    .login-container {
+        background: white;
+        color: black;
+    }
+
+    .close-btn {
+        display: none;
+    }
+}
+
+/* ============================================
+   Accessibility - Reduced Motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    .close-btn,
+    .form-input,
+    .btn {
+        transition: none;
+    }
+
+    .btn:hover {
+        transform: none;
+    }
+}
+
+/* ============================================
+   Dark Mode Support (if needed)
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+    .login-container {
+        background: #1a1a1a;
+    }
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Spin Rotate Animation for Close Button */
+@keyframes spinRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

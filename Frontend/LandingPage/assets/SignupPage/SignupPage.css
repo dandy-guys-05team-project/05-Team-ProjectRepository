@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fff;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.SignUpMenu {
+    width: 600px;
+    height: 1296px;
+    position: relative;
+    background: black;
+    overflow: hidden;
+}
+
+.Vector {
+    left: 520px;
+    top: 48px;
+    position: absolute;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.Vector svg path {
+    fill: white;
+}
+
+.Vector:hover {
+    animation: spinRotate 0.6s ease-in-out;
+}
+
+@keyframes spinRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.Title {
+    left: 240px;
+    top: 45px;
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 32px;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.Label {
+    position: absolute;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 48px;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.Nickname {
+    left: 60px;
+    top: 214px;
+}
+
+.Id {
+    left: 60px;
+    top: 472px;
+    font-size: 60px;
+}
+
+.Pw {
+    left: 60px;
+    top: 744px;
+    font-size: 60px;
+}
+
+.Rectangle {
+    position: absolute;
+    opacity: 0.6;
+    background: white;
+    border-radius: 12px;
+}
+
+.Rectangle1 {
+    width: 480px;
+    height: 80px;
+    left: 60px;
+    top: 292px;
+}
+
+.Rectangle2 {
+    width: 480px;
+    height: 80px;
+    left: 60px;
+    top: 564px;
+}
+
+.Rectangle3 {
+    width: 480px;
+    height: 80px;
+    left: 60px;
+    top: 836px;
+}
+
+.Rectangle4 {
+    width: 192px;
+    height: 80px;
+    left: 204px;
+    top: 1016px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.Rectangle4:hover {
+    opacity: 0.8;
+}
+
+.ButtonText {
+    left: 234px;
+    top: 1037px;
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 32px;
+    font-weight: 400;
+    word-wrap: break-word;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.ButtonText:hover {
+    opacity: 0.8;
+}

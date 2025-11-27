@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In / Sign Up</title>
+    <link rel="stylesheet" href="LoginPage.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <!-- Close Button -->
+        <button class="close-btn" aria-label="닫기">
+            <svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M32 3.22622L28.7771 0L16 12.7905L3.22286 0L0 3.22622L12.7771 16.0167L0 28.8071L3.22286 32.0334L16 19.2429L28.7771 32.0334L32 28.8071L19.2229 16.0167L32 3.22622Z"
+                    fill="white" />
+            </svg>
+        </button>
+
+        <!-- Title -->
+        <h1 class="login-title">LOGIN</h1>
+
+        <!-- Login Form -->
+        <form class="login-form">
+            <!-- ID Input -->
+            <div class="form-group">
+                <label for="user-id" class="form-label">ID</label>
+                <input
+                    type="text"
+                    id="user-id"
+                    class="form-input"
+                    placeholder="아이디를 입력하세요"
+                    required
+                >
+            </div>
+
+            <!-- Password Input -->
+            <div class="form-group">
+                <label for="user-password" class="form-label">PW</label>
+                <input
+                    type="password"
+                    id="user-password"
+                    class="form-input"
+                    placeholder="비밀번호를 입력하세요"
+                    required
+                >
+            </div>
+
+            <!-- Button Group -->
+            <div class="button-group">
+                <button type="submit" class="btn btn-signin">SIGN IN</button>
+                <button type="button" class="btn btn-signup">SIGN UP</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="LoginPage.js"></script>
+</body>
+
+</html>

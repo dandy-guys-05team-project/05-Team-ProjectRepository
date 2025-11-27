@@ -97,16 +97,55 @@ public class MemeDataInitializer implements ApplicationRunner {
                 "2023",
                 "암오케이 암파인 괜찮아 닝닝닝닝닝",
                 "Okay, I'm fine. Ningning, Ning, Ning, Ning, Ning",
-                "인도네시아 스트리머 알딘이 스트리밍 중 게임에서 차가 부서지는 상황이 생기는데 그때 알딘이 모 한류 드라마의 개그씬이나 그 유명한 곡조를 배경으로 애써 한국말로 괜찮아를 반복하면서 우는 ",
-                "Comedy It originated from the Fox Clip content of the YouTube channel MemeGorism, when the other person did not give emotional empathy and only spoke logically or reacted bluntly, asking, \"Are you T?\" with a unique expression and tone.",
-                "한국 사회에서 F형들이 T형들의 직설적인 화법에 상처를 받거나 서운함을 느끼는 상황이 자주 밈으로 소비되었는데, 이 밈은 \"너 공감 능력 없지?\" 혹은 \"왜 이렇게 눈치가 없어?\"라는 말을 \"너 T야?\"라는 짧은 문장으로 압축해서 표현한 것입니다.",
-                "In Korean society, situations in which F-type people were hurt or disappointed by T-type people's straightforward speech were often consumed as memes, which encapsulated the words \\\"You're not good at empathy, right?\" or \\\"Why are you so tactless?\" into a short sentence \\\"Are you T?\"",
-                "\"나 오늘 너무 우울해서 빵 샀어...\" \"무슨 빵 샀는데?\"  \"...야, 너 T야?\"",
-                "\\\"I was so depressed today that I bought bread...\" \\\"What bread did you buy? \\\"...Hey, are you a T?\"",
+                "인도네시아 스트리머 알딘이 스트리밍 중 게임에서 차가 부서지는 상황이 생기는데 그때 알딘이 모 한류 드라마의 개그씬이나 그 유명한 곡조를 배경으로 애써 한국말로 괜찮아를 반복하면서 우는 인도네시아인 영상을 팬이 클립으로 퍼뜨려 유행이 시작됬습니다.",
+                "Indonesian streamer Aldin broke his car while streaming, and at that time, there was a context like an Indonesian video meme in which Aldin cried as he repeatedly said \"It's okay\" in Korean against the backdrop of a comedy scene or its famous tune of a Korean Wave drama.",
+                "암울한 상황을 극복할 때 위로나 격려의 의미로 사용됩니다.",
+                "It is used as a consolation or encouragement when overcoming a grim situation.",
+                "(3시간 동안 작업한 엑셀 파일이 오류로 꺼졌는데, 저장을 안한 상황) \"저장... 안 했네? (눈가가 촉촉해지며) I'm okay... I'm fine... 3시간? 3 hours? Gwenchana... 다시 하면 돼... Gwenchana... 닝닝닝닝닝...\"",
+                "(The Excel file I worked on for 3 hours turned off by error, but I didn't save it.) \\\"You didn't save it?\" I'm fine... I'm fine... 3 hours? 3 hours? Gwenchana... You can do it again... Gwenchana... Ning Ning Ning Ning Ning Ning Ning...\\\"",
                 "test6"
             );
 
+            MemeData meme2023_M3 = new MemeData(
+                "2023",
+                "슬릭백 챌린지",
+                "Slickback Challenge",
+                "jubi2fye라는 미국인 틱톡커가 LAKIM의 A Pimp Named SlickBack을 배경음악으로 해서 공중에서 미끄러지는 듯한 춤을 추는 슬릭백 챌린지를 처음 시작하여 유행이 퍼졌습니다.",
+                "An American Tiktoker named jubi2fye first launched the Slickback Challenge, which features LAKIM's A Pimp Named SlickBack as the background music and dances like slipping through the air.",
+                "특별한 의미가 있진 않고 챌린지의 한 종류 입니다.",
+                "It doesn't have any special meaning and it's a kind of challenge.",
+                "슬릭백 챌린지 영상을 찍는 것 자체를 예시로 볼 수 있습니다.",
+                "Filming a Slickback Challenge video itself can be seen as an example.",
+                "test6"
+            );
 
+            MemeData meme2023_M4 = new MemeData(
+                "2023",
+                "해피 캣",
+                "happy cat",
+                "2015년에 올라온 일본의 한 폐점한 펫샵에서 발견한 고양이를 데려가고 싶다고 트원 한 것이 시초입니다. 이 영상을 토대로 노래를 추가한 버전을 쇼츠에 올려 유행이 시작되었습니다.",
+                "The beginning was that he wanted to take a cat he found at a closed pet shop in Japan in 2015. Based on this video, the trend began by posting a version of the song on Shorts.",
+                "행복을 표현하는 용도로 많이 쓰입니다.",
+                "It is used a lot to express happiness.",
+                "보통 영상의 편집 효과로 행복을 표현할 때 자주 쓰입니다.",
+                "Usually, it is often used to express happiness with the editing effect of a video.",
+                "test6"
+            );
+
+            MemeData meme2023_M5 = new MemeData(
+                "2023",
+                "장충동왕족발보쌈",
+                "Jangchung-dong Jokbal Bossam",
+                "말왕이라는 유튜버가 올린 장충동왕족발보쌈 먹방 영상에 CM송을 부른 부분이 있습니다. 소음예술이라는 다른 유튜버가 해당 부분에 오케스트라를 입힌 영상이 알고리즘을 타면서 밈화 되었습니다.",
+                "There is a part where a YouTuber named Mal-wang sang a CM song in the eating video of Jangchung-dong Jokbal Bossam. Another YouTuber named Noise Art put an orchestra on the part was made into a meme by using an algorithm.",
+                "의미는 딱히 존재하지 않고 말왕의 좋은 발성과 특유의 묘한 중독성 때문에 따라하는 사람이 많아졌습니다.",
+                "The meaning does not exist in particular, and many people imitate it because of the good vocalization of the king of horses and his peculiar addictive nature.",
+                "보통 족발을 먹을때 해당 밈을 떠올립니다.",
+                "Usually, it is often used to express happiness with the editing effect of a video.",
+                "test6"
+            );
+
+            
             memeDataRepository.save(meme2022_M1);
             memeDataRepository.save(meme2022_M2);
             memeDataRepository.save(meme2022_M3);
@@ -115,6 +154,10 @@ public class MemeDataInitializer implements ApplicationRunner {
 
             memeDataRepository.save(meme2023_M1);
             memeDataRepository.save(meme2023_M2);
+            memeDataRepository.save(meme2023_M3);
+            memeDataRepository.save(meme2023_M4);
+            memeDataRepository.save(meme2023_M5);
+            
         }
 
     }
