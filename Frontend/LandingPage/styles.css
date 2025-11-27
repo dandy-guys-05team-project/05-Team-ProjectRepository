@@ -150,8 +150,7 @@ body {
 .subtitle-graphic-group {
     display: block;
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
     margin: 0 auto;
     /* GSAP가 애니메이션 제어 - transition 제거 */
     will-change: transform, opacity;
@@ -165,7 +164,7 @@ body {
 }
 
 .subtitle-graphic-group {
-    width: 89.375vw;
+    width: 89.427vw;
     height: 32.760vw;
     top: 17.084vw;
     z-index: var(--z-graphics);
