@@ -25,7 +25,7 @@ html, body {
 .Footer {
     width: 100%;
     min-height: 10.417vw;
-    padding: 2.083vw 5.156vw;
+    padding: 1.042vw 5.156vw;
     background: var(--color-black);
     display: flex;
     justify-content: space-between;
@@ -35,7 +35,7 @@ html, body {
 
 .FooterLogo {
     margin-left: 0;
-    width: 5.208vw;
+    width: 2.604vw;
     height: auto;
 }
 
@@ -48,10 +48,15 @@ html, body {
     margin-right: 0;
     text-align: right;
     color: var(--color-white);
-    font-size: clamp(12px, 1.250vw, 24px);
+    width: 32.344vw;
+    height: 2.5vw;
+    font-size: 2.083vw;
     font-family: 'Haas Grot Text Trial', 'Neue Haas Grotesk Text', 'Neue Haas Grotesk Display', Arial, sans-serif;
     font-weight: 400;
     word-wrap: break-word;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 /* 반응형 미디어 쿼리 */
