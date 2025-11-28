@@ -21,6 +21,8 @@ const viewport = {
  * 뷰포트 변화 감지 및 업데이트
  */
 function initializeViewportListener() {
+    let resizeTimeout = null;
+
     window.addEventListener("resize", () => {
         viewport.width = window.innerWidth;
         viewport.height = window.innerHeight;
@@ -28,6 +30,14 @@ function initializeViewportListener() {
         viewport.isTablet =
             window.innerWidth >= 768 && window.innerWidth < 1024;
         viewport.isDesktop = window.innerWidth >= 1024;
+
+        // 창 크기 변경이 끝난 후에 무한 스크롤 재초기화
+        // (빈번한 재초기화를 피하기 위해 debounce 처리)
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            initializeInfiniteScroll();
+            console.log("Infinite scroll re-initialized due to window resize");
+        }, 300);
     });
 }
 
@@ -176,6 +186,8 @@ function initializeTitleGroupAnimation() {
  * 카드 무한 스크롤 관리
  */
 
+let animationFrameId = null;
+
 /**
  * 카드 Infinite Scroll 초기화
  */
@@ -188,6 +200,11 @@ function initializeInfiniteScroll() {
         return;
     }
 
+    // 이전 애니메이션 중단
+    if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+    }
+
     // 원본 카드들 저장
     const originalCards = Array.from(cardsWrapper.querySelectorAll(".card"));
     const totalCards = originalCards.length;
@@ -197,48 +214,59 @@ function initializeInfiniteScroll() {
         return;
     }
 
-    const cardWidth = originalCards[0].offsetWidth;
-    const cardGap = parseFloat(window.getComputedStyle(cardsWrapper).gap) || 0;
-    const containerWidth = cardsContainer.offsetWidth;
-
     let currentScroll = 0;
-    let animationId = null;
     let isPaused = false;
-
     const scrollSpeed = 2; // px per frame
+
+    // 동적으로 카드 크기 계산 함수
+    function getCardDimensions() {
+        const firstCard = cardsWrapper.querySelector(".card");
+        if (!firstCard) return { cardWidth: 0, cardGap: 0 };
+
+        const cardWidth = firstCard.offsetWidth;
+        const cardGap = parseFloat(window.getComputedStyle(cardsWrapper).gap) || 0;
+        return { cardWidth, cardGap };
+    }
 
     // CSS 애니메이션 제거
     cardsWrapper.style.animation = "none";
     cardsWrapper.style.transform = "translateX(0)";
 
     /**
-     * 애니메이션 루프
+     * 애니메이션 루프 - 부드러운 처리
      */
     function animate() {
         if (!isPaused) {
             currentScroll += scrollSpeed;
+
+            // 트랜지션 제거하고 직접 transform 적용
             cardsWrapper.style.transform = `translateX(-${currentScroll}px)`;
 
+            // 동적으로 카드 크기 재계산
+            const { cardWidth, cardGap } = getCardDimensions();
+            const oneCardDistance = cardWidth + cardGap;
+
             // 첫 번째 카드가 완전히 화면 밖으로 나갔는지 확인
-            if (currentScroll >= cardWidth + cardGap) {
+            if (oneCardDistance > 0 && currentScroll >= oneCardDistance) {
                 // 첫 번째 카드를 맨 뒤로 이동
                 const firstCard = cardsWrapper.querySelector(".card");
                 if (firstCard) {
                     cardsWrapper.appendChild(firstCard.cloneNode(true));
                     firstCard.remove();
-                    currentScroll -= cardWidth + cardGap;
+                    currentScroll -= oneCardDistance;
+
+                    // 부드러운 전환을 위해 즉시 업데이트
+                    cardsWrapper.style.transition = "none";
                     cardsWrapper.style.transform = `translateX(-${currentScroll}px)`;
+
+                    // 다음 프레임에 transition 복구
+                    requestAnimationFrame(() => {
+                        cardsWrapper.style.transition = "none";
+                    });
                 }
             }
         }
-        animationId = requestAnimationFrame(animate);
-    }
-
-    /**
-     * 애니메이션 시작
-     */
-    function startAnimation() {
-        animate();
+        animationFrameId = requestAnimationFrame(animate);
     }
 
     /**
@@ -265,9 +293,9 @@ function initializeInfiniteScroll() {
     });
 
     // 애니메이션 시작
-    startAnimation();
+    animate();
 
-    console.log("Infinite scroll initialized with smooth card repositioning");
+    console.log("Infinite scroll initialized with responsive card sizing");
 }
 
 // ==================== LOGIN FORM MODULE ====================

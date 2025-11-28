@@ -419,9 +419,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: var(--spacing-md);
+    padding: clamp(1rem, 1.667vw, 2rem);
     justify-content: flex-start;
     flex-shrink: 0;
+    gap: clamp(0.5rem, 1vw, 1.5rem);
 }
 
 /* 카드별 색상 - 파란색과 빨간색 번갈아 나오기 */
@@ -443,11 +444,11 @@ body {
     text-align: center;
     display: block;
     color: var(--color-white);
-    font-size: clamp(16px, 1.563vw, 30px);
+    font-size: clamp(14px, 1.5625vw, 32px);
     font-weight: 700;
-    line-height: 2.083vw;
-    margin-bottom: 0.833vw;
-    margin-top: 0;
+    line-height: clamp(1.2, 1.8vw, 1.8);
+    margin: 0;
+    flex-shrink: 0;
 }
 
 .card-line {
@@ -455,19 +456,22 @@ body {
     height: 0.156vw;
     background: var(--color-white);
     outline: 0.156vw solid var(--color-white);
-    margin: 0 auto 1.042vw auto;
+    margin: 0 auto;
+    flex-shrink: 0;
 }
 
 .card-text {
     width: 100%;
-    min-height: 16.667vw;
+    flex: 1;
     text-align: center;
     display: block;
     color: var(--color-white);
-    font-size: clamp(10px, 0.9vw, 18px);
+    font-size: clamp(10px, 1.6667vw, 36px);
     font-weight: 400;
-    line-height: 1.5;
-    margin-top: 0;
+    line-height: clamp(1.4, 1.6vw, 1.8);
+    margin: 0;
+    overflow-y: auto;
+    word-break: keep-all;
 }
 
 /* 밈 섹션 */
