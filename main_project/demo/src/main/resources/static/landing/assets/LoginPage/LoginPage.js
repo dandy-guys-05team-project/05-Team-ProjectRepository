@@ -40,15 +40,6 @@ function initializeCloseButton() {
  * Form Functionality
  */
 function initializeForm() {
-    const form = document.querySelector('.login-form');
-
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            handleSignIn();
-        });
-    }
-
     // Real-time input validation
     const inputs = document.querySelectorAll('.form-input');
     inputs.forEach(input => {
@@ -168,7 +159,21 @@ function showError(input, message) {
     errorDiv.setAttribute('role', 'alert');
     errorDiv.setAttribute('aria-live', 'polite');
 
-    input.parentElement.appendChild(errorDiv);
+    // 입력 필드의 위치와 크기를 가져옴
+    const rect = input.getBoundingClientRect();
+    const container = document.querySelector('.login-container');
+    const containerRect = container.getBoundingClientRect();
+
+    // 입력 필드 아래에 위치하도록 설정
+    const topPosition = rect.bottom - containerRect.top + 0.3;
+    const leftPosition = rect.left - containerRect.left;
+
+    errorDiv.style.position = 'absolute';
+    errorDiv.style.top = topPosition + 'px';
+    errorDiv.style.left = leftPosition + 'px';
+    errorDiv.style.width = (rect.width) + 'px';
+
+    input.parentElement.insertBefore(errorDiv, input.nextElementSibling);
     input.setAttribute('aria-invalid', 'true');
     input.classList.add('input-error');
 }
@@ -178,7 +183,8 @@ function showError(input, message) {
  */
 function removeError(event) {
     const input = typeof event === 'object' && event.target ? event.target : event;
-    const errorDiv = input.parentElement.querySelector('.error-message');
+    const container = input.parentElement;
+    const errorDiv = container.querySelector('.error-message');
 
     if (errorDiv) {
         errorDiv.remove();
@@ -274,7 +280,7 @@ document.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
         const activeElement = document.activeElement;
         if (activeElement && activeElement.classList.contains('btn-signin')) {
-            document.querySelector('.login-form').dispatchEvent(new Event('submit'));
+            handleSignIn();
         }
     }
 });

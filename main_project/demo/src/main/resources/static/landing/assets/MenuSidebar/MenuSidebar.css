@@ -11,24 +11,26 @@
 
 /* ===== Main Menu Sidebar Container ===== */
 .MenuSidebar {
-    width: 375px;
+    width: 31.25vw;
     height: 100vh;
     max-height: 100vh;
     position: relative;
     background: black;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     margin: 0 auto;
+    scrollbar-gutter: stable;
 }
 
 /* ===== Close Button Vector ===== */
 .Vector {
     position: absolute;
-    top: clamp(0.75rem, 3vw, 1.5rem);
-    right: clamp(0.75rem, 3vw, 1.5rem);
-    width: clamp(1.2rem, 4vw, 1.8rem);
-    height: clamp(1.2rem, 4vw, 1.8rem);
+    left: 27.08vw;
+    top: 2.5vw;
+    width: 1.67vw;
+    height: 1.67vw;
     cursor: pointer;
     z-index: 10;
     display: flex;
@@ -48,16 +50,16 @@
 
 /* ===== HOME Title ===== */
 .Home {
-    margin-top: clamp(3.5rem, 12vh, 5.5rem);
-    margin-bottom: clamp(1rem, 2.5vh, 1.3rem);
+    position: absolute;
+    left: 17.03vw;
+    top: 7.29vw;
     opacity: 0.40;
     text-align: right;
     color: white;
-    font-size: clamp(1.3rem, 7vw, 2.8rem);
+    font-size: 3.75vw;
     font-family: 'Haas Grot Text Trial', sans-serif;
     font-weight: 400;
     word-wrap: break-word;
-    padding: 0 clamp(0.8rem, 3%, 1.5rem);
     cursor: pointer;
     transition: opacity 0.3s ease;
 }
@@ -68,15 +70,17 @@
 
 /* ===== MEME OF THE YEAR Title ===== */
 .MemeOfTheYear {
-    margin-bottom: clamp(1rem, 2.5vh, 1.4rem);
+    position: absolute;
+    left: 11.93vw;
+    top: 14.27vw;
+    width: 16.25vw;
     opacity: 0.40;
     text-align: right;
     color: white;
-    font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+    font-size: 2.08vw;
     font-family: 'Haas Grot Text Trial', sans-serif;
     font-weight: 400;
     word-wrap: break-word;
-    padding: 0 clamp(0.8rem, 3%, 1.5rem);
     cursor: pointer;
     transition: opacity 0.3s ease;
 }
@@ -87,15 +91,17 @@
 
 /* ===== 2025 Year ===== */
 .Year2025 {
-    margin-bottom: clamp(1rem, 2.5vh, 1.3rem);
+    position: absolute;
+    left: 15.99vw;
+    top: 21.77vw;
+    width: 12.76vw;
     opacity: 0.40;
     text-align: right;
     color: white;
-    font-size: clamp(1.3rem, 7vw, 2.8rem);
+    font-size: 3.75vw;
     font-family: 'Haas Grot Text Trial', sans-serif;
     font-weight: 400;
     word-wrap: break-word;
-    padding: 0 clamp(0.8rem, 3%, 1.5rem);
     cursor: pointer;
     transition: opacity 0.3s ease;
 }
@@ -106,15 +112,16 @@
 
 /* ===== 2024 Year ===== */
 .Year2024 {
-    margin-bottom: clamp(1rem, 2.5vh, 1.3rem);
+    position: absolute;
+    left: 19.53vw;
+    top: 28.75vw;
     opacity: 0.40;
     text-align: right;
     color: white;
-    font-size: clamp(1.3rem, 7vw, 2.8rem);
+    font-size: 3.75vw;
     font-family: 'Haas Grot Text Trial', sans-serif;
     font-weight: 400;
     word-wrap: break-word;
-    padding: 0 clamp(0.8rem, 3%, 1.5rem);
     cursor: pointer;
     transition: opacity 0.3s ease;
 }
@@ -125,15 +132,16 @@
 
 /* ===== 2023 Year ===== */
 .Year2023 {
-    margin-bottom: clamp(1rem, 2.5vh, 1.3rem);
+    position: absolute;
+    left: 19.48vw;
+    top: 35.73vw;
     opacity: 0.40;
     text-align: right;
     color: white;
-    font-size: clamp(1.3rem, 7vw, 2.8rem);
+    font-size: 3.75vw;
     font-family: 'Haas Grot Text Trial', sans-serif;
     font-weight: 400;
     word-wrap: break-word;
-    padding: 0 clamp(0.8rem, 3%, 1.5rem);
     cursor: pointer;
     transition: opacity 0.3s ease;
 }
@@ -144,15 +152,16 @@
 
 /* ===== 2022 Year ===== */
 .Year2022 {
-    margin-bottom: clamp(1rem, 2.5vh, 1.3rem);
+    position: absolute;
+    left: 19.53vw;
+    top: 42.71vw;
     opacity: 0.40;
     text-align: right;
     color: white;
-    font-size: clamp(1.3rem, 7vw, 2.8rem);
+    font-size: 3.75vw;
     font-family: 'Haas Grot Text Trial', sans-serif;
     font-weight: 400;
     word-wrap: break-word;
-    padding: 0 clamp(0.8rem, 3%, 1.5rem);
     cursor: pointer;
     transition: opacity 0.3s ease;
 }
@@ -161,150 +170,7 @@
     opacity: 0.70;
 }
 
-/* ===== Tablet Adjustments (768px and above) ===== */
-@media (min-width: 768px) {
-    .MenuSidebar {
-        width: 375px;
-        height: 100vh;
-    }
-
-    .Vector {
-        top: clamp(0.6rem, 3%, 1.2rem);
-        right: clamp(0.6rem, 3%, 1.2rem);
-    }
-
-    .Home {
-        margin-top: clamp(3rem, 10vh, 4.5rem);
-        margin-bottom: clamp(0.9rem, 2vh, 1.2rem);
-        font-size: clamp(1.2rem, 6vw, 2.3rem);
-        padding: 0 clamp(0.8rem, 3%, 1.5rem);
-    }
-
-    .MemeOfTheYear {
-        margin-bottom: clamp(0.9rem, 2vh, 1.2rem);
-        font-size: clamp(0.8rem, 2vw, 1.1rem);
-        padding: 0 clamp(0.8rem, 3%, 1.5rem);
-    }
-
-    .Year2025,
-    .Year2024,
-    .Year2023,
-    .Year2022 {
-        margin-bottom: clamp(0.9rem, 2vh, 1.2rem);
-        font-size: clamp(1.2rem, 6vw, 2.3rem);
-        padding: 0 clamp(0.8rem, 3%, 1.5rem);
-    }
-}
-
-/* ===== Desktop Adjustments (1024px and above) ===== */
-@media (min-width: 1024px) {
-    .MenuSidebar {
-        width: 375px;
-        height: 100vh;
-        overflow: hidden;
-    }
-
-    .Vector {
-        top: clamp(0.8rem, 3%, 1.3rem);
-        right: clamp(0.8rem, 3%, 1.3rem);
-        width: clamp(1.2rem, 4vw, 1.8rem);
-        height: clamp(1.2rem, 4vw, 1.8rem);
-    }
-
-    .Home {
-        margin-top: clamp(3.5rem, 12vh, 5.5rem);
-        margin-bottom: clamp(1rem, 2.5vh, 1.3rem);
-        font-size: 2.5rem;
-        padding: 0 clamp(0.8rem, 3%, 1.5rem);
-        text-align: right;
-    }
-
-    .MemeOfTheYear {
-        font-size: 1.2rem;
-        margin-bottom: clamp(1rem, 2.5vh, 1.4rem);
-        padding: 0 clamp(0.8rem, 3%, 1.5rem);
-        text-align: right;
-    }
-
-    .Year2025,
-    .Year2024,
-    .Year2023,
-    .Year2022 {
-        font-size: 2.5rem;
-        margin-bottom: clamp(1rem, 2.5vh, 1.3rem);
-        padding: 0 clamp(0.8rem, 3%, 1.5rem);
-        text-align: right;
-    }
-}
-
-/* ===== Touch Device Optimization ===== */
-@media (hover: none) and (pointer: coarse) {
-    .Vector {
-        min-height: clamp(1.5rem, 6vw, 2.2rem);
-        min-width: clamp(1.5rem, 6vw, 2.2rem);
-    }
-
-    .Home,
-    .MemeOfTheYear,
-    .Year2025,
-    .Year2024,
-    .Year2023,
-    .Year2022 {
-        padding: clamp(0.6rem, 1.5vh, 0.8rem) clamp(1.2rem, 4%, 1.8rem);
-        min-height: clamp(1.5rem, 6vw, 2.2rem);
-    }
-}
-
-/* ===== Very Small Height Adjustments (Compact View) ===== */
-@media (max-height: 500px) {
-    .MenuSidebar {
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-
-    .Vector {
-        top: clamp(0.5rem, 2vw, 1rem);
-        right: clamp(0.5rem, 2vw, 1rem);
-        width: clamp(1rem, 3.5vw, 1.5rem);
-        height: clamp(1rem, 3.5vw, 1.5rem);
-    }
-
-    .Home {
-        margin-top: clamp(2rem, 6vh, 3.2rem);
-        margin-bottom: clamp(0.7rem, 1.5vh, 0.95rem);
-        font-size: clamp(1rem, 5vw, 2rem);
-    }
-
-    .MemeOfTheYear {
-        margin-bottom: clamp(0.7rem, 1.5vh, 0.95rem);
-        font-size: clamp(0.75rem, 2vw, 1rem);
-    }
-
-    .Year2025,
-    .Year2024,
-    .Year2023,
-    .Year2022 {
-        margin-bottom: clamp(0.7rem, 1.5vh, 0.95rem);
-        font-size: clamp(1rem, 5vw, 2rem);
-    }
-}
-
-/* ===== Landscape Mode Adjustments ===== */
-@media (max-height: 600px) and (orientation: landscape) {
-    .MenuSidebar {
-        height: auto;
-        min-height: 100vh;
-    }
-
-    .Home,
-    .MemeOfTheYear,
-    .Year2025,
-    .Year2024,
-    .Year2023,
-    .Year2022 {
-        margin-bottom: 1rem;
-    }
-}
+/* ===== No additional media queries needed - responsive vw/vh units handle scaling ===== */
 
 /* ===== Animations ===== */
 @keyframes spinRotate {

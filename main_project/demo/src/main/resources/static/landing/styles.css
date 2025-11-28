@@ -60,9 +60,33 @@ Original Design: 1920px x 4000px
     --color-light-blue: #B5E8FF;
     --color-black: #000000;
     --color-white: #ffffff;
-    
+
     /* 폰트 */
     --font-family: 'Neue Haas Grotesk Text', 'Helvetica Neue', Arial, sans-serif;
+
+    /* Border Radius */
+    --radius-sm: 0.417vw;
+    --radius-md: 0.625vw;
+    --radius-lg: 1.250vw;
+
+    /* Transitions */
+    --transition-default: all 0.3s ease;
+    --transition-modal: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Spacing */
+    --spacing-xs: 0.521vw;
+    --spacing-sm: 1.042vw;
+    --spacing-md: 1.667vw;
+    --spacing-lg: 2.083vw;
+    --spacing-xl: 5.156vw;
+
+    /* Z-index */
+    --z-video: 1;
+    --z-graphics: 2;
+    --z-title: 20;
+    --z-navbar: 1000;
+    --z-modal: 1001;
+    --z-modal-close: 1005;
 }
 
 /* 기본 리셋 */
@@ -79,6 +103,7 @@ html {
     background: var(--color-white);
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -117,8 +142,7 @@ body {
     height: 49.844vw;
     overflow: hidden;
     clip-path: inset(0); /* 동영상 크기에 맞춘 정확한 클리핑 */
-    -webkit-clip-path: inset(0); /* Safari 지원 */
-    z-index: 20;
+    z-index: var(--z-title);
 }
 
 /* 타이틀 그래픽 그룹 */
@@ -126,8 +150,7 @@ body {
 .subtitle-graphic-group {
     display: block;
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
     margin: 0 auto;
     /* GSAP가 애니메이션 제어 - transition 제거 */
     will-change: transform, opacity;
@@ -137,14 +160,14 @@ body {
     width: 89.427vw;
     height: 32.083vw;
     top: 0;
-    z-index: 2;
+    z-index: var(--z-graphics);
 }
 
 .subtitle-graphic-group {
-    width: 89.375vw;
+    width: 89.427vw;
     height: 32.760vw;
     top: 17.084vw;
-    z-index: 2;
+    z-index: var(--z-graphics);
 }
 
 .subtitle-path-text-group {
@@ -159,7 +182,7 @@ body {
     top: 0;
     width: 89.375vw;
     height: 32.760vw;
-    z-index: 1;
+    z-index: var(--z-video);
 }
 
 /* Sticky 네비게이션 바 */
@@ -167,17 +190,15 @@ body {
     position: sticky;
     top: 0;
     width: 100%;
-    height: 5.394vw;
-    min-height: 60px;
+    height: 5.2vw;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 5.156vw;
-    z-index: 1000;
-    transition: all 0.3s ease;
+    padding: 0 var(--spacing-xl);
+    z-index: var(--z-navbar);
+    transition: var(--transition-default);
     box-shadow: 0 0.104vw 0.521vw rgba(0, 0, 0, 0.1);
 }
 
@@ -185,10 +206,10 @@ body {
 .logo {
     width: 5.394vw;
     height: 5.394vw;
-    min-width: 50px;
-    min-height: 50px;
+    min-width: 2.604vw;
+    min-height: 2.604vw;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-default);
 }
 
 .logo:hover {
@@ -202,33 +223,8 @@ body {
     gap: 2.604vw;
 }
 
-/*YHS가 추가한 css*/
-/* 로그인 사용자명 */
-.login-username {
-    color: var(--color-black);
-    font-size: clamp(14px, 1.458vw, 28px);
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-}
-/*YHS가 추가한 css*/
-
-/* 메뉴 버튼들 */
-.login-button {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--color-black);
-    font-size: clamp(16px, 1.667vw, 32px);
-    font-weight: 500;
-    cursor: pointer;
-    padding: 0.521vw 1.042vw;
-    border-radius: 0.417vw;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
-
+/* 공통 네비게이션 버튼 스타일 */
+.login-button,
 .menu-text {
     text-align: center;
     display: flex;
@@ -238,9 +234,11 @@ body {
     font-size: clamp(16px, 1.667vw, 32px);
     font-weight: 500;
     cursor: pointer;
-    padding: 0.521vw 1.042vw;
-    border-radius: 0.417vw;
-    transition: all 0.3s ease;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    transition: var(--transition-default);
+    pointer-events: auto;
+    user-select: none;
 }
 
 /* 비디오 배경 */
@@ -360,8 +358,9 @@ body {
 
 /* 섹션 설명들 */
 .section-description-korean {
-    width: 83.385vw;
-    height: 8.333vw;
+    width: calc(100% - 3.333vw);
+    max-width: 83.385vw;
+    height: auto;
     position: absolute;
     left: 50%;
     top: 67.031vw;
@@ -369,6 +368,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1.667vw;
     color: var(--color-white);
     font-size: clamp(14px, 1.563vw, 30px);
     font-weight: 400;
@@ -377,7 +377,8 @@ body {
 }
 
 .section-description {
-    width: 93.385vw;
+    width: calc(100% - 3.333vw);
+    max-width: 93.385vw;
     position: absolute;
     left: 50%;
     top: 78.698vw;
@@ -385,6 +386,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1.667vw;
     color: var(--color-white);
     font-size: clamp(14px, 1.563vw, 30px);
     font-weight: 400;
@@ -416,12 +418,12 @@ body {
     width: 33.333vw;
     height: 31.250vw;
     position: relative;
-    border-radius: 1.250vw;
+    border-radius: var(--radius-lg);
     border: 0.052vw solid var(--color-white);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1.667vw;
+    padding: var(--spacing-md);
     justify-content: flex-start;
     flex-shrink: 0;
 }
@@ -547,11 +549,6 @@ body {
 }
 
 
-/* 스무스 스크롤링 */
-html {
-    scroll-behavior: smooth;
-}
-
 .Footer {
     width: 100%;
     min-height: 10.417vw;
@@ -630,87 +627,290 @@ html {
     .section-description-korean,
     .section-description {
         width: 90vw;
-        left: 5vw;
+        max-width: 90vw;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
 
-@media (min-width: 1920px) {
-    /* 큰 화면에서 최대 크기 제한 */
-    .main-page,
-    .Footer {
-        width: 100%;
-    }
-}
 
 /* ============================================
    Login Modal Styles
    ============================================ */
 
-.login-modal {
+/* 공통 모달 배경 */
+.login-modal,
+.menu-modal {
     position: fixed;
     top: 0;
     right: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
+    z-index: var(--z-navbar);
     pointer-events: none;
     opacity: 0;
-    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity var(--transition-modal);
 }
 
-.login-modal.active {
+.login-modal.show,
+.menu-modal.show {
     pointer-events: auto;
     opacity: 1;
 }
 
-.login-modal-content {
+/* 공통 모달 콘텐츠 */
+.login-modal-content,
+.menu-modal-content {
     width: 100%;
-    max-width: clamp(300px, 90vw, 600px);
     height: 100vh;
+    max-height: 100vh;
     background: black;
     border-radius: 0;
     position: fixed;
     top: 0;
     right: 0;
-    padding: clamp(1.25rem, 4%, 2rem) clamp(1.25rem, 4%, 2rem) clamp(1.25rem, 4%, 2rem) clamp(1.25rem, 4%, 2rem);
     display: flex;
     flex-direction: column;
     gap: 0;
     justify-content: flex-start;
     box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
+    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
     transform: translateX(100%);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1001;
+    transition: transform var(--transition-modal);
+    z-index: var(--z-modal);
 }
 
-.login-modal.active .login-modal-content {
+/* 로그인 모달 특화 */
+.login-modal-content {
+    max-width: 100%;
+    width: 31.25vw;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 메뉴 모달 특화 */
+.MenuSidebar {
+    width: 31.25vw;
+    height: 100vh;
+    max-height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: black;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    scrollbar-gutter: stable;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+    transform: translateX(100%);
+    transition: transform var(--transition-modal);
+    z-index: var(--z-modal);
+}
+
+.login-modal.show .login-modal-content,
+.menu-modal.show .MenuSidebar {
     transform: translateX(0);
 }
 
-/* 태블릿 크기 (768px 이상) */
-@media (min-width: 768px) {
-    .login-modal-content {
-        max-width: 600px;
-        padding: clamp(1.5rem, 5%, 2rem);
-        box-shadow: -20px 0 60px rgba(0, 0, 0, 0.5);
-    }
+/* Sign Up Modal Styles */
+.signup-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: calc(var(--z-navbar) + 10);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--transition-modal);
 }
 
-/* 대형 화면 (1024px 이상) */
-@media (min-width: 1024px) {
-    .login-modal-content {
-        max-width: 700px;
-    }
+.signup-modal.show {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.signup-modal-content {
+    width: 31.25vw;
+    height: 100vh;
+    max-height: 100vh;
+    background: black;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+    transform: translateX(100%);
+    transition: transform var(--transition-modal);
+    z-index: calc(var(--z-modal) + 10);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+    padding: 0;
+}
+
+.signup-modal.show .signup-modal-content {
+    transform: translateX(0);
+}
+
+/* Sign Up Menu Container */
+.SignUpMenu {
+    width: 31.25vw;
+    height: 67.5vw;
+    position: relative;
+    background: black;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* Sign Up Close Button */
+#closeButton {
+    position: absolute;
+    left: 27.083vw;
+    top: 2.5vw;
+    width: 1.667vw;
+    height: 1.719vw;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    z-index: 10;
+}
+
+#closeButton svg {
+    width: 100%;
+    height: 100%;
+}
+
+#closeButton svg path {
+    fill: white;
+}
+
+#closeButton:hover {
+    animation: spinRotate 0.6s ease-in-out;
+}
+
+/* Sign Up Title */
+.SignUp.Title {
+    position: absolute;
+    left: 12.5vw;
+    top: 2.34vw;
+    color: white;
+    font-size: 1.667vw;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Sign Up Labels */
+.Nickname.Label {
+    position: absolute;
+    left: 3.125vw;
+    top: 11.068vw;
+    color: white;
+    font-size: 2.5vw;
+    font-weight: 400;
+}
+
+.Id.Label {
+    position: absolute;
+    left: 3.125vw;
+    top: 24.583vw;
+    color: white;
+    font-size: 3.125vw;
+    font-weight: 400;
+}
+
+.Pw.Label {
+    position: absolute;
+    left: 3.125vw;
+    top: 38.75vw;
+    color: white;
+    font-size: 3.125vw;
+    font-weight: 400;
+}
+
+/* Sign Up Input Rectangles */
+.Rectangle {
+    position: absolute;
+    background: white;
+    border-radius: 12px;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.Rectangle1 {
+    width: 25vw;
+    height: 3vw;
+    left: 3.125vw;
+    top: 15.208vw;
+}
+
+.Rectangle2 {
+    width: 25vw;
+    height: 3vw;
+    left: 3.125vw;
+    top: 29.375vw;
+}
+
+.Rectangle3 {
+    width: 25vw;
+    height: 3vw;
+    left: 3.125vw;
+    top: 43.542vw;
+}
+
+/* Sign Up Submit Button */
+.Rectangle4 {
+    width: 10vw;
+    height: 4.167vw;
+    left: 10.625vw;
+    top: 52.917vw;
+    background: white;
+    border-radius: 12px;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.Rectangle4:hover {
+    opacity: 0.8;
+}
+
+/* Sign Up Button Text */
+.SignUp.ButtonText {
+    position: absolute;
+    left: 12.188vw;
+    top: 53.958vw;
+    color: white;
+    font-size: 1.667vw;
+    font-weight: 400;
+    text-align: center;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.SignUp.ButtonText:hover {
+    opacity: 0.8;
 }
 
 /* ============================================
    Close Button (Modal Version)
    ============================================ */
 
-.modal-close-btn {
+/* 공통 닫기 버튼 */
+.modal-close-btn,
+.menu-close-btn {
     position: fixed;
     top: clamp(0.75rem, 3%, 1.5rem);
     right: clamp(0.75rem, 3%, 1.5rem);
@@ -720,20 +920,81 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: clamp(28px, 7vw, 40px);
-    height: clamp(28px, 7vw, 40px);
     padding: 0;
-    transition: all 0.3s ease;
-    z-index: 1005;
+    transition: opacity 0.2s ease;
+    z-index: var(--z-modal-close);
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     border-radius: 4px;
 }
 
+/* 로그인 모달 닫기 버튼 크기 */
+.modal-close-btn {
+    width: 40px;
+    height: 40px;
+}
+
+/* 로그인 모달 Close Button Wrapper */
+.close-btn-wrapper {
+    position: absolute;
+    left: 27.083vw;
+    top: 1.5vw;
+    z-index: 10;
+}
+
+/* 메뉴 모달 닫기 버튼 크기 */
+.Vector {
+    position: absolute;
+    left: 27.08vw;
+    top: 2.5vw;
+    width: 1.67vw;
+    height: 1.67vw;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: none;
+}
+
+.Vector:hover {
+    animation: spinRotate 0.6s ease-in-out;
+}
+
+.Vector svg {
+    width: 100%;
+    height: 100%;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.667vw;
+    height: 1.719vw;
+    transition: transform 0.6s ease;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.close-btn:hover {
+    animation: fullRotate 0.6s ease-in-out;
+}
+
+.close-btn svg {
+    width: 100%;
+    height: 100%;
+}
+
 .modal-close-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: rotate(90deg);
+    animation: spinRotate 0.6s ease-in-out;
 }
 
 .modal-close-btn:active {
@@ -749,95 +1010,190 @@ html {
 .modal-close-btn svg {
     width: 100%;
     height: 100%;
-    transition: all 0.3s ease;
+    transition: var(--transition-default);
 }
 
 /* ============================================
-   Login Modal - Form Styles
+   Login Modal - Form Styles (LoginPage Style)
    ============================================ */
 
-.login-modal .login-title {
-    text-align: center;
-    font-size: clamp(22px, 6vw, 36px);
+/* Login Container - Absolute Positioning Layout */
+.login-container {
+    width: 31.25vw;
+    height: 72.917vw;
+    background: black;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Login Title */
+.login-title {
+    position: absolute;
+    left: 12.917vw;
+    top: 1.5vw;
+    font-size: 1.667vw;
     font-weight: 500;
-    letter-spacing: 0.05em;
-    margin-bottom: clamp(1rem, 3%, 1.5rem);
-    margin-top: clamp(0.5rem, 2%, 1rem);
-    line-height: 1.2;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     color: white;
-    flex-shrink: 0;
-    z-index: 5;
+    word-wrap: break-word;
+    width: auto;
+    height: auto;
 }
 
-.login-modal .login-form {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(1.25rem, 3%, 2.5rem);
-    width: 100%;
-    padding: 0 clamp(0.5rem, 2%, 1rem);
-    flex: 1;
-    overflow-y: auto;
-}
-
-.login-modal .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(0.5rem, 2%, 0.75rem);
-}
-
-.login-modal .form-label {
-    font-size: clamp(16px, 4vw, 20px);
+/* Form Label */
+.form-label {
+    position: absolute;
+    font-size: 2.083vw;
     font-weight: 400;
-    letter-spacing: 0.02em;
-    line-height: 1.2;
     color: white;
-    margin-bottom: clamp(0.25rem, 1%, 0.5rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.login-modal .form-input {
-    width: 100%;
-    height: clamp(44px, 10vw, 60px);
-    padding: clamp(0.75rem, 2%, 1rem);
-    background: rgba(255, 255, 255, 0.6);
-    border: 2px solid transparent;
-    border-radius: clamp(6px, 1.5%, 10px);
-    font-size: clamp(14px, 3vw, 16px);
-    color: #333;
+.id-label {
+    left: 3.125vw;
+    top: 8.5vw;
+}
+
+.pw-label {
+    left: 3.125vw;
+    top: 21vw;
+}
+
+/* Input Box Backgrounds (Decorative) */
+.id-input-box,
+.pw-input-box,
+.signin-btn-box,
+.signup-btn-box {
+    position: absolute;
+    opacity: 0.6;
+    background: white;
+    border-radius: 12px;
+}
+
+.id-input-box {
+    width: 25vw;
+    height: 3vw;
+    left: 3.125vw;
+    top: 12.5vw;
+}
+
+.pw-input-box {
+    width: 25vw;
+    height: 3vw;
+    left: 3.125vw;
+    top: 25.5vw;
+}
+
+.signin-btn-box {
+    width: 10vw;
+    height: 4.167vw;
+    left: 4.375vw;
+    top: 34vw;
+}
+
+.signup-btn-box {
+    width: 10vw;
+    height: 4.167vw;
+    left: 16.875vw;
+    top: 34vw;
+}
+
+/* Form Input */
+.form-input {
+    position: absolute;
+    background: transparent;
+    border: none;
     font-family: inherit;
-    transition: all 0.3s ease;
+    color: #333;
     outline: none;
+    padding: 0;
+    font-size: 1vw;
 }
 
-.login-modal .form-input::placeholder {
+.id-input {
+    left: 3.125vw;
+    top: 12.5vw;
+    width: 25vw;
+    height: 3vw;
+    padding: 0.3vw 0.3vw 0.3vw 0.6vw;
+}
+
+.pw-input {
+    left: 3.125vw;
+    top: 25.5vw;
+    width: 25vw;
+    height: 3vw;
+    padding: 0.3vw 0.3vw 0.3vw 0.6vw;
+}
+
+.form-input::placeholder {
     color: rgba(51, 51, 51, 0.6);
 }
 
-.login-modal .form-input:focus {
-    background: rgba(255, 255, 255, 0.9);
-    border-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+.form-input:focus {
+    outline: none;
 }
 
-.login-modal .form-input:hover {
-    background: rgba(255, 255, 255, 0.75);
-}
-
-.login-modal .form-input.input-error {
+.form-input.input-error {
     background: rgba(255, 200, 200, 0.6);
-    border-color: #ff6b6b;
+    border: 1px solid #ff4444;
+    border-radius: 0.625vw;
 }
 
-.login-modal .form-input.input-error:focus {
-    background: rgba(255, 200, 200, 0.8);
-    border-color: #ff6b6b;
+/* Sign Up Form Input Styles */
+.signup-form-input {
+    position: absolute;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    color: #333;
+    outline: none;
+    padding: 0;
+    font-size: 1vw;
+    box-sizing: border-box;
+    z-index: 2;
 }
 
-.login-modal .error-message {
-    font-size: clamp(11px, 2.5vw, 13px);
-    color: #ff6b6b;
-    margin-top: clamp(0.25rem, 0.5%, 0.5rem);
+.nickname-input {
+    left: 3.125vw;
+    top: 15.208vw;
+    width: 25vw;
+    height: 3vw;
+}
+
+.signup-form-input.id-input {
+    left: 3.125vw;
+    top: 29.375vw;
+    width: 25vw;
+    height: 3vw;
+}
+
+.password-input {
+    left: 3.125vw;
+    top: 43.542vw;
+    width: 25vw;
+    height: 3vw;
+}
+
+.signup-form-input::placeholder {
+    color: #333;
+}
+
+/* Error Message */
+.error-message {
+    position: absolute;
+    font-size: 0.8vw;
+    color: #ff4444;
+    margin-top: 0.3vw;
+    word-wrap: break-word;
     animation: slideDown 0.3s ease;
-    line-height: 1.4;
 }
 
 /* 에러 메시지 애니메이션 */
@@ -852,26 +1208,35 @@ html {
     }
 }
 
-.login-modal .button-group {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(0.75rem, 3%, 1.5rem);
-    margin-top: clamp(1rem, 4%, 2rem);
-    padding: 0 clamp(0.5rem, 2%, 1rem);
+@keyframes spinRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
-.login-modal .btn {
-    padding: clamp(0.75rem, 2%, 1rem);
-    height: clamp(44px, 10vw, 60px);
-    background: rgba(255, 255, 255, 0.6);
-    border: 2px solid transparent;
-    border-radius: clamp(6px, 1.5%, 10px);
-    font-size: clamp(12px, 3vw, 16px);
-    font-weight: 400;
+@keyframes fullRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Button Styles */
+.btn {
+    position: absolute;
+    background: transparent;
+    border: none;
     color: white;
-    cursor: pointer;
     font-family: inherit;
-    transition: all 0.3s ease;
+    font-size: 1.667vw;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -880,312 +1245,196 @@ html {
     letter-spacing: 0.05em;
 }
 
-/* 초소형 모바일 (320px - 480px) */
-@media (max-width: 480px) {
-    .login-modal .button-group {
-        grid-template-columns: 1fr;
-        gap: clamp(0.75rem, 3%, 1rem);
-    }
-
-    .login-modal .login-title {
-        font-size: clamp(20px, 5.5vw, 28px);
-        margin-bottom: clamp(1rem, 3%, 1.5rem);
-    }
-
-    .login-modal .form-label {
-        font-size: clamp(14px, 3.5vw, 16px);
-    }
-
-    .login-modal .form-input,
-    .login-modal .btn {
-        height: clamp(40px, 11vw, 50px);
-    }
+.btn-signin {
+    left: 4.375vw;
+    top: 34vw;
+    width: 10vw;
+    height: 4.167vw;
 }
 
-/* 소형 모바일 (480px - 768px) */
-@media (min-width: 480px) and (max-width: 768px) {
-    .login-modal-content {
-        padding: clamp(1.25rem, 3.5%, 1.5rem);
-    }
-
-    .login-modal .button-group {
-        grid-template-columns: 1fr 1fr;
-    }
+.btn-signup {
+    left: 16.875vw;
+    top: 34vw;
+    width: 10vw;
+    height: 4.167vw;
 }
 
-/* 랜드스케이프 모바일 (높이 제약) */
-@media (max-height: 600px) {
-    .login-modal .login-form {
-        gap: clamp(0.75rem, 2%, 1.5rem);
-    }
-
-    .login-modal .form-group {
-        gap: clamp(0.25rem, 1%, 0.5rem);
-    }
-
-    .login-modal .button-group {
-        margin-top: clamp(0.5rem, 2%, 1rem);
-    }
+.btn:hover {
+    opacity: 0.8;
 }
 
-.login-modal .btn:hover {
-    background: rgba(255, 255, 255, 0.8);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.login-modal .btn:focus {
-    border-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
-}
-
-.login-modal .btn:active {
-    transform: translateY(0);
-}
-
-.login-modal .btn-signin {
-    background: rgba(255, 255, 255, 0.6);
-}
-
-.login-modal .btn-signup {
-    background: rgba(255, 255, 255, 0.6);
+.btn:active {
+    opacity: 1;
 }
 
 /* ============================================
    Menu Modal/Sidebar Styles
    ============================================ */
 
-.menu-modal {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.menu-modal.active {
-    pointer-events: auto;
-    opacity: 1;
-}
-
-.menu-modal-content {
-    width: 100%;
-    max-width: clamp(250px, 80vw, 600px);
-    height: 100vh;
-    background: black;
-    border-radius: 0;
-    position: fixed;
-    top: 0;
-    right: 0;
-    padding: clamp(1rem, 3%, 1.5rem);
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    justify-content: flex-start;
-    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-    -webkit-overflow-scrolling: touch;
-    transform: translateX(100%);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1001;
-}
-
-.menu-modal.active .menu-modal-content {
-    transform: translateX(0);
-}
-
-/* 태블릿 크기 (768px 이상) */
-@media (min-width: 768px) {
-    .menu-modal-content {
-        max-width: 600px;
-        padding: clamp(1.5rem, 5%, 2rem);
-        box-shadow: -20px 0 60px rgba(0, 0, 0, 0.5);
-    }
-}
-
-/* 대형 화면 (1024px 이상) */
-@media (min-width: 1024px) {
-    .menu-modal-content {
-        max-width: 700px;
-    }
-}
-
-/* ============================================
-   Menu Close Button
-   ============================================ */
-
-.menu-close-btn {
-    position: fixed;
-    top: clamp(0.75rem, 3%, 1.5rem);
-    right: clamp(0.75rem, 3%, 1.5rem);
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: clamp(24px, 6vw, 40px);
-    height: clamp(24px, 6vw, 40px);
-    padding: 0;
-    transition: all 0.3s ease;
-    z-index: 1005;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: 4px;
-}
-
-.menu-close-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: rotate(90deg);
-}
-
-.menu-close-btn:active {
-    background: rgba(255, 255, 255, 0.2);
-    transform: rotate(90deg) scale(0.95);
-}
-
-.menu-close-btn:focus {
-    outline: 2px solid rgba(255, 255, 255, 0.3);
-    outline-offset: 2px;
-}
-
-.menu-close-btn svg {
-    width: 100%;
-    height: 100%;
-    transition: all 0.3s ease;
-}
-
-/* ============================================
-   Menu Items Container
-   ============================================ */
-
-.menu-items-container {
-    flex: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    display: flex;
-    flex-direction: column;
-}
-
-/* ============================================
-   Menu Items
-   ============================================ */
-
-.menu-item {
+/* ===== HOME Title ===== */
+.Home {
+    position: absolute;
+    left: 17.03vw;
+    top: 7.29vw;
+    opacity: 0.40;
     text-align: right;
     color: white;
-    font-family: 'Haas Grot Text Trial', 'Neue Haas Grotesk Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 3.75vw;
+    font-family: 'Haas Grot Text Trial', sans-serif;
     font-weight: 400;
     word-wrap: break-word;
-    padding: clamp(0.5rem, 2%, 1rem) clamp(0.8rem, 3%, 1.5rem);
     cursor: pointer;
-    transition: all 0.3s ease;
-    opacity: 0.4;
-    line-height: 1.3;
+    transition: opacity 0.3s ease;
 }
 
-.menu-item:hover {
-    opacity: 0.8;
-    transform: translateX(-4px);
+.Home:hover {
+    opacity: 0.9;
 }
 
-.menu-item:active {
-    opacity: 1;
-    transform: translateX(-6px);
+/* ===== MEME OF THE YEAR Title ===== */
+.MemeOfTheYear {
+    position: absolute;
+    left: 11.93vw;
+    top: 14.27vw;
+    width: 16.25vw;
+    opacity: 0.40;
+    text-align: right;
+    color: white;
+    font-size: 2.08vw;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
 }
 
-.menu-home {
-    margin-top: clamp(2rem, 10vh, 4rem);
-    margin-bottom: clamp(0.75rem, 2vh, 1rem);
-    font-size: clamp(1.2rem, 5.5vw, 2.5rem);
-    font-weight: 500;
+.MemeOfTheYear:hover {
+    opacity: 0.9;
 }
 
-.menu-meme-year {
-    margin-bottom: clamp(1rem, 2vh, 1.25rem);
-    font-size: clamp(1rem, 4vw, 1.8rem);
-    font-weight: 500;
+/* ===== 2025 Year ===== */
+.Year2025 {
+    position: absolute;
+    left: 15.99vw;
+    top: 21.77vw;
+    width: 12.76vw;
+    opacity: 0.40;
+    text-align: right;
+    color: white;
+    font-size: 3.75vw;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
 }
 
-.menu-year-2025,
-.menu-year-2024,
-.menu-year-2023,
-.menu-year-2022 {
-    margin-bottom: clamp(0.75rem, 2vh, 1rem);
-    font-size: clamp(1.1rem, 5vw, 2rem);
+.Year2025:hover {
+    opacity: 0.9;
 }
 
-/* 모바일 최적화 (480px 이하) */
-@media (max-width: 480px) {
-    .menu-item {
-        padding: clamp(0.5rem, 2%, 0.75rem) clamp(0.6rem, 2.5%, 1rem);
+/* ===== 2024 Year ===== */
+.Year2024 {
+    position: absolute;
+    left: 19.53vw;
+    top: 28.75vw;
+    opacity: 0.40;
+    text-align: right;
+    color: white;
+    font-size: 3.75vw;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.Year2024:hover {
+    opacity: 0.9;
+}
+
+/* ===== 2023 Year ===== */
+.Year2023 {
+    position: absolute;
+    left: 19.48vw;
+    top: 35.73vw;
+    opacity: 0.40;
+    text-align: right;
+    color: white;
+    font-size: 3.75vw;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.Year2023:hover {
+    opacity: 0.9;
+}
+
+/* ===== 2022 Year ===== */
+.Year2022 {
+    position: absolute;
+    left: 19.53vw;
+    top: 42.71vw;
+    opacity: 0.40;
+    text-align: right;
+    color: white;
+    font-size: 3.75vw;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.Year2022:hover {
+    opacity: 0.9;
+}
+
+/* ============================================
+   Scrollbar Styles
+   ============================================ */
+
+/* 전체 스크롤바 숨기기 - Webkit 브라우저 (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 0.521vw;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(128, 128, 128, 0.6);
+    border-radius: 0.521vw;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(128, 128, 128, 0.9);
+}
+
+/* Firefox 스크롤바 스타일 */
+* {
+    scrollbar-color: rgba(128, 128, 128, 0.6) transparent;
+    scrollbar-width: thin;
+}
+
+/* ============================================
+   Accessibility - Reduced Motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    .close-btn {
+        transition: none;
     }
 
-    .menu-home {
-        margin-top: clamp(1.5rem, 8vh, 2.5rem);
+    .close-btn:hover {
+        animation: none;
+    }
+
+    .error-message {
+        animation: none;
     }
 }
 
-/* 태블릿 이상 (768px 이상) */
-@media (min-width: 768px) {
-    .menu-item {
-        padding: 0.75rem clamp(1rem, 3%, 1.5rem);
-    }
-
-    .menu-home {
-        margin-top: clamp(3.5rem, 12vh, 5rem);
-    }
-}
-
-/* 초소형 모바일 메뉴 최적화 (480px 이하) */
-@media (max-width: 480px) {
-    .menu-modal-content {
-        max-width: clamp(240px, 85vw, 380px);
-    }
-
-    .menu-home {
-        margin-top: clamp(1.5rem, 8vh, 2.5rem);
-        font-size: clamp(1.1rem, 5.2vw, 2rem);
-    }
-
-    .menu-meme-year {
-        font-size: clamp(0.95rem, 3.8vw, 1.6rem);
-    }
-
-    .menu-year-2025,
-    .menu-year-2024,
-    .menu-year-2023,
-    .menu-year-2022 {
-        font-size: clamp(1rem, 4.8vw, 1.8rem);
-    }
-}
-
-/* 랜드스케이프 모바일 메뉴 (높이 제약) */
-@media (max-height: 500px) {
-    .menu-item {
-        padding: clamp(0.3rem, 1.5%, 0.5rem) clamp(0.6rem, 2%, 1rem);
-    }
-
-    .menu-home {
-        margin-top: clamp(1rem, 5vh, 1.5rem);
-        margin-bottom: clamp(0.5rem, 1.5vh, 0.75rem);
-    }
-
-    .menu-meme-year {
-        margin-bottom: clamp(0.5rem, 1.5vh, 0.75rem);
-    }
-
-    .menu-year-2025,
-    .menu-year-2024,
-    .menu-year-2023,
-    .menu-year-2022 {
-        margin-bottom: clamp(0.5rem, 1.5vh, 0.75rem);
-    }
-}
