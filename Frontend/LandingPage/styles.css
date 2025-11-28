@@ -367,7 +367,7 @@ body {
     color: var(--color-white);
     font-size: clamp(12px, 1.25vw, 24px);
     font-weight: 400;
-    line-height: 2.083vw;
+    line-height: 2.5vw;
     text-align: center;
     white-space: nowrap;
 }
@@ -377,7 +377,7 @@ body {
     max-width: 93.385vw;
     position: absolute;
     left: 50%;
-    top: 78.698vw;
+    top: 76.698vw;
     transform: translateX(-50%);
     display: flex;
     justify-content: center;
@@ -386,7 +386,7 @@ body {
     color: var(--color-white);
     font-size: clamp(12px, 1.25vw, 24px);
     font-weight: 400;
-    line-height: 2.083vw;
+    line-height: 2.5vw;
     text-align: center;
 }
 
