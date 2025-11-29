@@ -8,12 +8,12 @@ public class LandingPageController {
 
     @GetMapping("/")
     public String showLandingPage() {
-        return "redirect:/landing/index.html";
+        return "redirect:/LandingPage/index.html";
     }
 
     @GetMapping("/landing")
     public String landingPath() {
-        return "redirect:/landing/index.html";
+        return "redirect:/LandingPage/index.html";
     }
 }
 

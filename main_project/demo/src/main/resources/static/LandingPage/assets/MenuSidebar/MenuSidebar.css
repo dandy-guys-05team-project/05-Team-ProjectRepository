@@ -1,0 +1,183 @@
+/* ===== Root Responsive Units ===== */
+:root {
+    font-size: 16px;
+}
+
+@media (max-width: 480px) {
+    :root {
+        font-size: 14px;
+    }
+}
+
+/* ===== Main Menu Sidebar Container ===== */
+.MenuSidebar {
+    width: 31.25vw;
+    height: 100vh;
+    max-height: 100vh;
+    position: relative;
+    background: black;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    scrollbar-gutter: stable;
+}
+
+/* ===== Close Button Vector ===== */
+.Vector {
+    position: absolute;
+    left: 27.08vw;
+    top: 2.5vw;
+    width: 1.67vw;
+    height: 1.67vw;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: none;
+}
+
+.Vector:hover {
+    animation: spinRotate 0.6s ease-in-out;
+}
+
+.Vector svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* ===== HOME Title ===== */
+.Home {
+    position: absolute;
+    left: 17.03vw;
+    top: 7.29vw;
+    opacity: 0.40;
+    text-align: right;
+    color: white;
+    font-size: 3.75vw;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.Home:hover {
+    opacity: 0.70;
+}
+
+/* ===== MEME OF THE YEAR Title ===== */
+.MemeOfTheYear {
+    position: absolute;
+    left: 11.93vw;
+    top: 14.27vw;
+    width: 16.25vw;
+    opacity: 0.40;
+    text-align: right;
+    color: white;
+    font-size: 2.08vw;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.MemeOfTheYear:hover {
+    opacity: 0.70;
+}
+
+/* ===== 2025 Year ===== */
+.Year2025 {
+    position: absolute;
+    left: 15.99vw;
+    top: 21.77vw;
+    width: 12.76vw;
+    opacity: 0.40;
+    text-align: right;
+    color: white;
+    font-size: 3.75vw;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.Year2025:hover {
+    opacity: 0.70;
+}
+
+/* ===== 2024 Year ===== */
+.Year2024 {
+    position: absolute;
+    left: 19.53vw;
+    top: 28.75vw;
+    opacity: 0.40;
+    text-align: right;
+    color: white;
+    font-size: 3.75vw;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.Year2024:hover {
+    opacity: 0.70;
+}
+
+/* ===== 2023 Year ===== */
+.Year2023 {
+    position: absolute;
+    left: 19.48vw;
+    top: 35.73vw;
+    opacity: 0.40;
+    text-align: right;
+    color: white;
+    font-size: 3.75vw;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.Year2023:hover {
+    opacity: 0.70;
+}
+
+/* ===== 2022 Year ===== */
+.Year2022 {
+    position: absolute;
+    left: 19.53vw;
+    top: 42.71vw;
+    opacity: 0.40;
+    text-align: right;
+    color: white;
+    font-size: 3.75vw;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.Year2022:hover {
+    opacity: 0.70;
+}
+
+/* ===== No additional media queries needed - responsive vw/vh units handle scaling ===== */
+
+/* ===== Animations ===== */
+@keyframes spinRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

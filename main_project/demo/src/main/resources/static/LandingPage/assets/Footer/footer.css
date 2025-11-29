@@ -1,0 +1,83 @@
+/* Footer Styles */
+
+:root {
+    /* 색상 변수 */
+    --color-white: #ffffff;
+    --color-black: #000000;
+
+    /* Border Radius */
+    --radius-sm: 0.417vw;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Footer {
+    width: 100%;
+    height: 10.417vw;
+    background: var(--color-black);
+    position: relative;
+}
+
+.FooterLogo {
+    position: absolute;
+    left: 1.25vw;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 80%;
+    width: auto;
+    display: flex;
+    align-items: center;
+}
+
+.FooterLogo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.Copyright {
+    position: absolute;
+    right: 1.25vw;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: right;
+    color: var(--color-white);
+    font-size: 2.083vw;
+    font-family: 'Haas Grot Text Trial', 'Neue Haas Grotesk Text', 'Neue Haas Grotesk Display', Arial, sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* 반응형 미디어 쿼리 */
+
+/* 태블릿: 768px 이하 */
+@media (max-width: 768px) {
+    .Copyright {
+        font-size: 1.5vw;
+    }
+}
+
+/* 모바일: 480px 이하 */
+@media (max-width: 480px) {
+    .Copyright {
+        font-size: 1.2vw;
+    }
+}
+
+/* 초소형 모바일: 320px 이하 */
+@media (max-width: 320px) {
+    .Copyright {
+        font-size: 1vw;
+    }
+}
