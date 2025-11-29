@@ -31,12 +31,14 @@ function initializeViewportListener() {
             window.innerWidth >= 768 && window.innerWidth < 1024;
         viewport.isDesktop = window.innerWidth >= 1024;
 
-        // 창 크기 변경이 끝난 후에 무한 스크롤 재초기화
+        // 창 크기 변경이 끝난 후에 애니메이션 재초기화
         // (빈번한 재초기화를 피하기 위해 debounce 처리)
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
             initializeInfiniteScroll();
-            console.log("Infinite scroll re-initialized due to window resize");
+            // 타이틀 애니메이션 완전히 재초기화 (ScrollTrigger 인스턴스 제거 및 요소 초기화)
+            initializeTitleGroupAnimation();
+            console.log("Animations re-initialized due to window resize");
         }, 300);
     });
 }
@@ -120,6 +122,9 @@ function handleModalEscapeKey(event, modalElement, closeCallback) {
  * GSAP을 이용한 애니메이션 관리
  */
 
+// ScrollTrigger 인스턴스 저장
+let titleScrollTriggers = [];
+
 /**
  * 타이틀 그룹 애니메이션 설정
  * 빨간색과 파란색 타이틀이 스크롤 시 동시에 위아래로 사라지는 효과
@@ -147,8 +152,28 @@ function initializeTitleGroupAnimation() {
         gsap.registerPlugin(ScrollTrigger);
     }
 
+    // 기존 ScrollTrigger의 progress 저장 (창 크기 변경 후 상태 복원용)
+    let savedProgress = 0;
+    if (titleScrollTriggers.length > 0 && titleScrollTriggers[0].scrollTrigger) {
+        savedProgress = titleScrollTriggers[0].scrollTrigger.progress;
+    }
+
+    // 기존 ScrollTrigger 인스턴스 제거
+    titleScrollTriggers.forEach(trigger => {
+        if (trigger && trigger.scrollTrigger) {
+            trigger.scrollTrigger.kill();
+        }
+    });
+    titleScrollTriggers = [];
+
+    // 요소를 초기 상태로 리셋
+    gsap.set([titleGraphicGroup, subtitleGraphicGroup], {
+        y: 0,
+        opacity: 1
+    });
+
     // 타이틀 그룹 애니메이션 (위로 사라짐)
-    gsap.to(titleGraphicGroup, {
+    const titleAnimation = gsap.to(titleGraphicGroup, {
         scrollTrigger: {
             trigger: titleMaskContainer,
             start: "top 10%",
@@ -163,7 +188,7 @@ function initializeTitleGroupAnimation() {
     });
 
     // 서브타이틀 그룹 애니메이션 (아래로 사라짐)
-    gsap.to(subtitleGraphicGroup, {
+    const subtitleAnimation = gsap.to(subtitleGraphicGroup, {
         scrollTrigger: {
             trigger: titleMaskContainer,
             start: "top 10%",
@@ -176,6 +201,20 @@ function initializeTitleGroupAnimation() {
         duration: 1,
         ease: "power1.inOut",
     });
+
+    // 애니메이션 인스턴스 저장
+    titleScrollTriggers.push(titleAnimation, subtitleAnimation);
+
+    // 저장된 progress로 상태 복원 (창 크기 변경 후에도 애니메이션 상태 유지)
+    if (savedProgress > 0) {
+        titleScrollTriggers.forEach(trigger => {
+            if (trigger && trigger.scrollTrigger) {
+                const st = trigger.scrollTrigger;
+                const scrollPos = st.start + (st.end - st.start) * savedProgress;
+                st.scroll(scrollPos);
+            }
+        });
+    }
 
     console.log("Title group animation initialized");
 }
