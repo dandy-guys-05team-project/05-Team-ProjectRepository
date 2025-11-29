@@ -1095,7 +1095,11 @@ document.addEventListener("DOMContentLoaded", function () {
     initializeLoginForm();
     console.log("✓ Login form initialized");
 
-    // 8. 접근성: Tab 키 네비게이션 지원 (추후 구현 가능)
+    // 8. 푸터 초기화
+    initializeFooter();
+    console.log("✓ Footer initialized");
+
+    // 9. 접근성: Tab 키 네비게이션 지원 (추후 구현 가능)
     document.addEventListener("keydown", (event) => {
         if (event.key === "Tab") {
             // 포커스 관리 로직 추가 가능
@@ -1104,3 +1108,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     console.log("TrendKor Landing Page loaded successfully!");
 });
+
+// ==================== FOOTER MODULE ====================
+/**
+ * Footer Module
+ * 푸터 관련 기능 관리
+ */
+
+/**
+ * 푸터 초기화
+ */
+function initializeFooter() {
+    const footer = document.querySelector(".Footer");
+
+    if (footer) {
+        // Initialize footer functionality here
+        console.log("Footer initialized");
+    }
+}
