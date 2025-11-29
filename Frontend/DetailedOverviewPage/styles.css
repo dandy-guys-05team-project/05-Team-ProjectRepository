@@ -59,91 +59,6 @@
     /* 폰트 */
     --font-family: 'Neue Haas Grotesk Text', 'Helvetica Neue', Arial, sans-serif;
 }
-/* ===== Navigation Bar Styles (from LandingPage) ===== */
-.navbar {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    height: 5.2vw;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 5.156vw;
-    z-index: 1000;
-    transition: all 0.3s ease;
-    box-shadow: 0 0.104vw 0.521vw rgba(0, 0, 0, 0.1);
-}
-
-/* 로고 */
-.logo {
-    width: 5.394vw;
-    height: 5.394vw;
-    min-width: 2.604vw;
-    min-height: 2.604vw;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.logo:hover {
-    transform: scale(1.05);
-}
-
-/* 메뉴 컨테이너 */
-.nav-menu {
-    display: flex;
-    align-items: center;
-    gap: 2.604vw;
-}
-
-/* 메뉴 버튼들 */
-.login-button {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--color-black);
-    font-size: clamp(16px, 1.667vw, 32px);
-    font-weight: 500;
-    cursor: pointer;
-    padding: 0.521vw 1.042vw;
-    border-radius: 0.417vw;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    pointer-events: auto;
-    user-select: none;
-}
-
-.menu-text {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--color-black);
-    font-size: clamp(16px, 1.667vw, 32px);
-    font-weight: 500;
-    cursor: pointer;
-    padding: 0.521vw 1.042vw;
-    border-radius: 0.417vw;
-    transition: all 0.3s ease;
-    pointer-events: auto;
-    user-select: none;
-}
-
-.login-button:hover {
-    color: var(--color-red);
-    background: rgba(198, 12, 48, 0.1);
-}
-
-.menu-text:hover {
-    color: var(--color-dark-blue);
-    background: rgba(0, 71, 173, 0.1);
-}
-
-
-
 
 * {
     margin: 0;
@@ -174,7 +89,67 @@ body {
     align-items: center;
 }
 
-.DetailPageOverview {
+/* ===== Navigation Bar Styles ===== */
+.navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 5.2vw;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5.156vw;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 0.104vw 0.521vw rgba(0, 0, 0, 0.1);
+}
+
+.navbar__logo {
+    width: 5.394vw;
+    height: 5.394vw;
+    min-width: 2.604vw;
+    min-height: 2.604vw;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.navbar__logo:hover {
+    transform: scale(1.05);
+}
+
+.navbar__menu {
+    display: flex;
+    align-items: center;
+    gap: 2.604vw;
+}
+
+.navbar__button {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-black);
+    font-size: clamp(16px, 1.667vw, 32px);
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.521vw 1.042vw;
+    border-radius: 0.417vw;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    pointer-events: auto;
+    user-select: none;
+}
+
+.navbar__button:hover {
+    color: var(--color-dark-blue);
+    background: rgba(0, 71, 173, 0.1);
+}
+
+/* ===== Detail Page Container ===== */
+.detail-page {
     width: 100%;
     height: auto;
     position: relative;
@@ -185,30 +160,21 @@ body {
     margin: 0 auto;
 }
 
-/* Header Wrapper */
-.navbar-wrapper {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    width: 100%;
-}
-
-/* Hero Section */
-.Vector-hero {
+/* ===== Hero Section ===== */
+.hero__background {
     left: 0px;
     top: 0;
     position: absolute;
     width: 100%;
 }
 
-.Vector-hero svg {
+.hero__background svg {
     width: 100%;
     height: auto;
     display: block;
 }
 
-/* Memes Title */
-.Memes {
+.hero__title {
     left: 5.2%;
     top: 50.8vw;
     position: absolute;
@@ -219,7 +185,7 @@ body {
     transform: translateY(-30px);
 }
 
-/* Year Buttons */
+/* ===== Year Buttons ===== */
 .year-button {
     border: none;
     border-radius: 0.83vw;
@@ -251,20 +217,18 @@ body {
     transform: scale(1.05);
 }
 
-/* Active Year Button */
-.year-button.active {
+.year-button--active {
     opacity: 1;
     filter: none;
 }
 
-/* Inactive Year Button */
-.year-button:not(.active) {
+.year-button:not(.year-button--active) {
     opacity: 0.7;
     filter: saturate(0.6);
 }
 
-/* Card Elements - Rectangle 6 (Image Container) */
-.Rectangle6 {
+/* ===== Card Components ===== */
+.card__image-container {
     width: 43.75%;
     height: 41.67vw;
     position: absolute;
@@ -274,13 +238,12 @@ body {
     z-index: 1;
 }
 
-.Rectangle6 svg {
+.card__image-container svg {
     width: 100%;
     height: 100%;
 }
 
-/* Card Elements - Rectangle 7 (Info Container) */
-.Rectangle7 {
+.card__info-container {
     width: 43.75%;
     height: 13.9vw;
     position: absolute;
@@ -294,8 +257,7 @@ body {
     z-index: 2;
 }
 
-/* Card Title */
-.ThisIsTheTitle {
+.card__title {
     position: absolute;
     text-align: center;
     justify-content: center;
@@ -311,8 +273,7 @@ body {
     z-index: 3;
 }
 
-/* Views Count */
-.NViews {
+.card__views {
     width: 8.9%;
     position: absolute;
     text-align: right;
@@ -326,8 +287,7 @@ body {
     z-index: 3;
 }
 
-/* Card Image Overlay */
-.card-image-overlay {
+.card__icon {
     position: absolute;
     width: 6.25vw;
     height: 6.25vw;
@@ -336,13 +296,13 @@ body {
     z-index: 3;
 }
 
-.card-image-overlay svg {
+.card__icon svg {
     width: 100%;
     height: 100%;
 }
 
-/* Footer */
-.Footer {
+/* ===== Footer ===== */
+.footer {
     width: 100%;
     min-height: 10.417vw;
     padding: 2.083vw 5.156vw;
@@ -355,18 +315,18 @@ body {
     max-width: 1920px;
 }
 
-.Footer .Vector {
+.footer__logo {
     flex-shrink: 0;
 }
 
-.Footer .Vector svg {
+.footer__logo svg {
     width: 10.4vw;
     height: 10.4vw;
     min-width: 5.208vw;
     min-height: 5.208vw;
 }
 
-.Footer .Copyright {
+.footer__copyright {
     text-align: right;
     color: white;
     font-size: clamp(12px, 1.250vw, 24px);
@@ -375,480 +335,12 @@ body {
     word-wrap: break-word;
 }
 
-/* Utility Classes */
+/* ===== Utility Classes ===== */
 svg {
     fill: none;
 }
 
-/* ============================================
-   Global & Reset (Login Modal)
-   ============================================ */
-#login-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-#login-modal.show {
-    pointer-events: auto;
-    opacity: 1;
-}
-
-.login-modal-content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 1001;
-}
-
-/* ============================================
-   Login Container - Absolute Positioning Layout
-   ============================================ */
-.login-container {
-    width: 31.25vw;
-    height: 72.917vw;
-    background: black;
-    position: relative;
-    overflow: hidden;
-}
-
-/* ============================================
-   Close Button
-   ============================================ */
-.close-btn-wrapper {
-    position: absolute;
-    left: 27.083vw;
-    top: 2.503vw;
-    z-index: 10;
-}
-
-.close-btn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.667vw;
-    height: 1.719vw;
-    transition: transform 0.6s ease;
-    outline: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
-.close-btn:hover {
-    animation: fullRotate 0.6s ease-in-out;
-}
-
-.close-btn svg {
-    width: 100%;
-    height: 100%;
-}
-
-/* ============================================
-   Login Title
-   ============================================ */
-.login-title {
-    position: absolute;
-    left: 12.917vw;
-    top: 2.344vw;
-    font-size: 1.667vw;
-    font-weight: 500;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    color: white;
-    word-wrap: break-word;
-    width: auto;
-    height: auto;
-}
-
-/* ============================================
-   Form Label
-   ============================================ */
-.form-label {
-    position: absolute;
-    font-size: 3.125vw;
-    font-weight: 400;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.id-label {
-    left: 3.125vw;
-    top: 10.417vw;
-}
-
-.pw-label {
-    left: 3.125vw;
-    top: 24.583vw;
-}
-
-/* ============================================
-   Input Box Backgrounds (Decorative)
-   ============================================ */
-.id-input-box,
-.pw-input-box,
-.signin-btn-box,
-.signup-btn-box {
-    position: absolute;
-    opacity: 0.6;
-    background: white;
-    border-radius: 12px;
-}
-
-.id-input-box {
-    width: 25vw;
-    height: 3vw;
-    left: 3.125vw;
-    top: 15.208vw;
-}
-
-.pw-input-box {
-    width: 25vw;
-    height: 3vw;
-    left: 3.125vw;
-    top: 29.375vw;
-}
-
-.signin-btn-box {
-    width: 10vw;
-    height: 4.167vw;
-    left: 4.375vw;
-    top: 38.75vw;
-}
-
-.signup-btn-box {
-    width: 10vw;
-    height: 4.167vw;
-    left: 16.875vw;
-    top: 38.75vw;
-}
-
-/* ============================================
-   Form Input
-   ============================================ */
-.form-input {
-    position: absolute;
-    background: transparent;
-    border: none;
-    font-family: inherit;
-    color: #333;
-    outline: none;
-    padding: 0;
-    font-size: 1vw;
-}
-
-.id-input {
-    left: 3.125vw;
-    top: 15.208vw;
-    width: 25vw;
-    height: 3vw;
-    padding: 0.3vw 0.3vw 0.3vw 0.6vw;
-}
-
-.pw-input {
-    left: 3.125vw;
-    top: 29.375vw;
-    width: 25vw;
-    height: 3vw;
-    padding: 0.3vw 0.3vw 0.3vw 0.6vw;
-}
-
-.form-input::placeholder {
-    color: rgba(51, 51, 51, 0.6);
-}
-
-.form-input:focus {
-    outline: none;
-}
-
-.form-input.input-error {
-    background: rgba(255, 200, 200, 0.6);
-    border: 1px solid #ff4444;
-    border-radius: 0.625vw;
-}
-
-/* Error Message */
-.error-message {
-    position: absolute;
-    font-size: 0.8vw;
-    color: #ff4444;
-    margin-top: 0.3vw;
-    word-wrap: break-word;
-    animation: slideDown 0.3s ease;
-}
-
-/* ============================================
-   Button Styles
-   ============================================ */
-.btn {
-    position: absolute;
-    background: transparent;
-    border: none;
-    color: white;
-    font-family: inherit;
-    font-size: 1.667vw;
-    font-weight: 400;
-    cursor: pointer;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    outline: none;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.btn-signin {
-    left: 4.375vw;
-    top: 38.75vw;
-    width: 10vw;
-    height: 4.167vw;
-}
-
-.btn-signup {
-    left: 16.875vw;
-    top: 38.75vw;
-    width: 10vw;
-    height: 4.167vw;
-}
-
-.btn:hover {
-    opacity: 0.8;
-}
-
-.btn:active {
-    opacity: 1;
-}
-
-/* ============================================
-   Menu Modal Styles
-   ============================================ */
-.menu-modal,
-.signup-modal {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity var(--transition-modal);
-}
-
-.menu-modal {
-    z-index: var(--z-navbar);
-}
-
-.menu-modal.show,
-.signup-modal.show {
-    pointer-events: auto;
-    opacity: 1;
-}
-
-/* 메뉴 모달 콘텐츠 */
-.menu-modal-content {
-    width: 100%;
-    height: 100vh;
-    max-height: 100vh;
-    background: black;
-    position: fixed;
-    top: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    transform: translateX(100%);
-    transition: transform var(--transition-modal);
-    border-radius: 0;
-    gap: 0;
-    z-index: var(--z-modal);
-}
-
-.menu-modal.show .menu-modal-content {
-    transform: translateX(0);
-}
-
-
-.menu-close-btn {
-    position: fixed;
-    top: clamp(0.75rem, 3%, 1.5rem);
-    right: clamp(0.75rem, 3%, 1.5rem);
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: clamp(1.458vw, 7vw, 2.083vw);
-    height: clamp(1.458vw, 7vw, 2.083vw);
-    padding: 0;
-    transition: opacity 0.2s ease;
-    z-index: 1005;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: 4px;
-}
-
-.menu-close-btn:hover {
-    animation: spinRotate 0.6s ease-in-out;
-}
-
-.menu-close-btn:active {
-    background: rgba(255, 255, 255, 0.2);
-    transform: rotate(90deg) scale(0.95);
-}
-
-.menu-close-btn:focus {
-    outline: 2px solid rgba(255, 255, 255, 0.3);
-    outline-offset: 2px;
-}
-
-.menu-close-btn svg {
-    width: 100%;
-    height: 100%;
-    transition: all 0.3s ease;
-}
-
-.menu-items-container {
-    flex: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    display: flex;
-    flex-direction: column;
-}
-
-.menu-item {
-    text-align: right;
-    color: white;
-    font-family: 'Haas Grot Text Trial', 'Neue Haas Grotesk Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-weight: 400;
-    word-wrap: break-word;
-    padding: clamp(0.417vw, 2%, 0.833vw) clamp(0.667vw, 3%, 1.042vw);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    opacity: 0.4;
-    line-height: 1.3;
-}
-
-.menu-item:hover {
-    opacity: 0.8;
-    transform: translateX(-4px);
-}
-
-.menu-item:active {
-    opacity: 1;
-    transform: translateX(-6px);
-}
-
-.menu-home {
-    margin-top: clamp(2rem, 10vh, 4rem);
-    margin-bottom: clamp(0.75rem, 2vh, 1rem);
-    font-size: clamp(1.2rem, 5.5vw, 2.5rem);
-    font-weight: 500;
-}
-
-.menu-meme-year {
-    margin-bottom: clamp(1rem, 2vh, 1.25rem);
-    font-size: clamp(1rem, 4vw, 1.8rem);
-    font-weight: 500;
-}
-
-.menu-year-2025,
-.menu-year-2024,
-.menu-year-2023,
-.menu-year-2022 {
-    margin-bottom: clamp(0.75rem, 2vh, 1rem);
-    font-size: clamp(1.1rem, 5vw, 2rem);
-}
-
-/* 모바일 최적화 (480px 이하) */
-@media (max-width: 480px) {
-    .menu-item {
-        padding: clamp(0.5rem, 2%, 0.75rem) clamp(0.6rem, 2.5%, 1rem);
-    }
-
-    .menu-home {
-        margin-top: clamp(1.5rem, 8vh, 2.5rem);
-    }
-}
-
-/* 초소형 모바일 메뉴 최적화 (480px 이하) */
-@media (max-width: 480px) {
-    .menu-modal-content {
-        max-width: clamp(240px, 85vw, 380px);
-    }
-
-    .menu-home {
-        margin-top: clamp(1.5rem, 8vh, 2.5rem);
-        font-size: clamp(1.1rem, 5.2vw, 2rem);
-    }
-
-    .menu-meme-year {
-        font-size: clamp(0.95rem, 3.8vw, 1.6rem);
-    }
-
-    .menu-year-2025,
-    .menu-year-2024,
-    .menu-year-2023,
-    .menu-year-2022 {
-        font-size: clamp(1rem, 4.8vw, 1.8rem);
-    }
-}
-
-/* 랜드스케이프 모바일 메뉴 (높이 제약) */
-@media (max-height: 500px) {
-    .menu-item {
-        padding: clamp(0.3rem, 1.5%, 0.5rem) clamp(0.6rem, 2%, 1rem);
-    }
-
-    .menu-home {
-        margin-top: clamp(1rem, 5vh, 1.5rem);
-        margin-bottom: clamp(0.5rem, 1.5vh, 0.75rem);
-    }
-
-    .menu-meme-year {
-        margin-bottom: clamp(0.5rem, 1.5vh, 0.75rem);
-    }
-
-    .menu-year-2025,
-    .menu-year-2024,
-    .menu-year-2023,
-    .menu-year-2022 {
-        margin-bottom: clamp(0.5rem, 1.5vh, 0.75rem);
-    }
-}
-
-/* ============================================
-   Responsive Media Queries - Mobile (max-width: 768px)
-   ============================================ */
+/* ===== Responsive Media Queries - Mobile (max-width: 768px) ===== */
 @media (max-width: 768px) {
     /* 모바일 네비게이션 최적화 */
     .navbar {
@@ -857,35 +349,34 @@ svg {
         min-height: 70px;
     }
 
-    .logo {
+    .navbar__logo {
         width: 12vw;
         height: 12vw;
         min-width: 40px;
         min-height: 40px;
     }
 
-    .nav-menu {
+    .navbar__menu {
         gap: 4vw;
     }
 
-    .login-button,
-    .menu-text {
+    .navbar__button {
         font-size: clamp(14px, 3vw, 20px);
         padding: 1vw 2vw;
     }
 
     /* 카드 반응형 조정 */
-    .Rectangle6,
-    .Rectangle7 {
+    .card__image-container,
+    .card__info-container {
         width: calc(100% - 4vw);
     }
 
-    .ThisIsTheTitle {
+    .card__title {
         width: 60%;
     }
 
     /* Footer 반응형 */
-    .Footer {
+    .footer {
         flex-direction: column;
         gap: 3.125vw;
         padding: 4.167vw 0;
@@ -893,12 +384,12 @@ svg {
         min-height: auto;
     }
 
-    .Footer .Vector svg {
+    .footer__logo svg {
         width: 10.417vw;
         min-width: 80px;
     }
 
-    .Footer .Copyright {
+    .footer__copyright {
         text-align: center;
         margin: 0;
     }
@@ -911,30 +402,27 @@ svg {
         padding: 2vw;
     }
 
-    /* Memes 제목 */
-    .Memes {
+    /* 제목 */
+    .hero__title {
         font-size: clamp(28px, 8vw, 60px);
     }
 }
 
-/* ============================================
-   Responsive Media Queries - Small Mobile (max-width: 480px)
-   ============================================ */
+/* ===== Responsive Media Queries - Small Mobile (max-width: 480px) ===== */
 @media (max-width: 480px) {
     .navbar {
         padding: 1.5vw 3vw;
     }
 
-    .logo {
+    .navbar__logo {
         width: 15vw;
     }
 
-    .nav-menu {
+    .navbar__menu {
         gap: 3vw;
     }
 
-    .login-button,
-    .menu-text {
+    .navbar__button {
         font-size: clamp(12px, 2.5vw, 16px);
         padding: 0.8vw 1.5vw;
     }
@@ -949,63 +437,55 @@ svg {
         width: 40vw !important;
     }
 
-    .Memes {
+    .hero__title {
         font-size: clamp(24px, 7vw, 42px);
     }
 
-    .ThisIsTheTitle {
+    .card__title {
         font-size: clamp(14px, 2vw, 24px);
         width: 70%;
     }
 
-    .NViews {
+    .card__views {
         font-size: clamp(12px, 1.5vw, 18px);
     }
 }
 
-/* ============================================
-   Responsive Media Queries - Tablet (768px - 1024px)
-   ============================================ */
+/* ===== Responsive Media Queries - Tablet (768px - 1024px) ===== */
 @media (min-width: 768px) and (max-width: 1024px) {
     /* 태블릿 최적화 */
     .navbar {
         padding: 0 3.5vw;
     }
 
-    .logo {
+    .navbar__logo {
         width: 8vw;
         min-width: 50px;
     }
 
-    .login-button,
-    .menu-text {
+    .navbar__button {
         font-size: clamp(14px, 2.5vw, 22px);
     }
 }
 
-/* ============================================
-   Responsive Media Queries - Desktop (min-width: 1024px)
-   ============================================ */
+/* ===== Responsive Media Queries - Desktop (min-width: 1024px) ===== */
 @media (min-width: 1024px) {
     /* 데스크톱 최적화 */
     .navbar {
         padding: 0 5.156vw;
     }
 
-    .logo {
+    .navbar__logo {
         width: 5.394vw;
     }
 
-    .login-button,
-    .menu-text {
+    .navbar__button {
         font-size: clamp(16px, 1.667vw, 32px);
         padding: 0.521vw 1.042vw;
     }
 }
 
-/* ============================================
-   Animations
-   ============================================ */
+/* ===== Animations ===== */
 @keyframes slideDown {
     from {
         opacity: 0;
@@ -1062,967 +542,10 @@ svg {
     }
 }
 
-/* ============================================
-   Additional Modal & Form Styles from LandingPage
-   ============================================ */
-
-/* Global & Reset for Modal */
-.login-modal,
-.menu-modal {
-    font-family: 'Haas Grot Text Trial', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-}
-
-/* Modal Close Button Refinements */
-.modal-close-btn {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
-.modal-close-btn:hover {
-    animation: spinRotate 0.6s ease-in-out;
-    background: transparent;
-}
-
-.modal-close-btn:active {
-    background: transparent;
-}
-
-.modal-close-btn:focus {
-    outline: none;
-}
-
-
-
-/* ============================================
-   Responsive Adjustments (Tablet 768px+)
-   ============================================ */
-@media (min-width: 768px) {
-    .login-modal-content {
-        max-width: 600px;
-        padding: clamp(1.5rem, 5%, 2rem);
-        box-shadow: -20px 0 60px rgba(0, 0, 0, 0.5);
-    }
-
-    .menu-modal-content {
-        max-width: 600px;
-        padding: clamp(1.5rem, 5%, 2rem);
-        box-shadow: -20px 0 60px rgba(0, 0, 0, 0.5);
-    }
-
-    .login-modal .login-title {
-        margin-bottom: clamp(1.5rem, 4%, 2.5rem);
-    }
-
-    .login-modal .form-group {
-        gap: clamp(0.75rem, 2%, 1.25rem);
-    }
-
-    .menu-item {
-        padding: 0.75rem clamp(1rem, 3%, 1.5rem);
-    }
-
-    .menu-home {
-        margin-top: clamp(3.5rem, 12vh, 5rem);
-    }
-}
-
-/* ============================================
-   Responsive Adjustments (Desktop 1024px+)
-   ============================================ */
-@media (min-width: 1024px) {
-    .login-modal-content {
-        max-width: 700px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    }
-
-    .menu-modal-content {
-        max-width: 700px;
-    }
-
-    .modal-close-btn {
-        transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
-    }
-
-    .modal-close-btn:hover {
-        background: rgba(255, 255, 255, 0.1);
-    }
-
-    .login-modal .form-input:focus {
-        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
-    }
-
-    .login-modal .btn:hover {
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    }
-}
-
-/* ============================================
-   Responsive Adjustments (Large Desktop 1440px+)
-   ============================================ */
-@media (min-width: 1440px) {
-    .login-modal-content {
-        max-width: 700px;
-    }
-}
-
-/* ============================================
-   Mobile Adjustments (480px - 768px)
-   ============================================ */
-@media (min-width: 480px) and (max-width: 768px) {
-    .login-modal-content {
-        padding: clamp(1.25rem, 3.5%, 1.5rem);
-    }
-
-    .login-modal .button-group {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-/* ============================================
-   Small Mobile Adjustments (max-width: 480px)
-   ============================================ */
-@media (max-width: 480px) {
-    .login-modal-content {
-        padding: clamp(1rem, 4%, 1.5rem);
-    }
-
-    .login-modal .login-title {
-        font-size: clamp(20px, 5.5vw, 28px);
-        margin-bottom: clamp(1rem, 3%, 1.5rem);
-    }
-
-    .login-modal .form-label {
-        font-size: clamp(14px, 3.5vw, 16px);
-    }
-
-    .login-modal .form-input,
-    .login-modal .btn {
-        height: clamp(40px, 11vw, 50px);
-    }
-
-    .login-modal .button-group {
-        grid-template-columns: 1fr;
-        gap: clamp(0.75rem, 3%, 1rem);
-    }
-
-    .menu-modal-content {
-        max-width: clamp(240px, 85vw, 380px);
-    }
-
-    .menu-home {
-        margin-top: clamp(1.5rem, 8vh, 2.5rem);
-        font-size: clamp(1.1rem, 5.2vw, 2rem);
-    }
-
-    .menu-meme-year {
-        font-size: clamp(0.95rem, 3.8vw, 1.6rem);
-    }
-
-    .menu-year-2025,
-    .menu-year-2024,
-    .menu-year-2023,
-    .menu-year-2022 {
-        font-size: clamp(1rem, 4.8vw, 1.8rem);
-    }
-
-    .menu-item {
-        padding: clamp(0.5rem, 2%, 0.75rem) clamp(0.6rem, 2.5%, 1rem);
-    }
-}
-
-/* ============================================
-   Landscape Mobile Optimizations (max-height: 600px)
-   ============================================ */
-@media (max-height: 600px) {
-    .login-modal .login-form {
-        gap: clamp(0.75rem, 2%, 1.5rem);
-    }
-
-    .login-modal .form-group {
-        gap: clamp(0.25rem, 1%, 0.5rem);
-    }
-
-    .login-modal .button-group {
-        margin-top: clamp(0.5rem, 2%, 1rem);
-    }
-}
-
-/* ============================================
-   Landscape Mobile Menu Optimizations (max-height: 500px)
-   ============================================ */
-@media (max-height: 500px) {
-    .menu-item {
-        padding: clamp(0.3rem, 1.5%, 0.5rem) clamp(0.6rem, 2%, 1rem);
-    }
-
-    .menu-home {
-        margin-top: clamp(1rem, 5vh, 1.5rem);
-        margin-bottom: clamp(0.5rem, 1.5vh, 0.75rem);
-    }
-
-    .menu-meme-year {
-        margin-bottom: clamp(0.5rem, 1.5vh, 0.75rem);
-    }
-
-    .menu-year-2025,
-    .menu-year-2024,
-    .menu-year-2023,
-    .menu-year-2022 {
-        margin-bottom: clamp(0.5rem, 1.5vh, 0.75rem);
-    }
-}
-
-/* ============================================
-   Accessibility - Reduced Motion
-   ============================================ */
+/* ===== Accessibility - Reduced Motion ===== */
 @media (prefers-reduced-motion: reduce) {
-    .modal-close-btn,
-    .login-modal .form-input,
-    .login-modal .btn,
-    .menu-item {
-        transition: none;
-    }
-
-    .login-modal .btn:hover,
-    .modal-close-btn:hover {
-        transform: none;
-    }
-}
-
-/* ============================================
-   Print Styles
-   ============================================ */
-@media print {
-    .login-modal,
-    .menu-modal {
-        display: none;
-    }
-}
-
-/* ============================================
-   Login Modal Styles from LandingPage
-   ============================================ */
-
-:root {
-    --transition-modal: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    --radius-sm: 0.417vw;
-    --radius-md: 0.625vw;
-    --radius-lg: 1.250vw;
-    --z-modal: 1001;
-    --z-modal-offset: 1010;
-    --z-modal-close: 1005;
-}
-
-/* 공통 모달 배경 */
-.login-modal,
-.menu-modal,
-.signup-modal {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity var(--transition-modal);
-}
-
-.login-modal,
-.menu-modal {
-    z-index: 1000;
-}
-
-.signup-modal {
-    z-index: var(--z-modal-offset);
-}
-
-.login-modal.show,
-.menu-modal.show,
-.signup-modal.show {
-    pointer-events: auto;
-    opacity: 1;
-}
-
-/* 공통 모달 콘텐츠 */
-.login-modal-content,
-.menu-modal-content,
-.signup-modal-content {
-    width: 100%;
-    height: 100vh;
-    max-height: 100vh;
-    background: black;
-    position: fixed;
-    top: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    transform: translateX(100%);
-    transition: transform var(--transition-modal);
-}
-
-.login-modal-content,
-.menu-modal-content {
-    border-radius: 0;
-    gap: 0;
-    z-index: var(--z-modal);
-}
-
-.signup-modal-content {
-    z-index: calc(var(--z-modal) + 10);
-    align-items: flex-start;
-    overflow-y: auto;
-    scrollbar-gutter: stable;
-    padding: 0;
-}
-
-/* 로그인 모달 특화 */
-.login-modal-content {
-    max-width: 100%;
-    width: 31.25vw;
-    overflow-y: auto;
-    scrollbar-gutter: stable;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Sign Up Modal Styles - Width specification */
-.signup-modal-content {
-    width: 31.25vw;
-}
-
-.signup-modal.show .signup-modal-content {
-    transform: translateX(0);
-}
-
-.login-modal.show .login-modal-content,
-.menu-modal.show .MenuSidebar {
-    transform: translateX(0);
-}
-
-/* Sign Up Menu Container */
-.SignUpMenu {
-    width: 31.25vw;
-    height: 67.5vw;
-    position: relative;
-    background: black;
-    overflow: hidden;
-    flex-shrink: 0;
-}
-
-/* Sign Up Close Button */
-.Vector {
-    left: 86.67%;
-    top: 3.7%;
-    position: absolute;
-    cursor: pointer;
-    width: 1.667vw;
-    height: 1.719vw;
-}
-
-.Vector:hover {
-    animation: spinRotate 0.6s ease-in-out;
-}
-
-.Vector svg {
-    width: 100%;
-    height: 100%;
-}
-
-/* Sign Up Title */
-.SignUp {
-    text-align: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    color: white;
-    font-family: 'Haas Grot Text Trial', sans-serif;
-    word-wrap: break-word;
-    position: absolute;
-}
-
-.SignUp.Title {
-    left: 38.83%;
-    top: 3.472%;
-    font-size: 1.667vw;
-    font-weight: 500;
-    width: 22.34%;
-    height: 3.703%;
-}
-
-/* Sign Up Labels */
-.Nickname,
-.Id,
-.Pw {
-    left: 10%;
-    position: absolute;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    color: white;
-    font-family: var(--font-family);
-    font-weight: 400;
-    word-wrap: break-word;
-}
-
-.Nickname {
-    top: 16.52%;
-    font-size: 2.5vw;
-}
-
-.Id,
-.Pw {
-    font-size: 3.125vw;
-}
-
-.Id {
-    top: 36.46%;
-}
-
-.Pw {
-    top: 57.41%;
-}
-
-/* Sign Up Input Rectangles */
-.Rectangle1,
-.Rectangle2,
-.Rectangle3,
-.Rectangle4 {
-    position: absolute;
-    opacity: 0.6;
-    background: white;
-    border-radius: var(--radius-md);
-}
-
-.Rectangle1,
-.Rectangle2,
-.Rectangle3 {
-    width: 80%;
-    height: 6.173%;
-    left: 10%;
-}
-
-.Rectangle1 {
-    top: 22.53%;
-}
-
-.Rectangle2 {
-    top: 43.52%;
-}
-
-.Rectangle3 {
-    top: 64.51%;
-}
-
-/* Sign Up Submit Button */
-.Rectangle4 {
-    width: 32%;
-    height: 6.173%;
-    left: 34%;
-    top: 78.40%;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
-}
-
-.Rectangle4:hover {
-    opacity: 0.8;
-}
-
-/* Sign Up Button Text */
-.SignUp.ButtonText {
-    left: 34%;
-    top: 78.40%;
-    position: absolute;
-    font-size: 1.667vw;
-    font-weight: 400;
-    width: 32%;
-    height: 6.173%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Back Arrow Frame */
-.Frame {
-    left: 8%;
-    top: 3.086%;
-    position: absolute;
-    cursor: pointer;
-    width: 2.5vw;
-    height: 2.701vw;
-}
-
-.Frame:hover {
-    opacity: 0.8;
-}
-
-/* ============================================
-   Close Button (Modal Version)
-   ============================================ */
-
-/* 공통 닫기 버튼 */
-.modal-close-btn,
-.menu-close-btn,
-.close-btn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
-.modal-close-btn,
-.menu-close-btn {
-    position: fixed;
-    top: clamp(0.75rem, 3%, 1.5rem);
-    right: clamp(0.75rem, 3%, 1.5rem);
-    transition: opacity 0.2s ease;
-    z-index: var(--z-modal-close);
-    border-radius: 4px;
-}
-
-/* 로그인 모달 닫기 버튼 크기 */
-.modal-close-btn {
-    width: 40px;
-    height: 40px;
-}
-
-/* 로그인 모달 Close Button Wrapper */
-.close-btn-wrapper {
-    position: absolute;
-    left: 27.083vw;
-    top: 1.5vw;
-    z-index: 10;
-}
-
-/* 메뉴 모달 닫기 버튼 크기 */
-.Vector {
-    position: absolute;
-    left: 27.08vw;
-    top: 2.5vw;
-    width: 1.67vw;
-    height: 1.67vw;
-    cursor: pointer;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: none;
-}
-
-.Vector:hover {
-    animation: spinRotate 0.6s ease-in-out;
-}
-
-.Vector svg {
-    width: 100%;
-    height: 100%;
-}
-
-.close-btn {
-    width: 1.667vw;
-    height: 1.719vw;
-    transition: transform 0.6s ease;
-    outline: none;
-}
-
-.close-btn:hover {
-    animation: fullRotate 0.6s ease-in-out;
-}
-
-.close-btn svg {
-    width: 100%;
-    height: 100%;
-}
-
-.modal-close-btn:hover {
-    animation: spinRotate 0.6s ease-in-out;
-}
-
-.modal-close-btn:active {
-    background: rgba(255, 255, 255, 0.2);
-    transform: rotate(90deg) scale(0.95);
-}
-
-.modal-close-btn:focus {
-    outline: 2px solid rgba(255, 255, 255, 0.3);
-    outline-offset: 2px;
-}
-
-.modal-close-btn svg {
-    width: 100%;
-    height: 100%;
-    transition: all 0.3s ease;
-}
-
-/* ============================================
-   Login Modal - Form Styles
-   ============================================ */
-
-/* Login Container - Absolute Positioning Layout */
-.login-container {
-    width: 31.25vw;
-    height: 72.917vw;
-    background: black;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Login Title */
-.login-title {
-    position: absolute;
-    left: 12.917vw;
-    top: 1.5vw;
-    font-size: 1.667vw;
-    font-weight: 500;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    color: white;
-    word-wrap: break-word;
-    width: auto;
-    height: auto;
-}
-
-/* Form Label */
-.form-label {
-    position: absolute;
-    font-size: 2.083vw;
-    font-weight: 400;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.id-label {
-    left: 3.125vw;
-    top: 8.5vw;
-}
-
-.pw-label {
-    left: 3.125vw;
-    top: 21vw;
-}
-
-/* Input Box Backgrounds (Decorative) */
-.id-input-box,
-.pw-input-box,
-.signin-btn-box,
-.signup-btn-box {
-    position: absolute;
-    opacity: 0.6;
-    background: white;
-    border-radius: var(--radius-md);
-}
-
-.id-input-box,
-.pw-input-box {
-    width: 25vw;
-    height: 3vw;
-    left: 3.125vw;
-}
-
-.id-input-box {
-    top: 12.5vw;
-}
-
-.pw-input-box {
-    top: 25.5vw;
-}
-
-.signin-btn-box,
-.signup-btn-box {
-    width: 10vw;
-    height: 4.167vw;
-    top: 34vw;
-}
-
-.signin-btn-box {
-    left: 4.375vw;
-}
-
-.signup-btn-box {
-    left: 16.875vw;
-}
-
-/* Form Input */
-.form-input,
-.signup-form-input {
-    position: absolute;
-    background: transparent;
-    border: none;
-    font-family: inherit;
-    color: #333;
-    outline: none;
-}
-
-.form-input {
-    padding: 0;
-    font-size: 1vw;
-}
-
-.id-input,
-.pw-input {
-    left: 3.125vw;
-    width: 25vw;
-    height: 3vw;
-    padding: 0.3vw 0.3vw 0.3vw 0.6vw;
-}
-
-.id-input {
-    top: 12.5vw;
-}
-
-.pw-input {
-    top: 25.5vw;
-}
-
-.form-input::placeholder {
-    color: rgba(51, 51, 51, 0.6);
-}
-
-.form-input:focus {
-    outline: none;
-}
-
-.form-input.input-error {
-    background: rgba(255, 200, 200, 0.6);
-    border: 1px solid #ff4444;
-    border-radius: 0.625vw;
-}
-
-/* Sign Up Form Input Styles */
-.signup-form-input {
-    padding: 0.5vw;
-    font-size: 0.833vw;
-    box-sizing: border-box;
-    z-index: 2;
-}
-
-.nickname-input,
-.signup-form-input.id-input,
-.password-input {
-    left: 10%;
-    width: 80%;
-    height: 6.173%;
-}
-
-.nickname-input {
-    top: 22.53%;
-}
-
-.signup-form-input.id-input {
-    top: 43.52%;
-}
-
-.password-input {
-    top: 64.51%;
-}
-
-.signup-form-input::placeholder {
-    color: #333;
-}
-
-/* Error Message */
-.error-message {
-    position: absolute;
-    font-size: 0.8vw;
-    color: #ff4444;
-    margin-top: 0.3vw;
-    word-wrap: break-word;
-    animation: slideDown 0.3s ease;
-}
-
-/* Button Styles */
-.btn {
-    position: absolute;
-    background: transparent;
-    border: none;
-    color: white;
-    font-family: inherit;
-    font-size: 1.667vw;
-    font-weight: 400;
-    cursor: pointer;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    outline: none;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.btn-signin {
-    left: 4.375vw;
-    top: 34vw;
-    width: 10vw;
-    height: 4.167vw;
-}
-
-.btn-signup {
-    left: 16.875vw;
-    top: 34vw;
-    width: 10vw;
-    height: 4.167vw;
-}
-
-.btn:hover {
-    opacity: 0.8;
-}
-
-.btn:active {
-    opacity: 1;
-}
-
-/* ============================================
-   Menu Modal/Sidebar Styles
-   ============================================ */
-
-/* 메뉴 모달 특화 */
-.MenuSidebar {
-    width: 31.25vw;
-    height: 100vh;
-    max-height: 100vh;
-    position: fixed;
-    top: 0;
-    right: 0;
-    background: black;
-    overflow-y: auto;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    scrollbar-gutter: stable;
-    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
-    transform: translateX(100%);
-    transition: transform var(--transition-modal);
-    z-index: var(--z-modal);
-}
-
-/* ===== Menu Item Base Styles ===== */
-.Home,
-.MemeOfTheYear,
-.Year2025,
-.Year2024,
-.Year2023,
-.Year2022 {
-    position: absolute;
-    text-align: right;
-    color: white;
-    font-family: var(--font-family);
-    font-weight: 400;
-    word-wrap: break-word;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-    opacity: 0.40;
-}
-
-.Home:hover,
-.MemeOfTheYear:hover,
-.Year2025:hover,
-.Year2024:hover,
-.Year2023:hover,
-.Year2022:hover {
-    opacity: 0.9;
-}
-
-/* ===== HOME Title ===== */
-.Home {
-    left: 17.03vw;
-    top: 7.29vw;
-    font-size: 3.75vw;
-}
-
-/* ===== MEME OF THE YEAR Title ===== */
-.MemeOfTheYear {
-    left: 11.93vw;
-    top: 14.27vw;
-    width: 16.25vw;
-    font-size: 2.08vw;
-}
-
-/* ===== 2025 Year ===== */
-.Year2025 {
-    left: 15.99vw;
-    top: 21.77vw;
-    width: 12.76vw;
-    font-size: 3.75vw;
-}
-
-/* ===== 2024 Year ===== */
-.Year2024 {
-    left: 19.53vw;
-    top: 28.75vw;
-    font-size: 3.75vw;
-}
-
-/* ===== 2023 Year ===== */
-.Year2023 {
-    left: 19.48vw;
-    top: 35.73vw;
-    font-size: 3.75vw;
-}
-
-/* ===== 2022 Year ===== */
-.Year2022 {
-    left: 19.53vw;
-    top: 42.71vw;
-    font-size: 3.75vw;
-}
-
-/* ============================================
-   Animations
-   ============================================ */
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fullRotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* ============================================
-   Accessibility - Reduced Motion
-   ============================================ */
-@media (prefers-reduced-motion: reduce) {
-    .close-btn {
-        transition: none;
-    }
-
-    .close-btn:hover {
-        animation: none;
-    }
-
-    .error-message {
-        animation: none;
+    * {
+        animation: none !important;
+        transition: none !important;
     }
 }
