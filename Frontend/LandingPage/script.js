@@ -177,7 +177,7 @@ function initializeTitleGroupAnimation() {
         scrollTrigger: {
             trigger: titleMaskContainer,
             start: "top 10%",
-            end: "top 10%",
+            end: "top -20%",
             scrub: 1,
             markers: false,
         },
@@ -192,7 +192,7 @@ function initializeTitleGroupAnimation() {
         scrollTrigger: {
             trigger: titleMaskContainer,
             start: "top 10%",
-            end: "top 10%",
+            end: "top -20%",
             scrub: 1,
             markers: false,
         },
