@@ -650,11 +650,11 @@ function handleMenuNavigation(itemName) {
  */
 const MOCK_DATA = {
     '2025': [
-        { id: 1, title: 'THIS IS THE TITLE', views: 'n Views', imageUrl: 'assets/image0_108_70.png', iconUrl: 'assets/image0_108_70.png' },
-        { id: 2, title: 'THIS IS THE TITLE', views: 'n Views', imageUrl: 'assets/image0_108_79.png', iconUrl: 'assets/image0_108_79.png' },
-        { id: 3, title: 'THIS IS THE TITLE', views: 'n Views', imageUrl: 'assets/image0_108_86.png', iconUrl: 'assets/image0_108_86.png' },
-        { id: 4, title: 'THIS IS THE TITLE', views: 'n Views', imageUrl: 'assets/image0_108_93.png', iconUrl: 'assets/image0_108_93.png' },
-        { id: 5, title: 'THIS IS THE TITLE', views: 'n Views', imageUrl: 'assets/image0_108_100.png', iconUrl: 'assets/image0_108_100.png' },
+        { id: 1, title: '2025 Title 1', views: 'n Views', imageUrl: 'assets/image0_108_70.png', iconUrl: 'assets/image0_108_70.png' },
+        { id: 2, title: '2025 Title 2', views: 'n Views', imageUrl: 'assets/image0_108_79.png', iconUrl: 'assets/image0_108_79.png' },
+        { id: 3, title: '2025 Title 3', views: 'n Views', imageUrl: 'assets/image0_108_86.png', iconUrl: 'assets/image0_108_86.png' },
+        { id: 4, title: '2025 Title 4', views: 'n Views', imageUrl: 'assets/image0_108_93.png', iconUrl: 'assets/image0_108_93.png' },
+        { id: 5, title: '2025 Title 5', views: 'n Views', imageUrl: 'assets/image0_108_100.png', iconUrl: 'assets/image0_108_100.png' },
     ],
     '2024': [
         { id: 1, title: '2024 Title 1', views: 'n Views', imageUrl: 'assets/image0_108_70.png', iconUrl: 'assets/image0_108_70.png' },
