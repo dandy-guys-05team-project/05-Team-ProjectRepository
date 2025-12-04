@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (toggleSwitch) {
         toggleSwitch.addEventListener('click', function() {
             const currentState = this.getAttribute('data-state');
-            const newState = currentState === 'Off' ? 'On' : 'Off';
+            const newState = currentState === 'Kor' ? 'Eng' : 'Kor';
             this.setAttribute('data-state', newState);
         });
     }

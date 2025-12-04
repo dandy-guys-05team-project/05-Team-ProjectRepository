@@ -285,15 +285,15 @@ body {
     align-items: center;
 }
 
-/* Off 상태 */
-.ToggleSwitch[data-state="Off"] {
-    background: #cccccc;
+/* Kor 상태 */
+.ToggleSwitch[data-state="Kor"] {
+    background: #c60c30;
     flex-direction: row-reverse;
 }
 
-/* On 상태 */
-.ToggleSwitch[data-state="On"] {
-    background: #c60c30;
+/* Eng 상태 */
+.ToggleSwitch[data-state="Eng"] {
+    background: #003780;
     flex-direction: row;
 }
 
