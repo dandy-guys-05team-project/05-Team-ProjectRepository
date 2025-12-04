@@ -293,6 +293,23 @@ body {
     top: 148.44vw;
     position: absolute;
     background: var(--color-gray-medium);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 컨텐츠 섹션 텍스트 영역 */
+.ContentSection__text {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 2.08vw;
+    box-sizing: border-box;
+    color: var(--color-text-dark);
+    font-size: 1.667vw;
+    line-height: 1.8;
+    word-wrap: break-word;
 }
 
 /* 샘플 이미지 */
