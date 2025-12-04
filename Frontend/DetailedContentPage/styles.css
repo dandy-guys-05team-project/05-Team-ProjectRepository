@@ -314,6 +314,25 @@ body {
     word-wrap: break-word;
 }
 
+/* 영문 텍스트 (기본 표시) */
+.ContentSection__text--eng {
+    display: block;
+}
+
+/* 한글 텍스트 (기본 숨김) */
+.ContentSection__text--kor {
+    display: none;
+}
+
+/* 토글 상태: Kor일 때 한글 표시, 영문 숨김 */
+.DetailPageDetail.kor-mode .ContentSection__text--eng {
+    display: none;
+}
+
+.DetailPageDetail.kor-mode .ContentSection__text--kor {
+    display: block;
+}
+
 /* 샘플 이미지 */
 .SampleImage {
     width: 52.08vw;

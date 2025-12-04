@@ -642,12 +642,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Toggle switch initialization
     const toggleSwitch = document.querySelector('.ToggleSwitch');
+    const detailPageDetail = document.querySelector('.DetailPageDetail');
     if (toggleSwitch) {
         toggleSwitch.addEventListener('click', function() {
             const currentState = this.getAttribute('data-state');
             const newState = currentState === 'Kor' ? 'Eng' : 'Kor';
             this.setAttribute('data-state', newState);
+
+            // DetailPageDetail에 kor-mode 클래스 추가/제거
+            if (newState === 'Kor') {
+                detailPageDetail.classList.add('kor-mode');
+            } else {
+                detailPageDetail.classList.remove('kor-mode');
+            }
         });
+
+        // 초기 상태 설정 (Kor가 초기값이면 kor-mode 클래스 추가)
+        const initialState = toggleSwitch.getAttribute('data-state');
+        if (initialState === 'Kor') {
+            detailPageDetail.classList.add('kor-mode');
+        }
     }
     console.log("✓ Toggle switch initialized");
 
