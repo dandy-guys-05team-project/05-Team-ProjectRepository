@@ -310,36 +310,47 @@ body {
 }
 
 /* ===== Footer ===== */
-.footer {
+.Footer {
     width: 100%;
-    min-height: 10.417vw;
-    padding: 2.083vw 5.156vw;
-    background: black;
+    height: 10.417vw;
+    background: var(--color-black);
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1.042vw 5.156vw;
     gap: 6.250vw;
-    position: relative;
     max-width: 1920px;
     margin-top: 0;
 }
 
-.footer__logo {
+.FooterLogo {
+    position: absolute;
+    left: 1.25vw;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 80%;
+    width: auto;
+    display: flex;
+    align-items: center;
     flex-shrink: 0;
 }
 
-.footer__logo svg {
-    width: 10.4vw;
-    height: 10.4vw;
-    min-width: 5.208vw;
-    min-height: 5.208vw;
+.FooterLogo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
-.footer__copyright {
+.Copyright {
+    position: absolute;
+    right: 1.25vw;
+    top: 50%;
+    transform: translateY(-50%);
     text-align: right;
-    color: white;
-    font-size: clamp(12px, 1.250vw, 24px);
-    font-family: var(--font-family);
+    color: var(--color-white);
+    font-size: 2.083vw;
+    font-family: 'Haas Grot Text Trial', 'Neue Haas Grotesk Text', 'Neue Haas Grotesk Display', Arial, sans-serif;
     font-weight: 400;
     word-wrap: break-word;
 }
@@ -1179,4 +1190,21 @@ svg {
 * {
     scrollbar-color: rgba(128, 128, 128, 0.6) transparent;
     scrollbar-width: thin;
+}
+
+/* ============================================
+   Accessibility - Reduced Motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    .close-btn {
+        transition: none;
+    }
+
+    .close-btn:hover {
+        animation: none;
+    }
+
+    .error-message {
+        animation: none;
+    }
 }

@@ -651,6 +651,15 @@ function initializeYearButtons() {
     });
 }
 
+// ==================== FOOTER MODULE ====================
+function initializeFooter() {
+    const footer = document.querySelector(".Footer");
+
+    if (footer) {
+        console.log("Footer initialized");
+    }
+}
+
 // ==================== INITIALIZATION ====================
 document.addEventListener("DOMContentLoaded", function () {
     console.log("DetailedOverviewPage - Initializing...");
@@ -675,6 +684,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     initializeYearButtons();
     console.log("✓ Year buttons initialized");
+
+    initializeFooter();
+    console.log("✓ Footer initialized");
 
     console.log("DetailedOverviewPage loaded successfully!");
 });
