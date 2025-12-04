@@ -1,3 +1,65 @@
+/* Neue Haas Grotesk Text 폰트 정의 */
+@font-face {
+    font-family: 'Neue Haas Grotesk Text';
+    src: url('../LandingPage/fonts/NeueHaasGrotText-55Roman-Trial.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neue Haas Grotesk Text';
+    src: url('../LandingPage/fonts/NeueHaasGrotText-56Italic-Trial.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neue Haas Grotesk Text';
+    src: url('../LandingPage/fonts/NeueHaasGrotText-65Medium-Trial.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neue Haas Grotesk Text';
+    src: url('../LandingPage/fonts/NeueHaasGrotText-66MediumItalic-Trial.otf') format('opentype');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neue Haas Grotesk Text';
+    src: url('../LandingPage/fonts/NeueHaasGrotText-75Bold-Trial.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neue Haas Grotesk Text';
+    src: url('../LandingPage/fonts/NeueHaasGrotText-76BoldItalic-Trial.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+:root {
+    /* 색상 변수 */
+    --color-red: #C60C30;
+    --color-blue: #003780;
+    --color-dark-blue: #004BAD;
+    --color-light-blue: #B5E8FF;
+    --color-black: #000000;
+    --color-white: #ffffff;
+
+    /* 폰트 */
+    --font-family: 'Neue Haas Grotesk Text', 'Helvetica Neue', Arial, sans-serif;
+}
+
 /* 기본 리셋 */
 * {
     margin: 0;
@@ -7,6 +69,7 @@
 
 html {
     font-size: 16px;
+    font-family: var(--font-family);
 }
 
 body {
@@ -24,8 +87,8 @@ body {
     overflow: hidden;
 }
 
-/* 제목 텍스트 - MEMES (첫 번째) */
-.DetailPageDetail > .Memes:nth-child(1) {
+/* 제목 텍스트 - MEMES */
+.DetailPageDetail > .Memes {
     left: 5.21vw;
     top: 56.04vw;
     position: absolute;
@@ -33,17 +96,7 @@ body {
     font-size: 6.25vw;
     font-weight: 500;
     word-wrap: break-word;
-}
-
-/* 제목 텍스트 - MEMES (두 번째) */
-.DetailPageDetail > .Memes:nth-child(4) {
-    left: 5.21vw;
-    top: 56.09vw;
-    position: absolute;
-    color: white;
-    font-size: 6.25vw;
-    font-weight: 500;
-    word-wrap: break-word;
+    z-index: 10;
 }
 
 /* 푸터 영역 */
@@ -78,13 +131,15 @@ body {
     word-wrap: break-word;
 }
 
+
 /* 배경 벡터 이미지 (큰 이미지 1920x1151) */
-.DetailPageDetail > [data-svg-wrapper].Vector:nth-of-type(3) {
+.DetailPageDetail > [data-svg-wrapper].BackgroundImage {
     width: 100vw;
     height: 59.95vw;
     left: 0;
     top: 5.21vw;
     position: absolute;
+    z-index: 0;
 }
 
 /* 흰색 상단 박스 */
@@ -172,12 +227,12 @@ body {
 }
 
 /* 화살표 벡터 (150x125) */
-.DetailPageDetail > [data-svg-wrapper].Vector:nth-of-type(12) {
+.DetailPageDetail > [data-svg-wrapper].BackArrow {
     width: 7.81vw;
     height: 6.51vw;
-    left: 10.42vw;
-    top: 74.84vw;
     position: absolute;
+    left: 10.42vw;
+    top: 75.10vw;
 }
 
 /* 댓글 섹션 */
@@ -301,4 +356,737 @@ body {
 [data-svg-wrapper] svg {
     width: 100%;
     height: 100%;
+}
+
+/* ===== Navigation Bar Styles ===== */
+.navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 5.2vw;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5.156vw;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 0.104vw 0.521vw rgba(0, 0, 0, 0.1);
+}
+
+.navbar__logo {
+    width: 5.394vw;
+    height: 5.394vw;
+    min-width: 2.604vw;
+    min-height: 2.604vw;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.navbar__logo:hover {
+    transform: scale(1.05);
+}
+
+.navbar__menu {
+    display: flex;
+    align-items: center;
+    gap: 2.604vw;
+}
+
+.navbar__button {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-black);
+    font-size: clamp(16px, 1.667vw, 32px);
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.521vw 1.042vw;
+    border-radius: 0.417vw;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    pointer-events: auto;
+    user-select: none;
+}
+
+.navbar__button--login:hover {
+    color: var(--color-red);
+    background: rgba(198, 12, 48, 0.1);
+}
+
+.navbar__button--menu:hover {
+    color: var(--color-dark-blue);
+    background: rgba(0, 71, 173, 0.1);
+}
+
+/* ============================================
+   Modal Styles - Login, Signup, Menu
+   ============================================ */
+
+:root {
+    --transition-modal: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --z-navbar: 1000;
+    --z-modal: 1001;
+    --z-modal-close: 1005;
+    --z-modal-offset: calc(var(--z-navbar) + 10);
+}
+
+/* 공통 모달 배경 */
+.login-modal,
+.menu-modal,
+.signup-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--transition-modal);
+    z-index: var(--z-navbar);
+}
+
+.signup-modal {
+    z-index: var(--z-modal-offset);
+}
+
+.login-modal.show,
+.menu-modal.show,
+.signup-modal.show {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+/* 공통 모달 콘텐츠 */
+.login-modal-content,
+.signup-modal-content {
+    width: 31.25vw;
+    height: 100vh;
+    max-height: 100vh;
+    background: black;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    transform: translateX(100%);
+    transition: transform var(--transition-modal);
+    z-index: var(--z-modal);
+    border-radius: 0;
+    gap: 0;
+    padding: 0;
+    scrollbar-gutter: stable;
+}
+
+.signup-modal-content {
+    z-index: calc(var(--z-modal) + 10);
+    align-items: flex-start;
+}
+
+.login-modal.show .login-modal-content,
+.signup-modal.show .signup-modal-content {
+    transform: translateX(0);
+}
+
+/* 로그인 모달 */
+.login-modal-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 로그인 컨테이너 */
+.login-container {
+    width: 31.25vw;
+    height: 72.917vw;
+    background: black;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 로그인 제목 */
+.login-title {
+    position: absolute;
+    left: 12.917vw;
+    top: 1.5vw;
+    font-size: 1.667vw;
+    font-weight: 500;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    word-wrap: break-word;
+    width: auto;
+    height: auto;
+}
+
+/* 폼 라벨 */
+.form-label {
+    position: absolute;
+    font-size: 2.083vw;
+    font-weight: 400;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.id-label {
+    left: 3.125vw;
+    top: 8.5vw;
+}
+
+.pw-label {
+    left: 3.125vw;
+    top: 21vw;
+}
+
+/* 입력 박스 배경 */
+.id-input-box,
+.pw-input-box,
+.signin-btn-box,
+.signup-btn-box {
+    position: absolute;
+    opacity: 0.6;
+    background: white;
+    border-radius: 0.625vw;
+}
+
+.id-input-box,
+.pw-input-box {
+    width: 25vw;
+    height: 3vw;
+    left: 3.125vw;
+}
+
+.id-input-box {
+    top: 12.5vw;
+}
+
+.pw-input-box {
+    top: 25.5vw;
+}
+
+.signin-btn-box,
+.signup-btn-box {
+    width: 10vw;
+    height: 4.167vw;
+    top: 34vw;
+}
+
+.signin-btn-box {
+    left: 4.375vw;
+}
+
+.signup-btn-box {
+    left: 16.875vw;
+}
+
+/* 폼 입력 */
+.form-input {
+    position: absolute;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    color: #333;
+    outline: none;
+    padding: 0;
+    font-size: 1vw;
+}
+
+.id-input,
+.pw-input {
+    left: 3.125vw;
+    width: 25vw;
+    height: 3vw;
+    padding: 0.3vw 0.3vw 0.3vw 0.6vw;
+}
+
+.id-input {
+    top: 12.5vw;
+}
+
+.pw-input {
+    top: 25.5vw;
+}
+
+.form-input::placeholder {
+    color: rgba(51, 51, 51, 0.6);
+}
+
+.form-input:focus {
+    outline: none;
+}
+
+.form-input.input-error {
+    background: rgba(255, 200, 200, 0.6);
+    border: 1px solid #ff4444;
+    border-radius: 0.625vw;
+}
+
+/* 버튼 */
+.btn {
+    position: absolute;
+    background: transparent;
+    border: none;
+    color: white;
+    font-family: inherit;
+    font-size: 1.667vw;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.btn-signin {
+    left: 4.375vw;
+    top: 34vw;
+    width: 10vw;
+    height: 4.167vw;
+}
+
+.btn-signup {
+    left: 16.875vw;
+    top: 34vw;
+    width: 10vw;
+    height: 4.167vw;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.btn:active {
+    opacity: 1;
+}
+
+/* 닫기 버튼 래퍼 */
+.close-btn-wrapper {
+    position: absolute;
+    left: 27.083vw;
+    top: 1.5vw;
+    z-index: 10;
+}
+
+/* 닫기 버튼 */
+.close-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 1.667vw;
+    height: 1.719vw;
+    transition: transform 0.6s ease;
+    outline: none;
+}
+
+.close-btn:hover {
+    animation: fullRotate 0.6s ease-in-out;
+}
+
+.close-btn svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* 에러 메시지 */
+.error-message {
+    position: absolute;
+    font-size: 0.8vw;
+    color: #ff4444;
+    margin-top: 0.3vw;
+    word-wrap: break-word;
+    animation: slideDown 0.3s ease;
+}
+
+/* 회원가입 모달 */
+.SignUpMenu {
+    width: 31.25vw;
+    height: 67.5vw;
+    position: relative;
+    background: black;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* 회원가입 닫기 버튼 */
+.SignUpMenu .Vector,
+#signup-modal .Vector,
+.MenuSidebar .Vector,
+#menu-modal .Vector {
+    left: 86.67%;
+    top: 3.7%;
+    position: absolute;
+    cursor: pointer;
+    width: 1.667vw;
+    height: 1.719vw;
+}
+
+.SignUpMenu .Vector:hover,
+#signup-modal .Vector:hover,
+.MenuSidebar .Vector:hover,
+#menu-modal .Vector:hover {
+    animation: spinRotate 0.6s ease-in-out;
+}
+
+.SignUpMenu .Vector svg,
+#signup-modal .Vector svg,
+.MenuSidebar .Vector svg,
+#menu-modal .Vector svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* 회원가입 제목 */
+.SignUp {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    word-wrap: break-word;
+    position: absolute;
+}
+
+.SignUp.Title {
+    left: 38.83%;
+    top: 3.472%;
+    font-size: 1.667vw;
+    font-weight: 500;
+    width: 22.34%;
+    height: 3.703%;
+}
+
+/* 회원가입 라벨 */
+.Nickname,
+.Id,
+.Pw {
+    left: 10%;
+    position: absolute;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.Nickname {
+    top: 16.52%;
+    font-size: 2.5vw;
+}
+
+.Id,
+.Pw {
+    font-size: 3.125vw;
+}
+
+.Id {
+    top: 36.46%;
+}
+
+.Pw {
+    top: 57.41%;
+}
+
+/* 회원가입 입력 박스 */
+.Rectangle {
+    position: absolute;
+    opacity: 0.6;
+    background: white;
+    border-radius: 0.625vw;
+}
+
+.Rectangle1,
+.Rectangle2,
+.Rectangle3 {
+    width: 80%;
+    height: 6.173%;
+    left: 10%;
+}
+
+.Rectangle1 {
+    top: 22.53%;
+}
+
+.Rectangle2 {
+    top: 43.52%;
+}
+
+.Rectangle3 {
+    top: 64.51%;
+}
+
+/* 회원가입 제출 버튼 */
+.Rectangle4 {
+    width: 32%;
+    height: 6.173%;
+    left: 34%;
+    top: 78.40%;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.Rectangle4:hover {
+    opacity: 0.8;
+}
+
+/* 회원가입 버튼 텍스트 */
+.SignUp.ButtonText {
+    left: 34%;
+    top: 78.40%;
+    position: absolute;
+    font-size: 1.667vw;
+    font-weight: 400;
+    width: 32%;
+    height: 6.173%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 뒤로가기 버튼 */
+.SignUpMenu .Frame {
+    left: 2.5vw;
+    top: 2.08vw;
+    position: absolute;
+    cursor: pointer;
+    width: 2.5vw;
+    height: 2.701vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.SignUpMenu .Frame svg {
+    width: 100%;
+    height: 100%;
+}
+
+.SignUpMenu .Frame:hover {
+    opacity: 0.8;
+}
+
+/* 회원가입 폼 입력 */
+.signup-form-input {
+    position: absolute;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    color: #333;
+    outline: none;
+    padding: 0.5vw;
+    font-size: 0.833vw;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+.nickname-input,
+.signup-form-input.id-input,
+.password-input {
+    left: 10%;
+    width: 80%;
+    height: 6.173%;
+}
+
+.nickname-input {
+    top: 22.53%;
+}
+
+.signup-form-input.id-input {
+    top: 43.52%;
+}
+
+.password-input {
+    top: 64.51%;
+}
+
+.signup-form-input::placeholder {
+    color: #333;
+}
+
+/* 메뉴 모달 */
+.MenuSidebar {
+    width: 31.25vw;
+    height: 100vh;
+    max-height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: black;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    scrollbar-gutter: stable;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+    transform: translateX(100%);
+    transition: transform var(--transition-modal);
+    z-index: var(--z-modal);
+}
+
+.menu-modal.show .MenuSidebar {
+    transform: translateX(0);
+}
+
+/* 메뉴 항목 */
+.Home,
+.MemeOfTheYear,
+.Year2025,
+.Year2024,
+.Year2023,
+.Year2022 {
+    position: absolute;
+    text-align: right;
+    color: white;
+    font-family: 'Haas Grot Text Trial', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    opacity: 0.40;
+}
+
+.Home:hover,
+.MemeOfTheYear:hover,
+.Year2025:hover,
+.Year2024:hover,
+.Year2023:hover,
+.Year2022:hover {
+    opacity: 0.9;
+}
+
+.Home {
+    left: 17.03vw;
+    top: 7.29vw;
+    font-size: 3.75vw;
+}
+
+.MemeOfTheYear {
+    left: 11.93vw;
+    top: 14.27vw;
+    width: 16.25vw;
+    font-size: 2.08vw;
+}
+
+.Year2025 {
+    left: 15.99vw;
+    top: 21.77vw;
+    width: 12.76vw;
+    font-size: 3.75vw;
+}
+
+.Year2024 {
+    left: 19.53vw;
+    top: 28.75vw;
+    font-size: 3.75vw;
+}
+
+.Year2023 {
+    left: 19.48vw;
+    top: 35.73vw;
+    font-size: 3.75vw;
+}
+
+.Year2022 {
+    left: 19.53vw;
+    top: 42.71vw;
+    font-size: 3.75vw;
+}
+
+/* 스크롤바 스타일 */
+::-webkit-scrollbar {
+    width: 0.521vw;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(128, 128, 128, 0.6);
+    border-radius: 0.521vw;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(128, 128, 128, 0.9);
+}
+
+/* Firefox 스크롤바 */
+* {
+    scrollbar-color: rgba(128, 128, 128, 0.6) transparent;
+    scrollbar-width: thin;
+}
+
+/* ===== Animations ===== */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spinRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fullRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ============================================
+   Accessibility - Reduced Motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    .close-btn {
+        transition: none;
+    }
+
+    .close-btn:hover {
+        animation: none;
+    }
+
+    .error-message {
+        animation: none;
+    }
 }
