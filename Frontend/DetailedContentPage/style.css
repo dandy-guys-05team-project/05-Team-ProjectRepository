@@ -1,0 +1,273 @@
+/* Main Container */
+.DetailPageDetail {
+    width: 100%;
+    height: 309.896%;
+    position: relative;
+    background: white;
+    overflow: hidden;
+}
+
+/* Header Background */
+.Rectangle5 {
+    width: 100%;
+    height: 1.683%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    background: white;
+}
+
+/* Logo Vector */
+.LogoVector {
+    left: 5.208%;
+    top: -0.556%;
+    position: absolute;
+}
+
+/* Header Menu Button */
+.MenuText {
+    left: 89.323%;
+    top: 0.310%;
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-size: 32px;
+    font-family: Haas Grot Text Trial;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+/* Header Login Button */
+.LoginButton {
+    left: 80.625%;
+    top: 0.310%;
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-size: 32px;
+    font-family: Haas Grot Text Trial;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+/* Header Banner Image */
+.HeaderBannerVector {
+    left: 0;
+    top: 0.840%;
+    position: absolute;
+    width: 100%;
+}
+
+/* Main Title */
+.ThisIsTheTitle {
+    left: 26.458%;
+    top: 12.050%;
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-size: 100px;
+    font-family: Haas Grot Text Trial;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+/* Language Toggle Container */
+.KorEng {
+    left: 81.510%;
+    top: 12.050%;
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+}
+
+.KorEng .kor {
+    color: #c60c30;
+    font-size: 40px;
+    font-family: Haas Grot Text Trial;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.KorEng .separator {
+    color: black;
+    font-size: 40px;
+    font-family: Haas Grot Text Trial;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.KorEng .eng {
+    color: #003780;
+    font-size: 40px;
+    font-family: Haas Grot Text Trial;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* Toggle Switch */
+.ToggleSwitch {
+    width: 6.250%;
+    height: 0.671%;
+    padding: 2px;
+    left: 83.854%;
+    top: 12.621%;
+    position: absolute;
+    background: #c60c30;
+    overflow: hidden;
+    border-radius: 100px;
+    justify-content: space-between;
+    align-items: center;
+    display: inline-flex;
+}
+
+.ToggleSwitch.off {
+    background: #666666;
+}
+
+.ToggleSwitch .Frame {
+    flex: 1 1 0;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: flex;
+}
+
+.ToggleSwitch .Knob {
+    position: relative;
+}
+
+/* Arrow Icon */
+.ArrowIcon {
+    left: 10.417%;
+    top: 14.849%;
+    position: absolute;
+}
+
+/* Content Header Background */
+.Rectangle10 {
+    width: 89.583%;
+    height: 5.042%;
+    left: 5.208%;
+    top: 13.950%;
+    position: absolute;
+    background: #d9d9d9;
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+}
+
+/* Main Content Background */
+.Rectangle6 {
+    width: 89.583%;
+    height: 69.516%;
+    left: 5.208%;
+    top: 14.036%;
+    position: absolute;
+    background: #f1f1f1;
+    border-radius: 32px;
+}
+
+/* Sample Image */
+.SampleImage {
+    left: 23.958%;
+    top: 18.142%;
+    position: absolute;
+}
+
+/* Content Section */
+.ContentSection {
+    width: 83.333%;
+    height: 30.251%;
+    left: 8.333%;
+    top: 29.495%;
+    position: absolute;
+    background: #d9d9d9;
+}
+
+/* Footer Background 1 */
+.Rectangle7 {
+    width: 89.583%;
+    height: 13.444%;
+    left: 5.208%;
+    top: 78.390%;
+    position: absolute;
+    background: #d9d9d9;
+    border-bottom-right-radius: 32px;
+    border-bottom-left-radius: 32px;
+}
+
+/* Comment Section */
+.CommentSection {
+    width: 83.333%;
+    height: 10.084%;
+    left: 8.333%;
+    top: 81.431%;
+    position: absolute;
+    background: white;
+}
+
+/* MEMES Text (appears twice) */
+.Memes {
+    left: 5.208%;
+    position: absolute;
+    color: white;
+    font-size: 120px;
+    font-family: Haas Grot Text Trial;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.Memes:first-of-type {
+    top: 18.030%;
+}
+
+.Memes:last-of-type {
+    top: 18.068%;
+}
+
+/* Footer */
+.Footer {
+    width: 100%;
+    height: 3.361%;
+    left: 0;
+    top: 96.639%;
+    position: absolute;
+    background: black;
+    overflow: hidden;
+}
+
+/* Footer Logo */
+.FooterLogoVector {
+    left: 1.25%;
+    top: 0;
+    position: absolute;
+}
+
+/* Footer Copyright Text */
+.Copyright {
+    left: 66.406%;
+    top: 5.073%;
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 40px;
+    font-family: Haas Grot Text Trial;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* SVG Wrapper */
+[data-svg-wrapper] svg {
+    display: block;
+}
