@@ -228,11 +228,13 @@ body {
 
 /* 화살표 벡터 (150x125) */
 .DetailPageDetail > [data-svg-wrapper].BackArrow {
-    width: 7.81vw;
-    height: 6.51vw;
-    position: absolute;
-    left: 10.42vw;
-    top: 75.10vw;
+    width: 7.81vw !important;
+    height: 6.51vw !important;
+    position: absolute !important;
+    left: 10.42vw !important;
+    top: 75.10vw !important;
+    z-index: 10 !important;
+    cursor: pointer !important;
 }
 
 /* 댓글 섹션 */
