@@ -497,7 +497,7 @@ function resetForm() {
 }
 
 function setupSignupEventListeners() {
-    const submitButton = document.querySelector('.Rectangle4');
+    const submitButton = document.querySelector('.signup-submit-btn');
     const submitText = document.querySelector('.SignUp.ButtonText');
     const closeButton = document.querySelector('#signup-modal #closeButton');
     const backButton = document.querySelector('#signup-modal .Frame');
@@ -550,7 +550,7 @@ let menuCloseButtonElement = null;
 function initializeMenuModal() {
     menuModalElement = document.getElementById("menu-modal");
     menuButtonElement = document.querySelector(".navbar__button--menu");
-    menuCloseButtonElement = document.querySelector("#menu-modal .Vector");
+    menuCloseButtonElement = document.querySelector("#menu-modal .menu-close");
 
     if (!menuModalElement || !menuButtonElement) {
         console.warn("Menu modal elements not found");

@@ -69,6 +69,25 @@
     --z-modal: 1001;
     --z-modal-close: 1005;
     --z-modal-offset: calc(var(--z-navbar) + 10);
+
+    /* 간격 변수 */
+    --spacing-xs: 0.52vw;
+    --spacing-sm: 1.04vw;
+    --spacing-md: 2.08vw;
+    --spacing-lg: 3.125vw;
+    --spacing-xl: 5.21vw;
+
+    /* 둥근 모서리 */
+    --border-radius-sm: 0.417vw;
+    --border-radius-md: 0.625vw;
+    --border-radius-lg: 1.67vw;
+
+    /* 폰트 크기 */
+    --font-size-xs: 0.8vw;
+    --font-size-sm: 1vw;
+    --font-size-md: 1.667vw;
+    --font-size-lg: 2.08vw;
+    --font-size-xl: 3.75vw;
 }
 
 /* 기본 리셋 */
@@ -124,7 +143,7 @@ body {
 }
 
 /* 푸터 내 벡터 이미지 */
-.Footer .Vector {
+.Footer .footer-icon {
     width: 10.42vw;
     height: 10.42vw;
     left: 1.25vw;
@@ -156,7 +175,7 @@ body {
 }
 
 /* 흰색 상단 박스 */
-.Rectangle5 {
+.header-container {
     width: 100%;
     height: 5.21vw;
     left: 0;
@@ -195,17 +214,8 @@ body {
     word-wrap: break-word;
 }
 
-/* 로고 벡터 (104x99) */
-.DetailPageDetail > [data-svg-wrapper].Vector:nth-of-type(8) {
-    width: 5.42vw;
-    height: 5.16vw;
-    left: 5.20vw;
-    top: -0.28vw;
-    position: absolute;
-}
-
 /* 배경 회색 박스 */
-.Rectangle6 {
+.content-background {
     width: 89.58%;
     height: 218.75vw;
     left: 5.21vw;
@@ -216,7 +226,7 @@ body {
 }
 
 /* 하단 회색 박스 */
-.Rectangle7 {
+.footer-background {
     width: 89.58%;
     height: 41.67vw;
     left: 5.21vw;
@@ -228,7 +238,7 @@ body {
 }
 
 /* 상단 회색 박스 */
-.Rectangle10 {
+.header-background {
     width: 89.58%;
     height: 15.63vw;
     left: 5.21vw;
@@ -240,7 +250,7 @@ body {
 }
 
 /* 화살표 벡터 (150x125) */
-.DetailPageDetail > [data-svg-wrapper].Vector.BackArrow {
+.DetailPageDetail > [data-svg-wrapper].BackArrow {
     width: 7.81vw;
     height: 6.51vw;
     position: absolute;
@@ -312,7 +322,7 @@ body {
 }
 
 .KorEng span:nth-child(1) {
-    color: #c60c30;
+    color: var(--color-red);
 }
 
 .KorEng span:nth-child(2) {
@@ -320,7 +330,7 @@ body {
 }
 
 .KorEng span:nth-child(3) {
-    color: #003780;
+    color: var(--color-blue);
 }
 
 /* 토글 스위치 */
@@ -331,7 +341,7 @@ body {
     left: 83.85vw;
     top: 78.13vw;
     position: absolute;
-    background: #c60c30;
+    background: var(--color-red);
     overflow: hidden;
     border-radius: 5.21vw;
     justify-content: space-between;
@@ -357,13 +367,13 @@ body {
 
 /* Kor 상태 */
 .ToggleSwitch[data-state="Kor"] {
-    background: #c60c30;
+    background: var(--color-red);
     flex-direction: row-reverse;
 }
 
 /* Eng 상태 */
 .ToggleSwitch[data-state="Eng"] {
-    background: #003780;
+    background: var(--color-blue);
     flex-direction: row;
 }
 
@@ -739,11 +749,11 @@ body {
     flex-shrink: 0;
 }
 
-/* 회원가입 닫기 버튼 */
-.SignUpMenu .Vector,
-#signup-modal .Vector,
-.MenuSidebar .Vector,
-#menu-modal .Vector {
+/* 모달 닫기 버튼 */
+.SignUpMenu .modal-close,
+#signup-modal .modal-close,
+.MenuSidebar .menu-close,
+#menu-modal .menu-close {
     left: 86.67%;
     top: 3.7%;
     position: absolute;
@@ -752,17 +762,17 @@ body {
     height: 1.719vw;
 }
 
-.SignUpMenu .Vector:hover,
-#signup-modal .Vector:hover,
-.MenuSidebar .Vector:hover,
-#menu-modal .Vector:hover {
+.SignUpMenu .modal-close:hover,
+#signup-modal .modal-close:hover,
+.MenuSidebar .menu-close:hover,
+#menu-modal .menu-close:hover {
     animation: spinRotate 0.6s ease-in-out;
 }
 
-.SignUpMenu .Vector svg,
-#signup-modal .Vector svg,
-.MenuSidebar .Vector svg,
-#menu-modal .Vector svg {
+.SignUpMenu .modal-close svg,
+#signup-modal .modal-close svg,
+.MenuSidebar .menu-close svg,
+#menu-modal .menu-close svg {
     width: 100%;
     height: 100%;
 }
@@ -829,28 +839,28 @@ body {
     border-radius: 0.625vw;
 }
 
-.Rectangle1,
-.Rectangle2,
-.Rectangle3 {
+.signup-nickname-input,
+.signup-id-input,
+.signup-password-input {
     width: 80%;
     height: 6.173%;
     left: 10%;
 }
 
-.Rectangle1 {
+.signup-nickname-input {
     top: 22.53%;
 }
 
-.Rectangle2 {
+.signup-id-input {
     top: 43.52%;
 }
 
-.Rectangle3 {
+.signup-password-input {
     top: 64.51%;
 }
 
 /* 회원가입 제출 버튼 */
-.Rectangle4 {
+.signup-submit-btn {
     width: 32%;
     height: 6.173%;
     left: 34%;
@@ -859,7 +869,7 @@ body {
     transition: opacity 0.2s ease;
 }
 
-.Rectangle4:hover {
+.signup-submit-btn:hover {
     opacity: 0.8;
 }
 
