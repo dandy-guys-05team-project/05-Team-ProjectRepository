@@ -1,39 +1,62 @@
-// MenuSidebar.js
-// Handle close button (Vector) click
+/**
+ * MenuSidebar.js
+ * 랜딩 페이지의 메뉴 사이드바 기능 관리
+ * - 닫기 버튼 처리
+ * - 홈 및 MEME OF THE YEAR 메뉴 항목 처리
+ * - 년도 선택 버튼 클릭 시 상세 페이지로 이동
+ */
+
+// ==================== 메뉴 닫기 버튼 처리 ====================
+// 닫기 버튼(Vector) 클릭 이벤트 리스너
 document.querySelector('.Vector').addEventListener('click', function() {
-    // TODO: Implement close/hide sidebar functionality
+    // 메뉴 모달을 닫는 기능 구현
     console.log('Close button clicked');
 });
 
-// Handle HOME menu item click
+// ==================== HOME 메뉴 항목 처리 ====================
+// HOME 메뉴 항목 클릭 이벤트 리스너
 document.querySelector('.Home').addEventListener('click', function() {
-    // TODO: Implement navigation to HOME section
+    // HOME 섹션으로 이동하는 기능 구현
     console.log('HOME clicked');
 });
 
-// Handle MEME OF THE YEAR menu item click
+// ==================== MEME OF THE YEAR 메뉴 항목 처리 ====================
+// MEME OF THE YEAR 메뉴 항목 클릭 이벤트 리스너
 document.querySelector('.MemeOfTheYear').addEventListener('click', function() {
-    // TODO: Implement navigation to MEME OF THE YEAR section
+    // MEME OF THE YEAR 섹션으로 이동하는 기능 구현
     console.log('MEME OF THE YEAR clicked');
 });
 
-// Handle year selection clicks
+// ==================== 년도 선택 버튼 처리 ====================
+/**
+ * 년도 버튼 클릭 핸들러 함수
+ * @param {string} year - 선택된 년도 (예: '2025', '2024')
+ * @description 선택된 년도에 해당하는 밈 데이터를 보여주기 위해 DetailedOverviewPage로 이동
+ */
+function handleYearSelection(year) {
+    console.log(`${year} year selected - Navigating to DetailedOverviewPage`);
+
+    // URL 파라미터를 사용하여 선택된 년도 정보를 전달하며 DetailedOverviewPage로 이동
+    // 예: /DetailedOverviewPage/index.html?year=2025
+    window.location.href = `/DetailedOverviewPage/index.html?year=${year}`;
+}
+
+// 2025년 버튼 클릭 이벤트 리스너
 document.querySelector('.Year2025').addEventListener('click', function() {
-    // TODO: Implement 2025 meme selection
-    console.log('2025 clicked');
+    handleYearSelection('2025');
 });
 
+// 2024년 버튼 클릭 이벤트 리스너
 document.querySelector('.Year2024').addEventListener('click', function() {
-    // TODO: Implement 2024 meme selection
-    console.log('2024 clicked');
+    handleYearSelection('2024');
 });
 
+// 2023년 버튼 클릭 이벤트 리스너
 document.querySelector('.Year2023').addEventListener('click', function() {
-    // TODO: Implement 2023 meme selection
-    console.log('2023 clicked');
+    handleYearSelection('2023');
 });
 
+// 2022년 버튼 클릭 이벤트 리스너
 document.querySelector('.Year2022').addEventListener('click', function() {
-    // TODO: Implement 2022 meme selection
-    console.log('2022 clicked');
+    handleYearSelection('2022');
 });

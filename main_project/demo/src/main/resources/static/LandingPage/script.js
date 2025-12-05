@@ -1175,8 +1175,32 @@ function handleMenuItemClick(event) {
  * @param {string} itemName - 메뉴 항목명
  */
 function handleMenuNavigation(itemName) {
-    // TODO: 라우팅 또는 페이지 이동 로직 구현
     console.log(`Navigating to: ${itemName}`);
+
+    // 연도 버튼 클릭 시 DetailedOverviewPage로 이동
+    if (itemName === "2022" || itemName === "2023" || itemName === "2024" || itemName === "2025") {
+        // 연도를 쿼리 파라미터로 전달하여 페이지 이동
+        window.location.href = `/detailed-overview?year=${itemName}`;
+    }
+    // HOME 클릭 시 페이지 상단으로 스크롤
+    else if (itemName === "HOME") {
+        handleCloseMenuModal();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+    // MEME OF THE YEAR 클릭 시 해당 섹션으로 스크롤
+    else if (itemName === "MEME OF THE YEAR") {
+        handleCloseMenuModal();
+        const memeSection = document.querySelector(".meme-section-title");
+        if (memeSection) {
+            memeSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
+    }
 }
 
 // ==================== MAIN INITIALIZATION ====================
