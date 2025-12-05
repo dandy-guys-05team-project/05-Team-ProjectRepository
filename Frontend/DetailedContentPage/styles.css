@@ -144,32 +144,47 @@ body {
 /* 푸터 영역 */
 .Footer {
     width: 100%;
-    height: 10.42vw;
+    height: 10.417vw;
+    background: var(--color-black);
     position: relative;
-    background: black;
-    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.042vw 5.156vw;
+    gap: 6.250vw;
+    max-width: 1920px;
     margin-top: 10.4167vw;
 }
 
-/* 푸터 내 벡터 이미지 */
-.Footer .footer-icon {
-    width: 10.42vw;
-    height: 10.42vw;
+/* 푸터 로고 */
+.FooterLogo {
+    position: absolute;
     left: 1.25vw;
     top: 50%;
-    position: absolute;
     transform: translateY(-50%);
+    height: 80%;
+    width: auto;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.FooterLogo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 /* 저작권 텍스트 */
 .Copyright {
+    position: absolute;
     right: 1.25vw;
     top: 50%;
-    position: absolute;
     transform: translateY(-50%);
-    text-align: center;
-    color: white;
-    font-size: 2.08vw;
+    text-align: right;
+    color: var(--color-white);
+    font-size: 2.083vw;
+    font-family: 'Haas Grot Text Trial', 'Neue Haas Grotesk Text', 'Neue Haas Grotesk Display', Arial, sans-serif;
     font-weight: 400;
     word-wrap: break-word;
 }
