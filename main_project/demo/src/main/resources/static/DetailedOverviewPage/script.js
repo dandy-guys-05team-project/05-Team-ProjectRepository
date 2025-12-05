@@ -668,47 +668,69 @@ async function handleMenuNavigation(itemName) {
 
 /**
  * 백엔드 API에서 연도별 밈 데이터를 가져오는 함수
+ * 기능: REST API를 호출하여 특정 연도의 모든 밈 데이터를 가져옴
  * @param {string} year - 연도 (2022, 2023, 2024, 2025)
  * @returns {Promise<Array>} - 밈 데이터 배열
  */
 async function fetchMemesByYear(year) {
     try {
+        // 기능: GET 메서드로 해당 연도의 밈 데이터를 요청
         const response = await fetch(`http://localhost:8080/api/memes/${year}`);
 
+        // 기능: HTTP 응답 상태 코드 확인 - 실패 시 에러 발생
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
+        // 기능: 응답 본문을 JSON 형식으로 파싱하여 밈 데이터 배열 추출
         const data = await response.json();
         console.log(`Fetched ${data.length} memes for year ${year}:`, data);
 
+        // 기능: 성공적으로 가져온 밈 데이터 배열 반환
         return data;
     } catch (error) {
+        // 기능: API 호출 실패 시 에러 로그 출력
         console.error(`Failed to fetch memes for year ${year}:`, error);
-        // 에러 발생 시 빈 배열 반환
+        // 기능: 에러 발생 시 빈 배열을 반환하여 애플리케이션 중단 방지
         return [];
     }
 }
 
 /**
  * 백엔드 데이터를 프론트엔드 카드 형식으로 매핑하는 함수
+ * 기능: 백엔드 MemeData 객체를 프론트엔드에서 사용할 카드 데이터 형식으로 변환
  * @param {Object} memeData - 백엔드 MemeData 객체
  * @returns {Object} - 프론트엔드 카드 데이터 형식
  */
 function mapMemeDataToCard(memeData) {
-    // 한국어 제목과 영어 제목을 <br>로 연결     
-      const titleKor = memeData.title_kor || '';
-      const titleEng = memeData.title_eng || '';
-      const combinedTitle = titleKor && titleEng
-          ? `${titleKor}<br>${titleEng}`
-          : titleKor || titleEng || 'No Title';
-    return {
-        id: memeData.id,
-        title: combinedTitle,
-        views: 'n Views',
-        imageUrl: memeData.imagePath || 'assets/image0_108_70.png',
-        iconUrl: memeData.imagePath || 'assets/image0_108_70.png'
+    // 기능: 한국어 제목과 영어 제목을 추출 (없을 경우 빈 문자열)
+    const titleKor = memeData.title_kor || '';
+    const titleEng = memeData.title_eng || '';
+    // 기능: 한국어와 영어 제목을 <br> 태그로 연결하여 하나의 제목으로 결합
+    const combinedTitle = titleKor && titleEng
+        ? `${titleKor}<br>${titleEng}`
+        : titleKor || titleEng || 'No Title';
+
+    // 기능: 이미지 경로 추출 (기본값: assets/image0_108_70.png)
+    let imagePath = memeData.imagePath || 'assets/image0_108_70.png';
+    // 기능: 이미지 경로가 상대 경로인 경우 절대 경로로 변환 (앞에 / 추가)
+    // 기능: 이미 http로 시작하는 절대 URL인 경우는 그대로 유지
+    if (imagePath && !imagePath.startsWith('/') && !imagePath.startsWith('http')) {
+        imagePath = '/' + imagePath;
+    }
+
+    // 기능: 프론트엔드 카드 형식으로 데이터 매핑
+    const mappedData = {
+        id: memeData.id,                    // 기능: 밈 고유 ID
+        title: combinedTitle,                // 기능: 결합된 제목 (한국어 + 영어)
+        views: memeData.viewCount,          // 기능: 조회수
+        imageUrl: imagePath,                // 기능: 처리된 이미지 경로
+        iconUrl: "watchdetail.png"          // 기능: 카드 아이콘 이미지 경로
     };
+
+    console.log('🖼️ Image mapping:', memeData.imagePath, '→', mappedData.imageUrl);
+    // 기능: 매핑된 카드 데이터 반환
+    return mappedData;
 }
 
 // 카드 위치 설정 (원래 절대 위치)
@@ -772,61 +794,90 @@ const CARD_POSITIONS = [
 
 /**
  * 카드를 HTML로 생성하는 함수
+ * 기능: 카드 데이터와 위치 정보를 받아서 HTML 문자열로 변환
+ * @param {Object} cardData - 카드 데이터 (이미지 URL, 제목, 조회수 등)
+ * @param {Object} position - 카드의 위치 정보 (left, top, viewsTop 등)
+ * @param {number} index - 카드 인덱스
+ * @returns {string} - 생성된 카드 HTML 문자열
  */
 function createCardHTML(cardData, position, index) {
-    const uniqueId = `pattern_${cardData.id}_${Math.random().toString(36).substr(2, 9)}`;
-    const iconId = `icon_${cardData.id}_${Math.random().toString(36).substr(2, 9)}`;
+    console.log(`📝 Creating card #${index} with image:`, cardData.imageUrl);
+
+    // 기능: 카드 이미지 컨테이너의 높이를 동적으로 계산 (조회수 위치와 카드 상단 위치 차이 기반)
+    const heightStyle = `calc(${position.viewsTop} - ${position.top} - 3vw)`;
 
     return `
-        <div class="card__image-container" style="left: ${position.left}; top: ${position.top};" data-card-id="${index}" data-element="image"></div>
-        <div class="card__info-container" style="left: ${position.left}; top: ${position.infoTop};" data-card-id="${index}" data-element="info"></div>
-        <div class="card__title" style="left: ${position.left}; top: ${position.titleTop};" data-card-id="${index}" data-element="title">${cardData.title}</div>
-        <div class="card__views" style="left: ${position.viewsLeft}; top: ${position.viewsTop};" data-card-id="${index}" data-element="views">${cardData.views}</div>
-        <div class="card__icon" style="left: ${position.iconLeft}; top: ${position.iconTop};" data-card-id="${index}" data-element="icon">
-            <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <path d="M120 0H0V120H120V0Z" fill="url(#${uniqueId})"/>
-                <defs>
-                    <pattern id="${uniqueId}" patternContentUnits="objectBoundingBox" width="1" height="1">
-                        <use xlink:href="#${iconId}" transform="scale(0.00416667)"/>
-                    </pattern>
-                    <image id="${iconId}" xlink:href="${cardData.iconUrl}"/>
-                </defs>
-            </svg>
+        <!-- 기능: 카드 이미지 컨테이너 - 절대 위치로 배치되고 이미지를 포함 -->
+        <div class="card__image-container" 
+             style="position: absolute; 
+                    left: ${position.left}; 
+                    top: ${position.top}; 
+                    height: ${heightStyle}; 
+                    overflow: hidden;" 
+             data-card-id="${index}" 
+             data-element="image">
+            <img src="${cardData.imageUrl}" 
+                 style="width: 100%; height: 100%; object-fit: contain; object-position: top center;" 
+                 alt="${cardData.title}">
         </div>
+        <!-- 기능: 카드 정보 컨테이너 - 추가 정보를 표시할 영역 -->
+        <div class="card__info-container" style="left: ${position.left}; top: ${position.infoTop};" data-card-id="${index}" data-element="info"></div>
+        <!-- 기능: 카드 제목 표시 영역 -->
+        <div class="card__title" style="left: ${position.left}; top: ${position.titleTop};" data-card-id="${index}" data-element="title">${cardData.title}</div>
+        <!-- 기능: 카드 조회수 표시 영역 -->
+        <div class="card__views" style="left: ${position.viewsLeft}; top: ${position.viewsTop};" data-card-id="${index}" data-element="views">${cardData.views}</div>
+        <!-- 기능: 카드 아이콘 버튼 - 클릭 시 상세 페이지로 이동하는 버튼 -->
+        <button class="card__icon" 
+                style="left: ${position.iconLeft}; top: ${position.iconTop}; cursor: pointer; border: none; background: transparent; padding: 0;" 
+                data-card-id="${index}" 
+                data-element="icon"
+                data-meme-id="${cardData.id}"
+                type="button"
+                aria-label="카드 상세 보기">
+            <img src="${cardData.iconUrl}" style="width: 100%; height: 100%; object-fit: cover;" alt="icon">
+        </button>
     `;
 }
 
 /**
  * 연도에 따른 카드를 렌더링하는 함수 (백엔드 API 연동)
+ * 기능: 특정 연도의 밈 데이터를 가져와서 카드 형태로 화면에 표시
  * @param {string} year - 연도 (2022, 2023, 2024, 2025)
  */
 async function renderCards(year) {
+    // 기능: 카드 컨테이너 요소 선택
     const container = document.getElementById('cards-container');
 
-    // 백엔드 API에서 데이터 가져오기
+    // 기능: 백엔드 API에서 해당 연도의 밈 데이터를 비동기로 가져옴
     const backendData = await fetchMemesByYear(year);
 
-    // 백엔드 데이터를 프론트엔드 형식으로 매핑
+    // 기능: 백엔드 데이터 형식을 프론트엔드 카드 형식으로 변환 (매핑)
     const cardsData = backendData.map(memeData => mapMemeDataToCard(memeData));
 
     console.log(`Rendering ${cardsData.length} cards for year ${year}`);
 
-    // HTML 생성
+    // 기능: 각 카드 데이터를 HTML 문자열로 변환하여 하나의 문자열로 결합
     let htmlContent = '';
     cardsData.forEach((cardData, index) => {
+        // 기능: 정의된 카드 위치 개수만큼만 카드 생성 (최대 5개)
         if (index < CARD_POSITIONS.length) {
             htmlContent += createCardHTML(cardData, CARD_POSITIONS[index], index);
         }
     });
 
+    // 기능: 생성된 HTML을 컨테이너에 삽입하여 화면에 카드 표시
     container.innerHTML = htmlContent;
 
-    // 새로 추가된 카드들에 fade-in 애니메이션 적용
+    // 기능: 새로 생성된 카드 아이콘 버튼들에 클릭 이벤트 리스너 추가
+    setupCardIconButtons();
+
+    // 기능: 새로 추가된 카드들에 fade-in 애니메이션 효과 적용
     setTimeout(() => {
+        // 기능: 모든 카드 요소를 선택하여 fade-in 클래스 추가
         const cardElements = container.querySelectorAll('[data-card-id]');
         cardElements.forEach(el => {
             el.classList.add('fade-in');
-            // 애니메이션 후 클래스 제거
+            // 기능: 애니메이션 종료 후 fade-in 클래스를 제거하여 재사용 가능하도록 함
             el.addEventListener('animationend', () => {
                 el.classList.remove('fade-in');
             }, { once: true });
@@ -835,29 +886,173 @@ async function renderCards(year) {
 }
 
 /**
+ * 카드 아이콘 버튼에 클릭 이벤트를 설정하는 함수
+ * 기능: 모든 카드 아이콘 버튼에 클릭 이벤트와 호버 효과를 추가
+ */
+function setupCardIconButtons() {
+    // 기능: 모든 카드 아이콘 버튼 요소 선택
+    const cardIcons = document.querySelectorAll('.card__icon[data-meme-id]');
+    
+    // 기능: 각 카드 아이콘 버튼에 이벤트 리스너 추가
+    cardIcons.forEach(iconButton => {
+        // 기능: 클릭 이벤트 리스너 추가 - 카드 아이콘 클릭 시 상세 페이지로 이동
+        iconButton.addEventListener('click', (e) => {
+            // 기능: 기본 이벤트 동작 방지 및 이벤트 전파 중지
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // 기능: 클릭된 버튼에서 memeId와 cardId 속성 값 추출
+            const memeId = iconButton.getAttribute('data-meme-id');
+            const cardId = iconButton.getAttribute('data-card-id');
+            
+            console.log(`Card icon clicked - Meme ID: ${memeId}, Card Index: ${cardId}`);
+            
+            // 기능: 카드 아이콘 클릭 핸들러 호출 (viewCount 증가 및 페이지 이동)
+            handleCardIconClick(memeId, cardId);
+        });
+        
+        // 기능: 마우스 호버 시 버튼 시각적 피드백 효과 추가
+        iconButton.addEventListener('mouseenter', () => {
+            // 기능: 호버 시 투명도 감소 및 크기 확대 효과
+            iconButton.style.opacity = '0.8';
+            iconButton.style.transform = 'scale(1.1)';
+            iconButton.style.transition = 'opacity 0.2s, transform 0.2s';
+        });
+        
+        // 기능: 마우스가 버튼을 벗어날 때 원래 상태로 복원
+        iconButton.addEventListener('mouseleave', () => {
+            // 기능: 호버 해제 시 원래 투명도와 크기로 복원
+            iconButton.style.opacity = '1';
+            iconButton.style.transform = 'scale(1)';
+        });
+    });
+}
+
+/**
+ * viewCount를 증가시키는 API 호출 함수
+ * 기능: 백엔드 API를 호출하여 특정 밈의 조회수를 1 증가시킴
+ * @param {string} memeId - 밈 ID
+ * @returns {Promise<Object>} - 업데이트된 MemeData 객체
+ */
+async function incrementViewCount(memeId) {
+    try {
+        // 기능: PUT 메서드로 viewCount 증가 API 호출
+        const response = await fetch(`http://localhost:8080/api/memes/${memeId}/view`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        // 기능: HTTP 응답 상태 코드 확인 - 실패 시 에러 발생
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        // 기능: 응답 데이터를 JSON 형식으로 파싱하여 반환
+        const updatedData = await response.json();
+        console.log(`ViewCount incremented for meme ${memeId}:`, updatedData.viewCount);
+        return updatedData;
+    } catch (error) {
+        // 기능: API 호출 실패 시 에러 로그 출력 및 에러 전파
+        console.error(`Failed to increment viewCount for meme ${memeId}:`, error);
+        throw error;
+    }
+}
+
+/**
+ * 카드의 viewCount를 UI에 업데이트하는 함수
+ * 기능: 특정 카드의 조회수 표시를 업데이트하고 애니메이션 효과를 적용
+ * @param {string} cardId - 카드 인덱스
+ * @param {number} newViewCount - 새로운 viewCount 값
+ */
+function updateCardViewCount(cardId, newViewCount) {
+    // 기능: 해당 카드의 조회수 표시 요소 선택
+    const viewsElement = document.querySelector(`[data-card-id="${cardId}"][data-element="views"]`);
+    
+    if (viewsElement) {
+        // 기능: 조회수 텍스트를 새로운 값으로 업데이트
+        viewsElement.textContent = newViewCount;
+        
+        // 기능: 업데이트 시각적 피드백을 위한 애니메이션 효과 추가
+        viewsElement.style.transition = 'transform 0.2s';
+        // 기능: 조회수 업데이트 시 일시적으로 크기를 확대하여 변경을 강조
+        viewsElement.style.transform = 'scale(1.2)';
+        // 기능: 200ms 후 원래 크기로 복원
+        setTimeout(() => {
+            viewsElement.style.transform = 'scale(1)';
+        }, 200);
+    } else {
+        // 기능: 조회수 요소를 찾을 수 없을 경우 경고 로그 출력
+        console.warn(`Views element not found for card ${cardId}`);
+    }
+}
+
+/**
+ * 카드 아이콘 클릭 핸들러
+ * 기능: 카드 아이콘 클릭 시 조회수 증가 및 상세 페이지로 이동
+ * @param {string} memeId - 밈 ID
+ * @param {string} cardId - 카드 인덱스
+ */
+async function handleCardIconClick(memeId, cardId) {
+    try {
+        // 기능: 백엔드 API를 호출하여 해당 밈의 조회수를 1 증가시킴
+        const updatedData = await incrementViewCount(memeId);
+        
+        // 기능: UI의 조회수 표시를 업데이트된 값으로 즉시 갱신
+        updateCardViewCount(cardId, updatedData.viewCount);
+        
+        console.log(`카드 상세 보기 - Meme ID: ${memeId}, Updated ViewCount: ${updatedData.viewCount}`);
+        
+        // 기능: 조회수 증가 후 DetailedContentPage로 이동 (memeId를 쿼리 파라미터로 전달)
+        // 기능: 상대 경로를 사용하여 DetailedContentPage의 index.html로 이동
+        window.location.href = `../DetailedContentPage/index.html?id=${memeId}`;
+        
+    } catch (error) {
+        // 기능: API 호출 실패 시 에러 로그 출력
+        console.error('Failed to handle card icon click:', error);
+        
+        // 기능: 에러 발생 시에도 상세 페이지로 이동 (조회수 증가 실패해도 페이지 이동은 진행)
+        // 사용자 경험을 위해 조회수 증가 실패해도 상세 페이지 이동은 허용
+        window.location.href = `../DetailedContentPage/index.html?id=${memeId}`;
+    }
+}
+
+/**
  * 카드들을 fade-out 애니메이션으로 사라지게 하는 함수
+ * 기능: 모든 카드에 fade-out 애니메이션을 적용하고 완료될 때까지 대기하는 비동기 함수
+ * @returns {Promise} - 모든 카드의 fade-out 애니메이션이 완료되면 resolve되는 Promise
  */
 function fadeOutCards() {
+    // 기능: Promise를 반환하여 애니메이션 완료를 비동기적으로 처리
     return new Promise((resolve) => {
+        // 기능: 카드 컨테이너 요소 선택
         const container = document.getElementById('cards-container');
+        // 기능: 컨테이너 내의 모든 카드 요소 선택
         const cardElements = container.querySelectorAll('[data-card-id]');
 
+        // 기능: 카드가 없으면 즉시 Promise를 resolve하여 다음 단계로 진행
         if (cardElements.length === 0) {
             resolve();
             return;
         }
 
+        // 기능: 애니메이션이 완료된 카드의 개수를 추적하는 카운터
         let completedCount = 0;
 
+        // 기능: 각 카드 요소에 fade-out 애니메이션 적용
         cardElements.forEach((el) => {
+            // 기능: fade-out CSS 클래스를 추가하여 사라지는 애니메이션 시작
             el.classList.add('fade-out');
 
+            // 기능: 애니메이션이 끝나면 완료 카운터를 증가시키고, 모든 카드가 완료되면 Promise resolve
             el.addEventListener('animationend', () => {
                 completedCount++;
+                // 기능: 모든 카드의 애니메이션이 완료되면 Promise를 resolve하여 다음 작업 진행
                 if (completedCount === cardElements.length) {
                     resolve();
                 }
-            }, { once: true });
+            }, { once: true }); // 기능: 이벤트 리스너를 한 번만 실행하도록 설정
         });
     });
 }

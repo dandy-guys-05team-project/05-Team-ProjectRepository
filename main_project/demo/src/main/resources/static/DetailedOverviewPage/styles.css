@@ -331,6 +331,26 @@ body {
     min-width: 2.604vw;
     min-height: 2.604vw;
     z-index: 3;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    padding: 0;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.card__icon:hover {
+    opacity: 0.8;
+    transform: scale(1.1);
+}
+
+.card__icon:active {
+    opacity: 0.6;
+    transform: scale(1.05);
+}
+
+.card__icon:focus {
+    outline: 2px solid rgba(0, 0, 0, 0.3);
+    outline-offset: 2px;
 }
 
 .card__icon svg {

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Detail Page Content</title>
+        <link rel="stylesheet" href="./styles.css" />
+    </head>
+    <body>
+        <!-- Sticky Navigation Bar -->
+        <nav class="navbar">
+            <img
+                class="navbar__logo"
+                src="../LandingPage/assets/logo-1.png"
+                alt="Logo"
+            />
+            <div class="navbar__menu">
+                <div class="navbar__button navbar__button--login">LOGIN</div>
+                <div class="navbar__button navbar__button--menu">MENU</div>
+            </div>
+        </nav>
+
+        <div data-layer="Detail Page (Detail)" class="DetailPageDetail">
+            <div data-layer="MEMES" class="Memes">MEMES</div>
+            <div data-svg-wrapper data-layer="Vector" class="BackgroundImage">
+                <svg
+                    width="1920"
+                    height="1151"
+                    viewBox="0 0 1920 1151"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                    <path
+                        d="M1920 0H0V1151H1920V0Z"
+                        fill="url(#pattern0_138_14)"
+                    />
+                    <defs>
+                        <pattern
+                            id="pattern0_138_14"
+                            patternContentUnits="objectBoundingBox"
+                            width="1"
+                            height="1"
+                        >
+                            <use
+                                xlink:href="#image0_138_14"
+                                transform="matrix(0.00060024 0 0 0.00100127 0 -0.751086)"
+                            />
+                        </pattern>
+                        <image
+                            id="image0_138_14"
+                            width="1666"
+                            height="2499"
+                            preserveAspectRatio="none"
+                            xlink:href="./assets/image_2.jpg"
+                        />
+                    </defs>
+                </svg>
+            </div>
+            <div data-layer="Rectangle 6" class="content-background"></div>
+            <div data-layer="Rectangle 7" class="footer-background"></div>
+            <div data-layer="Rectangle 10" class="header-background"></div>
+            <div data-layer="Comment Section" class="CommentSection">
+                <textarea class="CommentSection__input" placeholder="댓글을 작성하세요..."></textarea>
+            </div>
+            <div data-svg-wrapper data-layer="Vector" class="BackArrow">
+                <svg
+                    width="150"
+                    height="125"
+                    viewBox="0 0 150 125"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M6.54444 62.4998L3.27227 59.0214L0 62.4998L3.27227 65.9781L6.54444 62.4998ZM145.372 67.4182C147.928 67.4182 150 65.2157 150 62.4998C150 59.7838 147.928 57.5813 145.372 57.5813V62.4998V67.4182ZM62.0756 3.47786L58.8035 0L3.27227 59.0214L6.54444 62.4998L9.81662 65.9781L65.3483 6.95573L62.0756 3.47786ZM6.54444 62.4998L3.27227 65.9781L58.8035 125L62.0756 121.522L65.3483 118.043L9.81662 59.0214L6.54444 62.4998ZM6.54444 62.4998V67.4182H145.372V62.4998V57.5813H6.54444V62.4998Z"
+                        fill="#222222"
+                    />
+                </svg>
+            </div>
+            <div data-layer="THIS IS THE TITLE" class="ThisIsTheTitle">
+                THIS IS THE TITLE
+            </div>
+            <div data-layer="Content Section" class="ContentSection">
+                <div class="ContentSection__text ContentSection__text--eng">
+                    <!-- 영어 밈 데이터가 여기에 동적으로 로드됩니다 -->
+                </div>
+                <div class="ContentSection__text ContentSection__text--kor">
+                    <!-- 한국어 밈 데이터가 여기에 동적으로 로드됩니다 -->
+                </div>
+            </div>
+            <div data-svg-wrapper data-layer="Sample Image" class="SampleImage">
+                <svg
+                    width="1000"
+                    height="1000"
+                    viewBox="0 0 1000 1000"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                    <path
+                        d="M1000 0H0V1000H1000V0Z"
+                        fill="url(#pattern0_138_7)"
+                    />
+                    <defs>
+                        <pattern
+                            id="pattern0_138_7"
+                            patternContentUnits="objectBoundingBox"
+                            width="1"
+                            height="1"
+                        >
+                            <use
+                                xlink:href="#image0_138_7"
+                                transform="translate(-0.389047) scale(0.000711238)"
+                            />
+                        </pattern>
+                        <image
+                            id="image0_138_7"
+                            width="2500"
+                            height="1406"
+                            preserveAspectRatio="none"
+                            xlink:href="./assets/image_4.jpg"
+                        />
+                    </defs>
+                </svg>
+            </div>
+            <div data-layer="KOR / ENG" class="KorEng">
+                <span>KOR</span><span>&nbsp;/&nbsp;</span><span>ENG</span>
+            </div>
+            <div
+                data-layer="Toggle - Switch"
+                data-show-ax-label="false"
+                data-state="Kor"
+                class="ToggleSwitch"
+            >
+                <div data-layer="Frame" class="Frame"></div>
+                <div data-svg-wrapper data-layer="Knob" class="Knob">
+                    <svg
+                        width="39"
+                        height="24"
+                        viewBox="0 0 39 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <rect width="39" height="24" rx="12" fill="white" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+            data-layer="Footer"
+            class="Footer"
+        >
+            <div
+                data-svg-wrapper
+                data-layer="Footer Logo"
+                class="FooterLogo"
+            >
+                <img src="../LandingPage/assets/Footer/assets/logo.svg" alt="Footer Logo" />
+            </div>
+            <div
+                data-layer="Copyright"
+                class="Copyright"
+            >
+                © 2025 5조. All Rights Reserved.
+            </div>
+        </div>
+
+        <!-- Login Modal Container -->
+        <div id="login-modal" class="login-modal">
+            <div class="login-modal-content">
+                <div class="login-container">
+                    <!-- Close Button -->
+                    <div class="close-btn-wrapper">
+                        <button class="close-btn" aria-label="닫기">
+                            <svg
+                                width="32"
+                                height="33"
+                                viewBox="0 0 32 33"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M32 3.22622L28.7771 0L16 12.7905L3.22286 0L0 3.22622L12.7771 16.0167L0 28.8071L3.22286 32.0334L16 19.2429L28.7771 32.0334L32 28.8071L19.2229 16.0167L32 3.22622Z"
+                                    fill="white"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Title -->
+                    <h1 class="login-title">LOGIN</h1>
+
+                    <!-- ID Label -->
+                    <label for="user-id" class="form-label id-label">ID</label>
+
+                    <!-- ID Input Box -->
+                    <div class="id-input-box"></div>
+                    <input
+                        type="text"
+                        id="user-id"
+                        class="form-input id-input"
+                        placeholder="아이디를 입력하세요"
+                        required
+                    />
+
+                    <!-- Password Label -->
+                    <label for="user-password" class="form-label pw-label"
+                        >PW</label
+                    >
+
+                    <!-- Password Input Box -->
+                    <div class="pw-input-box"></div>
+                    <input
+                        type="password"
+                        id="user-password"
+                        class="form-input pw-input"
+                        placeholder="비밀번호를 입력하세요"
+                        required
+                    />
+
+                    <!-- Sign In Button Box -->
+                    <div class="signin-btn-box"></div>
+                    <button type="submit" class="btn btn-signin">
+                        SIGN IN
+                    </button>
+
+                    <!-- Sign Up Button Box -->
+                    <div class="signup-btn-box"></div>
+                    <button type="button" class="btn btn-signup">
+                        SIGN UP
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sign Up Modal Container -->
+        <div id="signup-modal" class="signup-modal">
+            <div class="signup-modal-content">
+                <div data-layer="Sign Up Menu" class="SignUpMenu">
+                    <div
+                        data-svg-wrapper
+                        data-layer="Back Arrow Frame"
+                        class="Frame"
+                    >
+                        <svg
+                            width="100%"
+                            height="100%"
+                            viewBox="0 0 48 52"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M8.00005 26L6.58583 24.4679L5.17163 26L6.58583 27.532L8.00005 26ZM38 28.1666C39.1046 28.1666 40 27.1966 40 26C40 24.8033 39.1046 23.8333 38 23.8333V26V28.1666ZM20.0001 13L18.5858 11.4679L6.58583 24.4679L8.00005 26L9.41427 27.532L21.4143 14.532L20.0001 13ZM8.00005 26L6.58583 27.532L18.5858 40.532L20.0001 39L21.4143 37.4679L9.41427 24.4679L8.00005 26ZM8.00005 26V28.1666H38V26V23.8333H8.00005V26Z"
+                                fill="white"
+                            />
+                        </svg>
+                    </div>
+                    <div
+                        data-svg-wrapper
+                        data-layer="Vector"
+                        class="modal-close"
+                        id="closeButton"
+                    >
+                        <svg
+                            width="32"
+                            height="33"
+                            viewBox="0 0 32 33"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M32 3.22622L28.7771 0L16 12.7905L3.22286 0L0 3.22622L12.7771 16.0167L0 28.8071L3.22286 32.0334L16 19.2429L28.7771 32.0334L32 28.8071L19.2229 16.0167L32 3.22622Z"
+                                fill="white"
+                            />
+                        </svg>
+                    </div>
+                    <div data-layer="Sign Up" class="SignUp Title">SIGN UP</div>
+                    <div data-layer="NICKNAME" class="Nickname Label">
+                        NICKNAME
+                    </div>
+                    <div
+                        data-layer="Rectangle 1"
+                        class="signup-nickname-input"
+                        id="nicknameInput"
+                    ></div>
+                    <input
+                        type="text"
+                        id="signup-nickname"
+                        class="signup-form-input nickname-input"
+                        placeholder="닉네임을 입력하세요"
+                    />
+                    <div data-layer="ID" class="Id Label">ID</div>
+                    <div
+                        data-layer="Rectangle 2"
+                        class="signup-id-input"
+                        id="idInput"
+                    ></div>
+                    <input
+                        type="text"
+                        id="signup-id"
+                        class="signup-form-input id-input"
+                        placeholder="아이디를 입력하세요"
+                    />
+                    <div data-layer="PW" class="Pw Label">PW</div>
+                    <div
+                        data-layer="Rectangle 3"
+                        class="signup-password-input"
+                        id="pwInput"
+                    ></div>
+                    <input
+                        type="password"
+                        id="signup-password"
+                        class="signup-form-input password-input"
+                        placeholder="비밀번호를 입력하세요"
+                    />
+                    <div
+                        data-layer="Rectangle 4"
+                        class="signup-submit-btn"
+                        id="submitButton"
+                    ></div>
+                    <div
+                        data-layer="SIGN UP"
+                        class="SignUp ButtonText"
+                        id="submitText"
+                    >
+                        SIGN UP
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Sidebar Modal Container -->
+        <div id="menu-modal" class="menu-modal">
+            <div data-layer="Menu Sidebar" class="MenuSidebar">
+                <div data-svg-wrapper data-layer="Vector" class="menu-close">
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M32 3.22286L28.7771 0L16 12.7771L3.22286 0L0 3.22286L12.7771 16L0 28.7771L3.22286 32L16 19.2229L28.7771 32L32 28.7771L19.2229 16L32 3.22286Z"
+                            fill="white"
+                        />
+                    </svg>
+                </div>
+                <div data-layer="HOME" class="Home">HOME</div>
+                <div data-layer="MEME OF THE YEAR" class="MemeOfTheYear">
+                    MEME OF THE YEAR
+                </div>
+                <div data-layer="2025" class="Year2025">2025</div>
+                <div data-layer="2024" class="Year2024">2024</div>
+                <div data-layer="2023" class="Year2023">2023</div>
+                <div data-layer="2022" class="Year2022">2022</div>
+            </div>
+        </div>
+
+        <!-- GSAP Animation Library -->
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+
+        <!-- Main Script -->
+        <script src="./scripts.js"></script>
+    </body>
+</html>

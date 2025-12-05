@@ -18,20 +18,22 @@ public class MemeData {
     private String yearCategory;
     private String title_kor;
     private String title_eng;
-    @Column(length=1000)
+    @Column(length=2000)
     private String derivedFrom_kor;
-    @Column(length=1000)
+    @Column(length=2000)
     private String derivedFrom_eng;
-    @Column(length=1000)
+    @Column(length=2000)
     private String meaning_kor;
-    @Column(length=1000)
+    @Column(length=2000)
     private String meaning_eng;
-    @Column(length=1000)
+    @Column(length=2000)
     private String example_kor;
-    @Column(length=1000)
+    @Column(length=2000)
     private String example_eng;
-    @Column(length=1000)
+    @Column(length=2000)
     private String imagePath;
+    @Column(nullable = false, columnDefinition = "integer default 0")
+    private Integer viewCount = 0;
 
     public MemeData(){}
 
@@ -44,7 +46,8 @@ public class MemeData {
                     String meaning_eng,
                     String example_kor,
                     String example_eng,
-                    String imagePath){
+                    String imagePath,
+                    Integer viewCount){
                         this.yearCategory = yearCategory;
                         this.title_kor = title_kor;
                         this.title_eng = title_eng;
@@ -55,5 +58,6 @@ public class MemeData {
                         this.example_kor = example_kor;
                         this.example_eng = example_eng;
                         this.imagePath = imagePath;
+                        this.viewCount = viewCount;
                     }
 }

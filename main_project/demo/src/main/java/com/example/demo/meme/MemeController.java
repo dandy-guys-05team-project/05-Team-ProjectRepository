@@ -16,6 +16,16 @@ public class MemeController {
         return memeService.getMemesByYear(year);
     }
 
+    @GetMapping("/id/{id}")
+    public MemeData getMemeById(@PathVariable("id") Long id){
+        return memeService.getMemeById(id);
+    }
+
+    @PutMapping("/{id}/view")
+    public MemeData incrementViewCount(@PathVariable("id") Long id){
+        return memeService.incrementViewCount(id);
+    }
+
     //@PostMapping
     //public MemeData createMeme(@RequestBody MemeData memeData){
     //    return memeService.saveMeme(memeData);

@@ -1,59 +1,19 @@
 /**
  * DetailedOverviewPage - Modal Management Script
- * 로그인, 회원가입, 메뉴 모달 관리 및 년도별 밈 데이터 표시
+ * 로그인, 회원가입, 메뉴 모달 관리
  */
-
-// ==================== URL PARAMETER MODULE ====================
-/**
- * URL 파라미터에서 년도 정보를 추출하는 함수
- * @returns {string} 년도 문자열 (예: '2025', '2024') - 파라미터가 없으면 기본값 '2025'
- * @description URL 쿼리 스트링에서 'year' 파라미터를 읽어옴
- * 예: /DetailedOverviewPage/index.html?year=2024
- */
-function getYearFromURL() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const year = urlParams.get('year');
-
-    // 유효한 년도인지 확인 (2022~2025)
-    if (year && ['2025', '2024', '2023', '2022'].includes(year)) {
-        return year;
-    }
-
-    // 기본값: 2025
-    return '2025';
-}
-
-/**
- * URL 파라미터를 변경하여 페이지를 새로고침하지 않고 URL만 업데이트
- * @param {string} year - 변경할 년도
- * @description 브라우저 히스토리를 업데이트하여 뒤로가기 지원
- */
-function updateURLParameter(year) {
-    const newURL = `${window.location.pathname}?year=${year}`;
-    window.history.pushState({ year: year }, '', newURL);
-    console.log(`URL updated to: ${newURL}`);
-}
 
 // ==================== VIEWPORT MODULE ====================
-/**
- * 뷰포트 정보를 저장하는 객체
- * @description 화면 크기에 따라 모바일/태블릿/데스크톱을 구분
- */
 const viewport = {
-    width: window.innerWidth,         // 현재 뷰포트 너비
-    height: window.innerHeight,       // 현재 뷰포트 높이
-    isMobile: window.innerWidth < 768,                     // 모바일 여부 (768px 미만)
-    isTablet: window.innerWidth >= 768 && window.innerWidth < 1024,  // 태블릿 여부
-    isDesktop: window.innerWidth >= 1024,                  // 데스크톱 여부 (1024px 이상)
+    width: window.innerWidth,
+    height: window.innerHeight,
+    isMobile: window.innerWidth < 768,
+    isTablet: window.innerWidth >= 768 && window.innerWidth < 1024,
+    isDesktop: window.innerWidth >= 1024,
 };
 
-/**
- * 뷰포트 크기 변경 감지 리스너 초기화 함수
- * @description 윈도우 크기 변경 시 viewport 객체를 업데이트
- */
 function initializeViewportListener() {
     window.addEventListener("resize", () => {
-        // 뷰포트 정보 업데이트
         viewport.width = window.innerWidth;
         viewport.height = window.innerHeight;
         viewport.isMobile = window.innerWidth < 768;
@@ -64,21 +24,11 @@ function initializeViewportListener() {
 }
 
 // ==================== MODAL MODULE ====================
-/**
- * 모달을 여는 함수
- * @param {HTMLElement} modalElement - 열 모달 요소
- * @param {boolean} isMobile - 모바일 여부 (기본값: false)
- * @returns {boolean} 성공 여부
- * @description 모달을 표시하고 배경 스크롤을 비활성화
- */
 function openModal(modalElement, isMobile = false) {
     if (modalElement) {
-        // 모달 표시
         modalElement.classList.add("show");
-        // 배경 스크롤 비활성화
         document.body.style.overflow = "hidden";
 
-        // 모바일인 경우 상단 패딩 조정
         if (isMobile) {
             const modalContent = modalElement.querySelector(
                 '[class*="-content"]'
@@ -94,17 +44,9 @@ function openModal(modalElement, isMobile = false) {
     return false;
 }
 
-/**
- * 모달을 닫는 함수
- * @param {HTMLElement} modalElement - 닫을 모달 요소
- * @returns {boolean} 성공 여부
- * @description 모달을 숨기고 배경 스크롤을 활성화
- */
 function closeModal(modalElement) {
     if (modalElement) {
-        // 모달 숨김
         modalElement.classList.remove("show");
-        // 배경 스크롤 활성화
         document.body.style.overflow = "auto";
         console.log("Modal closed:", modalElement.id);
         return true;
@@ -112,16 +54,8 @@ function closeModal(modalElement) {
     return false;
 }
 
-/**
- * 모달 배경 클릭 시 모달 닫기 처리 함수
- * @param {Event} event - 클릭 이벤트
- * @param {HTMLElement} modalElement - 모달 요소
- * @param {Function} closeCallback - 모달 닫기 콜백 함수
- * @description 모달 외부 클릭 시 모달을 닫음
- */
 function handleModalBackgroundClick(event, modalElement, closeCallback) {
     const modalContent = modalElement.querySelector('[class*="-content"]');
-    // 모달 외부 영역 클릭 시 모달 닫기
     if (
         event.target === modalElement ||
         (event.target !== modalContent && !modalContent.contains(event.target))
@@ -130,13 +64,6 @@ function handleModalBackgroundClick(event, modalElement, closeCallback) {
     }
 }
 
-/**
- * ESC 키 입력 시 모달 닫기 처리 함수
- * @param {Event} event - 키보드 이벤트
- * @param {HTMLElement} modalElement - 모달 요소
- * @param {Function} closeCallback - 모달 닫기 콜백 함수
- * @description ESC 키 입력 시 열려있는 모달을 닫음
- */
 function handleModalEscapeKey(event, modalElement, closeCallback) {
     if (event.key === "Escape" && modalElement?.classList.contains("show")) {
         closeCallback();
@@ -700,99 +627,99 @@ function handleMenuItemClick(event) {
 }
 
 /**
- * 메뉴 항목 클릭 시 네비게이션 처리 함수
- * @param {string} itemName - 클릭된 메뉴 항목 이름 (예: '2025', 'HOME')
- * @description 년도 메뉴 클릭 시 해당 년도의 밈 카드를 표시
+ * 메뉴 네비게이션 처리
+ * @param {string} itemName - 메뉴 항목명
  */
 async function handleMenuNavigation(itemName) {
-    console.log(`Navigating to: ${itemName}`);
+    console.log(`Menu navigation: ${itemName}`);
 
-    // 년도 메뉴인 경우 (2022~2025)
-    if (['2025', '2024', '2023', '2022'].includes(itemName)) {
-        // 1. 메뉴 모달 닫기
+    // 연도 버튼 클릭 시 해당 연도의 밈 데이터 로드
+    if (itemName === "2022" || itemName === "2023" || itemName === "2024" || itemName === "2025") {
+        // 모달 닫기
         handleCloseMenuModal();
 
-        // 2. URL 파라미터 업데이트 (히스토리에 추가)
-        updateURLParameter(itemName);
-
-        // 3. 기존 카드들을 fade-out 애니메이션으로 제거
+        // 기존 카드 fade-out
         await fadeOutCards();
 
-        // 4. 선택된 년도의 카드 렌더링
-        renderCards(itemName);
+        // 새 연도 카드 렌더링 (백엔드 API 호출)
+        await renderCards(itemName);
 
-        // 5. 년도 버튼 활성 상태 업데이트
-        updateYearButtonsState(itemName);
-
-        console.log(`Loaded ${itemName} meme data`);
+        // 페이지의 연도 버튼 활성 상태 변경
+        const yearButtons = document.querySelectorAll('.year-button');
+        yearButtons.forEach(btn => {
+            btn.classList.remove('year-button--active');
+            if (btn.textContent.trim() === itemName) {
+                btn.classList.add('year-button--active');
+            }
+        });
     }
-    // HOME 메뉴인 경우
-    else if (itemName === 'HOME') {
-        // LandingPage로 이동
-        window.location.href = '/LandingPage/index.html';
+    // HOME 클릭 시 LandingPage로 이동
+    else if (itemName === "HOME") {
+        window.location.href = "/";
     }
-    // MEME OF THE YEAR 메뉴인 경우
-    else if (itemName === 'MEME OF THE YEAR') {
-        // 최신 년도(2025)로 스크롤 또는 이동
-        console.log('Navigating to MEME OF THE YEAR section');
+    // MEME OF THE YEAR 클릭 시
+    else if (itemName === "MEME OF THE YEAR") {
+        handleCloseMenuModal();
+        // 추후 구현 가능
     }
 }
 
 // ==================== CARD DATA & RENDERING MODULE ====================
+
 /**
- * 백엔드 API에서 밈 데이터를 가져오는 함수
- * @param {string} year - 조회할 년도 (예: '2025', '2024', '2023', '2022')
- * @returns {Promise<Array>} 밈 데이터 배열
- * @description Spring Boot API(/api/memes/{year})를 호출하여 해당 년도의 밈 데이터를 가져옴
+ * 백엔드 API에서 연도별 밈 데이터를 가져오는 함수
+ * @param {string} year - 연도 (2022, 2023, 2024, 2025)
+ * @returns {Promise<Array>} - 밈 데이터 배열
  */
-async function fetchMemesFromAPI(year) {
+async function fetchMemesByYear(year) {
     try {
-        console.log(`Fetching meme data for year: ${year}`);
+        const response = await fetch(`http://localhost:8080/api/memes/${year}`);
 
-        // API 엔드포인트 호출
-        const response = await fetch(`/api/memes/${year}`);
-
-        // HTTP 에러 체크
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        // JSON 응답 파싱
         const data = await response.json();
-        console.log(`Received ${data.length} memes for year ${year}`, data);
+        console.log(`Fetched ${data.length} memes for year ${year}:`, data);
 
         return data;
     } catch (error) {
-        console.error(`Error fetching memes for year ${year}:`, error);
+        console.error(`Failed to fetch memes for year ${year}:`, error);
         // 에러 발생 시 빈 배열 반환
         return [];
     }
 }
 
 /**
- * 백엔드 데이터를 프론트엔드 형식으로 변환하는 함수
- * @param {Object} memeData - 백엔드에서 받은 밈 데이터 객체
- * @returns {Object} 프론트엔드에서 사용할 카드 데이터 객체
- * @description 백엔드 MemeData 엔티티를 프론트엔드 카드 형식으로 변환
+ * 백엔드 데이터를 프론트엔드 카드 형식으로 매핑하는 함수
+ * @param {Object} memeData - 백엔드 MemeData 객체
+ * @returns {Object} - 프론트엔드 카드 데이터 형식
  */
-function transformMemeData(memeData) {
-    return {
-        // 백엔드의 id를 그대로 사용
+function mapMemeDataToCard(memeData) {
+    // 한국어 제목과 영어 제목을 <br>로 연결
+    const titleKor = memeData.title_kor || '';
+    const titleEng = memeData.title_eng || '';
+    const combinedTitle = titleKor && titleEng
+        ? `${titleKor}<br>${titleEng}`
+        : titleKor || titleEng || 'No Title';
+
+    // 이미지 경로 처리 - 절대 경로 보장
+    let imagePath = memeData.imagePath || 'assets/image0_108_70.png';
+    // 경로가 /로 시작하지 않으면 추가
+    if (imagePath && !imagePath.startsWith('/') && !imagePath.startsWith('http')) {
+        imagePath = '/' + imagePath;
+    }
+
+    const mappedData = {
         id: memeData.id,
-
-        // 한국어 제목 사용 (title_kor)
-        title: memeData.title_kor || memeData.title_eng || '제목 없음',
-
-        // 조회수는 백엔드에 없으므로 임시로 'n Views' 사용
-        // 추후 백엔드에 viewCount 필드 추가 시 memeData.viewCount + ' Views'로 변경
-        views: 'n Views',
-
-        // 백엔드의 imagePath를 imageUrl로 사용
-        imageUrl: memeData.imagePath || 'assets/default-image.png',
-
-        // iconUrl도 동일한 이미지 사용
-        iconUrl: memeData.imagePath || 'assets/default-image.png'
+        title: combinedTitle,
+        views: memeData.viewCount,
+        imageUrl: imagePath,
+        iconUrl: "watchdetail.png"
     };
+
+    console.log('🖼️ Image mapping:', memeData.imagePath, '→', mappedData.imageUrl);
+    return mappedData;
 }
 
 // 카드 위치 설정 (원래 절대 위치)
@@ -856,122 +783,92 @@ const CARD_POSITIONS = [
 
 /**
  * 카드를 HTML로 생성하는 함수
- * @param {Object} cardData - 카드 데이터 (id, title, views, imageUrl, iconUrl)
- * @param {Object} position - 카드의 위치 정보 (left, top, infoTop, titleTop, viewsLeft, viewsTop, iconLeft, iconTop)
- * @param {number} index - 카드 인덱스 (0~4)
- * @returns {string} 카드 HTML 문자열
- * @description 밈 카드의 HTML 구조를 생성하여 반환
  */
 function createCardHTML(cardData, position, index) {
-    // SVG 패턴과 이미지를 위한 고유 ID 생성
-    const uniqueId = `pattern_${cardData.id}_${Math.random().toString(36).substr(2, 9)}`;
-    const iconId = `icon_${cardData.id}_${Math.random().toString(36).substr(2, 9)}`;
+    console.log(`📝 Creating card #${index} with image:`, cardData.imageUrl);
 
-    // 카드 HTML 구조 생성
+    const heightStyle = `calc(${position.viewsTop} - ${position.top} - 3vw)`;
+
     return `
-        <div class="card__image-container" style="left: ${position.left}; top: ${position.top};" data-card-id="${index}" data-element="image"></div>
+        <div class="card__image-container" 
+             style="position: absolute; 
+                    left: ${position.left}; 
+                    top: ${position.top}; 
+                    height: ${heightStyle}; 
+                    overflow: hidden;" 
+             data-card-id="${index}" 
+             data-element="image">
+            <img src="${cardData.imageUrl}" 
+                 style="width: 100%; height: 100%; object-fit: contain; object-position: top center;" 
+                 alt="${cardData.title}">
+        </div>
         <div class="card__info-container" style="left: ${position.left}; top: ${position.infoTop};" data-card-id="${index}" data-element="info"></div>
         <div class="card__title" style="left: ${position.left}; top: ${position.titleTop};" data-card-id="${index}" data-element="title">${cardData.title}</div>
         <div class="card__views" style="left: ${position.viewsLeft}; top: ${position.viewsTop};" data-card-id="${index}" data-element="views">${cardData.views}</div>
         <div class="card__icon" style="left: ${position.iconLeft}; top: ${position.iconTop};" data-card-id="${index}" data-element="icon">
-            <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <path d="M120 0H0V120H120V0Z" fill="url(#${uniqueId})"/>
-                <defs>
-                    <pattern id="${uniqueId}" patternContentUnits="objectBoundingBox" width="1" height="1">
-                        <use xlink:href="#${iconId}" transform="scale(0.00416667)"/>
-                    </pattern>
-                    <image id="${iconId}" xlink:href="${cardData.iconUrl}"/>
-                </defs>
-            </svg>
+            <img src="${cardData.iconUrl}" style="width: 100%; height: 100%; object-fit: cover;" alt="icon">
         </div>
     `;
 }
 
 /**
- * 연도에 따른 카드를 렌더링하는 함수 (비동기)
- * @param {string} year - 렌더링할 년도 (예: '2025', '2024')
- * @description 백엔드 API에서 해당 년도의 밈 데이터를 가져와 5개의 카드로 화면에 표시
+ * 연도에 따른 카드를 렌더링하는 함수 (백엔드 API 연동)
+ * @param {string} year - 연도 (2022, 2023, 2024, 2025)
  */
 async function renderCards(year) {
-    // 카드 컨테이너 요소 가져오기
     const container = document.getElementById('cards-container');
 
-    // 로딩 상태 표시
-    showLoadingState(container);
+    // 백엔드 API에서 데이터 가져오기
+    const backendData = await fetchMemesByYear(year);
 
-    try {
-        // 백엔드 API에서 해당 년도의 밈 데이터 가져오기
-        const apiData = await fetchMemesFromAPI(year);
+    // 백엔드 데이터를 프론트엔드 형식으로 매핑
+    const cardsData = backendData.map(memeData => mapMemeDataToCard(memeData));
 
-        // 백엔드 데이터를 프론트엔드 형식으로 변환
-        const cardsData = apiData.map(transformMemeData);
+    console.log(`Rendering ${cardsData.length} cards for year ${year}`);
 
-        // 데이터가 없는 경우 처리
-        if (cardsData.length === 0) {
-            showEmptyState(container, year);
-            console.log(`No meme data found for year ${year}`);
-            return;
+    // HTML 생성
+    let htmlContent = '';
+    cardsData.forEach((cardData, index) => {
+        if (index < CARD_POSITIONS.length) {
+            htmlContent += createCardHTML(cardData, CARD_POSITIONS[index], index);
         }
+    });
 
-        // 모든 카드의 HTML을 생성
-        let htmlContent = '';
-        cardsData.forEach((cardData, index) => {
-            // 최대 5개의 카드만 생성 (CARD_POSITIONS 배열의 길이만큼)
-            if (index < CARD_POSITIONS.length) {
-                htmlContent += createCardHTML(cardData, CARD_POSITIONS[index], index);
-            }
+    container.innerHTML = htmlContent;
+
+    // 새로 추가된 카드들에 fade-in 애니메이션 적용
+    setTimeout(() => {
+        const cardElements = container.querySelectorAll('[data-card-id]');
+        cardElements.forEach(el => {
+            el.classList.add('fade-in');
+            // 애니메이션 후 클래스 제거
+            el.addEventListener('animationend', () => {
+                el.classList.remove('fade-in');
+            }, { once: true });
         });
-
-        // 컨테이너에 카드 HTML 삽입
-        container.innerHTML = htmlContent;
-
-        // 새로 추가된 카드들에 fade-in 애니메이션 적용
-        setTimeout(() => {
-            const cardElements = container.querySelectorAll('[data-card-id]');
-            cardElements.forEach(el => {
-                // fade-in 클래스 추가
-                el.classList.add('fade-in');
-                // 애니메이션 종료 후 클래스 제거
-                el.addEventListener('animationend', () => {
-                    el.classList.remove('fade-in');
-                }, { once: true });
-            });
-        }, 0);
-
-        console.log(`Rendered ${cardsData.length} cards for year ${year}`);
-    } catch (error) {
-        // 에러 발생 시 에러 상태 표시
-        console.error('Error rendering cards:', error);
-        showErrorState(container, year);
-    }
+    }, 0);
 }
 
 /**
  * 카드들을 fade-out 애니메이션으로 사라지게 하는 함수
- * @returns {Promise} 모든 카드의 애니메이션이 완료되면 resolve되는 Promise
- * @description 현재 화면에 표시된 모든 카드를 fade-out 애니메이션으로 제거
  */
 function fadeOutCards() {
     return new Promise((resolve) => {
         const container = document.getElementById('cards-container');
         const cardElements = container.querySelectorAll('[data-card-id]');
 
-        // 카드가 없으면 즉시 resolve
         if (cardElements.length === 0) {
             resolve();
             return;
         }
 
-        let completedCount = 0; // 애니메이션 완료된 카드 수
+        let completedCount = 0;
 
-        // 각 카드 요소에 fade-out 애니메이션 적용
         cardElements.forEach((el) => {
             el.classList.add('fade-out');
 
-            // 애니메이션 종료 이벤트 리스너
             el.addEventListener('animationend', () => {
                 completedCount++;
-                // 모든 카드의 애니메이션이 완료되면 resolve
                 if (completedCount === cardElements.length) {
                     resolve();
                 }
@@ -980,116 +877,57 @@ function fadeOutCards() {
     });
 }
 
-// ==================== LOADING & ERROR STATE MODULE ====================
-/**
- * 로딩 상태를 표시하는 함수
- * @param {HTMLElement} container - 카드 컨테이너 요소
- * @description API 호출 중 로딩 스피너 또는 메시지를 표시
- */
-function showLoadingState(container) {
-    container.innerHTML = `
-        <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); text-align: center;">
-            <div style="font-size: 24px; color: #fff; margin-bottom: 10px;">Loading...</div>
-            <div style="font-size: 16px; color: #aaa;">밈 데이터를 불러오는 중입니다...</div>
-        </div>
-    `;
-}
-
-/**
- * 데이터가 없을 때 빈 상태를 표시하는 함수
- * @param {HTMLElement} container - 카드 컨테이너 요소
- * @param {string} year - 조회한 년도
- * @description 해당 년도에 밈 데이터가 없을 때 메시지 표시
- */
-function showEmptyState(container, year) {
-    container.innerHTML = `
-        <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); text-align: center;">
-            <div style="font-size: 24px; color: #fff; margin-bottom: 10px;">📭 데이터 없음</div>
-            <div style="font-size: 16px; color: #aaa;">${year}년의 밈 데이터가 아직 등록되지 않았습니다.</div>
-        </div>
-    `;
-}
-
-/**
- * 에러 발생 시 에러 상태를 표시하는 함수
- * @param {HTMLElement} container - 카드 컨테이너 요소
- * @param {string} year - 조회한 년도
- * @description API 호출 실패 또는 기타 에러 발생 시 에러 메시지 표시
- */
-function showErrorState(container, year) {
-    container.innerHTML = `
-        <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); text-align: center;">
-            <div style="font-size: 24px; color: #ff6b6b; margin-bottom: 10px;">⚠️ 오류 발생</div>
-            <div style="font-size: 16px; color: #aaa;">
-                ${year}년의 밈 데이터를 불러오는 중 문제가 발생했습니다.<br>
-                잠시 후 다시 시도해주세요.
-            </div>
-        </div>
-    `;
-}
-
 // ==================== YEAR BUTTONS MODULE ====================
-/**
- * 년도 버튼의 활성 상태를 업데이트하는 함수
- * @param {string} year - 활성화할 년도
- * @description 선택된 년도 버튼에 'year-button--active' 클래스를 추가
- */
-function updateYearButtonsState(year) {
-    const yearButtons = document.querySelectorAll('.year-button');
-
-    yearButtons.forEach(button => {
-        const buttonYear = button.textContent.trim();
-
-        // 해당 년도 버튼에만 활성 클래스 추가
-        if (buttonYear === year) {
-            button.classList.add('year-button--active');
-        } else {
-            button.classList.remove('year-button--active');
-        }
-    });
-
-    console.log(`Year button state updated: ${year} is now active`);
-}
-
-/**
- * 년도 버튼 초기화 함수
- * @description 페이지 로드 시 URL 파라미터에서 년도를 읽어 해당 년도의 카드 렌더링
- */
 function initializeYearButtons() {
     const yearButtons = document.querySelectorAll('.year-button');
 
-    // URL 파라미터에서 년도 읽어오기
-    const initialYear = getYearFromURL();
+    // URL 파라미터에서 year 값 읽기
+    const urlParams = new URLSearchParams(window.location.search);
+    const yearFromUrl = urlParams.get('year');
 
-    // 초기 년도에 해당하는 버튼 활성화 및 카드 렌더링
-    updateYearButtonsState(initialYear);
-    renderCards(initialYear);
+    // 초기 연도 설정: URL 파라미터 > 기본값(2025)
+    const initialYear = yearFromUrl || '2025';
 
-    console.log(`Initial year from URL: ${initialYear}`);
+    // 초기: 해당 연도 버튼을 활성화하고 카드 렌더링 (API 호출)
+    if (yearButtons.length > 0) {
+        // URL 파라미터에 맞는 버튼 찾기
+        let activeButton = null;
+        yearButtons.forEach(btn => {
+            if (btn.textContent.trim() === initialYear) {
+                activeButton = btn;
+            }
+        });
 
-    // 각 년도 버튼에 클릭 이벤트 리스너 추가
+        // 활성 버튼이 없으면 첫 번째 버튼 사용
+        if (!activeButton) {
+            activeButton = yearButtons[0];
+        }
+
+        activeButton.classList.add('year-button--active');
+        renderCards(initialYear); // async 함수지만 초기 로드는 await 불필요
+
+        console.log(`Initialized with year: ${initialYear}`);
+    }
+
+    // 버튼 클릭 이벤트
     yearButtons.forEach(button => {
         button.addEventListener('click', async () => {
-            const year = button.textContent.trim();
-
-            // 중복 클릭 방지 (이미 활성화된 버튼을 클릭한 경우)
+            // 중복 클릭 방지
             if (button.classList.contains('year-button--active')) {
                 return;
             }
 
-            console.log(`Year button clicked: ${year}`);
+            const year = button.textContent.trim();
 
-            // 1. URL 파라미터 업데이트
-            updateURLParameter(year);
-
-            // 2. 기존 카드들을 fade-out 애니메이션으로 사라지게 함
+            // 1. 기존 카드들을 fade-out 애니메이션으로 사라지게 함
             await fadeOutCards();
 
-            // 3. 선택된 년도의 새 데이터로 카드 렌더링
-            renderCards(year);
+            // 2. 백엔드 API에서 새 데이터를 가져와 카드 렌더링
+            await renderCards(year);
 
-            // 4. 활성 버튼 상태 변경
-            updateYearButtonsState(year);
+            // 3. 활성 버튼 변경
+            yearButtons.forEach(btn => btn.classList.remove('year-button--active'));
+            button.classList.add('year-button--active');
         });
     });
 }
