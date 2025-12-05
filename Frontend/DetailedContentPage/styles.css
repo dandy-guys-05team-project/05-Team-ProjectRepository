@@ -108,7 +108,7 @@ body {
     font-family: var(--font-family);
     width: 100%;
     background: white;
-    height: 248.045vw;
+    min-height: 253.2617vw;
 }
 
 /* 메인 컨테이너 */
@@ -148,7 +148,7 @@ body {
     position: relative;
     background: black;
     overflow: hidden;
-    margin-top: 0;
+    margin-top: 10.4167vw;
 }
 
 /* 푸터 내 벡터 이미지 */
@@ -347,7 +347,7 @@ body {
 }
 
 body:has(.DetailPageDetail.kor-mode) {
-    height: 232.4225vw;
+    min-height: 237.6392vw;
 }
 
 .DetailPageDetail.kor-mode .ContentSection__text--eng {
