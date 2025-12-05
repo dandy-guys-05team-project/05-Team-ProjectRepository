@@ -127,6 +127,21 @@ body {
     gap: 2.604vw;
 }
 
+/* 사용자 닉네임 스타일 */
+.user-nickname {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-red);
+    font-size: clamp(16px, 1.667vw, 32px);
+    font-weight: 600;
+    padding: 0.521vw 1.042vw;
+    border-radius: 0.417vw;
+    pointer-events: none;
+    user-select: none;
+}
+
 .navbar__button {
     text-align: center;
     display: flex;

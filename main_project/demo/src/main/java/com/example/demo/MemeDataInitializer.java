@@ -41,7 +41,7 @@ public class MemeDataInitializer implements ApplicationRunner {
                 "\"요즘 친구들은 인사가 참 '쿨'하네. 'MZ식 인사법'인가? 하하.\"",
                 "Young people these days have such an 'MZ' way of greeting, don't they?",
                 "/MemePicture/meme2022_M2.png",
-                1
+                29
             );
             MemeData meme2022_M3 = new MemeData(
                 "2022",

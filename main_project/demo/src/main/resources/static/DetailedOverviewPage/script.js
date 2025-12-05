@@ -91,6 +91,14 @@ function setupInputValidation() {
         input.addEventListener("input", validateInput);
         input.addEventListener("blur", validateInput);
         input.addEventListener("focus", removeError);
+
+        // Enter 키로 로그인
+        input.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                handleSignIn();
+            }
+        });
     });
 }
 
@@ -118,12 +126,13 @@ function setupLoginButtonEvent() {
     });
 }
 
-function handleSignIn() {
+async function handleSignIn() {
     const idInput = document.querySelector(".login-container #user-id");
     const passwordInput = document.querySelector(
         ".login-container #user-password"
     );
 
+    // 입력값 검증
     if (!idInput.value.trim()) {
         showError(idInput, "아이디를 입력해주세요");
         return;
@@ -134,35 +143,69 @@ function handleSignIn() {
         return;
     }
 
+    // 로딩 상태 표시
     const signInButton = document.querySelector(".login-container .btn-signin");
     const originalText = signInButton.textContent;
     signInButton.textContent = "Loading...";
     signInButton.disabled = true;
 
-    setTimeout(() => {
-        console.log("Sign In - ID:", idInput.value);
-        console.log("Sign In - Password:", passwordInput.value);
+    try {
+        // 백엔드 API 호출
+        const response = await fetch("http://localhost:8080/api/users/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                username: idInput.value.trim(),
+                password: passwordInput.value,
+            }),
+        });
 
-        isLoggedIn = true;
-        saveLoginState();
-        updateLoginButton();
+        const data = await response.json();
 
-        const loginModal = document.getElementById("login-modal");
-        if (loginModal) {
-            loginModal.classList.remove("show");
-            document.body.style.overflow = "auto";
+        if (response.ok) {
+            // 로그인 성공
+            console.log("Login successful:", data);
+
+            // 로그인 상태 업데이트
+            isLoggedIn = true;
+            // 닉네임 저장
+            localStorage.setItem("userNickname", data.nickname || idInput.value);
+            saveLoginState();
+            updateLoginButton();
+
+            // 로그인 모달 닫기
+            const loginModal = document.getElementById("login-modal");
+            if (loginModal) {
+                loginModal.classList.remove("show");
+                document.body.style.overflow = "auto";
+            }
+
+            // 폼 초기화
+            idInput.value = "";
+            passwordInput.value = "";
+            removeError(idInput);
+            removeError(passwordInput);
+
+            alert(`${data.nickname}님, 환영합니다!`);
+        } else {
+            // 로그인 실패
+            console.error("Login failed:", data);
+            if (typeof data === "string") {
+                alert(data);
+            } else {
+                alert(data.message || "로그인에 실패했습니다.");
+            }
         }
-
-        idInput.value = "";
-        passwordInput.value = "";
-        removeError(idInput);
-        removeError(passwordInput);
-
+    } catch (error) {
+        console.error("Login error:", error);
+        alert("서버와 연결할 수 없습니다. 서버가 실행 중인지 확인해주세요.");
+    } finally {
+        // 버튼 복구
         signInButton.textContent = originalText;
         signInButton.disabled = false;
-
-        alert("로그인 되었습니다.");
-    }, 1000);
+    }
 }
 
 function handleLogout() {
@@ -170,6 +213,7 @@ function handleLogout() {
 
     if (confirmed) {
         isLoggedIn = false;
+        localStorage.removeItem("userNickname");
         saveLoginState();
         updateLoginButton();
         alert("로그아웃 되었습니다.");
@@ -178,18 +222,36 @@ function handleLogout() {
 
 function updateLoginButton() {
     const loginButton = document.querySelector(".navbar__button--login");
+    const nicknameElement = document.querySelector(".user-nickname");
 
     if (!loginButton) {
         console.warn("Login button not found");
+        // 요소가 없을 때 약간의 지연 후 재시도
+        setTimeout(updateLoginButton, 100);
         return;
     }
 
     if (isLoggedIn) {
         loginButton.textContent = "LOGOUT";
         loginButton.setAttribute("data-logged-in", "true");
+
+        // 닉네임 표시
+        if (nicknameElement) {
+            const nickname = localStorage.getItem("userNickname") || "사용자";
+            nicknameElement.textContent = nickname;
+            nicknameElement.style.display = "block";
+        } else {
+            // 닉네임 요소가 없을 때 재시도
+            setTimeout(updateLoginButton, 100);
+        }
     } else {
         loginButton.textContent = "LOGIN";
         loginButton.removeAttribute("data-logged-in");
+
+        // 닉네임 숨기기
+        if (nicknameElement) {
+            nicknameElement.style.display = "none";
+        }
     }
 }
 
@@ -309,7 +371,12 @@ function initializeLoginModal() {
 }
 
 function setupLoginModalEventListeners() {
-    loginButtonElement.addEventListener("click", handleOpenLoginModal);
+    // 로그인 버튼 클릭 - 로그인 상태가 아닐 때만 모달 열기
+    loginButtonElement.addEventListener("click", () => {
+        if (!isLoggedIn) {
+            handleOpenLoginModal();
+        }
+    });
 
     if (loginModalCloseButtonElement) {
         loginModalCloseButtonElement.addEventListener(
@@ -475,16 +542,42 @@ function validateForm() {
     return true;
 }
 
-function handleSignup() {
+async function handleSignup() {
     if (!validateForm()) {
         return;
     }
 
-    console.log("회원가입 시도:", formData);
-    alert(`환영합니다, ${formData.nickname}님!\n회원가입이 완료되었습니다.`);
+    try {
+        // 백엔드 API 호출
+        const response = await fetch("http://localhost:8080/api/users/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                username: formData.id,
+                password: formData.password,
+                nickname: formData.nickname,
+            }),
+        });
 
-    resetForm();
-    handleCloseSignupModal();
+        const data = await response.text();
+
+        if (response.ok) {
+            // 회원가입 성공
+            console.log("Signup successful:", data);
+            alert(`환영합니다, ${formData.nickname}님!\n회원가입이 완료되었습니다.`);
+            resetForm();
+            handleCloseSignupModal();
+        } else {
+            // 회원가입 실패
+            console.error("Signup failed:", data);
+            alert(data || "회원가입에 실패했습니다.");
+        }
+    } catch (error) {
+        console.error("Signup error:", error);
+        alert("서버와 연결할 수 없습니다. 서버가 실행 중인지 확인해주세요.");
+    }
 }
 
 function resetForm() {
@@ -713,10 +806,38 @@ function mapMemeDataToCard(memeData) {
 
     // 기능: 이미지 경로 추출 (기본값: assets/image0_108_70.png)
     let imagePath = memeData.imagePath || 'assets/image0_108_70.png';
-    // 기능: 이미지 경로가 상대 경로인 경우 절대 경로로 변환 (앞에 / 추가)
-    // 기능: 이미 http로 시작하는 절대 URL인 경우는 그대로 유지
-    if (imagePath && !imagePath.startsWith('/') && !imagePath.startsWith('http')) {
-        imagePath = '/' + imagePath;
+    
+    // 기능: 이미지 경로 정규화 - Spring Boot 정적 리소스 경로 처리
+    // Spring Boot는 /static/을 기본 경로로 제공하므로 실제 접근 경로는 /DetailedOverviewPage/... 또는 /MemePicture/...
+    if (imagePath && !imagePath.startsWith('http')) {
+        // http로 시작하지 않는 경우에만 처리
+        if (imagePath.startsWith('/MemePicture/')) {
+            // MemePicture는 루트에 있으므로 그대로 유지
+            imagePath = imagePath;
+        } else if (imagePath.startsWith('/')) {
+            // /로 시작하지만 DetailedOverviewPage가 없는 경우
+            if (!imagePath.startsWith('/DetailedOverviewPage/') && !imagePath.startsWith('/MemePicture/')) {
+                // assets로 시작하면 DetailedOverviewPage 추가
+                if (imagePath.startsWith('/assets/')) {
+                    imagePath = '/DetailedOverviewPage' + imagePath;
+                } else {
+                    imagePath = '/DetailedOverviewPage' + imagePath;
+                }
+            }
+        } else {
+            // 상대 경로인 경우
+            if (imagePath.startsWith('MemePicture/')) {
+                imagePath = '/' + imagePath;
+            } else {
+                imagePath = '/DetailedOverviewPage/' + imagePath;
+            }
+        }
+    }
+
+    // 기능: 아이콘 경로를 절대 경로로 설정
+    let iconUrl = "watchdetail.png";
+    if (!iconUrl.startsWith('/') && !iconUrl.startsWith('http')) {
+        iconUrl = '/DetailedOverviewPage/' + iconUrl;
     }
 
     // 기능: 프론트엔드 카드 형식으로 데이터 매핑
@@ -725,7 +846,7 @@ function mapMemeDataToCard(memeData) {
         title: combinedTitle,                // 기능: 결합된 제목 (한국어 + 영어)
         views: memeData.viewCount,          // 기능: 조회수
         imageUrl: imagePath,                // 기능: 처리된 이미지 경로
-        iconUrl: "watchdetail.png"          // 기능: 카드 아이콘 이미지 경로
+        iconUrl: iconUrl                    // 기능: 카드 아이콘 이미지 경로
     };
 
     console.log('🖼️ Image mapping:', memeData.imagePath, '→', mappedData.imageUrl);
@@ -823,7 +944,7 @@ function createCardHTML(cardData, position, index) {
         <!-- 기능: 카드 정보 컨테이너 - 추가 정보를 표시할 영역 -->
         <div class="card__info-container" style="left: ${position.left}; top: ${position.infoTop};" data-card-id="${index}" data-element="info"></div>
         <!-- 기능: 카드 제목 표시 영역 -->
-        <div class="card__title" style="left: ${position.left}; top: ${position.titleTop};" data-card-id="${index}" data-element="title">${cardData.title}</div>
+        <div class="card__title" style="left: ${position.left}; top: ${position.titleTop}; font-size: 2.0vw;" data-card-id="${index}" data-element="title">${cardData.title}</div>
         <!-- 기능: 카드 조회수 표시 영역 -->
         <div class="card__views" style="left: ${position.viewsLeft}; top: ${position.viewsTop};" data-card-id="${index}" data-element="views">${cardData.views}</div>
         <!-- 기능: 카드 아이콘 버튼 - 클릭 시 상세 페이지로 이동하는 버튼 -->
@@ -1142,6 +1263,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     initializeLoginForm();
     console.log("✓ Login form initialized");
+
+    // 페이지 로드 시 닉네임 표시 확인 (여러 시점에서 호출)
+    updateLoginButton();
+    
+    // window.load 이벤트에서도 호출
+    window.addEventListener('load', () => {
+        updateLoginButton();
+    });
+    
+    // 약간의 지연 후에도 호출 (VSCode 타이밍 이슈 대응)
+    setTimeout(() => {
+        updateLoginButton();
+    }, 200);
+    
+    setTimeout(() => {
+        updateLoginButton();
+    }, 500);
 
     initializeYearButtons();
     console.log("✓ Year buttons initialized");

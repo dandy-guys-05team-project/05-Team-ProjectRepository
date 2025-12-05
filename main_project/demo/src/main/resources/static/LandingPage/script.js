@@ -495,7 +495,7 @@ async function handleSignIn() {
         }
     } catch (error) {
         console.error("Login error:", error);
-        alert("서버와 연결할 수 없습니다. 서버가 실행 중인지 확인해주세요.");
+        alert("로그인에 실패했습니다.");
     } finally {
         // 버튼 복구
         signInButton.textContent = originalText;
@@ -983,7 +983,7 @@ async function handleSignup() {
         }
     } catch (error) {
         console.error("Signup error:", error);
-        alert("서버와 연결할 수 없습니다. 서버가 실행 중인지 확인해주세요.");
+        alert("회원가입에 실패햇습니다");
     }
 }
 
@@ -1203,6 +1203,166 @@ function handleMenuNavigation(itemName) {
     }
 }
 
+// ==================== MEME OF THE YEAR MODULE ====================
+/**
+ * Meme Of The Year Module
+ * viewCount가 가장 높은 밈을 가져와서 표시
+ */
+
+/**
+ * 모든 연도의 밈 데이터를 가져오는 함수
+ * @returns {Promise<Array>} - 모든 밈 데이터 배열
+ */
+async function fetchAllMemes() {
+    const years = ['2022', '2023', '2024', '2025'];
+    const allMemes = [];
+
+    try {
+        // 모든 연도의 밈을 병렬로 가져오기
+        const promises = years.map(year => 
+            fetch(`http://localhost:8080/api/memes/${year}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .catch(error => {
+                    console.error(`Failed to fetch memes for year ${year}:`, error);
+                    return []; // 에러 발생 시 빈 배열 반환
+                })
+        );
+
+        const results = await Promise.all(promises);
+        
+        // 모든 결과를 하나의 배열로 합치기
+        results.forEach(memes => {
+            allMemes.push(...memes);
+        });
+
+        console.log(`Fetched ${allMemes.length} total memes from all years`);
+        return allMemes;
+    } catch (error) {
+        console.error('Failed to fetch all memes:', error);
+        return [];
+    }
+}
+
+/**
+ * viewCount가 가장 높은 밈을 찾는 함수
+ * @param {Array} memes - 밈 데이터 배열
+ * @returns {Object|null} - viewCount가 가장 높은 밈 객체 또는 null
+ */
+function findMemeWithHighestViewCount(memes) {
+    if (!memes || memes.length === 0) {
+        return null;
+    }
+
+    // viewCount를 기준으로 내림차순 정렬
+    const sortedMemes = [...memes].sort((a, b) => {
+        const viewCountA = a.viewCount || 0;
+        const viewCountB = b.viewCount || 0;
+        return viewCountB - viewCountA;
+    });
+
+    return sortedMemes[0];
+}
+
+/**
+ * viewCount가 가장 높은 밈을 페이지에 표시하는 함수
+ */
+async function loadMemeOfTheYear() {
+    try {
+        // 모든 밈 데이터 가져오기
+        const allMemes = await fetchAllMemes();
+        
+        if (allMemes.length === 0) {
+            console.warn('No memes found');
+            return;
+        }
+
+        // viewCount가 가장 높은 밈 찾기
+        const topMeme = findMemeWithHighestViewCount(allMemes);
+        
+        if (!topMeme) {
+            console.warn('No meme with highest viewCount found');
+            return;
+        }
+
+        console.log('Meme of the Year:', topMeme);
+
+        // 이미지 표시
+        const rectangle3 = document.querySelector('.rectangle-3');
+        if (rectangle3 && topMeme.imagePath) {
+            let imagePath = topMeme.imagePath;
+            // 경로가 상대 경로인 경우 처리
+            if (!imagePath.startsWith('/') && !imagePath.startsWith('http')) {
+                imagePath = '/' + imagePath;
+            }
+            
+            // 이미지가 로드된 후 비율에 맞춰 높이 조정
+            const img = new Image();
+            img.onload = function() {
+                const containerWidth = rectangle3.offsetWidth || window.innerWidth * 0.72917;
+                const imageAspectRatio = img.height / img.width;
+                const calculatedHeight = containerWidth * imageAspectRatio;
+                
+                // 최소 높이와 최대 높이 설정
+                // meme-title의 top 위치(168.614vw)를 침범하지 않도록 제한
+                // rectangle-3의 top: 140.489vw, meme-title의 top: 168.614vw
+                // 최대 높이 = 168.614vw - 140.489vw = 28.125vw (약간의 여유를 두어 27vw로 설정)
+                const minHeight = window.innerWidth * 0.20833; // 20.833vw를 픽셀로 변환
+                const maxHeight = window.innerWidth * 0.27; // 27vw를 픽셀로 변환 (meme-title 침범 방지)
+                const finalHeight = Math.min(Math.max(calculatedHeight, minHeight), maxHeight);
+                
+                rectangle3.style.height = finalHeight + 'px';
+                
+                rectangle3.style.backgroundImage = `url(${imagePath})`;
+                rectangle3.style.backgroundSize = 'contain';
+                rectangle3.style.backgroundPosition = 'center';
+                rectangle3.style.backgroundRepeat = 'no-repeat';
+                rectangle3.style.backgroundColor = 'var(--color-light-blue)';
+            };
+            img.onerror = function() {
+                // 이미지 로드 실패 시 기본 설정
+                rectangle3.style.backgroundImage = `url(${imagePath})`;
+                rectangle3.style.backgroundSize = 'contain';
+                rectangle3.style.backgroundPosition = 'center';
+                rectangle3.style.backgroundRepeat = 'no-repeat';
+                rectangle3.style.backgroundColor = 'var(--color-light-blue)';
+            };
+            img.src = imagePath;
+        }
+
+        // 제목 표시
+        const memeTitle = document.querySelector('.meme-title');
+        if (memeTitle) {
+            // 한국어 제목과 영어 제목을 모두 표시
+            const titleParts = [];
+            
+            if (topMeme.title_kor) {
+                titleParts.push(topMeme.title_kor);
+            }
+            
+            if (topMeme.title_eng) {
+                titleParts.push(topMeme.title_eng);
+            }
+            
+            // 제목이 하나도 없으면 기본 메시지 표시
+            if (titleParts.length === 0) {
+                memeTitle.textContent = 'No Title';
+            } else {
+                // 두 제목을 줄바꿈으로 연결하여 표시
+                memeTitle.innerHTML = titleParts.join('<br>');
+            }
+        }
+
+        console.log('✓ Meme of the Year loaded successfully');
+    } catch (error) {
+        console.error('Failed to load Meme of the Year:', error);
+    }
+}
+
 // ==================== MAIN INITIALIZATION ====================
 /**
  * DOM이 로드되었을 때 모든 기능 초기화
@@ -1246,7 +1406,11 @@ document.addEventListener("DOMContentLoaded", function () {
     initializeFooter();
     console.log("✓ Footer initialized");
 
-    // 9. 접근성: Tab 키 네비게이션 지원 (추후 구현 가능)
+    // 9. Meme of the Year 로드
+    loadMemeOfTheYear();
+    console.log("✓ Meme of the Year loading...");
+
+    // 10. 접근성: Tab 키 네비게이션 지원 (추후 구현 가능)
     document.addEventListener("keydown", (event) => {
         if (event.key === "Tab") {
             // 포커스 관리 로직 추가 가능
