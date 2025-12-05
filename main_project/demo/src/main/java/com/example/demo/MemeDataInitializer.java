@@ -27,7 +27,7 @@ public class MemeDataInitializer implements ApplicationRunner {
                 "It is used as a motto that symbolizes the indomitable will to achieve a goal without giving up, even in the face of adversity",
                 "\"지금 우리가 0:2로 지고 있지만, 중요한 것은 꺾이지 않는 마음이다! 포기하지 말고 한 골씩 따라가자!\"",
                 "We're down 0-2 right now, but what matters is an unbroken spirit! Let's not give up and catch up, one goal at a time!",
-                "/test1"
+                "./MemePicture/meme2022_M1.png"
             );
             MemeData meme2022_M2 = new MemeData(
                 "2022",
@@ -39,7 +39,7 @@ public class MemeDataInitializer implements ApplicationRunner {
                 "This is generally used by the older generation to satirize or criticize the perceived lack of manners or impolite behavior of the younger generation.",
                 "\"요즘 친구들은 인사가 참 '쿨'하네. 'MZ식 인사법'인가? 하하.\"",
                 "Young people these days have such an 'MZ' way of greeting, don't they?",
-                "test2"
+                "./MemePicture/meme2022_M2.png"
             );
             MemeData meme2022_M3 = new MemeData(
                 "2022",
@@ -51,7 +51,7 @@ public class MemeDataInitializer implements ApplicationRunner {
                 "It signifies extreme resignation or dark humor. It's used to show a \"nothing left to lose\" attitude, often by jokingly suggesting a drastic or self-destructive final measure (OO) to cope with a catastrophic situation.",
                 "응, 면접에서 나 떨어뜨려봐, 백수하면 그만이야!",
                 "Go ahead and reject me at the interview. I can just be unemployed and that's it!",
-                "/test3"
+                "./MemePicture/meme2022_M3.png"
             );
 
             MemeData meme2022_M4 = new MemeData(
@@ -64,7 +64,7 @@ public class MemeDataInitializer implements ApplicationRunner {
                 "It embodies the \"MZ-style humor and coolness\" of ignoring the question and prioritizing one's own agenda or performance. It focuses on suddenly shifting the atmosphere with a popular song and dance, or humorously dodging the question.",
                 "Q: \"저기, 혹시 홍대 가는 길이 어디예요?\" A: (이어폰 빼며) \"뉴진스의 하입보이요!\" (춤추기 시작)",
                 "Q: \"Excuse me, could you tell me the way to Hongdae?\" A: (Removing an earbud) \"It's NewJeans' Hype Boy.\" (Starts dancing)",
-                "/test4"
+                "./MemePicture/meme2022_M4.png"
             );
 
             MemeData meme2022_M5 = new MemeData(
@@ -77,7 +77,7 @@ public class MemeDataInitializer implements ApplicationRunner {
                 "It is used when encountering a subject that is difficult to define or explain with words (like jazz). The meme is a humorous way to dodge a serious question by replying with an improvisational, non-verbal expression (the scat), emphasizing the subject's spontaneous nature.",
                 "Q: \"당신에게 재즈는 뭐라고 생각하세요?\" A: (갑자기 스캣 시작) \"뫄아아... 두비두바아... 아아아...\"",
                 "Q: \"What do you think of jazz?\" A: (Suddenly starts scatting) \"Bwahh... doobie-doo-baa... aaaah...\"",
-                "/test5"
+                "./MemePicture/meme2022_M5.png"
             );
 
             MemeData meme2023_M1 = new MemeData(
